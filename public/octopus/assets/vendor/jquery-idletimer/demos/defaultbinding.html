@@ -162,7 +162,7 @@
             //Same as $(document).idleTimer(docTimeout);
             $.idleTimer(docTimeout);
 
-            //For product purposes, get initial state and style accordingly
+            //For products purposes, get initial state and style accordingly
             if ($.idleTimer("isIdle")) {
                 $("#docStatus")
                   .val(function (i, v) {
@@ -225,7 +225,7 @@
                 return false;
             });
             $("#btDefaultInit").click(function () {
-                // for product purposes show init with just object
+                // for products purposes show init with just object
                 $.idleTimer({ timeout: docTimeout }).find("h2").css({ "background-color": rndColor() });
                 $('#docStatus')
                     .val(function (i, v) {
@@ -358,7 +358,7 @@
                 return false;
             });
             $("#btExplicitInit").click(function () {
-                // for product purposes show init with just object
+                // for products purposes show init with just object
                 $.idleTimer({ timeout: docTimeout }).find("h2").css({ "background-color": rndColor() });
                 $('#docStatus')
                     .val(function (i, v) {

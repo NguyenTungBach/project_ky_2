@@ -4,17 +4,17 @@
 namespace App\Http\Controllers;
 
 
-class LayoutController extends Controller
+class AdminController extends Controller
 {
     public function getLayout(){
         return view('admin.layout.master-layout');
     }
 
     public function getCreateProduct(){
-        return view('admin.product.create');
+        return view('admin.products.create');
     }
 
     public function getListProduct(){
-        return view('admin.product.list');
+        return view('admin.products.list');
     }
 }

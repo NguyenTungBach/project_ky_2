@@ -34,7 +34,7 @@ $(document).ready( function () {
 	);
 	//SyntaxHighlighter.highlight({}, $('#display-init-html')[0]);
 
-	// Allow the product code to run if DT 1.9 is used
+	// Allow the products code to run if DT 1.9 is used
 	if ( dt110 ) {
 		// json
 		var ajaxTab = $('ul.tabs li').eq(3).css('display', 'none');

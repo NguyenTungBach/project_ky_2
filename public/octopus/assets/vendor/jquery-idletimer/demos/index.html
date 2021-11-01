@@ -208,7 +208,7 @@
                 return false;
             });
             $("#btInit").click(function () {
-                // for product purposes show init with just object
+                // for products purposes show init with just object
                 $(document).idleTimer({ timeout: docTimeout });
                 $('#docStatus')
                     .val(function (i, v) {
@@ -237,7 +237,7 @@
             //Same as $.idleTimer(docTimeout, docOptions);
             $(document).idleTimer(docTimeout);
 
-            //For product purposes, style based on initial state
+            //For products purposes, style based on initial state
             if ($(document).idleTimer("isIdle")) {
                 $("#docStatus")
                   .val(function (i, v) {
@@ -257,7 +257,7 @@
             }
 
 
-            //For product purposes, display the actual timeout on the page
+            //For products purposes, display the actual timeout on the page
             $('#docTimeout').text(docTimeout / 1000);
 
 
@@ -359,7 +359,7 @@
             //Clear value if there was one cached & start time
             $('#elStatus').val('').idleTimer(taTimeout);
 
-            //For product purposes, show initial state
+            //For products purposes, show initial state
             if ($("#elStatus").idleTimer("isIdle")) {
                 $("#elStatus")
                   .val(function (i, v) {

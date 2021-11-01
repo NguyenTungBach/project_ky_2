@@ -14,7 +14,7 @@
 		if (window.JSON) {
 			output.val(window.JSON.stringify(list.nestable('serialize')));
 		} else {
-			output.val('JSON browser support required for this product.');
+			output.val('JSON browser support required for this products.');
 		}
 	};
 

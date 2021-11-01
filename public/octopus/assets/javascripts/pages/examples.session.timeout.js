@@ -58,7 +58,7 @@
 		},
 
 		keepAlive: function() {
-			// we don't have session on product,
+			// we don't have session on products,
 			// so the code above prevent a request to be made
 			// in your project, please remove the next 3 lines of code
 			if ( !this.options.keepAliveUrl ) {
