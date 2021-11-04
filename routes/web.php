@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ClientController;
+use App\Http\Controllers\client\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,5 +18,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/admin/layout', [AdminController::class, 'getLayout']);
 Route::get('/admin/createProduct', [AdminController::class, 'getCreateProduct']);
 Route::get('/admin/listProduct', [AdminController::class, 'getListProduct']);
-Route::get('/home', [ClientController::class, 'getHome']);
+Route::get('/home', [HomeController::class, 'getHome']);
 
