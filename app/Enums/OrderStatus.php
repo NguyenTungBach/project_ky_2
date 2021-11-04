@@ -11,10 +11,10 @@ use BenSampo\Enum\Enum;
  */
 final class OrderStatus extends Enum
 {
-    const Waiting =   2;
-    const Processing =   3;
-    const Done = 1;
-    const Cancel = 0;
-    const Deleted = -1;
-    const None = -999;
+    const Waiting = 2; //chờ
+    const Processing = 3; //đang xử lí
+    const Done = 1; // đã xong
+    const Cancel = 0; //huỷ đơn
+    const Deleted = -1; //xoá
+    const None = -999; //null
 }
