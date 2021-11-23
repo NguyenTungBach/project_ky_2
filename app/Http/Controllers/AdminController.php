@@ -6,15 +6,16 @@ namespace App\Http\Controllers;
 
 class AdminController extends Controller
 {
-    public function getLayout(){
-        return view('admin.layout.master-layout');
+
+
+
+    public function getTable(){
+        return view('admin.template.table');
     }
 
-    public function getCreateProduct(){
-        return view('admin.products.create');
+    public function getForm(){
+        return view('admin.template.form');
     }
 
-    public function getListProduct(){
-        return view('admin.products.list');
-    }
+
 }

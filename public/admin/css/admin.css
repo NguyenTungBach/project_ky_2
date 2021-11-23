@@ -1,0 +1,32 @@
+/*======================================= Scroll to top ====================================================*/
+
+#btnToTop {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #777777;
+    color: white;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+#btnToTop:hover {
+    background-color: #555;
+}
+
+/*==========================================================================================================*/
+/*======================================= admin thumbnail ====================================================*/
+.thumbnail-admin {
+    width: 35px;
+    border-radius: 20px;
+    height: 35px;
+    padding: 3px;
+    border: solid #e5dada 2px;
+
+}

@@ -9,11 +9,11 @@ class CartController extends Controller
 {
     public function getCart()
     {
-        return view('client.shoppingCart.cart');
+        return view('client.page.cart.template');
     }
     public function getCheckOut()
     {
-        return view('client.shoppingCart.check-out');
+        return view('client.page.cart.checkout');
     }
 }
 
