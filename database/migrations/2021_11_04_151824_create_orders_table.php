@@ -16,15 +16,14 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("user_id");
             $table->boolean('check_out');
             $table->double('total_price');
             $table->string('ship_name');
             $table->string('ship_phone');
             $table->string('ship_email');
             $table->string('ship_address');
-            $table->string('ship_note')->nullable();
-            $table->tinyInteger('ship_status')->default(OrderStatus::Waiting);
+            $table->text('ship_note')->nullable();
+            $table->integer('ship_status')->default(OrderStatus::Waiting);
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
