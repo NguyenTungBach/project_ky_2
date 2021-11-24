@@ -4,6 +4,7 @@
 @endsection
 @section('css-page')
     @include('client.page.cart.css')
+
 @endsection
 @section('content-page')
     <!-- Title page -->
@@ -20,6 +21,7 @@
                         <th class="column-2">Price</th>
                         <th class="column-3">Quantity</th>
                         <th class="column-4">Total</th>
+                        <th class="column-4">Action</th>
                     </tr>
 
                     <tr class="table_row">
@@ -52,51 +54,25 @@
 									<span>
 										36$
 									</span>
-
-                                <div class="fs-15 hov-cl10 pointer">
-                                    <span class="lnr lnr-cross"></span>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr class="table_row">
-                        <td class="column-1">
-                            <div class="flex-w flex-m">
-                                <div class="wrap-pic-w size-w-50 bo-all-1 bocl12 m-r-30">
-                                    <img src="/client/images/best-sell-02.jpg" alt="IMG">
-                                </div>
-
-                                <span>
-										Asparagus
-									</span>
-                            </div>
-                        </td>
-                        <td class="column-2">
-                            $ 12.00
-                        </td>
-                        <td class="column-3">
-                            <div class="wrap-num-product flex-w flex-m bg12 p-rl-10">
-                                <div class="btn-num-product-down flex-c-m fs-29"></div>
-
-                                <input class="txt-m-102 cl6 txt-center num-product" type="number" name="num-product2"
-                                       value="1">
-
-                                <div class="btn-num-product-up flex-c-m fs-16"></div>
                             </div>
                         </td>
                         <td class="column-4">
-                            <div class="flex-w flex-sb-m">
-									<span>
-										12$
-									</span>
-
-                                <div class="fs-15 hov-cl10 pointer">
-                                    <span class="lnr lnr-cross"></span>
-                                </div>
+                            <div class="dis-flex position-relative">
+                                <button
+                                    style="font-size: 12px; "
+                                    class="mr-1 delete-cart flex-c-m txt-s-105 cl0 bg10 p-1 hov-btn2 trans-04 pointer">
+                                    Update Cart
+                                </button>
+                                <a href="/cart/delete/{id}"
+                                   class=" ml-2 pt-1"
+                                   style="border-radius: 2px; font-size: 14px; color: #a7a7a8">
+                                    Delete
+                                </a>
                             </div>
                         </td>
                     </tr>
+
+
                 </table>
             </div>
 
@@ -109,14 +85,15 @@
                                     Billing details
                                 </h4>
 
-                                <div class="row p-b-50">
+                                <div class="row">
                                     <div class="col-12 p-b-23">
                                         <div>
                                             <div class="txt-s-101 cl6 p-b-10">
                                                 Name <span class="cl12">*</span>
                                             </div>
 
-                                            <input class="txt-s-120 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1" type="text"
+                                            <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
+                                                   type="text"
                                                    name="ship_name" placeholder="Enter name...">
                                         </div>
                                     </div>
@@ -127,7 +104,8 @@
                                                 Phone <span class="cl12">*</span>
                                             </div>
 
-                                            <input class="txt-s-120 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1" type="text"
+                                            <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
+                                                   type="text"
                                                    name="ship_phone" placeholder="Enter phone...">
                                         </div>
                                     </div>
@@ -138,7 +116,8 @@
                                                 Email <span class="cl12">*</span>
                                             </div>
 
-                                            <input class="txt-s-120 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1" type="text"
+                                            <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
+                                                   type="text"
                                                    name="ship_email" placeholder="Enter email...">
                                         </div>
                                     </div>
@@ -149,8 +128,9 @@
                                                 Address <span class="cl12">*</span>
                                             </div>
 
-                                            <input class="plh2 txt-s-120 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1 m-b-20"
-                                                   type="text" name="street" placeholder="Enter address....">
+                                            <input
+                                                class="plh2 txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1 m-b-20"
+                                                type="text" name="street" placeholder="Enter address....">
 
                                         </div>
                                     </div>
@@ -160,9 +140,10 @@
                                             Order notes
                                         </div>
 
-                                        <textarea class="plh2 txt-s-120 cl3 size-a-38 bo-all-1 bocl15 p-rl-20 p-tb-10 focus1"
-                                                  name="ship_note"
-                                                  placeholder="Note about your order, eg. special notes fordelivery."></textarea>
+                                        <textarea
+                                            class="plh2 txt-s-115 cl3 size-a-38 bo-all-1 bocl15 p-rl-20 p-tb-10 focus1"
+                                            name="ship_note"
+                                            placeholder="Note about your order, eg. special notes fordelivery."></textarea>
                                     </div>
 
                                 </div>
@@ -179,13 +160,13 @@
                     </div>
 
                     <div class="d-flex bo-b-1 bocl15 w-100  p-tb-18">
-						<p class="w-50 txt-m-109 cl3">
-							Subtotal
-						</p>
+                        <p class="w-50 txt-m-109 cl3">
+                            Subtotal
+                        </p>
 
                         <p class=" w-50 txt-m-104 cl6">
-							48$
-						</p>
+                            48$
+                        </p>
                     </div>
 
                     <div class="d-flex bo-b-1 bocl15 w-100 p-tb-18">

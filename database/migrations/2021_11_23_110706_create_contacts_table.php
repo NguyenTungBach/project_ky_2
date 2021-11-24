@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\ContactStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,7 +21,7 @@ class CreateContactsTable extends Migration
             $table->string('phone');
             $table->string('email');
             $table->text('message');
-            $table->integer('status')->default(1);
+            $table->integer('status')->default(ContactStatus::Unread);
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
