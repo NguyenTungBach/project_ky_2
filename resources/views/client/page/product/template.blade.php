@@ -130,30 +130,30 @@
                         <div class="shop-grid">
                             <div class="row">
                                 <!-- - -->
-                                @if(isset($data))
-                                    @foreach($data as $product)
+                                @if(isset($items))
+                                    @foreach($items as $item)
                                         <div class="col-sm-6 col-lg-4 p-b-30">
                                             <!-- Block1 -->
                                             <div class="block1">
                                                 <div class="block1-bg wrap-pic-w bo-all-1 bocl12 hov3 trans-04">
-                                                    <img src="{{$product->firstImage}}" alt="IMG">
+                                                    <img src="{{$item->firstImage}}" alt="IMG">
                                                     <div class="block1-content flex-col-c-m p-b-46">
-                                                        <a href="/product/detail/{{$product->id}}"
+                                                        <a href="/product/detail/{{$item->id}}"
                                                            class="txt-m-103 cl3 txt-center hov-cl10 trans-04 js-name-b1">
-                                                            {{$product->name}}
+                                                            {{$item->name}}
                                                         </a>
 
                                                         <span class="block1-content-more txt-m-104 cl9 p-t-21 trans-04">
-													{{$product->formatPrice}} <small>VND</small>
+													{{$item->formatPrice}} <small>VND</small>
 												</span>
 
                                                         <div class="block1-wrap-icon flex-c-m flex-w trans-05">
-                                                            <a href="/product/detail/{{$product->id}}"
+                                                            <a href="/product/detail/{{$item->id}}"
                                                                class="block1-icon flex-c-m wrap-pic-max-w">
                                                                 <img src="/client/images/icons/icon-view.png" alt="ICON">
                                                             </a>
 
-                                                            <a href="/cart/add/{{$product->id}}"
+                                                            <a href="/cart/add/{{$item->id}}"
                                                                class="add-to-cart block1-icon flex-c-m wrap-pic-max-w js-addcart-b1">
                                                                 <img src="/client/images/icons/icon-cart.png" alt="ICON">
                                                             </a>
@@ -180,9 +180,10 @@
                         </div>
 
                         <!-- Pagination -->
-                        @if(isset($data))
+                        @if(isset($items))
                         <div class="flex-w flex-c-m p-t-47">
-                            {{$data->appends(request()->all())->links('client.include.pagination')}}
+                            {{$items->links('client.include.pagination')}}
+{{--                            {{$items->appends(request()->all())->links('client.include.pagination')}}--}}
                         </div>
                         @endif
                     </div>

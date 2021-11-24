@@ -11,7 +11,7 @@ class ProductController extends Controller
     public function getShop(){
         $paginate = 9;
         return view('client.page.product.template', [
-            'data'=> Product::paginate($paginate),
+            'items'=> Product::paginate($paginate),
         ]);
     }
 
