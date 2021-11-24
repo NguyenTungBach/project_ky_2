@@ -101,8 +101,75 @@
             </div>
 
             <div class="w-100 d-flex">
-                <div class="w-60  p-t-68">
-                    {{-- Form nhập thông tin người nhận tạo tại đây--}}
+                <div class="w-60  p-t-68 pr-5">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12 p-b-50">
+                            <div>
+                                <h4 class="txt-m-124 cl3 p-b-28">
+                                    Billing details
+                                </h4>
+
+                                <div class="row p-b-50">
+                                    <div class="col-12 p-b-23">
+                                        <div>
+                                            <div class="txt-s-101 cl6 p-b-10">
+                                                Name <span class="cl12">*</span>
+                                            </div>
+
+                                            <input class="txt-s-120 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1" type="text"
+                                                   name="ship_name" placeholder="Enter name...">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6 p-b-23">
+                                        <div>
+                                            <div class="txt-s-101 cl6 p-b-10">
+                                                Phone <span class="cl12">*</span>
+                                            </div>
+
+                                            <input class="txt-s-120 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1" type="text"
+                                                   name="ship_phone" placeholder="Enter phone...">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6 p-b-23">
+                                        <div>
+                                            <div class="txt-s-101 cl6 p-b-10">
+                                                Email <span class="cl12">*</span>
+                                            </div>
+
+                                            <input class="txt-s-120 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1" type="text"
+                                                   name="ship_email" placeholder="Enter email...">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 p-b-23">
+                                        <div>
+                                            <div class="txt-s-101 cl6 p-b-10">
+                                                Address <span class="cl12">*</span>
+                                            </div>
+
+                                            <input class="plh2 txt-s-120 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1 m-b-20"
+                                                   type="text" name="street" placeholder="Enter address....">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 p-b-23">
+                                        <div class="txt-s-101 cl6 p-b-10">
+                                            Order notes
+                                        </div>
+
+                                        <textarea class="plh2 txt-s-120 cl3 size-a-38 bo-all-1 bocl15 p-rl-20 p-tb-10 focus1"
+                                                  name="ship_note"
+                                                  placeholder="Note about your order, eg. special notes fordelivery."></textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="w-40 p-t-68">
                     <div class="w-100 pl-3">
