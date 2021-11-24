@@ -88,15 +88,23 @@
                                     Billing details
                                 </h4>
 
+<<<<<<< HEAD
                                 <div class="row">
+=======
+                                <div class="row p-b-50">
+>>>>>>> 1e617287ca027d8847ad7f78ea04d85f3af2ae24
                                     <div class="col-12 p-b-23">
                                         <div>
                                             <div class="txt-s-101 cl6 p-b-10">
                                                 Name <span class="cl12">*</span>
                                             </div>
 
+<<<<<<< HEAD
                                             <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
                                                    type="text"
+=======
+                                            <input class="txt-s-120 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1" type="text"
+>>>>>>> 1e617287ca027d8847ad7f78ea04d85f3af2ae24
                                                    name="ship_name" placeholder="Enter name...">
                                         </div>
                                     </div>
@@ -107,8 +115,12 @@
                                                 Phone <span class="cl12">*</span>
                                             </div>
 
+<<<<<<< HEAD
                                             <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
                                                    type="text"
+=======
+                                            <input class="txt-s-120 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1" type="text"
+>>>>>>> 1e617287ca027d8847ad7f78ea04d85f3af2ae24
                                                    name="ship_phone" placeholder="Enter phone...">
                                         </div>
                                     </div>
@@ -119,8 +131,12 @@
                                                 Email <span class="cl12">*</span>
                                             </div>
 
+<<<<<<< HEAD
                                             <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
                                                    type="text"
+=======
+                                            <input class="txt-s-120 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1" type="text"
+>>>>>>> 1e617287ca027d8847ad7f78ea04d85f3af2ae24
                                                    name="ship_email" placeholder="Enter email...">
                                         </div>
                                     </div>
@@ -131,9 +147,14 @@
                                                 Address <span class="cl12">*</span>
                                             </div>
 
+<<<<<<< HEAD
                                             <input
                                                 class="plh2 txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1 m-b-20"
                                                 type="text" name="street" placeholder="Enter address....">
+=======
+                                            <input class="plh2 txt-s-120 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1 m-b-20"
+                                                   type="text" name="street" placeholder="Enter address....">
+>>>>>>> 1e617287ca027d8847ad7f78ea04d85f3af2ae24
 
                                         </div>
                                     </div>
@@ -143,10 +164,16 @@
                                             Order notes
                                         </div>
 
+<<<<<<< HEAD
                                         <textarea
                                             class="plh2 txt-s-115 cl3 size-a-38 bo-all-1 bocl15 p-rl-20 p-tb-10 focus1"
                                             name="ship_note"
                                             placeholder="Note about your order, eg. special notes fordelivery."></textarea>
+=======
+                                        <textarea class="plh2 txt-s-120 cl3 size-a-38 bo-all-1 bocl15 p-rl-20 p-tb-10 focus1"
+                                                  name="ship_note"
+                                                  placeholder="Note about your order, eg. special notes fordelivery."></textarea>
+>>>>>>> 1e617287ca027d8847ad7f78ea04d85f3af2ae24
                                     </div>
 
                                 </div>
