@@ -42,7 +42,6 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-
                                     <tr>
                                         <td>Jennifer Acosta</td>
                                         <td>Junior Javascript Developer</td>

@@ -44,8 +44,8 @@
 
                 <div class="right-header">
                 @php
-                    if (session()->has('cart')){
-                    $shopCart = session()->get('cart');
+                    if (session()->has('shoppingCart')){
+                    $shopCart = session()->get('shoppingCart');
                     }
                 @endphp
                 <!-- Icon header -->
@@ -58,11 +58,13 @@
                             <div class="cart-header menu-click-child trans-04">
                                 <div class="bo-b-1 bocl15">
                                     <div class="size-h-2 js-pscroll m-r--15 p-r-15">
-                                    @if(session()->has('cart'))
+                                    @if(session()->has('shoppingCart'))
                                         <?php $total = 0 ?>
                                         @foreach($shopCart as $product)
                                             @php
-                                                $total += $product->unitPrice * $product->quantity;
+                                                if (isset($product)) {
+                                                    $total += $product->unitPrice * $product->quantity;
+                                                }
                                             @endphp
                                             <!-- cart header item -->
                                                 <div class="flex-w flex-str m-b-25 " style="position: relative">
@@ -104,7 +106,7 @@
 										</span>
 
                                     <span class="txt-m-111 cl10">
-											{{ isset($total) ? \App\util\Util::formatpriceToVnd($total) : ''}} <small>VND</small>
+											{{ isset($total) ? number_format($total, 0, ',', ' ') : ''}} <small>VND</small>
 										</span>
                                 </div>
 
@@ -202,7 +204,6 @@
                 </span>
         </div>
     </div>
-
 
     <!-- Menu Mobile -->
     <div class="menu-mobile">

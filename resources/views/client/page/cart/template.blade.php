@@ -23,76 +23,78 @@
                         <th class="column-4">Total</th>
                         <th class="column-4">Action</th>
                     </tr>
-
-                    <tr class="table_row">
-                        <td class="column-1">
-                            <div class="flex-w flex-m">
-                                <div class="wrap-pic-w size-w-50 bo-all-1 bocl12 m-r-30">
-                                    <img src="/client/images/best-sell-01.jpg" alt="IMG">
-                                </div>
-
-                                <span>
-										Cheery
+                    <?php
+                    $totalPrice = 0;
+                    ?>
+                    @foreach($shoppingCart as $cartItem)
+                        <?php
+                        if (isset($cartItem)) {
+                            $totalPrice += $cartItem->unitPrice * $cartItem->quantity;
+                        }
+                        ?>
+                        <tr class="table_row">
+                            <form action="/cart/update" method="post">
+                                @csrf
+                                <td class="column-1">
+                                    <div class="flex-w flex-m">
+                                        <div class="wrap-pic-w size-w-50 bo-all-1 bocl12 m-r-30">
+                                            <img src="{{$cartItem->thumbnail}}" alt="IMG">
+                                        </div>
+                                        <span>
+                                        {{$cartItem->name}}
 									</span>
-                            </div>
-                        </td>
-                        <td class="column-2">
-                            $ 18.00
-                        </td>
-                        <td class="column-3">
-                            <div class="wrap-num-product flex-w flex-m bg12 p-rl-10">
-                                <div class="btn-num-product-down flex-c-m fs-29"></div>
 
-                                <input class="txt-m-102 cl6 txt-center num-product" type="number" name="num-product1"
-                                       value="2">
-
-                                <div class="btn-num-product-up flex-c-m fs-16"></div>
-                            </div>
-                        </td>
-                        <td class="column-4">
-                            <div class="flex-w flex-sb-m">
+                                    </div>
+                                </td>
+                                <td class="column-2">
+                                    {{$cartItem->unitPrice}}
+                                </td>
+                                <td class="column-3">
+                                    <div class="wrap-num-product flex-w flex-m bg12 p-rl-10">
+                                        <input type="hidden" name="id" value="{{$cartItem->id}}">
+                                        <input class="txt-m-102 cl6 txt-center num-product" type="number"
+                                               name="quantity"
+                                               value="{{$cartItem->quantity}}" min="1">
+                                    </div>
+                                </td>
+                                <td class="column-4">
+                                    <div class="flex-w flex-sb-m">
 									<span>
-										36$
+                                        {{$cartItem->unitPrice * $cartItem->quantity}}
 									</span>
-                            </div>
-                        </td>
-                        <td class="column-4">
-                            <div class="dis-flex position-relative">
-                                <button
-                                    style="font-size: 12px; "
-                                    class="mr-1 delete-cart flex-c-m txt-s-105 cl0 bg10 p-1 hov-btn2 trans-04 pointer">
-                                    Update Cart
-                                </button>
-                                <a href="/cart/delete/{id}"
-                                   class=" ml-2 pt-1"
-                                   style="border-radius: 2px; font-size: 14px; color: #a7a7a8">
-                                    Delete
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-
-
+                                        <button class="fs-15 hov-cl10 pointer">
+                                            UPDATE
+                                        </button>
+                                        <div class="fs-15 hov-cl10 pointer">
+                                            <a href="/cart/remove?id={{$cartItem->id}}"
+                                               onclick="return confirm('Bạn có chắc muốn xoá sản phẩm này khỏi giỏ hàng?')"
+                                            ><span class="lnr lnr-cross"></span></a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </form>
+                        </tr>
+                    @endforeach
                 </table>
             </div>
 
             <div class="w-100 d-flex">
                 <div class="w-60  p-t-68 pr-5">
                     <div class="row">
-                        <div class="col-md-12 col-lg-12 p-b-50">
+                        <div class="col-md-12 col-lg-12">
                             <div>
                                 <h4 class="txt-m-124 cl3 p-b-28">
                                     Billing details
                                 </h4>
 
-                                <div class="row">
+                                <div class="row p-b-50">
                                     <div class="col-12 p-b-23">
                                         <div>
                                             <div class="txt-s-101 cl6 p-b-10">
                                                 Name <span class="cl12">*</span>
                                             </div>
 
-                                            <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
+                                            <input class="txt-s-120 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
                                                    type="text"
                                                    name="ship_name" placeholder="Enter name...">
                                         </div>
@@ -104,7 +106,7 @@
                                                 Phone <span class="cl12">*</span>
                                             </div>
 
-                                            <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
+                                            <input class="txt-s-120 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
                                                    type="text"
                                                    name="ship_phone" placeholder="Enter phone...">
                                         </div>
@@ -116,9 +118,9 @@
                                                 Email <span class="cl12">*</span>
                                             </div>
 
-                                            <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
-                                                   type="text"
-                                                   name="ship_email" placeholder="Enter email...">
+
+                                            <input class="txt-s-120 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
+                                                   type="text" name="ship_email" placeholder="Enter email...">
                                         </div>
                                     </div>
 
@@ -127,10 +129,10 @@
                                             <div class="txt-s-101 cl6 p-b-10">
                                                 Address <span class="cl12">*</span>
                                             </div>
-
                                             <input
-                                                class="plh2 txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1 m-b-20"
+                                                class="plh2 txt-s-120 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1 m-b-20"
                                                 type="text" name="street" placeholder="Enter address....">
+
 
                                         </div>
                                     </div>
@@ -141,9 +143,10 @@
                                         </div>
 
                                         <textarea
-                                            class="plh2 txt-s-115 cl3 size-a-38 bo-all-1 bocl15 p-rl-20 p-tb-10 focus1"
+                                            class="plh2 txt-s-120 cl3 size-a-38 bo-all-1 bocl15 p-rl-20 p-tb-10 focus1"
                                             name="ship_note"
                                             placeholder="Note about your order, eg. special notes fordelivery."></textarea>
+
                                     </div>
 
                                 </div>
@@ -165,7 +168,7 @@
                         </p>
 
                         <p class=" w-50 txt-m-104 cl6">
-                            48$
+                            {{$totalPrice}} VND
                         </p>
                     </div>
 
@@ -175,7 +178,7 @@
 						</span>
 
                         <span class="w-50 txt-m-104 cl10">
-							48$
+                            {{$totalPrice}} VND
 						</span>
                     </div>
 

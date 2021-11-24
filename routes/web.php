@@ -96,6 +96,11 @@ Route::get('/about', [AboutUsController::class, 'getAboutUs']);
 
 // Cart
 Route::get('/cart', [CartController::class, 'getCart']);
-Route::get('/cart/add/{id}', [CartController::class, 'addToCart']);
+Route::get('/cart/add', [CartController::class, 'add']); // addToCart đã chuyển thành add, bỏ {id}
+Route::post('/cart/update', [CartController::class, 'update']);
+Route::get('/cart/remove', [CartController::class, 'remove']);
 Route::get('/checkout', [CartController::class, 'getCheckOut']);
+
+// Checkout
+
 

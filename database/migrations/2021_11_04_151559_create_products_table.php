@@ -23,7 +23,7 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->text('detail');
             $table->text('thumbnail');
-            $table->integer('count')->nullable();
+            $table->integer('count')->default(0);
             $table->integer('status')->default(ProductStatus::Stocking);
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
