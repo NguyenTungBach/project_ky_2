@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->text('detail');
             $table->text('thumbnail');
-            $table->integer('count');
+            $table->integer('count')->nullable();
             $table->integer('status')->default(1);
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();

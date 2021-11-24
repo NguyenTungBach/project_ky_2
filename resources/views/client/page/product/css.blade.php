@@ -26,3 +26,5 @@
 <link rel="stylesheet" type="text/css" href="/client/vendor/noui/nouislider.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="/client/vendor/slide100/slide100.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>

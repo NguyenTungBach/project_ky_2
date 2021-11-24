@@ -11,6 +11,12 @@ class CartController extends Controller
     {
         return view('client.page.cart.template');
     }
+
+    public function addToCart()
+    {
+        return view('client.page.cart.template');
+    }
+
     public function getCheckOut()
     {
         return view('client.page.cart.checkout');

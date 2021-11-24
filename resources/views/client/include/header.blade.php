@@ -23,11 +23,11 @@
                             </li>
 
                             <li>
-                                <a href="/home-grown">Home Grown</a>
+                                <a href="/farm">Farm</a>
                             </li>
 
                             <li>
-                                <a href="/about-us">About Us</a>
+                                <a href="/about">About Us</a>
                             </li>
 
                             <li>
@@ -43,105 +43,73 @@
                 </div>
 
                 <div class="right-header">
-                    <!-- Icon header -->
+                @php
+                    if (session()->has('cart')){
+                    $shopCart = session()->get('cart');
+                    }
+                @endphp
+                <!-- Icon header -->
                     <div class="wrap-icon-header flex-w flex-r-m h-full wrap-menu-click p-t-8">
-                        <div class="h-full flex-m">
-                            <div class="icon-header-item flex-c-m trans-04 js-show-modal-search">
-                                <img src="/client/images/icons/icon-search.png" alt="SEARCH">
-                            </div>
-                        </div>
-
                         <div class="wrap-cart-header h-full flex-m m-l-10 menu-click">
-                            <div class="icon-header-item flex-c-m trans-04 icon-header-noti" data-notify="2">
+                            <div class="icon-header-item flex-c-m trans-04 icon-header-noti" data-notify="{{isset($shopCart) ? sizeof($shopCart) : ''}}">
                                 <img src="/client/images/icons/icon-cart-2.png" alt="CART">
                             </div>
 
                             <div class="cart-header menu-click-child trans-04">
                                 <div class="bo-b-1 bocl15">
                                     <div class="size-h-2 js-pscroll m-r--15 p-r-15">
-                                        <!-- cart header item -->
-                                        <div class="flex-w flex-str m-b-25">
-                                            <div class="size-w-15 flex-w flex-t">
-                                                <a href="product-single.html" class="wrap-pic-w bo-all-1 bocl12 size-w-16 hov3 trans-04 m-r-14">
-                                                    <img src="/client/images/item-cart-01.jpg" alt="PRODUCT">
-                                                </a>
+                                    @if(session()->has('cart'))
+                                        <?php $total = 0 ?>
+                                        @foreach($shopCart as $product)
+                                            @php
+                                                $total += $product->unitPrice * $product->quantity;
+                                            @endphp
+                                            <!-- cart header item -->
+                                                <div class="flex-w flex-str m-b-25 " style="position: relative">
+                                                    <div class="size-w-15 flex-w flex-t">
+                                                        <a href="product-single.html"
+                                                           class="wrap-pic-w bo-all-1 bocl12 size-w-16 hov3 trans-04 m-r-14">
+                                                            <img src="{{$product->thumbnail}}" alt="PRODUCT">
+                                                        </a>
 
-                                                <div class="size-w-17 flex-col-l">
-                                                    <a href="product-single.html" class="txt-s-108 cl3 hov-cl10 trans-04">
-                                                        Cheery
-                                                    </a>
+                                                        <div class="size-w-17 flex-col-l">
+                                                            <a href="product-single.html"
+                                                               class="txt-s-108 cl3 hov-cl10 trans-04">
+                                                                {{$product->name}}
+                                                            </a>
 
-                                                    <span class="txt-s-101 cl9">
-															18$
-														</span>
+                                                            <span class="txt-s-101 cl9">
+											{{$product->unitPrice}} <small>VND</small>
+										</span>
 
-                                                    <span class="txt-s-109 cl12">
-															x2
-														</span>
+                                                            <span class="txt-s-109 cl12">
+											x{{$product->quantity}}
+										</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="size-w-14 flex-b">
+                                                        <a href="/cart/delete/{{$product->id}}" style="position: absolute;top: 0;" class="lh-10">
+                                                            <img src="/client/images/icons/icon-close.png" alt="CLOSE">
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                            </div>
-
-                                            <div class="size-w-14 flex-b">
-                                                <button class="lh-10">
-                                                    <img src="/client/images/icons/icon-close.png" alt="CLOSE">
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <!-- cart header item -->
-                                        <div class="flex-w flex-str m-b-25">
-                                            <div class="size-w-15 flex-w flex-t">
-                                                <a href="product-single.html" class="wrap-pic-w bo-all-1 bocl12 size-w-16 hov3 trans-04 m-r-14">
-                                                    <img src="/client/images/item-cart-02.jpg" alt="PRODUCT">
-                                                </a>
-
-                                                <div class="size-w-17 flex-col-l">
-                                                    <a href="product-single.html" class="txt-s-108 cl3 hov-cl10 trans-04">
-                                                        Asparagus
-                                                    </a>
-
-                                                    <span class="txt-s-101 cl9">
-															12$
-														</span>
-
-                                                    <span class="txt-s-109 cl12">
-															x1
-														</span>
-                                                </div>
-                                            </div>
-
-                                            <div class="size-w-14 flex-b">
-                                                <button class="lh-10">
-                                                    <img src="/client/images/icons/icon-close.png" alt="CLOSE">
-                                                </button>
-                                            </div>
-                                        </div>
+                                            @endforeach
+                                        @endif
                                     </div>
                                 </div>
-
-
-                                <div class="flex-w flex-sb-m p-t-22 p-b-12">
-                                        <span class="txt-m-103 cl3 p-r-20">
-											Subtotal
-										</span>
-
-                                    <span class="txt-m-111 cl6">
-											48$
-										</span>
-                                </div>
-
-                                <div class="flex-w flex-sb-m p-b-31">
+                                <div class="flex-w flex-sb-m p-b-31 mt-4">
                                         <span class="txt-m-103 cl3 p-r-20">
 											Total
 										</span>
 
                                     <span class="txt-m-111 cl10">
-											48$
+											{{ isset($total) ? \App\util\Util::formatpriceToVnd($total) : ''}} <small>VND</small>
 										</span>
                                 </div>
 
-                                <a href="/shopping-cart" class="flex-c-m size-a-8 bg10 txt-s-105 cl13 hov-btn2 trans-04">
-                                    check out
+                                <a href="/cart/show" class="flex-c-m size-a-8 bg10 txt-s-105 cl13 hov-btn2 trans-04">
+                                    Check out
                                 </a>
                             </div>
                         </div>
@@ -160,86 +128,54 @@
 
         <!-- Icon header -->
         <div class="wrap-icon-header flex-w flex-r-m h-full wrap-menu-click m-r-15">
-            <div class="h-full flex-m">
-                <div class="icon-header-item flex-c-m trans-04 js-show-modal-search">
-                    <img src="/client/images/icons/icon-search.png" alt="SEARCH">
-                </div>
-            </div>
 
             <div class="wrap-cart-header h-full flex-m m-l-5 menu-click">
                 <div class="icon-header-item flex-c-m trans-04 icon-header-noti" data-notify="2">
                     <img src="/client/images/icons/icon-cart-2.png" alt="CART">
                 </div>
-
-                <div class="cart-header menu-click-child trans-04">
+                {{--Shop cart--}}
+                <div class="cart-header menu-click-child trans-04" style="right: 20px">
                     <div class="bo-b-1 bocl15">
-                        <!-- cart header item -->
-                        <div class="flex-w flex-str m-b-25">
-                            <div class="size-w-15 flex-w flex-t">
-                                <a href="product-single.html" class="wrap-pic-w bo-all-1 bocl12 size-w-16 hov3 trans-04 m-r-14">
-                                    <img src="/client/images/item-cart-01.jpg" alt="PRODUCT">
-                                </a>
+                        <div class="size-h-2 js-pscroll m-r--15 p-r-15">
+                        @if(session()->has('cart'))
+                            @php
+                                $shopCart = session()->get('cart');
 
-                                <div class="size-w-17 flex-col-l">
-                                    <a href="product-single.html" class="txt-s-108 cl3 hov-cl10 trans-04">
-                                        Cheery
-                                    </a>
+                            @endphp
+                            @foreach($shopCart as $product)
+                                <!-- cart header item -->
+                                    <div class="flex-w flex-str m-b-25 " style="position: relative">
+                                        <div class="size-w-15 flex-w flex-t">
+                                            <a href="product-single.html"
+                                               class="wrap-pic-w bo-all-1 bocl12 size-w-16 hov3 trans-04 m-r-14">
+                                                <img src="{{$product->thumbnail}}" alt="PRODUCT">
+                                            </a>
 
-                                    <span class="txt-s-101 cl9">
-											18$
+                                            <div class="size-w-17 flex-col-l">
+                                                <a href="product-single.html" class="txt-s-108 cl3 hov-cl10 trans-04">
+                                                    {{$product->name}}
+                                                </a>
+
+                                                <span class="txt-s-101 cl9">
+											{{$product->unitPrice}} <small>VND</small>
 										</span>
 
-                                    <span class="txt-s-109 cl12">
-											x2
+                                                <span class="txt-s-109 cl12">
+											x{{$product->quantity}}
 										</span>
-                                </div>
-                            </div>
+                                            </div>
+                                        </div>
 
-                            <div class="size-w-14 flex-b">
-                                <button class="lh-10">
-                                    <img src="/client/images/icons/icon-close.png" alt="CLOSE">
-                                </button>
-                            </div>
+                                        <div class="size-w-14 flex-b">
+                                            <button style="position: absolute;top: 0;" class="lh-10">
+                                                <img src="/client/images/icons/icon-close.png" alt="CLOSE">
+                                            </button>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
+
                         </div>
-
-                        <!-- cart header item -->
-                        <div class="flex-w flex-str m-b-25">
-                            <div class="size-w-15 flex-w flex-t">
-                                <a href="product-single.html" class="wrap-pic-w bo-all-1 bocl12 size-w-16 hov3 trans-04 m-r-14">
-                                    <img src="/client/images/item-cart-02.jpg" alt="PRODUCT">
-                                </a>
-
-                                <div class="size-w-17 flex-col-l">
-                                    <a href="product-single.html" class="txt-s-108 cl3 hov-cl10 trans-04">
-                                        Asparagus
-                                    </a>
-
-                                    <span class="txt-s-101 cl9">
-											12$
-										</span>
-
-                                    <span class="txt-s-109 cl12">
-											x1
-										</span>
-                                </div>
-                            </div>
-
-                            <div class="size-w-14 flex-b">
-                                <button class="lh-10">
-                                    <img src="/client/images/icons/icon-close.png" alt="CLOSE">
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex-w flex-sb-m p-t-22 p-b-12">
-                            <span class="txt-m-103 cl3 p-r-20">
-								Subtotal
-							</span>
-
-                        <span class="txt-m-111 cl6">
-								48$
-							</span>
                     </div>
 
                     <div class="flex-w flex-sb-m p-b-31">
@@ -252,7 +188,7 @@
 							</span>
                     </div>
 
-                    <a href="checkout.html" class="flex-c-m size-a-8 bg10 txt-s-105 cl13 hov-btn2 trans-04">
+                    <a href="/checkout" class="flex-c-m size-a-8 bg10 txt-s-105 cl13 hov-btn2 trans-04">
                         check out
                     </a>
                 </div>
@@ -321,19 +257,4 @@
         </ul>
     </div>
 
-    <!-- Modal Search -->
-    <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-        <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-            <span class="lnr lnr-cross"></span>
-        </button>
-
-        <div class="container-search-header">
-            <form class="wrap-search-header flex-w">
-                <button class="flex-c-m trans-04">
-                    <span class="lnr lnr-magnifier"></span>
-                </button>
-                <input class="plh1" type="text" name="search" placeholder="Search...">
-            </form>
-        </div>
-    </div>
 </header>

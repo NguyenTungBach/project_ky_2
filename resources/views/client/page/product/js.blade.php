@@ -29,3 +29,5 @@
 <!--===============================================================================================-->
 <script src="/client/vendor/slide100/slide100.js"></script>
 <script src="/client/js/slide100-custom.js"></script>
+<!--Plugin JavaScript file-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
