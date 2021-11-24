@@ -153,8 +153,9 @@
                                                                 <img src="/client/images/icons/icon-view.png" alt="ICON">
                                                             </a>
 
-                                                            <a href="/cart/add/{{$item->id}}"
-                                                               class="add-to-cart block1-icon flex-c-m wrap-pic-max-w js-addcart-b1">
+                                                            <a href="/cart/add?id={{$item->id}}&quantity=1"
+{{--                                                                   class="add-to-cart block1-icon flex-c-m wrap-pic-max-w js-addcart-b1">--}}
+                                                                   class="add-to-cart block1-icon flex-c-m wrap-pic-max-w">
                                                                 <img src="/client/images/icons/icon-cart.png" alt="ICON">
                                                             </a>
 

@@ -21,88 +21,139 @@
                         <th class="column-3">Quantity</th>
                         <th class="column-4">Total</th>
                     </tr>
-
+                    <?php
+                    $totalPrice = 0;
+                    ?>
+                    @foreach($shoppingCart as $cartItem)
+                        <?php
+                        if (isset($cartItem)) {
+                            $totalPrice += $cartItem->unitPrice * $cartItem->quantity;
+                        }
+                        ?>
                     <tr class="table_row">
-                        <td class="column-1">
-                            <div class="flex-w flex-m">
-                                <div class="wrap-pic-w size-w-50 bo-all-1 bocl12 m-r-30">
-                                    <img src="/client/images/best-sell-01.jpg" alt="IMG">
-                                </div>
-
-                                <span>
-										Cheery
+                        <form action="/cart/update" method="post">
+                            @csrf
+                            <td class="column-1">
+                                <div class="flex-w flex-m">
+                                    <div class="wrap-pic-w size-w-50 bo-all-1 bocl12 m-r-30">
+                                        <img src="{{$cartItem->thumbnail}}" alt="IMG">
+                                    </div>
+                                    <span>
+{{--										Cheery--}}
+                                        {{$cartItem->name}}
 									</span>
-                            </div>
-                        </td>
-                        <td class="column-2">
-                            $ 18.00
-                        </td>
-                        <td class="column-3">
-                            <div class="wrap-num-product flex-w flex-m bg12 p-rl-10">
-                                <div class="btn-num-product-down flex-c-m fs-29"></div>
-
-                                <input class="txt-m-102 cl6 txt-center num-product" type="number" name="num-product1"
-                                       value="2">
-
-                                <div class="btn-num-product-up flex-c-m fs-16"></div>
-                            </div>
-                        </td>
-                        <td class="column-4">
-                            <div class="flex-w flex-sb-m">
+                                </div>
+                            </td>
+                            <td class="column-2">
+                                {{--                            $ 18.00--}}
+                                {{$cartItem->unitPrice}}
+                            </td>
+                            <td class="column-3">
+                                <div class="wrap-num-product flex-w flex-m bg12 p-rl-10">
+{{--                                    <div class="btn-num-product-down flex-c-m fs-29"></div>--}}
+                                    <input type="hidden" name="id" value="{{$cartItem->id}}">
+                                    <input class="txt-m-102 cl6 txt-center num-product" type="number" name="quantity"
+                                           value="{{$cartItem->quantity}}" min="1">
+{{--                                    <div class="btn-num-product-up flex-c-m fs-16"></div>--}}
+                                </div>
+                            </td>
+                            <td class="column-4">
+                                <div class="flex-w flex-sb-m">
 									<span>
-										36$
+{{--										36$--}}
+                                        {{$cartItem->unitPrice * $cartItem->quantity}}
 									</span>
-
-                                <div class="fs-15 hov-cl10 pointer">
-                                    <span class="lnr lnr-cross"></span>
+                                    <button class="fs-15 hov-cl10 pointer">
+                                        UPDATE
+                                    </button>
+                                    <div class="fs-15 hov-cl10 pointer">
+                                        <a href="/cart/remove?id={{$cartItem->id}}"
+                                           onclick="return confirm('Bạn có chắc muốn xoá sản phẩm này khỏi giỏ hàng?')"
+                                        ><span class="lnr lnr-cross"></span></a>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
+                            </td>
+                        </form>
                     </tr>
-
-                    <tr class="table_row">
-                        <td class="column-1">
-                            <div class="flex-w flex-m">
-                                <div class="wrap-pic-w size-w-50 bo-all-1 bocl12 m-r-30">
-                                    <img src="/client/images/best-sell-02.jpg" alt="IMG">
-                                </div>
-
-                                <span>
-										Asparagus
-									</span>
-                            </div>
-                        </td>
-                        <td class="column-2">
-                            $ 12.00
-                        </td>
-                        <td class="column-3">
-                            <div class="wrap-num-product flex-w flex-m bg12 p-rl-10">
-                                <div class="btn-num-product-down flex-c-m fs-29"></div>
-
-                                <input class="txt-m-102 cl6 txt-center num-product" type="number" name="num-product2"
-                                       value="1">
-
-                                <div class="btn-num-product-up flex-c-m fs-16"></div>
-                            </div>
-                        </td>
-                        <td class="column-4">
-                            <div class="flex-w flex-sb-m">
-									<span>
-										12$
-									</span>
-
-                                <div class="fs-15 hov-cl10 pointer">
-                                    <span class="lnr lnr-cross"></span>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
+                    @endforeach
                 </table>
             </div>
 
             <div class="w-100 d-flex">
-                <div class="w-60  p-t-68">
-                    {{-- Form nhập thông tin người nhận tạo tại đây--}}
+                <div class="w-60  p-t-68 pr-5">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12 p-b-50">
+                            <div>
+                                <h4 class="txt-m-124 cl3 p-b-28">
+                                    Billing details
+                                </h4>
+
+                                <div class="row">
+                                    <div class="col-12 p-b-23">
+                                        <div>
+                                            <div class="txt-s-101 cl6 p-b-10">
+                                                Name <span class="cl12">*</span>
+                                            </div>
+
+                                            <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
+                                                   type="text"
+                                                   name="ship_name" placeholder="Enter name...">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6 p-b-23">
+                                        <div>
+                                            <div class="txt-s-101 cl6 p-b-10">
+                                                Phone <span class="cl12">*</span>
+                                            </div>
+
+                                            <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
+                                                   type="text"
+                                                   name="ship_phone" placeholder="Enter phone...">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6 p-b-23">
+                                        <div>
+                                            <div class="txt-s-101 cl6 p-b-10">
+                                                Email <span class="cl12">*</span>
+                                            </div>
+
+                                            <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
+                                                   type="text"
+                                                   name="ship_email" placeholder="Enter email...">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 p-b-23">
+                                        <div>
+                                            <div class="txt-s-101 cl6 p-b-10">
+                                                Address <span class="cl12">*</span>
+                                            </div>
+
+                                            <input
+                                                class="plh2 txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1 m-b-20"
+                                                type="text" name="street" placeholder="Enter address....">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 p-b-23">
+                                        <div class="txt-s-101 cl6 p-b-10">
+                                            Order notes
+                                        </div>
+
+                                        <textarea
+                                            class="plh2 txt-s-115 cl3 size-a-38 bo-all-1 bocl15 p-rl-20 p-tb-10 focus1"
+                                            name="ship_note"
+                                            placeholder="Note about your order, eg. special notes fordelivery."></textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="w-40 p-t-68">
                     <div class="w-100 pl-3">
@@ -112,13 +163,14 @@
                     </div>
 
                     <div class="d-flex bo-b-1 bocl15 w-100  p-tb-18">
-						<p class="w-50 txt-m-109 cl3">
-							Subtotal
-						</p>
+                        <p class="w-50 txt-m-109 cl3">
+                            Subtotal
+                        </p>
 
                         <p class=" w-50 txt-m-104 cl6">
-							48$
-						</p>
+{{--                            48$--}}
+                            {{$totalPrice}} VND
+                        </p>
                     </div>
 
                     <div class="d-flex bo-b-1 bocl15 w-100 p-tb-18">
@@ -127,7 +179,8 @@
 						</span>
 
                         <span class="w-50 txt-m-104 cl10">
-							48$
+{{--							48$--}}
+                            {{$totalPrice}} VND
 						</span>
                     </div>
 
