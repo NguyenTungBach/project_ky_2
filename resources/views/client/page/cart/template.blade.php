@@ -4,6 +4,7 @@
 @endsection
 @section('css-page')
     @include('client.page.cart.css')
+
 @endsection
 @section('content-page')
     <!-- Title page -->
@@ -20,6 +21,7 @@
                         <th class="column-2">Price</th>
                         <th class="column-3">Quantity</th>
                         <th class="column-4">Total</th>
+                        <th class="column-4">Action</th>
                     </tr>
                     <?php
                     $totalPrice = 0;
@@ -30,51 +32,48 @@
                             $totalPrice += $cartItem->unitPrice * $cartItem->quantity;
                         }
                         ?>
-                    <tr class="table_row">
-                        <form action="/cart/update" method="post">
-                            @csrf
-                            <td class="column-1">
-                                <div class="flex-w flex-m">
-                                    <div class="wrap-pic-w size-w-50 bo-all-1 bocl12 m-r-30">
-                                        <img src="{{$cartItem->thumbnail}}" alt="IMG">
-                                    </div>
-                                    <span>
-{{--										Cheery--}}
+                        <tr class="table_row">
+                            <form action="/cart/update" method="post">
+                                @csrf
+                                <td class="column-1">
+                                    <div class="flex-w flex-m">
+                                        <div class="wrap-pic-w size-w-50 bo-all-1 bocl12 m-r-30">
+                                            <img src="{{$cartItem->thumbnail}}" alt="IMG">
+                                        </div>
+                                        <span>
                                         {{$cartItem->name}}
 									</span>
-                                </div>
-                            </td>
-                            <td class="column-2">
-                                {{--                            $ 18.00--}}
-                                {{$cartItem->unitPrice}}
-                            </td>
-                            <td class="column-3">
-                                <div class="wrap-num-product flex-w flex-m bg12 p-rl-10">
-{{--                                    <div class="btn-num-product-down flex-c-m fs-29"></div>--}}
-                                    <input type="hidden" name="id" value="{{$cartItem->id}}">
-                                    <input class="txt-m-102 cl6 txt-center num-product" type="number" name="quantity"
-                                           value="{{$cartItem->quantity}}" min="1">
-{{--                                    <div class="btn-num-product-up flex-c-m fs-16"></div>--}}
-                                </div>
-                            </td>
-                            <td class="column-4">
-                                <div class="flex-w flex-sb-m">
+
+                                    </div>
+                                </td>
+                                <td class="column-2">
+                                    {{$cartItem->unitPrice}}
+                                </td>
+                                <td class="column-3">
+                                    <div class="wrap-num-product flex-w flex-m bg12 p-rl-10">
+                                        <input type="hidden" name="id" value="{{$cartItem->id}}">
+                                        <input class="txt-m-102 cl6 txt-center num-product" type="number"
+                                               name="quantity"
+                                               value="{{$cartItem->quantity}}" min="1">
+                                    </div>
+                                </td>
+                                <td class="column-4">
+                                    <div class="flex-w flex-sb-m">
 									<span>
-{{--										36$--}}
                                         {{$cartItem->unitPrice * $cartItem->quantity}}
 									</span>
-                                    <button class="fs-15 hov-cl10 pointer">
-                                        UPDATE
-                                    </button>
-                                    <div class="fs-15 hov-cl10 pointer">
-                                        <a href="/cart/remove?id={{$cartItem->id}}"
-                                           onclick="return confirm('Bạn có chắc muốn xoá sản phẩm này khỏi giỏ hàng?')"
-                                        ><span class="lnr lnr-cross"></span></a>
+                                        <button class="fs-15 hov-cl10 pointer">
+                                            UPDATE
+                                        </button>
+                                        <div class="fs-15 hov-cl10 pointer">
+                                            <a href="/cart/remove?id={{$cartItem->id}}"
+                                               onclick="return confirm('Bạn có chắc muốn xoá sản phẩm này khỏi giỏ hàng?')"
+                                            ><span class="lnr lnr-cross"></span></a>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </form>
-                    </tr>
+                                </td>
+                            </form>
+                        </tr>
                     @endforeach
                 </table>
             </div>
@@ -96,7 +95,6 @@
                                                 <div class="txt-s-101 cl6 p-b-10">
                                                     Name
                                                 </div>
-
                                                 <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
                                                        type="text"
                                                        name="ship_name" placeholder="Enter name...">
@@ -115,6 +113,7 @@
                                                        name="ship_phone" placeholder="Enter phone...">
                                                 <span class="cl12 errorShip_phone"></span>
                                             </div>
+
                                         </div>
 
                                         <div class="col-sm-6 p-b-23">
@@ -141,12 +140,14 @@
                                                     type="text" name="ship_address" placeholder="Enter address....">
                                                 <span class="cl12 errorShip_address"></span>
                                             </div>
+
                                         </div>
 
                                         <div class="col-12 p-b-23">
                                             <div class="txt-s-101 cl6 p-b-10">
                                                 Order notes
                                             </div>
+
 
                                             <textarea
                                                 class="plh2 txt-s-115 cl3 size-a-38 bo-all-1 bocl15 p-rl-20 p-tb-10 focus1"
@@ -170,20 +171,19 @@
                                 Subtotal
                             </p>
 
-                            <p class=" w-50 txt-m-104 cl6">
-{{--                                48$--}}
-                                {{$totalPrice}}
-                            </p>
-                        </div>
+
+                        <p class=" w-50 txt-m-104 cl6">
+                            {{$totalPrice}} VND
+                        </p>
+                    </div>
+
 
                         <div class="d-flex bo-b-1 bocl15 w-100 p-tb-18">
 						<span class="w-50 txt-m-109 cl3">
 							Total
 						</span>
-
-                            <span class="w-50 txt-m-104 cl10">
-{{--							48$--}}
-                                {{$totalPrice}}
+                        <span class="w-50 txt-m-104 cl10">
+                            {{$totalPrice}} VND
 						</span>
                         </div>
 

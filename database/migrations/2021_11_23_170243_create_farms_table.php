@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Status;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,7 +22,7 @@ class CreateFarmsTable extends Migration
             $table->string('phone');
             $table->text('thumbnail');
             $table->text('description');
-            $table->integer('status')->default(1);
+            $table->integer('status')->default(Status::Waiting);
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
