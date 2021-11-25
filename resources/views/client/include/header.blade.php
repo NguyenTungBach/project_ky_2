@@ -110,8 +110,8 @@
 										</span>
                                 </div>
 
-                                <a href="/cart/show" class="flex-c-m size-a-8 bg10 txt-s-105 cl13 hov-btn2 trans-04">
-                                    Check out
+                                <a href="/cart" class="flex-c-m size-a-8 bg10 txt-s-105 cl13 hov-btn2 trans-04">
+                                    Go to Cart
                                 </a>
                             </div>
                         </div>

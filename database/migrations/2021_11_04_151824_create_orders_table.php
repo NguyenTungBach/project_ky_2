@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->boolean('check_out');
             $table->double('total_price');
+//            $table->unsignedBigInteger('user_id')->default('1'); // ai mua
             $table->string('ship_name');
             $table->string('ship_phone');
             $table->string('ship_email');

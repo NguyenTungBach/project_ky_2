@@ -99,8 +99,10 @@ Route::get('/cart', [CartController::class, 'getCart']);
 Route::get('/cart/add', [CartController::class, 'add']); // addToCart đã chuyển thành add, bỏ {id}
 Route::post('/cart/update', [CartController::class, 'update']);
 Route::get('/cart/remove', [CartController::class, 'remove']);
-Route::get('/checkout', [CartController::class, 'getCheckOut']);
 
 // Checkout
-
-
+Route::post('/order', [\App\Http\Controllers\client\OrderController::class, 'process']);
+Route::get('/order/{id}', [\App\Http\Controllers\client\OrderController::class, 'getDetail']);
+Route::post('/order/create-payment', [\App\Http\Controllers\client\OrderController::class, 'createPayment']);
+Route::post('/order/execute-payment', [\App\Http\Controllers\client\OrderController::class, 'executePayment']);
+Route::get('/check-mail', [\App\Http\Controllers\client\OrderController::class, 'getCheckMail']);
