@@ -1,7 +1,7 @@
 /*------------------------------------------------------------------
 Project: Oragnive
 Version:  1.0
-Last change:  
+Last change:
 Assigned to:  Le Xuan Bach
 Primary use:  Company
 -------------------------------------------------------------------*/
@@ -3390,7 +3390,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*==================================================================
-    SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE 
+    SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE
 ==================================================================*/
 
 /*//////////////////////////////////////////////////////////////////
@@ -3990,7 +3990,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*==================================================================
-   BACKGROUND BACKGROUND BACKGROUND BACKGROUND BACKGROUND BACKGROUND 
+   BACKGROUND BACKGROUND BACKGROUND BACKGROUND BACKGROUND BACKGROUND
 ==================================================================*/
 
 .bg0 {
@@ -4034,7 +4034,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .bg10 {
-    background-color: #81b03f;
+    background-color: #8db263;
 }
 
 .bg11 {
@@ -4161,7 +4161,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*==================================================================
- HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW 
+ HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW
 ==================================================================*/
 
 .plh0::-webkit-input-placeholder {
@@ -4799,8 +4799,8 @@ input.num-product::-webkit-inner-spin-button {
 /*---------------------------------------------*/
 
 .hov-btn1:hover {
-    background-color: #81b03f;
-    border-color: #81b03f;
+    background-color: #7cb52b;
+    border-color: #7cb52b;
     color: #fff;
 }
 

@@ -120,7 +120,7 @@
                                                                         </span>
                                                                         <br>
                                                                         <span style="color:rgb(102,102,102)">
-                                                                            Giá VND: {{number_format($orderDetail->unit_price)}} đ
+                                                                            Giá <small>VND</small>: {{number_format($orderDetail->unit_price)}} đ
                                                                         </span>
                                                                         <br>
                                                                         <span style="color:rgb(102,102,102)">
