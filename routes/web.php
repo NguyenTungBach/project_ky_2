@@ -90,7 +90,7 @@ Route::get('admin/order/search', [OrderController::class, 'search']);
 Route::get('/home', [HomeController::class, 'getHome']);
 
 Route::get('/products', [ProductController::class, 'getShop']);
-Route::get('/product/search', [ProductController::class, 'search']);
+Route::get('/product/search', [ProductController::class, 'index']);
 Route::get('/product/{id}', [ProductController::class, 'getDetail']);
 
 Route::get('/farm', [FarmController::class, 'getFarms']);
