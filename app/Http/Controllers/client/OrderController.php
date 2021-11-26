@@ -100,6 +100,7 @@ class OrderController extends Controller
                 ];
             }
             OrderDetail::insert($order_details);
+            session()->flash('orderMessage','Order Success');
             DB::commit();
             Session::remove('shoppingCart');
             return redirect("/order/$order_id");

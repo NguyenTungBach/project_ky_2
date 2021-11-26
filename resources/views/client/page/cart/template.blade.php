@@ -52,7 +52,7 @@
                                         </div>
                                     </td>
                                     <td class="column-2">
-                                        {{$cartItem->unitPrice}}
+                                        {{\App\Helpers\Helper::formatVND($cartItem->unitPrice)}}
                                     </td>
                                     <td class="column-3">
                                         <div class="wrap-num-product flex-w flex-m bg12 p-rl-10">
@@ -66,7 +66,7 @@
                                     </td>
                                     <td class="column-4">
                                         <div class="flex-w flex-sb-m">
-                                            <span>{{$cartItem->unitPrice * $cartItem->quantity}}</span>
+                                            <span>{{\App\Helpers\Helper::formatVND($cartItem->unitPrice * $cartItem->quantity)}}</span>
                                         </div>
                                     </td>
                                     <td class="column-4">
@@ -195,7 +195,7 @@
 
                         <div class="d-flex bo-b-1 bocl15 w-100  p-tb-18">
                             <p class="w-50 txt-m-109 cl3">Subtotal</p>
-                            <p class=" w-50 txt-m-104 cl6">{{$totalPrice}} <small>VND</small></p>
+                            <p class=" w-50 txt-m-104 cl6">{{\App\Helpers\Helper::formatVND($totalPrice)}} <small>VND</small></p>
                         </div>
 
 
@@ -204,18 +204,18 @@
                         Total
                     </span>
                             <span class="w-50 txt-m-104 cl10">
-                        {{$totalPrice}} VND
+                        {{\App\Helpers\Helper::formatVND($totalPrice)}} <small>VND</small>
                     </span>
                         </div>
 
                         <div class="dis-flex">
-                            <button class="flex-c-m txt-s-105 cl0 bg10 size-a-34 hov-btn2 trans-04 p-rl-10 m-t-43 mr-3">
-                                proceed to checkout
-                            </button>
                             <a href="/products" style="color: #FFF;"
-                               class="flex-c-m txt-s-105 cl0 bg11 size-a-34 hov-btn2 trans-04 p-rl-10 m-t-43">
+                               class="flex-c-m txt-s-105 cl0 bg-secondary size-a-34 hov-btn2 trans-04 p-rl-10 m-t-43 mr-3">
                                 Continue Shopping
                             </a>
+                            <button class="flex-c-m txt-s-105 cl0 bg-success size-a-34 hov-btn2 trans-04 p-rl-10 m-t-43 ">
+                                proceed to checkout
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -297,18 +297,19 @@
                         }
                     });
                     //    ==================== modal confirm delete product ================================
-                    let quantity = $('input[name=quantity]')
+
                     $('.btn-num-product-up').on('click', function () {
-                        let value = parseInt(quantity.val()) + 1
-                        quantity.val(value)
+
+                        let value = parseInt($(this).prev().val()) + 1
+                        $(this).prev().val(value)
                     })
 
                     $('.btn-num-product-down').on('click', function () {
-                        let value = parseInt(quantity.val()) - 1
+                        let value = parseInt($(this).next().val()) - 1
                         if (value < 0) {
-                            quantity.val(0)
+                            $(this).next().val(0)
                         } else {
-                            quantity.val(value)
+                            $(this).next().val(value)
                         }
                     })
 
