@@ -30,10 +30,14 @@ Route::prefix('admin')->group(function () {
 });
 //***************************** Product ************************************
 Route::get('admin/products', [\App\Http\Controllers\admin\ProductController::class, 'getAll']);
+
 //lấy ra form
-Route::get('admin/product/creat', [\App\Http\Controllers\admin\ProductController::class, 'getForm']);
+Route::get('admin/product/form', [\App\Http\Controllers\admin\ProductController::class, 'getForm']);
 // lấy thông tin trên form rồi tạo mới
-Route::post('admin/product/creat', [\App\Http\Controllers\admin\ProductController::class, 'creat']);
+Route::post('admin/product/form', [\App\Http\Controllers\admin\ProductController::class, 'create']);
+
+// lấy thông tin chi tiết
+Route::get('admin/product/{id}', [\App\Http\Controllers\admin\ProductController::class, 'getDetail']);
 
 //lấy thông tin đưa ra form
 Route::get('admin/product/update/{id}', [\App\Http\Controllers\admin\ProductController::class, 'getInformation']);
@@ -50,9 +54,12 @@ Route::get('admin/product/search', [\App\Http\Controllers\admin\ProductControlle
 Route::get('admin/categories', [CategoryController::class, 'getAll']);
 
 //lấy ra form
-Route::get('admin/category/creat', [CategoryController::class, 'getForm']);
+Route::get('admin/category/form', [CategoryController::class, 'getForm']);
 // lấy thông tin trên form rồi tạo mới
-Route::post('admin/category/creat', [CategoryController::class, 'creat']);
+Route::post('admin/category/form', [CategoryController::class, 'create']);
+
+// lấy thông tin chi tiết
+Route::get('admin/category/{id}', [CategoryController::class, 'getDetail']);
 
 //lấy thông tin đưa ra form
 Route::get('admin/category/update/{id}', [CategoryController::class, 'getInformation']);
@@ -69,14 +76,14 @@ Route::get('admin/category/search', [CategoryController::class, 'search']);
 Route::get('admin/orders', [OrderController::class, 'getAll']);
 
 // hiển thị thông tin order
-Route::get('admin/detail/{id}', [OrderController::class, 'getInformation']);
+Route::get('admin/order/{id}', [OrderController::class, 'getInformation']);
 //update các trạng thái của order
-Route::get('admin/update/{status}', [OrderController::class, 'updateStatus']);
+Route::get('admin/order/update/{status}', [OrderController::class, 'updateStatus']);
 
 //xoá đơn hàng(xoá mềm)
-Route::get('admin/delete/{id}', [OrderController::class, 'delete']);
+Route::get('admin/order/delete/{id}', [OrderController::class, 'delete']);
 
-Route::get('admin/search', [OrderController::class, 'search']);
+Route::get('admin/order/search', [OrderController::class, 'search']);
 
 //======================================================================================================================
 //========================================= CLIENT =====================================================================
