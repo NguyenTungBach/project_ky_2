@@ -4,6 +4,11 @@
 @endsection
 @section('css-page')
     @include('client.page.cart.css')
+    <style>
+        .back-to-home:hover{
+            color: limegreen;
+        }
+    </style>
 @endsection
 @section('content-page')
     <!-- Title page -->
@@ -12,13 +17,15 @@
     <!-- content page -->
     <div class="bg0 p-t-95 p-b-50">
         <div class="container">
-            @if($order->check_out)
-                <strong class="cl10">Đã thanh toán</strong>
-            @else
-                <strong class="cl12">Chưa thanh toán</strong>
-            @endif
+
             <div class="row">
+
                 <div class="col-md-7 col-lg-8 p-b-50">
+                    @if($order->check_out)
+                        <div class=" alert alert-success">Payment success</div>
+                    @else
+                        <div class="alert alert-danger">Unpaid</div>
+                    @endif
                     <div>
                         <h4 class="txt-m-124 cl3 p-b-28">
                             Billing details
@@ -146,11 +153,18 @@
                         </div>
 
                         @if($order->check_out)
-                            <button type="button" class="flex-c-m txt-s-105 cl0 bg10 size-a-21 hov-btn2 trans-04 p-rl-10">
-                                <a href="/products">Continue Shopping</a>
+                            <button type="button" style=" border-radius: 20px" class="flex-c-m txt-s-105 cl0 bg10 size-a-21 hov-btn1 trans-04 p-rl-10">
+                                <a style="color: #FFFFFF;" href="/products">Continue Shopping</a>
                             </button>
                         @else
                             <div class="p-rl-25" id="paypal-button"></div>
+                            <div class="dis-flex align-items-center justify-content-end mt-2">
+                                <i class="fa fa-home" aria-hidden="true"></i>
+                                <a href="/home"
+                                   style="color: #ababab; border-radius: 20px; padding: 4px"
+                                   class="back-to-home"
+                                >Back to Home</a>
+                            </div>
                         @endif
                     </div>
                 </div>
@@ -166,13 +180,10 @@
         var orderID= document.querySelector('meta[name=orderID]').content;
         paypal.Button.render({
             env: 'sandbox', // Or 'production'
-            locale: 'en_US',
             style: {
-                size: 'medium',
+                size: 'responsive',
                 color: 'gold',
                 shape: 'pill',
-                label: 'checkout',
-                tagline: 'true'
             },
             // Set up the payment:
             // 1. Add a payment callback
