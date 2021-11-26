@@ -63,7 +63,7 @@ class OrderController extends Controller
         $order->ship_note = $ship_note; // ghi chú
         $order->ship_email = $ship_email; // email
         $order->check_out = false; // thanh toán hay chưa
-        $order->created_at = Carbon::now();
+        $order->created_at = Carbon::now('Asia/Ho_Chi_Minh');
         $order->ship_status = OrderStatus::Waiting;
         //2. Tạo danh sách order details.
         $hasError = false;
@@ -266,7 +266,7 @@ class OrderController extends Controller
 //            $result = $payment->execute($execution, $apiContext);
             $payment->execute($execution, $apiContext);
             $order->check_out =true;
-            $order->updated_at = Carbon::now();
+            $order->updated_at = Carbon::now(Carbon::now('Asia/Ho_Chi_Minh'));
             $order->save();
             Mail::to($order->ship_email)->send(new OrderMail($order));
             // NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
