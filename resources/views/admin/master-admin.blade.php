@@ -3,10 +3,12 @@
 <head>
 @include('admin.include.head')
 
-@yield('page-css')
+
 <!-- Custom Theme Style -->
     <link href="/admin/build/css/custom.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/admin/css/admin.css">
+    @yield('page-css')
+
 </head>
 
 <body class="nav-md">
