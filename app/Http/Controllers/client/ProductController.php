@@ -35,17 +35,15 @@ class ProductController extends Controller
     {
         $paginate = 9;
         $products = Product::query()
-//            ->name($request)
-//            ->price($request)
+            ->name($request)
+            ->price($request)
             ->cate($request)
             ->sortByName($request)
             ->sortByPrice($request);
-        return $products->paginate($paginate);
         return view('client.page.product.template', [
             'items' => $products->paginate($paginate),
             'oldName' => $request->get('name'),
-            'minPrice' => $request->get('minPrice'),
-            'maxPrice' => $request->get('maxPrice'),
+            'oldPrice' => $request->get('price'),
             'limit' => $paginate,
             'sumProduct' => $products->count(),
             'priceSort' => $request->get('priceSort'),

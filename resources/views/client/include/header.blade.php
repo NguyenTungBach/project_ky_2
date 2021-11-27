@@ -15,28 +15,28 @@
                     <div class="menu-desktop">
                         <ul class="main-menu">
                             <li class="active-menu">
-                                <a href="/home">Home</a>
+                                <a href="/home">Trang chủ</a>
                             </li>
 
                             <li>
-                                <a href="/products">Shop</a>
+                                <a href="/products">Sản phẩm</a>
                             </li>
 
                             <li>
-                                <a href="/farm">Farm</a>
+                                <a href="/farm">Trang Trại</a>
                             </li>
 
                             <li>
-                                <a href="/about">About Us</a>
+                                <a href="/about">Giới thiệu Công ty</a>
                             </li>
 
                             <li>
-                                <a href="/blog">Blog</a>
+                                <a href="/blog">Bài viết</a>
                             </li>
 
 
                             <li>
-                                <a href="/contact">Contact</a>
+                                <a href="/contact">Phản hồi</a>
                             </li>
                         </ul>
                     </div>
@@ -102,7 +102,7 @@
                                 </div>
                                 <div class="flex-w flex-sb-m p-b-31 mt-4">
                                         <span class="txt-m-103 cl3 p-r-20">
-											Total
+											Tổng tiền
 										</span>
 
                                     <span class="txt-m-111 cl10">
@@ -111,7 +111,7 @@
                                 </div>
 
                                 <a href="/cart" class="flex-c-m size-a-8 bg10 txt-s-105 cl13 hov-btn2 trans-04">
-                                    Go to Cart
+                                    Giỏ hàng
                                 </a>
                             </div>
                         </div>
@@ -182,7 +182,7 @@
 
                     <div class="flex-w flex-sb-m p-b-31">
                             <span class="txt-m-103 cl3 p-r-20">
-								Total
+								Tổng tiền
 							</span>
 
                         <span class="txt-m-111 cl10">

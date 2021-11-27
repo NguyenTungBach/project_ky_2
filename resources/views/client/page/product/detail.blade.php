@@ -29,20 +29,6 @@
 							{{$items->formatPrice}}
 						</span>
 
-{{--                        <div class="flex-w flex-m p-t-30 p-b-27">--}}
-{{--							<span class="fs-16 cl11 lh-15 txt-center m-r-15">--}}
-{{--								<i class="fa fa-star m-rl-1"></i>--}}
-{{--								<i class="fa fa-star m-rl-1"></i>--}}
-{{--								<i class="fa fa-star m-rl-1"></i>--}}
-{{--								<i class="fa fa-star m-rl-1"></i>--}}
-{{--								<i class="fa fa-star m-rl-1"></i>--}}
-{{--							</span>--}}
-
-{{--                            <span class="txt-s-115 cl6 p-b-3">--}}
-{{--								(1 customer review)--}}
-{{--							</span>--}}
-{{--                        </div>--}}
-
                         <p class="txt-s-101 cl6" >
                             {{$items->description}}
                         </p>
@@ -61,19 +47,11 @@
                             </button>
                         </div>
 
-                        <div class="txt-s-107 p-b-6">
-							<span class="cl6">
-								Sku:
-							</span>
 
-                            <span class="cl9">
-								156
-							</span>
-                        </div>
 
                         <div class="txt-s-107 p-b-6">
 							<span class="cl6">
-								Category:
+								Danh mục:
 							</span>
 
                             <span class="cl9">
@@ -83,17 +61,14 @@
 
                         <div class="txt-s-107 p-b-6">
 							<span class="cl6">
-								Tags:
+								Tải xuống:
 							</span>
 
-                            <a href="#" class="txt-s-107 cl9 hov-cl10 trans-04">
-                                Healthy,
-                            </a>
+                            <span class="cl9">
 
-                            <a href="#" class="txt-s-107 cl9 hov-cl10 trans-04">
-                                Organic
-                            </a>
+							</span>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -103,15 +78,11 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#description" role="tab">Description</a>
+                        <a class="nav-link active" data-toggle="tab" href="#description" role="tab">Thông tin chi tiết</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#info" role="tab">Additional Information</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews (01)</a>
+                        <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Bình luận</a>
                     </li>
                 </ul>
 
@@ -126,40 +97,7 @@
                         </div>
                     </div>
 
-                    <!-- - -->
-                    <div class="tab-pane fade" id="info" role="tabpanel">
-                        <ul class="p-t-21">
-                            <li class="txt-s-101 flex-w how-bor2 p-tb-14">
-								<span class="cl6 size-w-54">
-									Weight
-								</span>
 
-                                <span class="cl9 size-w-55">
-									0.5 kg
-								</span>
-                            </li>
-
-                            <li class="txt-s-101 flex-w how-bor2 p-tb-14">
-								<span class="cl6 size-w-54">
-									Counrty of Origin
-								</span>
-
-                                <span class="cl9 size-w-55">
-									Imported
-								</span>
-                            </li>
-
-                            <li class="txt-s-101 flex-w how-bor2 p-tb-14">
-								<span class="cl6 size-w-54">
-									Quality
-								</span>
-
-                                <span class="cl9 size-w-55">
-									Oraganic
-								</span>
-                            </li>
-                        </ul>
-                    </div>
 
                     <!-- - -->
                     <div class="tab-pane fade" id="reviews" role="tabpanel">
@@ -265,7 +203,7 @@
             <div class="wrap-slick9">
                 <div class="flex-w flex-sb-m p-b-33 p-rl-15">
                     <h3 class="txt-l-112 cl3 m-r-20 respon1 p-tb-15">
-                        RELATED PRODUCTS
+                        đã xem gần đây
                     </h3>
 
                     <div class="wrap-arrow-slick9 flex-w m-t-6"></div>

@@ -19,11 +19,11 @@
 @yield('content-page')
 
 
-<!-- Logo -->
-@include('client.include.logo')
+{{--<!-- Logo -->--}}
+{{--@include('client.include.logo')--}}
 
-<!-- Subscribe -->
-@include('client.include.subscribe')
+{{--<!-- Subscribe -->--}}
+{{--@include('client.include.subscribe')--}}
 
 <!-- Footer -->
 @include('client.include.footer')
