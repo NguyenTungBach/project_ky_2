@@ -22,7 +22,8 @@ class ProductController extends Controller
 
     public function getDetail($id)
     {
-        return view('client.page.product.detail');
+        return view('client.page.product.detail',[
+            'items' => Product::find($id)]);
     }
 
     public function search()

@@ -16,89 +16,90 @@
                 <div class="col-md-7 col-lg-6">
                     <div class="m-r--30 m-r-0-lg">
                         <!-- Slide 100 -->
-                        <div id="slide100-01">
-                            <div class="wrap-main-pic-100 bo-all-1 bocl12 pos-relative">
-                                <div class="main-frame">
-                                    <div class="wrap-main-pic">
-                                        <div class="main-pic">
-                                            <img src="/client/images/pro-detail-01.jpg" alt="IMG-SLIDE">
-                                        </div>
-                                    </div>
-                                </div>
+{{--                        <div id="slide100-01">--}}
+{{--                            <div class="wrap-main-pic-100 bo-all-1 bocl12 pos-relative">--}}
+{{--                                <div class="main-frame">--}}
+{{--                                    <div class="wrap-main-pic">--}}
+{{--                                        <div class="main-pic">--}}
+{{--                                            <img  src="{{$items->firstImage}}" alt="IMG-SLIDE">--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
-                                <div class="wrap-arrow-slide-100 s-full ab-t-l trans-04">
-                                    <span class="my-arrow back prev-slide-100"><i class="fa fa-angle-left m-r-1" aria-hidden="true"></i></span>
-                                    <span class="my-arrow next next-slide-100"><i class="fa fa-angle-right m-l-1" aria-hidden="true"></i></span>
-                                </div>
-                            </div>
+{{--                                <div class="wrap-arrow-slide-100 s-full ab-t-l trans-04">--}}
+{{--                                    <span class="my-arrow back prev-slide-100"><i class="fa fa-angle-left m-r-1" aria-hidden="true"></i></span>--}}
+{{--                                    <span class="my-arrow next next-slide-100"><i class="fa fa-angle-right m-l-1" aria-hidden="true"></i></span>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
-                            <div class="wrap-thumb-100 flex-w flex-sb p-t-30">
-                                <div class="thumb-100">
-                                    <div class="sub-frame sub-1">
-                                        <div class="wrap-main-pic">
-                                            <div class="main-pic">
-                                                <img src="/client/images/pro-detail-thumb-02.jpg" alt="IMG-SLIDE">
-                                            </div>
-                                        </div>
+{{--                            <div class="wrap-thumb-100 flex-w flex-sb p-t-30">--}}
+{{--                                <div class="thumb-100">--}}
+{{--                                    <div class="sub-frame sub-1">--}}
+{{--                                        <div class="wrap-main-pic">--}}
+{{--                                            <div class="main-pic">--}}
+{{--                                                <img src="/client/images/pro-detail-thumb-02.jpg" alt="IMG-SLIDE">--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
 
-                                        <div class="btn-sub-frame btn-1 bo-all-1 bocl12 hov8 trans-04"></div>
-                                    </div>
-                                </div>
+{{--                                        <div class="btn-sub-frame btn-1 bo-all-1 bocl12 hov8 trans-04"></div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
-                                <div class="thumb-100">
-                                    <div class="sub-frame sub-2">
-                                        <div class="wrap-main-pic">
-                                            <div class="main-pic">
-                                                <img src="/client/images/pro-detail-thumb-03.jpg" alt="IMG-SLIDE">
-                                            </div>
-                                        </div>
+{{--                                <div class="thumb-100">--}}
+{{--                                    <div class="sub-frame sub-2">--}}
+{{--                                        <div class="wrap-main-pic">--}}
+{{--                                            <div class="main-pic">--}}
+{{--                                                <img src="/client/images/pro-detail-thumb-03.jpg" alt="IMG-SLIDE">--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
 
-                                        <div class="btn-sub-frame btn-2 bo-all-1 bocl12 hov8 trans-04"></div>
-                                    </div>
-                                </div>
+{{--                                        <div class="btn-sub-frame btn-2 bo-all-1 bocl12 hov8 trans-04"></div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
-                                <div class="thumb-100">
-                                    <div class="sub-frame sub-3">
-                                        <div class="wrap-main-pic">
-                                            <div class="main-pic">
-                                                <img src="/client/images/pro-detail-thumb-04.jpg" alt="IMG-SLIDE">
-                                            </div>
-                                        </div>
+{{--                                <div class="thumb-100">--}}
+{{--                                    <div class="sub-frame sub-3">--}}
+{{--                                        <div class="wrap-main-pic">--}}
+{{--                                            <div class="main-pic">--}}
+{{--                                                <img src="/client/images/pro-detail-thumb-04.jpg" alt="IMG-SLIDE">--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
 
-                                        <div class="btn-sub-frame btn-3 bo-all-1 bocl12 hov8 trans-04"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+{{--                                        <div class="btn-sub-frame btn-3 bo-all-1 bocl12 hov8 trans-04"></div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+                        <img  src="{{$items->firstImage}}"  style="height: 600px" alt="">
                     </div>
                 </div>
 
                 <div class="col-md-5 col-lg-6">
                     <div class="p-l-70 p-t-35 p-l-0-lg">
                         <h4 class="js-name1 txt-l-104 cl3 p-b-16">
-                            Cauliflower
+                          {{$items->name}}
                         </h4>
 
                         <span class="txt-m-117 cl9">
-							19$
+							{{$items->formatPrice}}
 						</span>
 
-                        <div class="flex-w flex-m p-t-30 p-b-27">
-							<span class="fs-16 cl11 lh-15 txt-center m-r-15">
-								<i class="fa fa-star m-rl-1"></i>
-								<i class="fa fa-star m-rl-1"></i>
-								<i class="fa fa-star m-rl-1"></i>
-								<i class="fa fa-star m-rl-1"></i>
-								<i class="fa fa-star m-rl-1"></i>
-							</span>
+{{--                        <div class="flex-w flex-m p-t-30 p-b-27">--}}
+{{--							<span class="fs-16 cl11 lh-15 txt-center m-r-15">--}}
+{{--								<i class="fa fa-star m-rl-1"></i>--}}
+{{--								<i class="fa fa-star m-rl-1"></i>--}}
+{{--								<i class="fa fa-star m-rl-1"></i>--}}
+{{--								<i class="fa fa-star m-rl-1"></i>--}}
+{{--								<i class="fa fa-star m-rl-1"></i>--}}
+{{--							</span>--}}
 
-                            <span class="txt-s-115 cl6 p-b-3">
-								(1 customer review)
-							</span>
-                        </div>
+{{--                            <span class="txt-s-115 cl6 p-b-3">--}}
+{{--								(1 customer review)--}}
+{{--							</span>--}}
+{{--                        </div>--}}
 
-                        <p class="txt-s-101 cl6">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.
+                        <p class="txt-s-101 cl6" >
+                            {{$items->description}}
                         </p>
 
                         <div class="flex-w flex-m p-t-55 p-b-30">
@@ -131,7 +132,7 @@
 							</span>
 
                             <span class="cl9">
-								Fruit
+								{{$items->category->name}}
 							</span>
                         </div>
 
@@ -175,7 +176,7 @@
                     <div class="tab-pane fade show active" id="description" role="tabpanel">
                         <div class="p-t-30">
                             <p class="txt-s-112 cl9">
-                                There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
+                                {!!$items->detail!!}
                             </p>
                         </div>
                     </div>
