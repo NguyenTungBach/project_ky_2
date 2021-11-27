@@ -32,6 +32,7 @@ class Product extends Model
     {
         return number_format($this->price);
     }
+
     public function scopeName($query, $request)
     {
         if ($request->has('name')) {
@@ -45,14 +46,30 @@ class Product extends Model
 
     public function scopePrice($query, $request)
     {
-        if ($request->has('minPrice') && $request->has('maxPrice')) {
-            if ($request->minPrice != null && $request->maxPrice != null) {
-                if ($request->maxPrice != 0) {
-                    $query->whereBetween('price', [$request->get('minPrice'), $request->get('maxPrice')]);
+        if ($request->has('price')) {
+            if ($request->price != null) {
+                switch ($request->price) {
+                    case 1:
+                        $query->whereBetween('price',[0,100000]);
+                        break;
+                    case 2:
+                        $query->whereBetween('price',[100000,200000]);
+                        break;
+                    case 3:
+                        $query->whereBetween('price',[200000,300000]);
+                        break;
+                    case 4:
+                        $query->whereBetween('price',[300000,400000]);
+                        break;
+                    case 5:
+                        $query->whereBetween('price',[400000,500000]);
+                        break;
+                    case 6:
+                        $query->whereBetween('price',[500000,5000000]);
+                        break;
                 }
             }
         }
-
         return $query;
     }
 
@@ -70,12 +87,12 @@ class Product extends Model
     {
         if ($request->has('nameSort')) {
             if ($request->nameSort != null) {
-                switch ($request->nameSort){
+                switch ($request->nameSort) {
                     case 1:
-                        $query->orderBy('name','asc');
+                        $query->orderBy('name', 'asc');
                         break;
                     case -1:
-                        $query->orderBy('name','desc');
+                        $query->orderBy('name', 'desc');
                         break;
                 }
             }
@@ -83,16 +100,16 @@ class Product extends Model
         return $query;
     }
 
-    public function  scopeSortByPrice($query, $request)
+    public function scopeSortByPrice($query, $request)
     {
         if ($request->has('priceSort')) {
             if ($request->priceSort != null) {
-                switch ($request->priceSort){
+                switch ($request->priceSort) {
                     case 1:
-                        $query->orderBy('price','asc');
+                        $query->orderBy('price', 'asc');
                         break;
                     case -1:
-                        $query->orderBy('price','desc');
+                        $query->orderBy('price', 'desc');
                         break;
                 }
             }
