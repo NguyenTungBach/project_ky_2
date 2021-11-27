@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class FarmController extends Controller
 {
     public function getFarms(){
-        return "Happy Farm";
+        return view('client.page.farm.template');
     }
 }
