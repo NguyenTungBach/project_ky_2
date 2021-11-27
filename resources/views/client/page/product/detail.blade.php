@@ -14,63 +14,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-7 col-lg-6">
-                    <div class="m-r--30 m-r-0-lg">
-                        <!-- Slide 100 -->
-{{--                        <div id="slide100-01">--}}
-{{--                            <div class="wrap-main-pic-100 bo-all-1 bocl12 pos-relative">--}}
-{{--                                <div class="main-frame">--}}
-{{--                                    <div class="wrap-main-pic">--}}
-{{--                                        <div class="main-pic">--}}
-{{--                                            <img  src="{{$items->firstImage}}" alt="IMG-SLIDE">--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="wrap-arrow-slide-100 s-full ab-t-l trans-04">--}}
-{{--                                    <span class="my-arrow back prev-slide-100"><i class="fa fa-angle-left m-r-1" aria-hidden="true"></i></span>--}}
-{{--                                    <span class="my-arrow next next-slide-100"><i class="fa fa-angle-right m-l-1" aria-hidden="true"></i></span>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-
-{{--                            <div class="wrap-thumb-100 flex-w flex-sb p-t-30">--}}
-{{--                                <div class="thumb-100">--}}
-{{--                                    <div class="sub-frame sub-1">--}}
-{{--                                        <div class="wrap-main-pic">--}}
-{{--                                            <div class="main-pic">--}}
-{{--                                                <img src="/client/images/pro-detail-thumb-02.jpg" alt="IMG-SLIDE">--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-
-{{--                                        <div class="btn-sub-frame btn-1 bo-all-1 bocl12 hov8 trans-04"></div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="thumb-100">--}}
-{{--                                    <div class="sub-frame sub-2">--}}
-{{--                                        <div class="wrap-main-pic">--}}
-{{--                                            <div class="main-pic">--}}
-{{--                                                <img src="/client/images/pro-detail-thumb-03.jpg" alt="IMG-SLIDE">--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-
-{{--                                        <div class="btn-sub-frame btn-2 bo-all-1 bocl12 hov8 trans-04"></div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="thumb-100">--}}
-{{--                                    <div class="sub-frame sub-3">--}}
-{{--                                        <div class="wrap-main-pic">--}}
-{{--                                            <div class="main-pic">--}}
-{{--                                                <img src="/client/images/pro-detail-thumb-04.jpg" alt="IMG-SLIDE">--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-
-{{--                                        <div class="btn-sub-frame btn-3 bo-all-1 bocl12 hov8 trans-04"></div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-                        <img  src="{{$items->firstImage}}"  style="height: 600px" alt="">
+                    <div>
+                        <img  src="{{$items->firstImage}}"  style="height: 500px; border: 1px solid #000" alt="">
                     </div>
                 </div>
 

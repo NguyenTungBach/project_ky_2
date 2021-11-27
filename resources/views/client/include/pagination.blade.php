@@ -3,12 +3,12 @@
     <!-- Prevoius Page Link -->
     @if($paginator->onFirstPage())
         <a class="paginate-previous disabled flex-c-m txt-s-115 cl6  how-btn1 bo-all-1 bocl15 hov-btn1 trans-04 m-all-3 p-b-1">
-            Previous
+            Trước
         </a>
     @else
         <a href="{{ $paginator->previousPageUrl() }}"
            class="paginate-previous disabled flex-c-m txt-s-115 cl6  how-btn1 bo-all-1 bocl15 hov-btn1 trans-04 m-all-3 p-b-1">
-            Previous
+            Trước
         </a>
     @endif
 
@@ -46,11 +46,11 @@
     @if($paginator->hasMorePages())
         <a href="{{ $paginator->nextPageUrl() }}"
            class="flex-c-m txt-s-115 cl6 size-a-24 how-btn1 bo-all-1 bocl15 hov-btn1 trans-04 m-all-3 p-b-1">
-            Next
+            Tiếp
         </a>
     @else
         <a class="flex-c-m txt-s-115 cl6 size-a-24 how-btn1 bo-all-1 bocl15 hov-btn1 trans-04 m-all-3 p-b-1">
-            Next
+            Tiếp
         </a>
     @endif
 

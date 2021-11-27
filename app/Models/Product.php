@@ -49,22 +49,22 @@ class Product extends Model
         if ($request->has('price')) {
             if ($request->price != null) {
                 switch ($request->price) {
-                    case 1:
+                    case '1':
                         $query->whereBetween('price',[0,100000]);
                         break;
-                    case 2:
+                    case '2':
                         $query->whereBetween('price',[100000,200000]);
                         break;
-                    case 3:
+                    case '3':
                         $query->whereBetween('price',[200000,300000]);
                         break;
-                    case 4:
+                    case '4':
                         $query->whereBetween('price',[300000,400000]);
                         break;
-                    case 5:
+                    case '5':
                         $query->whereBetween('price',[400000,500000]);
                         break;
-                    case 6:
+                    case '6':
                         $query->whereBetween('price',[500000,5000000]);
                         break;
                 }

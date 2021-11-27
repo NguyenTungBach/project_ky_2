@@ -40,6 +40,7 @@ class ProductController extends Controller
             ->cate($request)
             ->sortByName($request)
             ->sortByPrice($request);
+        return $products->paginate($paginate);
         return view('client.page.product.template', [
             'items' => $products->paginate($paginate),
             'oldName' => $request->get('name'),

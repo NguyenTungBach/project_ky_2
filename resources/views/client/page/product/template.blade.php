@@ -12,10 +12,12 @@
             font-weight: bolder;
             height: 45px;
         }
-        .filter-price-btn:hover{
+
+        .filter-price-btn:hover {
             background-color: #47a935;
         }
-        .checkbox:hover{
+
+        .checkbox:hover {
             cursor: pointer;
         }
 
@@ -51,7 +53,7 @@
                                     FILTER BY PRICE
                                 </h4>
                                 <div class="rs1-select2 bg0 size-w-52 bo-all-1 bocl15 m-tb-7 m-r-15">
-                                    <select class="js-select2"  id="price" name="price">
+                                    <select class="js-select2" id="price" name="price">
                                         <option value="">-- Lọc sản phẩm theo giá --</option>
                                         <option value="1">Sản phẩm dưới 100 nghìn</option>
                                         <option value="2">Sản phẩm 100 - 200 nghìn</option>
@@ -62,36 +64,17 @@
                                     </select>
                                     <div class="dropDownSelect2"></div>
                                 </div>
-{{--                                <div class="filter-price p-t-32">--}}
-{{--                                    <p class="dis-none" id="oldMinPrice">{{$minPrice?? -1}}</p>--}}
-{{--                                    <p class="dis-none" id="oldMaxPrice">{{$maxPrice?? -1}}</p>--}}
-
-{{--                                    <input id="js-range-slider"/>--}}
-{{--                                    <input type="hidden" name="minPrice" id="js-input-from"/>--}}
-{{--                                    <input type="hidden" name="maxPrice" id="js-input-to"/>--}}
-{{--                                    <div class="flex-sb-m flex-w p-t-16">--}}
-{{--                                        <div class="txt-s-115 cl9 p-t-10 p-b-10 m-r-15">--}}
-{{--                                            Price: <span>0 <small>(VND)</small></span> ---}}
-{{--                                            $<span>1999999 <small>(VND)</small></span>--}}
-{{--                                        </div>--}}
-{{--                                        <div>--}}
-{{--                                            <button class="filter-price-btn p-1 txt-s-107 trans-04">--}}
-{{--                                                    Filter--}}
-{{--                                            </button>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
                             </div>
 
                             <!--  -->
                             <div class="p-t-40">
                                 <h4 class="txt-m-101 cl3 p-b-5">
-                                    Categories
+                                    Danh Mục Sản Phẩm
                                 </h4>
                                 <div>
                                     <div class="rs1-select2 bg0 size-w-52 bo-all-1 bocl15 m-tb-7 m-r-15">
-                                        <select class="js-select2"  id="categories" name="categories">
-                                            <option value="">-- Lọc sản phẩm --</option>
+                                        <select class="js-select2" id="categories" name="categories">
+                                            <option value="{{\App\Enums\Sort::None}}">-- Lọc sản phẩm --</option>
                                             @foreach($categories as $category)
                                                 <option value="{{$category->id}}">{{$category->name}}</option>
                                             @endforeach
@@ -99,22 +82,11 @@
                                         <div class="dropDownSelect2"></div>
                                     </div>
                                 </div>
-{{--                                    @foreach($categories as $category)--}}
-{{--                                        <li class="p-b-5">--}}
-{{--                                            <a href="#" class="flex-sb-m flex-w txt-s-101 cl6 hov-cl10 trans-04 p-tb-3">--}}
-{{--                                                <span style="width: 50%" class="m-r-10">{{$category->name}}</span>--}}
-{{--                                                <span>{{$category->products_count}}</span>--}}
-{{--                                                <input type="checkbox" class="checkbox"--}}
-{{--                                                       {{isset($oldCategory) && $oldCategory == $category->id ? 'checked' : ''}}--}}
-{{--                                                       value="{{$category->id}}" name="categories">--}}
-{{--                                            </a>--}}
-{{--                                        </li>--}}
-{{--                                    @endforeach--}}
-                              <div class="p-t-40">
-                                  <button class="filter-price-btn p-1 txt-s-107 w-75 trans-04">
-                                      Filter
-                                  </button>
-                              </div>
+                                <div class="p-t-40">
+                                    <button class="filter-price-btn p-1 txt-s-107 w-75 trans-04">
+                                        Filter
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -190,21 +162,10 @@
                                                                 </a>
 
                                                                 <a href="/cart/add?id={{$item->id}}&quantity=1"
-                                                                   {{--                                                                   class="add-to-cart block1-icon flex-c-m wrap-pic-max-w js-addcart-b1">--}}
                                                                    class="add-to-cart block1-icon flex-c-m wrap-pic-max-w">
                                                                     <img src="/client/images/icons/icon-cart.png"
                                                                          alt="ICON">
                                                                 </a>
-
-{{--                                                                <a href="wishlist.html"--}}
-{{--                                                                   class="block1-icon flex-c-m wrap-pic-max-w js-addwish-b1">--}}
-{{--                                                                    <img class="icon-addwish-b1"--}}
-{{--                                                                         src="/client/images/icons/icon-heart.png"--}}
-{{--                                                                         alt="ICON">--}}
-{{--                                                                    <img class="icon-addedwish-b1"--}}
-{{--                                                                         src="/client/images/icons/icon-heart2.png"--}}
-{{--                                                                         alt="ICON">--}}
-{{--                                                                </a>--}}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -220,7 +181,6 @@
                             <!-- Pagination -->
                             @if(isset($items))
                                 <div class="flex-w flex-c-m p-t-47">
-                                    {{--                            {{$items->links('client.include.pagination')}}--}}
                                     {{$items->appends(request()->all())->links('client.include.pagination')}}
                                 </div>
                             @endif
