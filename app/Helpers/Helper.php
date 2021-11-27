@@ -14,6 +14,6 @@ final class Helper
 
     public static function formatVND($price): string
     {
-        return number_format($price, 0, ',', ' ');
+        return number_format($price);
     }
 }

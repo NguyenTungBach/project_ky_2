@@ -8,10 +8,12 @@
         .back-to-home:hover {
             color: limegreen;
         }
-        .size-a-38 div .txt-m-104, .col-sm-6 div .txt-m-104, .col-sm-12 div .txt-m-104{
+
+        .size-a-38 div .txt-m-104, .col-sm-6 div .txt-m-104, .col-sm-12 div .txt-m-104 {
             font-weight: 600;
         }
-        .size-a-38, .col-sm-6, .col-sm-12{
+
+        .size-a-38, .col-sm-6, .col-sm-12 {
             margin-bottom: 15px;
         }
 
@@ -23,7 +25,7 @@
     @include('client.include.title-page',['title'=>'Checkout'])
     <meta name="orderID" content="{{$order->id}}">
     <!-- content page -->
-    <div class="bg0 p-t-95 p-b-50">
+    <div class="bg0 p-t-95">
         <div class="container">
 
             <div class="row">
@@ -91,8 +93,8 @@
                         {{--                        <a href="/check-mail?orderID={{$order->id}}">Order will send by Mail</a>--}}
                     </div>
                 </div>
-                <div class="col-md-5 col-lg-4 p-b-50">
-                    <div class="how-bor4 p-t-35 p-b-40 p-rl-30 m-t-5">
+                <div class="col-md-5 col-lg-4 ">
+                    <div class="how-bor4 p-t-35 p-b-20 p-rl-30 ">
                         <h4 class="txt-m-124 cl3 p-b-11">
                             Your order Id {{$order->id}}
                         </h4>
@@ -103,13 +105,12 @@
 							</span>
 
                             <span>
-								Total
+								Total <small>(VND)</small>
 							</span>
                         </div>
                     @foreach($order->orderDetails as $orderDetail)
                         @php
                             if (isset($total_price_in_usd) && isset($orderDetail))
-                            $total_price_in_usd += \App\Helpers\Helper::convertVNDtoUSD($orderDetail->unit_price) * $orderDetail->quantity;
                         @endphp
                         <!--  -->
                             <div class="flex-w flex-sb-m txt-s-101 cl6 bo-b-1 bocl15 p-b-21 p-t-18">
@@ -119,48 +120,32 @@
 
 
                                 <span>
-                                <div>{{$orderDetail->unit_price * $orderDetail->quantity}} VND</div>
-								~ {{\App\Helpers\Helper::convertVNDtoUSD($orderDetail->unit_price) * $orderDetail->quantity}} $
+                                <div>{{\App\Helpers\Helper::formatVND($orderDetail->unit_price * $orderDetail->quantity)}} </div>
 							</span>
                             </div>
-                    @endforeach
-                    <!--  -->
-                        {{--                        <div class="flex-w flex-m txt-m-103 bo-b-1 bocl15 p-tb-23">--}}
+                        @endforeach
                         <div class="flex-w flex-sb-m txt-m-103 bo-b-1 bocl15 p-tb-23">
 							<span class="size-w-61 cl6">
 								Subtotal
 							</span>
 
-                            {{--                            <span class="size-w-62 cl9">--}}
                             <span class="cl9">
-{{--								48$--}}
-                                <div>{{$order->total_price}} VND</div>
-                                 ~ {{$total_price_in_usd}} $
+                                <div>{{\App\Helpers\Helper::formatVND($order->total_price)}}</div>
 							</span>
                         </div>
 
-                        {{--                        <div class="flex-w flex-m txt-m-103 p-tb-23">--}}
                         <div class="flex-w flex-sb-m txt-m-103 p-tb-23">
 							<span class="size-w-61 cl6">
 								Total
 							</span>
 
-                            {{--                            <span class="size-w-62 cl10">--}}
                             <span class=" cl10">
-{{--								48$--}}
-                                <div>{{$order->total_price}} VND</div>
-                                ~ {{$total_price_in_usd}} $
+                                <div>{{\App\Helpers\Helper::formatVND($order->total_price)}} </div>
+                                <div><p>~ ${{\App\Helpers\Helper::convertVNDtoUSD($order->total_price)}}</p> </div>
 							</span>
                         </div>
-                        <div class="flex-w flex-sb-m txt-m-103 p-tb-23">
-							<span class="size-w-61 cl6">
-
-							</span>
-
-                            <span class="cl10">
-{{--								48$--}}
-                                ($1 = 24000 VND)
-							</span>
+                        <div style="justify-content: center" class="flex-w flex-sb-m txt-m-103 mb-2">
+                            <p>( Dollar price today: $1 = 24 000 <small>VND</small> )</p>
                         </div>
 
                         @if($order->check_out)
@@ -170,7 +155,7 @@
                             </button>
                         @else
                             <div class="p-rl-25" id="paypal-button"></div>
-                            <div class="dis-flex align-items-center justify-content-end mt-2">
+                            <div class="dis-flex align-items-center justify-content-end mt-3">
                                 <i class="fa fa-home" aria-hidden="true"></i>
                                 <a href="/home"
                                    style="color: #ababab; border-radius: 20px; padding: 4px"
@@ -221,9 +206,9 @@
                 })
                     .then(function (res) {
                         // 3. Show the buyer a confirmation message.
-                        setTimeout(function(){
+                        setTimeout(function () {
                             window.location.reload(false); // load lại trang
-                            }, 1500);
+                        }, 1500);
 
                     });
             }

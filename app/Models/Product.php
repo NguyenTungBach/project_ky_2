@@ -28,9 +28,9 @@ class Product extends Model
         return "";
     }
 
-    function getFormatPriceAttribute(): string
+    function getFormatPriceAttribute(): string //dữ liệu trả về là string
     {
-        return number_format($this->price, 0, ',', ' ');
+        return number_format($this->price);
     }
     public function scopeName($query, $request)
     {

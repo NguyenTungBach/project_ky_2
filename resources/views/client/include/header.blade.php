@@ -6,7 +6,7 @@
                 <div class="left-header">
                     <!-- Logo desktop -->
                     <div class="logo">
-                        <a href="/home"><img src="/client/images/icons/logo-01.png" alt="IMG-LOGO"></a>
+                        <a href="/home"><img src="/client/images/icons/favicon.png" alt="IMG-LOGO"></a>
                     </div>
                 </div>
 
