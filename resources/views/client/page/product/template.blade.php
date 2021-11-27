@@ -74,7 +74,7 @@
                                 <div>
                                     <div class="rs1-select2 bg0 size-w-52 bo-all-1 bocl15 m-tb-7 m-r-15">
                                         <select class="js-select2" id="categories" name="categories">
-                                            <option value="{{\App\Enums\Sort::None}}">-- Lọc sản phẩm --</option>
+                                            <option value="">-- Lọc sản phẩm --</option>
                                             @foreach($categories as $category)
                                                 <option value="{{$category->id}}">{{$category->name}}</option>
                                             @endforeach

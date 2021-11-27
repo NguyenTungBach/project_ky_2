@@ -35,8 +35,8 @@ class ProductController extends Controller
     {
         $paginate = 9;
         $products = Product::query()
-            ->name($request)
-            ->price($request)
+//            ->name($request)
+//            ->price($request)
             ->cate($request)
             ->sortByName($request)
             ->sortByPrice($request);
