@@ -234,6 +234,7 @@ class OrderController extends Controller
         try {
             $payment->execute($execution, $apiContext);
             $order->check_out =true;
+
             $order->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
             $order->save();
             $this->sendMail($order->id);
