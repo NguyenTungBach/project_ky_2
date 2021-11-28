@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Xem mail</title>
 </head>
 <body>
 <div class="">
@@ -44,9 +44,9 @@
                                                                         Người đặt hàng
                                                                     </span>
                                                                     <br>
-                                                                    <a href="{{$order->ship_email}}" target="_blank">
+                                                                    <span target="_blank">
                                                                         {{$order->ship_email}}
-                                                                    </a>
+                                                                    </span>
                                                                 </td>
                                                                 <td width="340" rowspan="3" style="padding-left:20px;border-style:solid;border-color:white;border-left-width:0px;border-right-width:0px;border-top-width:0px;border-bottom-width:0px">
                                                                     <span style="color:rgb(102,102,102);font-size:10px">
@@ -76,9 +76,9 @@
                                                                         ID ĐẶT HÀNG
                                                                     </span>
                                                                     <br>
-                                                                    <span style="color:#0070c9">
+                                                                    <a href="http://127.0.0.1:8000/order/{{$order->id}}" style="color:#0070c9">
                                                                         {{$order->id}}
-                                                                    </span>
+                                                                    </a>
                                                                 </td>
                                                             </tr>
                                                             </tbody></table>
@@ -111,9 +111,9 @@
                                                                         <img src="{{$orderDetail->product->FirstImage}}" width="64" height="64" border="0" alt="" style="padding:0;margin:0;border-radius:14px;border:1px solid rgba(128,128,128,0.2)" class="CToWUd">
                                                                     </td>
                                                                     <td style="padding:0 0 0 20px;line-height:15px">
-                                                                        <span dir="auto" style="font-weight:600">
+                                                                        <a href="http://127.0.0.1:8000/product/{{$orderDetail->product_id}}" dir="auto" style="font-weight:600">
                                                                             {{$orderDetail->product->name}}
-                                                                        </span>
+                                                                        </a>
                                                                         <br>
                                                                         <span style="color:rgb(102,102,102)">
                                                                             ID sản phẩm: {{$orderDetail->product_id}}

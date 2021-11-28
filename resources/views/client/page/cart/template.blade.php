@@ -1,6 +1,6 @@
 @extends('client.master-template')
 @section('title')
-    <title>Cart</title>
+    <title>Giỏ hàng</title>
 @endsection
 @section('css-page')
     @include('client.page.cart.css')
@@ -8,7 +8,7 @@
 @endsection
 @section('content-page')
     <!-- Title page -->
-    @include('client.include.title-page',['title'=>'Cart'])
+    @include('client.include.title-page',['title'=>'Giỏ hàng'])
 
 
 
@@ -19,11 +19,11 @@
             <div class="wrap-table-shopping-cart">
                 <table class="table-shopping-cart">
                     <tr class="table_head bg12">
-                        <th class="column-1 p-l-30">Product</th>
-                        <th class="column-2">Price</th>
-                        <th class="column-3">Quantity</th>
-                        <th class="column-4">Total</th>
-                        <th class="column-4">Action</th>
+                        <th class="column-1 p-l-30">SẢN PHẨM</th>
+                        <th class="column-2" style="width: 12%">GIÁ (VND)</th>
+                        <th class="column-3" style="width: 18%">SỐ LƯỢNG</th>
+                        <th class="column-4" style="width: 16%">TỔNG GIÁ (VND)</th>
+                        <th class="column-4">Thay đổi</th>
                     </tr>
                 <?php
                 $totalPrice = 0;
@@ -73,13 +73,13 @@
                                         <div class="dis-flex position-relative">
                                             <button
                                                 class="mr-1 delete-cart flex-c-m txt-s-105 cl0 bg10 pl-2 pr-2 hov-btn2 trans-04 pointer">
-                                                Update
+                                                Cập nhật
                                             </button>
                                             <button type="button" id="delete-product"
                                                     onclick="document.getElementById('id01').style.display='block'"
                                                     class=" ml-2 pt-1"
                                                     style="border-radius: 2px; font-size: 14px; color: #a7a7a8">
-                                                Delete
+                                                Xóa
                                             </button>
                                             {{--             delete modal                   --}}
                                             <div id="id01" class="w3-modal">
@@ -88,8 +88,7 @@
                                                         <span
                                                             onclick="document.getElementById('id01').style.display='none'"
                                                             class="w3-button w3-display-topright">&times;</span>
-                                                        <p class="p-3">Are you sure you want to remove the product from
-                                                            the cart?</p>
+                                                        <p class="p-3">Bạn có chắc muốn xóa sản phẩm {{$cartItem->name}} , khỏi giỏ hàng</p>
                                                         <div class="float-right">
                                                             <a class="btn btn-secondary"
                                                                href="/cart/remove?id={{$cartItem->id}}">Yes</a>
@@ -108,9 +107,7 @@
                         @endforeach
                     @else
                         <div class="text-center alert alert-info">
-                            <p>Cart is empty, please <a href="/products" class="text-primary">CLICK HERE</a> to select
-                                the product you want
-                                to buy.</p>
+                            <p>Giỏ hàng trống, xin vui lòng <a href="/products" class="text-primary">Nhấn vào đây</a> để chọn vài sản phẩm bạn muốn </p>
                         </div>
                     @endif
 
@@ -125,26 +122,26 @@
                             <div class="col-md-12 col-lg-12 p-b-50">
                                 <div>
                                     <h4 class="txt-m-124 cl3 p-b-28">
-                                        Billing details
+                                        Chi tiết thanh toán
                                     </h4>
                                     <div id="error" class="cl12 alert-danger pl-3 mb-3 "></div>
                                     <div class="row">
                                         <div class="col-12 p-b-23">
                                             <div>
-                                                <div class="txt-s-101 cl6 p-b-10">Name</div>
+                                                <div class="txt-s-101 cl6 p-b-10">Người nhận:</div>
                                                 <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
-                                                       type="text" name="ship_name" placeholder="Enter name...">
+                                                       type="text" name="ship_name" placeholder="Nhập tên">
                                                 <span class="cl12 message-error errorShip_name"></span>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-6 p-b-23">
                                             <div>
-                                                <div class="txt-s-101 cl6 p-b-10">Phone
-                                                    <span class="cl12">*</span>
+                                                <div class="txt-s-101 cl6 p-b-10">Số điện thoại:
+
                                                 </div>
                                                 <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
-                                                       type="text" name="ship_phone" placeholder="Enter phone...">
+                                                       type="text" name="ship_phone" placeholder="Nhập số điện thoại">
                                                 <span class="cl12 message-error errorShip_phone"></span>
                                             </div>
                                         </div>
@@ -152,10 +149,10 @@
                                         <div class="col-sm-6 p-b-23">
                                             <div>
                                                 <div class="txt-s-101 cl6 p-b-10">Email
-                                                    <span class="cl12">*</span>
+
                                                 </div>
                                                 <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
-                                                       type="text" name="ship_email" placeholder="Enter email...">
+                                                       type="text" name="ship_email" placeholder="Nhập email">
                                                 <span class="cl12 message-error errorShip_email"></span>
                                             </div>
                                         </div>
@@ -163,22 +160,22 @@
                                         <div class="col-12 p-b-23">
                                             <div>
                                                 <div class="txt-s-101 cl6 p-b-10">Address
-                                                    <span class="cl12">*</span>
+{{--                                                    <span class="cl12">*</span>--}}
                                                 </div>
                                                 <input
                                                     class="plh2 txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1 "
-                                                    type="text" name="ship_address" placeholder="Enter address....">
+                                                    type="text" name="ship_address" placeholder="Nhập địa chỉ">
                                                 <span class="cl12 errorShip_address"></span>
                                             </div>
                                         </div>
 
                                         <div class="col-12 p-b-23">
                                             <div>
-                                                <div class="txt-s-101 cl6 p-b-10">Order notes</div>
+                                                <div class="txt-s-101 cl6 p-b-10">Chú thích:</div>
                                                 <textarea
                                                     class="plh2 txt-s-120 cl3 size-a-38 bo-all-1 bocl15 p-rl-20 p-tb-10 focus1"
                                                     name="ship_note"
-                                                    placeholder="Note about your order, eg. special notes fordelivery.">
+                                                    placeholder="Những yêu cầu về sản phẩm muốn được giao">
                                                 </textarea>
                                             </div>
                                         </div>
@@ -190,18 +187,18 @@
 
                     <div class="w-40 p-t-68">
                         <div class="w-100 pl-3">
-                            <p class="txt-m-123 cl3 p-b-18">CART TOTALS</p>
+                            <p class="txt-m-123 cl3 p-b-18">Tổng giỏ hàng</p>
                         </div>
 
                         <div class="d-flex bo-b-1 bocl15 w-100  p-tb-18">
-                            <p class="w-50 txt-m-109 cl3">Subtotal</p>
+                            <p class="w-50 txt-m-109 cl3">Phụ phí</p>
                             <p class=" w-50 txt-m-104 cl6">{{\App\Helpers\Helper::formatVND($totalPrice)}} <small>VND</small></p>
                         </div>
 
 
                         <div class="d-flex bo-b-1 bocl15 w-100 p-tb-18">
                     <span class="w-50 txt-m-109 cl3">
-                        Total
+                        Tổng giá tiền
                     </span>
                             <span class="w-50 txt-m-104 cl10">
                         {{\App\Helpers\Helper::formatVND($totalPrice)}} <small>VND</small>
@@ -211,10 +208,10 @@
                         <div class="dis-flex">
                             <a href="/products" style="color: #FFF;"
                                class="flex-c-m txt-s-105 cl0 bg-secondary size-a-34 hov-btn2 trans-04 p-rl-10 m-t-43 mr-3">
-                                Continue Shopping
+                                Tiếp tục mua hàng
                             </a>
                             <button class="flex-c-m txt-s-105 cl0 bg-success size-a-34 hov-btn2 trans-04 p-rl-10 m-t-43 ">
-                                proceed to checkout
+                                Tiến hành thanh toán
                             </button>
                         </div>
                     </div>
@@ -249,36 +246,36 @@
                         let message = [];
                         errorElement.html("");
                         if (ship_name.val() === '' || ship_name.val() == null) {
-                            message.push('Ship Name is required\n');
-                            $('.errorShip_name').text("Ship Name is required");
+                            message.push('Yêu cầu nhập tên người nhận\n');
+                            $('.errorShip_name').text("Yêu cầu nhập tên người nhận");
                         } else {
                             $('.errorShip_name').text("");
                         }
                         if (ship_phone.val() === '' || ship_phone.val() == null) {
-                            message.push('Ship Phone is required\n');
-                            $('.errorShip_phone').text("Ship Phone is required");
+                            message.push('Yêu cầu nhập số điện thoại\n');
+                            $('.errorShip_phone').text("Yêu cầu nhập số điện thoại");
                         } else {
                             if (!isVietnamesePhoneNumber(ship_phone.val())) {
-                                message.push('This is not Ship Phone VietNam\n');
-                                $('.errorShip_phone').text("This is not Ship Phone VietNam");
+                                message.push('Đây không phải số điện thoại Việt Nam\n');
+                                $('.errorShip_phone').text("Đây không phải số điện thoại Việt Nam");
                             } else {
                                 $('.errorShip_phone').text("");
                             }
                         }
                         if (ship_email.val() === '' || ship_email.val() == null) {
-                            message.push('Ship Email is required\n');
-                            $('.errorShip_email').text("Ship Email is required");
+                            message.push('Yêu cầu nhập Email\n');
+                            $('.errorShip_email').text("Yêu cầu nhập Email");
                         } else {
                             if (!validateEmail(ship_email.val())) {
-                                message.push('Ship Email must be email\n');
-                                $('.errorShip_email').text("Ship Email must be email");
+                                message.push('Đây không phải Email\n');
+                                $('.errorShip_email').text("Đây không phải Email");
                             } else {
                                 $('.errorShip_email').text("");
                             }
                         }
                         if (ship_address.val() === '' || ship_address.val() == null) {
-                            message.push('Ship Address is required\n');
-                            $('.errorShip_address').text("Ship Address is required");
+                            message.push('Yêu cầu nhập địa chỉ\n');
+                            $('.errorShip_address').text("Yêu cầu nhập địa chỉ");
                         } else {
                             $('.errorShip_address').text("");
                         }

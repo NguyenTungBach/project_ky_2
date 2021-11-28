@@ -35,7 +35,7 @@ class OrderController extends Controller
     {
         $order = Order::find($id);
         if ($order ==null){
-            return view('client.page.error.404',['msg' => 'Order not found']);
+            return view('client.page.error.404',['msg' => 'Không tìm thấy đơn hàng']);
         }
         return view('client.page.cart.checkout',['order'=> $order]);
     }
@@ -52,7 +52,7 @@ class OrderController extends Controller
             $shoppingCart = Session::get('shoppingCart');
         }
         if (sizeof($shoppingCart) == 0 | $shoppingCart == null) {
-            return 'Please choose some product to submit order';
+            return 'Xin hãy chọn vài sản phẩm để có thể thanh toán đơn hàng';
         }
         //1. Tạo thông tin order
         $order = new Order();
@@ -100,13 +100,13 @@ class OrderController extends Controller
                 ];
             }
             OrderDetail::insert($order_details);
-            session()->flash('orderMessage','Order Success');
+            session()->flash('orderMessage','Tạo đơn hàng thành công');
             DB::commit();
             Session::remove('shoppingCart');
             return redirect("/order/$order_id");
         } catch (\Exception $e) {
             DB::rollBack();
-            return " Error occur, please contact admin for more information! " . $e;
+            return " Có lỗi xảy ra, xin vui lòng gọi admin để được giúp " . $e;
         }
     }
 
@@ -114,7 +114,7 @@ class OrderController extends Controller
         $orderID = $request->get('orderID');
         $order= Order::find($orderID);
         if ($order == null){
-            return 'Order not found';
+            return 'Không tìm thấy đơn hàng';
         }
         // Cấu hình phần Pay Pal
         $apiContext = new ApiContext(
@@ -263,8 +263,8 @@ class OrderController extends Controller
         Mail::send('client.mailOrder.mailOrder', ['order' => $data ],
             function ($message) use ($data) {
                 $message->to( $data->ship_email, 'Tutorials Point')
-                    ->subject("Order #$data->id created successfully");
-                $message->from('thucphamcosauhn@gmail.com', 'ThucphamcosauHaNoi');
+                    ->subject("Đơn hàng với mã #$data->id, đã được đặt thành công");
+                $message->from('rausachtdhhn@gmail.com', 'Cửa hàng Cần Rau');
             });
     }
 
