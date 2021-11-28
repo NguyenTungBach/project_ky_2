@@ -28,12 +28,15 @@ class CartController extends Controller
 //        return view('client.page.cart.template');
     }
 
-    public function add(Request $request)
+    public function add()
     {
+        $data = json_decode(file_get_contents("php://input"), true);
         // lấy thông tin sản phẩm.
-        $productId = $request->get('id');
-//        // lấy số lượng sản phẩm cần thêm vào giỏ hàng.
-        $productQuantity = $request->get('quantity');
+        $productId = $data['id'];
+
+        // lấy số lượng sản phẩm cần thêm vào giỏ hàng.
+        $productQuantity = $data['quantity'];
+
         if($productQuantity <= 0){
             return view('client.errors.404', [
                 'msg' => 'Số lượng sản phẩm cần lớn hơn 0.'
@@ -58,6 +61,7 @@ class CartController extends Controller
         } else {
             // nếu chưa có thì tạo shopping cart mới.
             $shoppingCart = [];
+
         }
         // kiểm tra sản phẩm có tồn tại trong giỏ hàng không.
         if (array_key_exists($productId, $shoppingCart)) {
@@ -83,7 +87,7 @@ class CartController extends Controller
         Session::put('shoppingCart', $shoppingCart);
 
 //        return view('client.page.cart.template');
-        return redirect('/cart');
+        return json_encode(Session::get('shoppingCart'));
     }
 
     public function update(Request $request)

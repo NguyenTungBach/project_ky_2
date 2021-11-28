@@ -116,7 +116,6 @@
 
                 </table>
             </div>
-            {{--            <form action="/order" method="post" name="orderForm">--}}
             <form action="/order" method="post" name="orderForm">
                 @csrf
                 <div class="w-100 d-flex">
@@ -194,8 +193,12 @@
                         </div>
 
                         <div class="d-flex bo-b-1 bocl15 w-100  p-tb-18">
-                            <p class="w-50 txt-m-109 cl3">Subtotal</p>
-                            <p class=" w-50 txt-m-104 cl6">{{\App\Helpers\Helper::formatVND($totalPrice)}} <small>VND</small></p>
+                            <span class="w-50 txt-m-109 cl3">Subtotal</span>
+                            <span class=" w-50 txt-m-104 cl6">
+                                {{\App\Helpers\Helper::formatVND($totalPrice)}} <small>(VND)</small>
+                            ~ ${{\App\Helpers\Helper::convertVNDtoUSD($totalPrice)}}
+                            </span>
+
                         </div>
 
 
@@ -204,7 +207,8 @@
                         Total
                     </span>
                             <span class="w-50 txt-m-104 cl10">
-                        {{\App\Helpers\Helper::formatVND($totalPrice)}} <small>VND</small>
+                        {{\App\Helpers\Helper::formatVND($totalPrice)}} <small>(VND)</small>
+                                ~ ${{\App\Helpers\Helper::convertVNDtoUSD($totalPrice)}}
                     </span>
                         </div>
 
@@ -213,7 +217,8 @@
                                class="flex-c-m txt-s-105 cl0 bg-secondary size-a-34 hov-btn2 trans-04 p-rl-10 m-t-43 mr-3">
                                 Continue Shopping
                             </a>
-                            <button class="flex-c-m txt-s-105 cl0 bg-success size-a-34 hov-btn2 trans-04 p-rl-10 m-t-43 ">
+                            <button
+                                class="flex-c-m txt-s-105 cl0 bg-success size-a-34 hov-btn2 trans-04 p-rl-10 m-t-43 ">
                                 proceed to checkout
                             </button>
                         </div>
