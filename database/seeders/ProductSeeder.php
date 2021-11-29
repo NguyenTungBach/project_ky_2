@@ -33,7 +33,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'id' => 2,
-                'name' => 'Súp lơ xanh',
+                'name' => 'Súp lơ xanh-500g',
                 'thumbnail' => 'https://res.cloudinary.com/nguyenhs/image/upload/v1634562343/Demo_Laravel/products/product-03_t12j8p.jpg,',
                 'price' => 55000,
                 'category_id' => 2,
@@ -45,7 +45,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'id' => 3,
-                'name' => 'Ớt chuông',
+                'name' => 'Ớt chuông -500g',
                 'thumbnail' => 'https://res.cloudinary.com/nguyenhs/image/upload/v1634562505/Demo_Laravel/products/product-05_toovvh.jpg,',
                 'price' => 71000,
                 'category_id' => 2,
@@ -57,7 +57,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'id' => 4,
-                'name' => 'Dâu Tây ichi Go',
+                'name' => 'Dâu Tây ichi Go -500g',
                 'thumbnail' => 'https://res.cloudinary.com/nguyenhs/image/upload/v1634562712/Demo_Laravel/products/product-02_szl1sx.jpg,',
                 'price' => 550000,
                 'category_id' => 4,
@@ -117,7 +117,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'id' => 9,
-                'name' => 'Xoài Hòa Lộc Quả To Giòn',
+                'name' => 'Xoài Hòa Lộc Quả To Giòn-1kg',
                 'thumbnail' => 'https://res.cloudinary.com/nguyenhs/image/upload/v1634564287/Demo_Laravel/products/product-34_kuo5kj.jpg,',
                 'price' => 79000,
                 'category_id' => 4,
@@ -249,7 +249,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'id' => 25,
-                'name' => 'Dừa trọc L',
+                'name' => 'Dừa trọc L- 1 quả',
                 'thumbnail' => 'https://res.cloudinary.com/nguyenhs/image/upload/v1634570593/Demo_Laravel/products/image_8_t6mwxp.png,',
                 'price' => 3000,
                 'category_id' => 4,

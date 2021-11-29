@@ -200,18 +200,13 @@
                                                             <div class="block1-wrap-icon flex-c-m flex-w trans-05">
                                                                 <a href="/product/{{$item->id}}"
                                                                    class="block1-icon flex-c-m wrap-pic-max-w">
-                                                                    <img style="padding: 5px"
+                                                                    <img style="padding: 6px"
                                                                          src="/client/images/icons/information.png"
                                                                          alt="ICON">
                                                                 </a>
 
-                                                                <a href="/cart/add?id={{$item->id}}&quantity=1"
-                                                                   class="add-to-cart  block1-icon flex-c-m wrap-pic-max-w">
-                                                                    <img src="/client/images/icons/icon-cart.png"
-                                                                         alt="ICON">
-                                                                </a>
                                                                 <p data-id="{{$item->id}}"
-                                                                   class="btn pointer cart-add block1-icon flex-c-m wrap-pic-max-w">
+                                                                   class=" pointer cart-add block1-icon flex-c-m wrap-pic-max-w">
                                                                     <img src="/client/images/icons/icon-cart.png"
                                                                          alt="ICON">
                                                                 </p>
@@ -257,48 +252,27 @@
                 data: JSON.stringify(data),
                 success: function (response) {
                     let result = JSON.parse(response);
-
                     let stringHtml = ``;
+                    let totalCart = 0;
                     Object.entries(result).forEach(([key, value]) => {
                         stringHtml += cartHeader(value);
+                        totalCart += value.unitPrice * value.quantity;
                     });
                     $('#cart-header').html(stringHtml)
-
+                    $('#total-cart').html(`
+                    <p>${new Intl.NumberFormat().format(totalCart)} <small>VND</small></p>
+                    `)
                     $('.icon-header-item').attr('data-notify', Object.keys(result).length);
-
                     message();
-
                 },
 
             });
 
         })
 
-        // $('#click-cart').on('click', function () {
-        //     $.ajax({
-        //         url: `http://127.0.0.1:8000/cart/add`,
-        //         method: 'POST',
-        //         success: function (response) {
-        //             let result = JSON.parse(response);
-        //                 console.log(result)
-        //             // let stringHtml = ``;
-        //             // Object.entries(result).forEach(([key, value]) => {
-        //             //     stringHtml += cartHeader(value);
-        //             // });
-        //             // $('#cart-header').html(stringHtml)
-        //             // $('.icon-header-item').attr('data-notify', Object.keys(result).length);
-        //             //
-        //             //
-        //             // message();
-        //
-        //         },
-        //
-        //     });
-        // })
-
         function cartHeader(data) {
 
-           return `
+            return `
             <div class="flex-w flex-str m-b-25 " style="position: relative">
                 <div class="size-w-15 flex-w flex-t">
                     <a href="/product/${data.id}"
@@ -308,7 +282,7 @@
 
                     <div class="size-w-17 flex-col-l">
                         <a href="/product/${data.id}" class="txt-s-108 cl3 hov-cl10 trans-04">${data.name}</a>
-                        <span class="txt-s-101 cl9">${data.unitPrice} <small>VND</small></span>
+                        <span class="txt-s-101 cl9">${new Intl.NumberFormat().format(data.unitPrice)} <small>VND</small></span>
                         <span class="txt-s-109 cl12">x${data.quantity}</span>
                     </div>
                 </div>

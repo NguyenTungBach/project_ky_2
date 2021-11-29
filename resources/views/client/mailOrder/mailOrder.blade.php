@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Xem mail</title>
 </head>
 <body>
 <div class="">
@@ -27,7 +27,7 @@
                                 <table border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse:collapse;border-spacing:0;width:742px">
                                     <tbody><tr>
                                         <td style="width:50px"></td>
-                                        <td align="right" style="font-size:32px;font-weight:300;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:rgb(136,136,136)">Biên Nhận</td>
+                                        <td align="right" style="font-size:32px;font-weight:300;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:rgb(136,136,136)">HOÁ ĐƠN</td>
                                         <td style="width:50px"></td>
                                     </tr>
                                     <tr height="20"><td colspan="4">&nbsp;</td></tr><tr>
@@ -44,9 +44,9 @@
                                                                         Người đặt hàng
                                                                     </span>
                                                                     <br>
-                                                                    <a href="{{$order->ship_email}}" target="_blank">
+                                                                    <span target="_blank">
                                                                         {{$order->ship_email}}
-                                                                    </a>
+                                                                    </span>
                                                                 </td>
                                                                 <td width="340" rowspan="3" style="padding-left:20px;border-style:solid;border-color:white;border-left-width:0px;border-right-width:0px;border-top-width:0px;border-bottom-width:0px">
                                                                     <span style="color:rgb(102,102,102);font-size:10px">
@@ -73,12 +73,12 @@
                                                             </tr>
                                                             <tr height="46">
                                                                 <td style="padding-left:20px;border-style:solid;border-color:white;border-left-width:0;border-right-width:1px;border-bottom-width:0px;border-top-width:0px"><span style="color:rgb(102,102,102);font-size:10px">
-                                                                        ID ĐẶT HÀNG
+                                                                        MÃ HOÁ ĐƠN
                                                                     </span>
                                                                     <br>
-                                                                    <span style="color:#0070c9">
+                                                                    <a href="http://127.0.0.1:8000/order/{{$order->id}}" style="color:#0070c9">
                                                                         {{$order->id}}
-                                                                    </span>
+                                                                    </a>
                                                                 </td>
                                                             </tr>
                                                             </tbody></table>
@@ -106,21 +106,21 @@
                                                                     if (isset($total_price_in_usd) && isset($orderDetail))
                                                                     $total_price_in_usd += \App\Helpers\Helper::convertVNDtoUSD($orderDetail->unit_price) * $orderDetail->quantity;
                                                                 @endphp
-                                                                <tr style="max-height:114px">
+                                                                <tr style="max-height:114px" >
                                                                     <td width="64" align="center" valign="top" style="padding:0 0 0 20px;margin:0;width:64px">
                                                                         <img src="{{$orderDetail->product->FirstImage}}" width="64" height="64" border="0" alt="" style="padding:0;margin:0;border-radius:14px;border:1px solid rgba(128,128,128,0.2)" class="CToWUd">
                                                                     </td>
                                                                     <td style="padding:0 0 0 20px;line-height:15px">
-                                                                        <span dir="auto" style="font-weight:600">
+                                                                        <a href="http://127.0.0.1:8000/product/{{$orderDetail->product_id}}" dir="auto" style="font-weight:600">
                                                                             {{$orderDetail->product->name}}
-                                                                        </span>
+                                                                        </a>
                                                                         <br>
                                                                         <span style="color:rgb(102,102,102)">
                                                                             ID sản phẩm: {{$orderDetail->product_id}}
                                                                         </span>
                                                                         <br>
                                                                         <span style="color:rgb(102,102,102)">
-                                                                            Giá <small>VND</small>: {{number_format($orderDetail->unit_price)}} đ
+                                                                            Giá : {{number_format($orderDetail->unit_price)}} <small>VND</small>
                                                                         </span>
                                                                         <br>
                                                                         <span style="color:rgb(102,102,102)">
@@ -128,19 +128,19 @@
                                                                         </span>
                                                                         <br>
                                                                     </td>
-                                                                    <td width="100" align="right" valign="top" style="padding:0 20px 0 0;width:100px">
-                                                                        <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;border-spacing:0;font-size:12px;font-family:inherit">
-                                                                            <tbody>
-                                                                            <tr>
-                                                                                <td align="right" colspan="3">
-                                                                                <span style="font-weight:600;white-space:nowrap">
-                                                                                    Giá $: {{\App\Helpers\Helper::convertVNDtoUSD($orderDetail->unit_price) * $orderDetail->quantity}}
-                                                                                </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </td>
+{{--                                                                    <td width="100" align="right" valign="top" style="padding:0 20px 0 0;width:100px">--}}
+{{--                                                                        <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;border-spacing:0;font-size:12px;font-family:inherit">--}}
+{{--                                                                            <tbody>--}}
+{{--                                                                            <tr>--}}
+{{--                                                                                <td align="right" colspan="3">--}}
+{{--                                                                                <span style="font-weight:600;white-space:nowrap">--}}
+{{--                                                                                    Giá : ${{\App\Helpers\Helper::convertVNDtoUSD($orderDetail->unit_price) * $orderDetail->quantity}}--}}
+{{--                                                                                </span>--}}
+{{--                                                                                </td>--}}
+{{--                                                                            </tr>--}}
+{{--                                                                            </tbody>--}}
+{{--                                                                        </table>--}}
+{{--                                                                    </td>--}}
                                                                 </tr>
                                                             @endforeach
                                                             </tbody>
@@ -153,10 +153,10 @@
                                                             <tbody><tr height="30"><td colspan="3"></td></tr>
                                                             <tr height="1"><td height="1" colspan="3" style="padding:0 10px 0 10px"><div style="line-height:1px;height:1px;background-color:rgb(238,238,238)"></div></td></tr>
                                                             <tr height="48">
-                                                                <td align="right" style="color:rgb(102,102,102);font-size:10px;font-weight:600;padding:0 30px 0 0;border-width:1px;border-color:rgb(238,238,238)">TỔNG CỘNG</td>
+                                                                <td align="right" style="color:#000;font-size:12px;font-weight:600;padding:0 30px 0 0;border-width:1px;border-color:rgb(238,238,238)">TỔNG CỘNG</td>
                                                                 <td width="1" style="background-color:rgb(238,238,238);width:1px"></td>
-                                                                <td width="90" align="right" style="width:120px;padding:0 20px 0 0;font-size:16px;font-weight:600;white-space:nowrap">
-                                                                    {{$order->total_price}}đ ~ $ {{$total_price_in_usd}}
+                                                                <td width="90" align="right" style="width:120px;padding:0 20px 0 20px;font-size:16px;font-weight:600;white-space:nowrap">
+                                                                    {{\App\Helpers\Helper::formatVND($order->total_price)}} <small>VND</small> ~ ${{$total_price_in_usd}}
                                                                 </td>
                                                             </tr>
                                                             <tr height="1"><td height="1" colspan="3" style="padding:0 10px 0 10px"><div style="line-height:1px;height:1px;background-color:rgb(238,238,238)"></div></td></tr>

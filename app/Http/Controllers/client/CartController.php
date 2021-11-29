@@ -92,10 +92,12 @@ class CartController extends Controller
 
     public function update(Request $request)
     {
+        $data = json_decode(file_get_contents("php://input"), true);
+
         // lấy thông tin sản phẩm.
-        $productId = $request->get('id');
+        $productId = $data['id'];
         // lấy số lượng sản phẩm cần thêm vào giỏ hàng.
-        $productQuantity = $request->get('quantity');
+        $productQuantity = $data['quantity'];
         if($productQuantity <= 0){
             return view('client.errors.404', [
                 'msg' => 'Số lượng sản phẩm cần lớn hơn 0.'
@@ -132,7 +134,7 @@ class CartController extends Controller
         }
         // update thông tin shopping cart vào session.
         Session::put('shoppingCart', $shoppingCart);
-        return redirect('/cart');
+        return json_encode(Session::get('shoppingCart'));
     }
 
     public function remove(Request $request)
