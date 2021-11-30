@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use MongoDB\Driver\Session;
 
 class ProductController extends Controller
 {
@@ -22,8 +23,17 @@ class ProductController extends Controller
 
     public function getDetail($id)
     {
-        return view('client.page.product.detail',[
-            'items' => Product::find($id)]);
+        $product = Product::find($id);
+        $array =[];
+        if (\Illuminate\Support\Facades\Session::has('recent_view')){
+            $array = \Illuminate\Support\Facades\Session::get('recent_view');
+        }
+        array_push($array,$id);
+        \Illuminate\Support\Facades\Session::put('recent_view',$array);
+        $recentView = Product::findMany(\Illuminate\Support\Facades\Session::get('recent_view'));
+        return view('client.page.product.detail', [
+            'items' => $product,
+            'recent'=>$recentView]);
     }
 
     public function search()
@@ -40,6 +50,9 @@ class ProductController extends Controller
             ->cate($request)
             ->sortByName($request)
             ->sortByPrice($request);
+
+//        return $products->paginate($paginate);
+
         return view('client.page.product.template', [
             'items' => $products->paginate($paginate),
             'oldName' => $request->get('name'),

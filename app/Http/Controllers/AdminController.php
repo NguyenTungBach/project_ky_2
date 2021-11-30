@@ -4,6 +4,8 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Category;
+
 class AdminController extends Controller
 {
 
@@ -12,7 +14,9 @@ class AdminController extends Controller
     }
 
     public function getForm(){
-        return view('admin.template.form');
+        return view('admin.template.form',[
+            'categories' => Category::withCount('products')->get()
+        ]);
     }
 
 }
