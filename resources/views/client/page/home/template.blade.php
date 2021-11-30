@@ -300,11 +300,11 @@
                 method: 'POST',
                 data: JSON.stringify(data),
                 success: function (response) {
-                    console.log(response);
+                    console.log("response la: ",response);
                     let result = JSON.parse(response);
                     let stringHtml = ``;
                     let totalCart = 0;
-                    console.log(result);
+                    console.log("result la: ",result);
                     Object.entries(result).forEach(([key, value]) => {
                         stringHtml += cartHeader(value);
                         totalCart += value.unitPrice * value.quantity;
