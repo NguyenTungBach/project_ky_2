@@ -65,5 +65,4 @@ class ProductController extends Controller
             'categories' => Category::withCount('products')->get(),
         ]);
     }
-
 }

@@ -35,6 +35,8 @@ Route::get('admin/products', [\App\Http\Controllers\admin\ProductController::cla
 Route::get('admin/product/form', [\App\Http\Controllers\admin\ProductController::class, 'getForm']);
 // lấy thông tin trên form rồi tạo mới
 Route::post('admin/product/form', [\App\Http\Controllers\admin\ProductController::class, 'create']);
+// lọc sản phẩm
+Route::get('/admin/product/search', [\App\Http\Controllers\admin\ProductController::class,'search']);
 
 // lấy thông tin chi tiết
 Route::get('admin/product/{id}', [\App\Http\Controllers\admin\ProductController::class, 'getDetail']);
@@ -48,7 +50,6 @@ Route::post('admin/product/update', [\App\Http\Controllers\admin\ProductControll
 // không xoá cứng mà update status = 0 và cập nhật deleted_at = Carbon.now()
 Route::get('admin/product/delete/{id}', [\App\Http\Controllers\admin\ProductController::class, 'delete']);
 
-Route::get('admin/product/search', [\App\Http\Controllers\admin\ProductController::class, 'search']);
 
 //***************************** Category ************************************
 Route::get('admin/categories', [CategoryController::class, 'getAll']);
