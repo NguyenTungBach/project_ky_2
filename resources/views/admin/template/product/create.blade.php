@@ -13,51 +13,53 @@
                 <div class="x_title">
                     <h2>Form Product</h2>
                     <div class="clearfix"></div>
+                    @if ($errors->any())
+                        <div class="alert " style="margin-top: 10px">
+                            <h4 class="text-danger">List Errors</h4>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li class="text-danger">{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </div>
                 <div class="x_content">
                     <br/>
-                    <form method="post" action="">
+                    <form method="post" name="form" action="">
                         @csrf
-                        <div class="item form-group">
+                        <div class="item form-group row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align"> Name *</label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input type="text" name="name" required="required" class="form-control ">
+                                <input type="text" name="name" class="form-control ">
                             </div>
+                            @error('name')
+                            <div class="text-danger col-md-12 col-sm-12 " style="margin: 5px 0 0 400px">* {{ $message }}</div>
+                            @enderror
                         </div>
 
-                        <div class="item form-group">
+                        <div class="item form-group row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align"> Price *</label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input type="text" name="price" required="required" class="form-control ">
+                                <input type="text" name="price" class="form-control ">
                             </div>
+                            @error('price')
+                            <div class="text-danger col-md-12 col-sm-12 " style="margin: 5px 0 0 400px">* {{ $message }}</div>
+                            @enderror
                         </div>
 
 
-                        <div class="form-group item">
+                        <div class="form-group item row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align">Categories *</label>
                             <div class="col-md-6 col-sm-6 col-form-label">
-                                <select class="form-control">
-                                    <option>Choose option</option>
-                                    <option>Option one</option>
-                                    <option>Option two</option>
-                                    <option>Option three</option>
-                                    <option>Option four</option>
+                                <select class="form-control" name="category_id">
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
 
-                        <div class="form-group item">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align">Status *</label>
-                            <div class="col-md-6 col-sm-6 col-form-label">
-                                <select class="form-control">
-                                    <option>Choose option</option>
-                                    <option>Option one</option>
-                                    <option>Option two</option>
-                                    <option>Option three</option>
-                                    <option>Option four</option>
-                                </select>
-                            </div>
-                        </div>
 
                         <div class="item form-group">
                             <label class="col-form-label col-md-3 col-sm-3 label-align"> Description *</label>
@@ -65,16 +67,26 @@
                                 <label>
                                     <textarea style="width: 100%" name="description" rows="4" cols="50"></textarea>
                                 </label>
+                                @error('description')
+                                <div class="text-danger col-12">* {{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
-                        <div class="item form-group">
+                        <div class="item form-group row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align"> Image *</label>
-                            <div class="col-md-6 col-sm-6 ">
+                            <div class="col-md-9 col-sm-9 ">
                                 <label>
-                                    <button id="upload_widget" class="cloudinary-button">Upload files</button>
+                                    <button type="button" id="upload_widget" class="cloudinary-button">Upload files</button>
                                 </label>
                             </div>
+                            <div id="preview-image" class="col-2">
+
+                            </div>
+                            <input type="hidden" name="thumbnail" id="thumbnail" >
+                            @error('thumbnail')
+                            <div class="text-danger col-12" style="margin-left: 400px">* {{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="item form-group">
@@ -83,6 +95,9 @@
                                 <div class="x_content">
                                     <textarea name="detail"></textarea>
                                 </div>
+                                @error('detail')
+                                <div class="text-danger col-12">* {{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
@@ -104,13 +119,19 @@
 @section('page-script')
     <script src="//cdn.ckeditor.com/4.17.1/full/ckeditor.js"></script>
     <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
-
     <script type="text/javascript">
+        var form = document.forms['form']['thumbnail']
+        var listImg = document.getElementById('preview-image')
+        console.log(listImg)
+        console.log(form);
         var myWidget = cloudinary.createUploadWidget({
-                cloudName: 'my_cloud_name',
-                uploadPreset: 'my_preset'}, (error, result) => {
+                cloudName: 'hoangkien0601',
+                uploadPreset: 'hwftk7ro'}, function (error, result) {
                 if (!error && result && result.event === "success") {
-                    console.log('Done! Here is the image info: ', result.info);
+                    form.value =  result.info.secure_url
+                    listImg.innerHTML += `<img class="img-thumbnail" style="margin-left: 400px"  src="${result.info.secure_url}" alt="">`
+                    // console.log('Done! Here is the image info: ', result.info.url);
+                    console.log('Done! Here is the image info: ', result.info.secure_url);
                 }
             }
         )
@@ -119,25 +140,41 @@
             myWidget.open();
         }, false);
     </script>
+
     <script>
-        CKEDITOR.editorConfig = function( config ) {
+        CKEDITOR.editorConfig = function (config) {
             config.toolbar = [
-                { name: 'document', items: [ 'Source', '-', 'Save', 'NewPage', 'ExportPdf', 'Preview', 'Print', '-', 'Templates' ] },
-                { name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
-                { name: 'editing', items: [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ] },
-                { name: 'forms', items: [ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ] },
+                {
+                    name: 'document',
+                    items: ['Source', '-', 'Save', 'NewPage', 'ExportPdf', 'Preview', 'Print', '-', 'Templates']
+                },
+                {name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
+                {name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt']},
+                {
+                    name: 'forms',
+                    items: ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField']
+                },
                 '/',
-                { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'CopyFormatting', 'RemoveFormat' ] },
-                { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language' ] },
-                { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
-                { name: 'insert', items: [ 'Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ] },
+                {
+                    name: 'basicstyles',
+                    items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'CopyFormatting', 'RemoveFormat']
+                },
+                {
+                    name: 'paragraph',
+                    items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language']
+                },
+                {name: 'links', items: ['Link', 'Unlink', 'Anchor']},
+                {
+                    name: 'insert',
+                    items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']
+                },
                 '/',
-                { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
-                { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
-                { name: 'tools', items: [ 'Maximize', 'ShowBlocks' ] },
-                { name: 'about', items: [ 'About' ] }
+                {name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize']},
+                {name: 'colors', items: ['TextColor', 'BGColor']},
+                {name: 'tools', items: ['Maximize', 'ShowBlocks']},
+                {name: 'about', items: ['About']}
             ];
         };
-        CKEDITOR.replace( 'detail' );
+        CKEDITOR.replace('detail');
     </script>
 @endsection
