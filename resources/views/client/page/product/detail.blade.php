@@ -3,7 +3,16 @@
     <title>Product detail</title>
 @endsection
 @section('css-page')
-@include('client.page.product.css')
+    @include('client.page.product.css')
+    <style>
+        .thumbnail-custom {
+            border: 1px solid #000;
+            width: 500px;
+            height: 500px;
+            object-fit: cover;
+            object-position: 100% 0
+        }
+    </style>
 @endsection
 @section('content-page')
     <!-- Title page -->
@@ -14,36 +23,21 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-7 col-lg-6">
-                    <div>
-                        <img  src="{{$items->firstImage}}"  style="height: 500px; border: 1px solid #000" alt="">
+                    <div class="colmd-12">
+                        <img src="{{$items->firstImage}}" class="thumbnail-custom" alt="">
                     </div>
                 </div>
 
                 <div class="col-md-5 col-lg-6">
-                    <div class="p-l-70 p-t-35 p-l-0-lg">
+                    <div class=" p-t-35 p-l-0-lg">
                         <h4 class="js-name1 txt-l-104 cl3 p-b-16">
-                          {{$items->name}}
+                            {{$items->name}}
                         </h4>
 
                         <span class="txt-m-117 cl9">
-							{{$items->formatPrice}}
+							{{$items->formatPrice}} <small>VND</small>
 						</span>
-
-{{--                        <div class="flex-w flex-m p-t-30 p-b-27">--}}
-{{--							<span class="fs-16 cl11 lh-15 txt-center m-r-15">--}}
-{{--								<i class="fa fa-star m-rl-1"></i>--}}
-{{--								<i class="fa fa-star m-rl-1"></i>--}}
-{{--								<i class="fa fa-star m-rl-1"></i>--}}
-{{--								<i class="fa fa-star m-rl-1"></i>--}}
-{{--								<i class="fa fa-star m-rl-1"></i>--}}
-{{--							</span>--}}
-
-{{--                            <span class="txt-s-115 cl6 p-b-3">--}}
-{{--								(1 customer review)--}}
-{{--							</span>--}}
-{{--                        </div>--}}
-
-                        <p class="txt-s-101 cl6" >
+                        <p class="txt-s-101 cl6">
                             {{$items->description}}
                         </p>
 
@@ -51,7 +45,8 @@
                             <div class="wrap-num-product flex-w flex-m bg12 p-rl-10 m-r-30 m-b-30">
                                 <div class="btn-num-product-down flex-c-m fs-29"></div>
 
-                                <input class="txt-m-102 cl6 txt-center num-product" type="number" name="num-product" value="1">
+                                <input class="txt-m-102 cl6 txt-center num-product" type="number" name="num-product"
+                                       value="1">
 
                                 <div class="btn-num-product-up flex-c-m fs-16"></div>
                             </div>
@@ -61,19 +56,10 @@
                             </button>
                         </div>
 
-                        <div class="txt-s-107 p-b-6">
-							<span class="cl6">
-								Sku:
-							</span>
-
-                            <span class="cl9">
-								156
-							</span>
-                        </div>
 
                         <div class="txt-s-107 p-b-6">
 							<span class="cl6">
-								Category:
+								Danh mục:
 							</span>
 
                             <span class="cl9">
@@ -83,48 +69,39 @@
 
                         <div class="txt-s-107 p-b-6">
 							<span class="cl6">
-								Tags:
+								Tải xuống:
 							</span>
 
-                            <a href="#" class="txt-s-107 cl9 hov-cl10 trans-04">
-                                Healthy,
-                            </a>
+                            <span class="cl9">
 
-                            <a href="#" class="txt-s-107 cl9 hov-cl10 trans-04">
-                                Organic
-                            </a>
+							</span>
                         </div>
+
                     </div>
                 </div>
             </div>
 
+
             <!-- Tab01 -->
-            <div class="tab02 p-t-80">
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs" role="tablist">
+            <div class="p-t-80">
+                <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#description" role="tab">Description</a>
+                        <a class="nav-link" style="cursor: pointer" onclick="openDetailAndReview('detail-product')">Thông
+                            tin chi tiết</a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#info" role="tab">Additional Information</a>
-                    </li>
 
-                    <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews</a>
+
                     </li>
                 </ul>
 
                 <!-- Tab panes -->
-                <div class="tab-content">
-                    <!-- - -->
-                    <div class="tab-pane fade show active" id="description" role="tabpanel">
-                        <div class="p-t-30">
-                            <p class="txt-s-112 cl9">
-                                {!!$items->detail!!}
-                            </p>
-                        </div>
+                <div>
+                    <div id="detail-product" style="display: block; " class="reviewAndDetail"><br>
+                        {!! $items->detail !!}
                     </div>
+
 
                     <!-- - -->
                     <div class="tab-pane fade" id="info" role="tabpanel">
@@ -256,6 +233,8 @@
                     </div>
                 </div>
             </div>
+
+        </div>
         </div>
     </section>
 
@@ -266,13 +245,16 @@
             <div class="wrap-slick9">
                 <div class="flex-w flex-sb-m p-b-33 p-rl-15">
                     <h3 class="txt-l-112 cl3 m-r-20 respon1 p-tb-15">
-                        RECENT PRODUCT
+
+                        Đã xem gần đây
+
                     </h3>
 
                     <div class="wrap-arrow-slick9 flex-w m-t-6"></div>
                 </div>
 
                 <div class="slick9">
+
 
                     <!-- - -->
                    @foreach($recent as $recentItems)
@@ -289,6 +271,7 @@
 
                                         <span class="block1-content-more txt-m-104 cl9 p-t-21 trans-04">
 										{{$recentItems->formatPrice}}
+
 									</span>
 
                                         <div class="block1-wrap-icon flex-c-m flex-w trans-05">
@@ -300,7 +283,9 @@
                                                 <img src="/client/images/icons/icon-cart.png" alt="ICON">
                                             </a>
 
+
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -314,5 +299,14 @@
 @endsection
 @section('js-page')
     @include('client.page.product.js')
+    <script>
+        function openDetailAndReview(reviewOrDetail) {
+            var x = document.getElementsByClassName('reviewAndDetail')
+            for (var i = 0; i < x.length; i++) {
+                x[i].style.display = 'none';
+            }
+            document.getElementById(reviewOrDetail).style.display = 'block';
+        }
+    </script>
 @endsection
 

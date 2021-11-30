@@ -6,7 +6,7 @@
                 <div class="left-header">
                     <!-- Logo desktop -->
                     <div class="logo">
-                        <a href="/home"><img src="/client/images/icons/favicon.png" alt="IMG-LOGO"></a>
+                        <a href="/home"><img src="/client/images/icons/favicon-no-background.png" alt="IMG-LOGO"></a>
                     </div>
                 </div>
 
@@ -15,28 +15,28 @@
                     <div class="menu-desktop">
                         <ul class="main-menu">
                             <li class="active-menu">
-                                <a href="/home">Home</a>
+                                <a href="/home">Trang chủ</a>
                             </li>
 
                             <li>
-                                <a href="/products">Shop</a>
+                                <a href="/products">Sản phẩm</a>
                             </li>
 
                             <li>
-                                <a href="/farm">Farm</a>
+                                <a href="/farm">Trang Trại</a>
                             </li>
 
                             <li>
-                                <a href="/about">About Us</a>
+                                <a href="/about">Giới thiệu Công ty</a>
                             </li>
 
                             <li>
-                                <a href="/blog">Blog</a>
+                                <a href="/blog">Bài viết</a>
                             </li>
 
 
                             <li>
-                                <a href="/contact">Contact</a>
+                                <a href="/contact">Phản hồi</a>
                             </li>
                         </ul>
                     </div>
@@ -45,24 +45,24 @@
                 <div class="right-header">
                 @php
                     if (session()->has('shoppingCart')){
-                    $shopCart = session()->get('shoppingCart');
+                        $shopCart = session()->get('shoppingCart');
                     }
                 @endphp
                 <!-- Icon header -->
                     <div class="wrap-icon-header flex-w flex-r-m h-full wrap-menu-click p-t-8">
                         <div class="wrap-cart-header h-full flex-m m-l-10 menu-click">
-                            <div class="icon-header-item flex-c-m trans-04 icon-header-noti" data-notify="{{isset($shopCart) ? sizeof($shopCart) : ''}}">
+                            <div class="icon-header-item flex-c-m trans-04 icon-header-noti"
+                                 data-notify="{{isset($shopCart) ? sizeof($shopCart) : ''}}">
                                 <img src="/client/images/icons/icon-cart-2.png" alt="CART">
                             </div>
-
                             <div class="cart-header menu-click-child trans-04">
                                 <div class="bo-b-1 bocl15">
-                                    <div class="size-h-2 js-pscroll m-r--15 p-r-15">
+                                    <div class="size-h-2 js-pscroll m-r--15 p-r-15" id="cart-header">
                                     @if(session()->has('shoppingCart'))
                                         <?php $total = 0 ?>
                                         @foreach($shopCart as $product)
                                             @php
-                                                if (isset($product)) {
+                                                if (isset($product) && isset($total)) {
                                                     $total += $product->unitPrice * $product->quantity;
                                                 }
                                             @endphp
@@ -81,7 +81,7 @@
                                                             </a>
 
                                                             <span class="txt-s-101 cl9">
-											{{$product->unitPrice}} <small>VND</small>
+											 {{number_format($product->unitPrice)}} <small>VND</small>
 										</span>
 
                                                             <span class="txt-s-109 cl12">
@@ -97,21 +97,23 @@
                                                     </div>
                                                 </div>
                                             @endforeach
+                                        @else
+                                        <div></div>
                                         @endif
                                     </div>
                                 </div>
                                 <div class="flex-w flex-sb-m p-b-31 mt-4">
                                         <span class="txt-m-103 cl3 p-r-20">
-											Total
+											Tổng tiền
 										</span>
 
-                                    <span class="txt-m-111 cl10">
-											{{ isset($total) ? number_format($total, 0, ',', ' ') : ''}} <small>VND</small>
+                                    <span class="txt-m-111 cl10" id="total-cart">
+											<p>{{ isset($total) ? number_format($total) : ''}} <small>VND</small></p>
 										</span>
                                 </div>
 
                                 <a href="/cart" class="flex-c-m size-a-8 bg10 txt-s-105 cl13 hov-btn2 trans-04">
-                                    Go to Cart
+                                    Giỏ hàng
                                 </a>
                             </div>
                         </div>
@@ -125,25 +127,26 @@
     <div class="wrap-header-mobile">
         <!-- Logo moblie -->
         <div class="logo-mobile">
-            <a href="index.html"><img src="/client/images/icons/logo-01.png" alt="IMG-LOGO"></a>
+            <a href="index.html"><img src="/client/images/icons/favicon-no-background.png" alt="IMG-LOGO"></a>
         </div>
 
         <!-- Icon header -->
         <div class="wrap-icon-header flex-w flex-r-m h-full wrap-menu-click m-r-15">
-
+            @php
+                if (session()->has('shoppingCart')){
+                $shopCart = session()->get('shoppingCart');
+                }
+            @endphp
             <div class="wrap-cart-header h-full flex-m m-l-5 menu-click">
-                <div class="icon-header-item flex-c-m trans-04 icon-header-noti" data-notify="2">
+                <div class="icon-header-item flex-c-m trans-04 icon-header-noti" data-notify="{{isset($shopCart) ? sizeof($shopCart) : ''}}">
                     <img src="/client/images/icons/icon-cart-2.png" alt="CART">
                 </div>
                 {{--Shop cart--}}
                 <div class="cart-header menu-click-child trans-04" style="right: 20px">
                     <div class="bo-b-1 bocl15">
                         <div class="size-h-2 js-pscroll m-r--15 p-r-15">
-                        @if(session()->has('cart'))
-                            @php
-                                $shopCart = session()->get('cart');
-
-                            @endphp
+                        @if(session()->has('shoppingCart'))
+                            <?php $total = 0 ?>
                             @foreach($shopCart as $product)
                                 <!-- cart header item -->
                                     <div class="flex-w flex-str m-b-25 " style="position: relative">
@@ -159,11 +162,11 @@
                                                 </a>
 
                                                 <span class="txt-s-101 cl9">
-											{{$product->unitPrice}} <small>VND</small>
+											{{number_format($product->unitPrice)}} <small>VND</small>
 										</span>
 
                                                 <span class="txt-s-109 cl12">
-											x{{$product->quantity}}
+											{{$product->quantity}}
 										</span>
                                             </div>
                                         </div>
@@ -175,23 +178,24 @@
                                         </div>
                                     </div>
                                 @endforeach
+                            @else
+                            <div></div>
                             @endif
-
                         </div>
                     </div>
 
                     <div class="flex-w flex-sb-m p-b-31">
                             <span class="txt-m-103 cl3 p-r-20">
-								Total
+								Tổng tiền
 							</span>
 
                         <span class="txt-m-111 cl10">
-								48$
+								{{ isset($total) ? number_format($total) : ''}} <small>VND</small>
 							</span>
                     </div>
 
-                    <a href="/checkout" class="flex-c-m size-a-8 bg10 txt-s-105 cl13 hov-btn2 trans-04">
-                        check out
+                    <a href="/cart" class="flex-c-m size-a-8 bg10 txt-s-105 cl13 hov-btn2 trans-04">
+                        Giỏ hàng
                     </a>
                 </div>
             </div>
@@ -209,51 +213,28 @@
     <div class="menu-mobile">
         <ul class="main-menu-m">
             <li>
-                <a href="index.html">Home</a>
-                <span class="arrow-main-menu-m">
-						<i class="fa fa-angle-right" aria-hidden="true"></i>
-					</span>
+                <a href="/home">Trang chủ</a>
             </li>
 
             <li>
-                <a href="shop-sidebar-grid.html">Shop</a>
-                <span class="arrow-main-menu-m">
-						<i class="fa fa-angle-right" aria-hidden="true"></i>
-					</span>
+                <a href="/products">Sản phẩm</a>
             </li>
 
             <li>
-                <a href="gallery-01.html">Gallery</a>
-                <ul class="sub-menu-m">
-                    <li><a href="gallery-01.html">Gallery 1</a></li>
-                    <li><a href="gallery-02.html">Gallery 2</a></li>
-                </ul>
-
-                <span class="arrow-main-menu-m">
-						<i class="fa fa-angle-right" aria-hidden="true"></i>
-					</span>
+                <a href="/farm">Trang Trại</a>
             </li>
 
             <li>
-                <a href="#">About Us</a>
-                <span class="arrow-main-menu-m">
-						<i class="fa fa-angle-right" aria-hidden="true"></i>
-					</span>
+                <a href="/about">Giới thiệu Công ty</a>
+            </li>
+
+            <li>
+                <a href="/blog">Bài viết</a>
             </li>
 
 
             <li>
-                <a href="blog-list.html">Blog</a>
-                <span class="arrow-main-menu-m">
-						<i class="fa fa-angle-right" aria-hidden="true"></i>
-					</span>
-            </li>
-
-            <li>
-                <a href="contact-01.html">Contact</a>
-                <span class="arrow-main-menu-m">
-						<i class="fa fa-angle-right" aria-hidden="true"></i>
-					</span>
+                <a href="/contact">Phản hồi</a>
             </li>
         </ul>
     </div>

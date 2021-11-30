@@ -7,7 +7,7 @@
 
             <span class="txt-m-201 cl0 flex-c-m flex-w">
 					<a href="index.html" class="txt-m-201 cl0 hov-cl10 trans-04 m-r-6">
-						Home
+						Trang chủ
 					</a>
 
 					<span>

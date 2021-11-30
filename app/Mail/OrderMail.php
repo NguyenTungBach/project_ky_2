@@ -12,6 +12,7 @@ class OrderMail extends Mailable
     use Queueable, SerializesModels;
 
     public $order;
+    public $idOrder;
     /**
      * Create a new message instance.
      *
@@ -20,6 +21,7 @@ class OrderMail extends Mailable
     public function __construct($order)
     {
         $this->order = $order;
+        $this->idOrder = $order->id;
     }
 
     /**
@@ -29,7 +31,7 @@ class OrderMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Your Order In My Shop')
+        return $this->subject("Đơn hàng với mã #$this->idOrder, đã được đặt thành công")
             ->view('client.mailOrder.mailOrder',['order'=> $this->order]);
     }
 }

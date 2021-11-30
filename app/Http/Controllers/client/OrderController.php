@@ -35,7 +35,7 @@ class OrderController extends Controller
     {
         $order = Order::find($id);
         if ($order ==null){
-            return view('client.page.error.404',['msg' => 'Order not found']);
+            return view('client.page.error.404',['msg' => 'Không tìm thấy đơn hàng']);
         }
         return view('client.page.cart.checkout',['order'=> $order]);
     }
@@ -52,7 +52,7 @@ class OrderController extends Controller
             $shoppingCart = Session::get('shoppingCart');
         }
         if (sizeof($shoppingCart) == 0 | $shoppingCart == null) {
-            return 'Please choose some product to submit order';
+            return 'Xin hãy chọn vài sản phẩm để có thể thanh toán đơn hàng';
         }
         //1. Tạo thông tin order
         $order = new Order();
@@ -100,13 +100,13 @@ class OrderController extends Controller
                 ];
             }
             OrderDetail::insert($order_details);
-            session()->flash('orderMessage','Order Success');
+            session()->flash('orderMessage','Tạo đơn hàng thành công');
             DB::commit();
             Session::remove('shoppingCart');
             return redirect("/order/$order_id");
         } catch (\Exception $e) {
             DB::rollBack();
-            return " Error occur, please contact admin for more information! " . $e;
+            return " Có lỗi xảy ra, xin vui lòng gọi admin để được giúp " . $e;
         }
     }
 
@@ -114,7 +114,7 @@ class OrderController extends Controller
         $orderID = $request->get('orderID');
         $order= Order::find($orderID);
         if ($order == null){
-            return 'Order not found';
+            return 'Không tìm thấy đơn hàng';
         }
         // Cấu hình phần Pay Pal
         $apiContext = new ApiContext(
@@ -127,9 +127,6 @@ class OrderController extends Controller
         $payer = new Payer();
         $payer->setPaymentMethod("paypal");
 
-// ### Itemized information
-// (Optional) Lets you specify item wise
-// information
         $array_item =[];
         $total_price_in_USD = 0;
         foreach ($order->orderDetails as $orderDetail){
@@ -146,47 +143,28 @@ class OrderController extends Controller
         $itemList = new ItemList();
         $itemList->setItems($array_item);
 
-// ### Additional payment details
-// Use this optional field to set additional
-// payment information such as tax, shipping
-// charges etc.
         $details = new Details();
         $details->setShipping(0)
             ->setTax(0)
             ->setSubtotal($total_price_in_USD);
 
-// ### Amount
-// Lets you specify a payment amount.
-// You can also specify additional details
-// such as shipping, tax.
         $amount = new Amount();
         $amount->setCurrency("USD")
             ->setTotal($total_price_in_USD)
             ->setDetails($details);
 
-// ### Transaction
-// A transaction defines the contract of a
-// payment - what is the payment for and who
-// is fulfilling it.
         $transaction = new Transaction();
         $transaction->setAmount($amount)
             ->setItemList($itemList)
             ->setDescription("Checkout order: #$order->id")
             ->setInvoiceNumber($order->id); // set id Order !!, gửi paypal sẽ lưu lại id
 
-// ### Redirect urls
-// Set the urls that the buyer must be redirected to after
-// payment approval/ cancellation.
         $baseUrl = request()->root();// lấy giao thức ,ví dụ hiện tại sẽ lấy địa chỉ "http://127.0.0.1:8000"
         $redirectUrls = new RedirectUrls();
-//        $redirectUrls->setReturnUrl("$baseUrl/ExecutePayment.php?success=true")
-//            ->setCancelUrl("$baseUrl/ExecutePayment.php?success=false");
         $redirectUrls->setReturnUrl("$baseUrl/checout-success")
             ->setCancelUrl("$baseUrl/cancel-success");
 
-// ### Payment
-// A Payment Resource; create one using
-// the above types and intent set to 'sale'
+
         $payment = new Payment();
         $payment->setIntent("sale")
             ->setPayer($payer)
@@ -195,20 +173,12 @@ class OrderController extends Controller
 
         try {
             $payment->create($apiContext);
-        } catch (PayPalConnectionException $ex) {
+        } catch (Exception $ex) {
             echo $ex;
-            // NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
-            exit(1);
         }
 
-// ### Get redirect url
-// The API response provides the url that you must redirect
-// the buyer to. Retrieve the url from the $payment->getApprovalLink()
-// method
-        $approvalUrl = $payment->getApprovalLink();
 
-// NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
-
+         $payment->getApprovalLink();
         return $payment;
     }
 
@@ -234,6 +204,7 @@ class OrderController extends Controller
         try {
             $payment->execute($execution, $apiContext);
             $order->check_out =true;
+
             $order->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
             $order->save();
             $this->sendMail($order->id);
@@ -262,8 +233,8 @@ class OrderController extends Controller
         Mail::send('client.mailOrder.mailOrder', ['order' => $data ],
             function ($message) use ($data) {
                 $message->to( $data->ship_email, 'Tutorials Point')
-                    ->subject("Order #$data->id created successfully");
-                $message->from('thucphamcosauhn@gmail.com', 'ThucphamcosauHaNoi');
+                    ->subject("Đơn hàng với mã #$data->id, đã được đặt thành công");
+                $message->from('rausachtdhhn@gmail.com', 'Cửa hàng Cần Rau');
             });
     }
 

@@ -45,17 +45,18 @@ class ProductController extends Controller
     {
         $paginate = 9;
         $products = Product::query()
-//            ->name($request)
-//            ->price($request)
+            ->name($request)
+            ->price($request)
             ->cate($request)
             ->sortByName($request)
             ->sortByPrice($request);
+
 //        return $products->paginate($paginate);
+
         return view('client.page.product.template', [
             'items' => $products->paginate($paginate),
             'oldName' => $request->get('name'),
-            'minPrice' => $request->get('minPrice'),
-            'maxPrice' => $request->get('maxPrice'),
+            'oldPrice' => $request->get('price'),
             'limit' => $paginate,
             'sumProduct' => $products->count(),
             'priceSort' => $request->get('priceSort'),
@@ -65,14 +66,4 @@ class ProductController extends Controller
         ]);
     }
 
-//    public function getRecent()
-//    {
-//        if (\Illuminate\Support\Facades\Session::has('recent_view')){
-//            $product = Product::findMany(\Illuminate\Support\Facades\Session::get('recent_view'));
-//            return $product;
-////            return view('client.page.product.detail', [
-////                'items' => $product]);
-//        }
-//      return "No Found";
-//    }
 }

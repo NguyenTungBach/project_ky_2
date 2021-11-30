@@ -30,3 +30,44 @@
     border: solid #e5dada 2px;
 
 }
+/*================================ Input search Manager-page ==========================================================*/
+#input-search {
+    position: relative;
+}
+
+.delete-search {
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    right: 35px;
+    top: 5px;
+}
+
+.icon-search {
+    position: absolute;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    right: 15px;
+    top: 8px;
+}
+
+.top_search .query {
+    border-radius: 20px;
+    padding-right: 50px;
+}
+
+.top_search .sortOrder {
+    border-radius: 20px;
+}
+.top_search .sortProduct {
+    border-radius: 20px;
+}
+/*======================================= Sort select Manager-page====================================================*/
+#select-sort {
+    border-radius: 20px;
+}
+#select-category {
+    border-radius: 20px;
+}
