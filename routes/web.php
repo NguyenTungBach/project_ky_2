@@ -76,14 +76,15 @@ Route::get('admin/category/search', [CategoryController::class, 'search']);
 Route::get('admin/orders', [OrderController::class, 'getAll']);
 
 // hiển thị thông tin order
-Route::get('admin/order/{id}', [OrderController::class, 'getInformation']);
+Route::get('admin/order/detail/{id}', [OrderController::class, 'getInformation']);
 //update các trạng thái của order
-Route::get('admin/order/update/{status}', [OrderController::class, 'updateStatus']);
+Route::post('admin/order/update/status', [OrderController::class, 'updateStatus']);
 
 //xoá đơn hàng(xoá mềm)
 Route::get('admin/order/delete/{id}', [OrderController::class, 'delete']);
 
-Route::get('admin/order/search', [OrderController::class, 'search']);
+Route::get('admin/order/search', [OrderController::class, 'index']);
+//Route::get('admin/order/index', [OrderController::class, 'index']);
 
 //======================================================================================================================
 //========================================= CLIENT =====================================================================

@@ -33,7 +33,7 @@
     <div class="bg0 p-t-95">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 col-lg-3 p-b-10">
+                <div class="col-md-4 col-lg-4 p-b-10">
                     @if(session()->has('orderMessage'))
                         <div class=" alert alert-success">{{session()->get('orderMessage')}}</div>
                     @endif
@@ -72,7 +72,7 @@
                                     <div class="txt-m-104 cl6 p-b-10">
                                         Người nhận:
                                     </div>
-                                    <p class="pl-2">{{$order->ship_name}}</p>
+                                    <span class="pl-2">{{$order->ship_name}}</span>
                                 </div>
                             </div>
                             <div class="col-sm-12 p-b-23">
@@ -108,11 +108,11 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="/check-mail?orderID={{$order->id}}">Thư hóa đơn thanh toán</a>
+{{--                        <a href="/check-mail?orderID={{$order->id}}">Thư hóa đơn thanh toán</a>--}}
                     </div>
                 </div>
 
-                <div class="col-md-9 col-lg-9 mb-5">
+                <div class="col-md-8 col-lg-8 mb-5">
                     <div class="how-bor4 p-t-35 p-b-20 p-rl-30 ">
                         <h4 class="txt-m-124 cl3 p-b-11">
                             Mã đơn hàng {{$order->id}}
@@ -122,9 +122,9 @@
                             <table class="table-shopping-cart table-shop">
                                 <tr class="table_head bg12">
                                     <th class="column-1 p-l-30">Sản phẩm</th>
-                                    <th class="column-2">Giá (VND)</th>
-                                    <th class="column-3" style="width: 18%">Số lượng</th>
-                                    <th class="column-4" style="width: 20%">Tổng giá (VND)</th>
+                                    <th class="column-2 text-center">Giá (VND)</th>
+                                    <th class="column-3 text-center" style="width: 15%">Số lượng</th>
+                                    <th class="column-4 text-center" style="width: 20%">Tổng giá (VND)</th>
                                 </tr>
                             @foreach($order->orderDetails as $orderDetail)
                                 @php
@@ -142,30 +142,27 @@
                                                 </span>
                                             </div>
                                         </td>
-                                        <td class="column-2">
+                                        <td class="column-2 text-center">
                                             {{\App\Helpers\Helper::formatVND($orderDetail->product->price)}}
                                         </td>
-                                        <td class="column-3">
-                                            <div class="pl-4">
-                                                {{$orderDetail->quantity}}
-                                            </div>
+                                        <td class="column-3 text-center">
+                                            {{$orderDetail->quantity}}
                                         </td>
-                                        <td class="column-4">
-                                            <div class="flex-w flex-sb-m">
-                                                <span>{{\App\Helpers\Helper::formatVND($orderDetail->product->price * $orderDetail->quantity)}}</span>
-                                            </div>
+                                        <td class="column-4 text-center">
+                                            {{\App\Helpers\Helper::formatVND($orderDetail->product->price * $orderDetail->quantity)}}
                                         </td>
                                     </tr>
                                 @endforeach
                             </table>
                             <div class="flex-w flex-sb-m txt-m-103 p-tb-23 pl-4 pr-4">
-							<h3 class="size-w-61 cl6">
-								Total
-							</h3>
+                                <h3 class="size-w-61 cl6">
+                                    Total
+                                </h3>
 
                                 <span class=" cl10">
                                 {{\App\Helpers\Helper::formatVND($order->total_price)}} <small>VND</small>
-                                      <span class="pl-4">~ ${{\App\Helpers\Helper::convertVNDtoUSD($order->total_price)}}</span>
+                                      <span
+                                          class="pl-4">~ ${{\App\Helpers\Helper::convertVNDtoUSD($order->total_price)}}</span>
                                 </span>
 
                             </div>

@@ -28,6 +28,7 @@
     <!-- Title page -->
     @include('client.include.title-page',['title'=>'Sản Phẩm'])
 
+
     <section class="bg0 p-t-85 p-b-45">
         <div class="container">
             <form action="/product/search" method="get">
