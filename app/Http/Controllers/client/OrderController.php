@@ -102,6 +102,8 @@ class OrderController extends Controller
             OrderDetail::insert($order_details);
             session()->flash('orderMessage','Tạo đơn hàng thành công');
             DB::commit();
+            $title = "Đơn hàng với mã #$order->id, đã được tạo thành công";
+            $this->sendMail($order->id,$title);
             Session::remove('shoppingCart');
             return redirect("/order/$order_id");
         } catch (\Exception $e) {
@@ -207,7 +209,8 @@ class OrderController extends Controller
 
             $order->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
             $order->save();
-            $this->sendMail($order->id);
+            $title = "Đơn hàng với mã #$order->id, đã được thanh toán thành công";
+            $this->sendMail($order->id,$title);
             try {
                 $payment = Payment::get($paymentID, $apiContext);
             } catch (Exception $ex) {
@@ -227,13 +230,14 @@ class OrderController extends Controller
         return view('client.mailOrder.mailOrder',['order'=> $order]);
     }
 
-    function sendMail($id)
+    function sendMail($id,$title)
     {
         $data = Order::find($id);
+        $data->subject = $title;
         Mail::send('client.mailOrder.mailOrder', ['order' => $data ],
             function ($message) use ($data) {
                 $message->to( $data->ship_email, 'Tutorials Point')
-                    ->subject("Đơn hàng với mã #$data->id, đã được đặt thành công");
+                    ->subject($data->subject);
                 $message->from('rausachtdhhn@gmail.com', 'Cửa hàng Cần Rau');
             });
     }

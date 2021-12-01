@@ -139,7 +139,10 @@ class CartController extends Controller
 
     public function remove(Request $request)
     {
-        $productId = $request->get('id');
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        // lấy thông tin sản phẩm.
+        $productId = $data['id'];
         $shoppingCart = null;
         // nếu có shopping cart rồi thì lấy ra
         if (Session::has('shoppingCart')) {
@@ -150,7 +153,7 @@ class CartController extends Controller
         }
         unset($shoppingCart[$productId]); // Xoá giá trị theo key ở trong map với php.
         Session::put('shoppingCart', $shoppingCart);
-        return redirect('/cart');
+        return json_encode(Session::get('shoppingCart'));
     }
 }
 

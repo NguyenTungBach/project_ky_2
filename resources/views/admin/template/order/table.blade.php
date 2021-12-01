@@ -4,6 +4,87 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
     <link rel="stylesheet" href="/css/jquery.toast.min.css">
     <style>
+        #menu-table {
+            background-color: #ebebeb;
+            /*display: flex !important;*/
+            top: -43px;
+            right: 10px;
+            width: 750px;
+            height: 40px;
+            border-radius: 6px;
+            color: #545454;
+        }
+
+        #menu-table ul {
+            padding-left: 20px;
+            list-style-type: none;
+            margin-bottom: 0;
+            align-items: center;
+        }
+
+        #menu-table ul li {
+            text-decoration: unset;
+            margin-right: 30px;
+            font-weight: 600;
+            cursor: pointer;
+
+        }
+
+        #menu-table ul li:hover {
+            color: #000;
+
+        }
+
+        #menu-table ul li div {
+            display: flex;
+            align-items: center;
+        }
+
+        #menu-table ul li div span {
+            font-size: 13px;
+        }
+
+        #menu-table ul li div i {
+            font-size: 20px;
+            margin-right: 5px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            top: 18px;
+            display: none !important;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 110px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content ul li {
+            margin: 0 !important;
+            padding: 5px;
+        }
+        .dropdown-content ul li:hover{
+            background-color: #c4c4c4;
+            cursor: pointer;
+        }
+        .dropdown:hover{
+            cursor: pointer;
+        }
+
+
+        .dropdown:hover .dropdown-content {
+            display: block !important;
+
+        }
+
+        .dataTables_paginate .pagination .active .text-pagination {
+            color: #0e7aff !important;
+        }
+
         .sortOrder {
             color: #495057 !important;
         }
@@ -66,10 +147,19 @@
         #menu-table {
             display: none;
         }
+        .message-update{
+
+            min-width: 250px;
+            padding: 5px;
+            right: 30px;
+            background: #84c739;
+            color: #FFF;
+        }
     </style>
 @endsection
 @section('breadcrumb')
-    <div class="page-title">
+    <div class="page-title position-relative">
+        <div class="position-absolute message-update"><i style="font-size: 18px" class="fa fa-check"></i> Cập nhật trạng thái giỏ hàng thành công</div>
         <div class="title_left">
             <h3>Table Order</h3>
         </div>
@@ -269,11 +359,63 @@
 
                 <div class="x_content">
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-12 position-relative">
+                            <div id="menu-table" class="position-absolute">
+                                <ul style="display: flex">
+                                    <li>
+                                        <div>
+                                            <i class="fa fa-check-circle"></i>
+                                            <span>Đã chọn : 1</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <i class="fa fa-edit"></i>
+                                            <div class="dropdown">
+                                                <span>Update status</span>
+                                                <div class="dropdown-content">
+                                                    <ul style="padding: 0;">
+                                                        <li><a href="/admin/order/update-all/status">Chờ xác nhận</a></li>
+                                                        <li>Đang xử lí</li>
+                                                        <li>Đã giao hàng</li>
+                                                        <li>Chờ xác nhận</li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <i class="fa fa-trash"></i>
+                                            <span>Xoá</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <i class="fa fa-download"></i>
+                                            <span>Tải xuống</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <i class="fa fa-th-list"></i>
+                                            <span>Chọn tất cả</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <i class="fa fa-times-circle"></i>
+                                            <span>Bỏ chọn tất cả</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                             <div class="card-box table-responsive">
                                 <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                                     <thead>
                                     <tr>
+                                        <th><input type="checkbox" value="" name="selected-all"></th>
                                         <th>Mã đơn hàng</th>
                                         <th>Trạng thái</th>
                                         <th>Tổng giá(VND)</th>
@@ -288,8 +430,9 @@
                                     <tbody>
                                     @foreach($items as $item)
                                         <tr>
+                                            <td><input type="checkbox" value="{{$item->id}}" class="selected-item">
                                             <td>{{$item->id}}</td>
-                                            <form action="" method="post">
+                                            <form action="/admin/order/update/status" method="post">
                                                 @include('admin.template.order.status-select')
                                             </form>
                                             <td>{{number_format($item['total_price'])}}</td>
@@ -329,8 +472,8 @@
                             <div class="row">
                                 <div class="col-sm-5">
                                     <div class="dataTables_info" id="datatable_info" role="status"
-                                         aria-live="polite">Showing 1 to {{$paginate ?? ''}} of {{$sumOrder ?? ''}}
-                                        entries
+                                         aria-live="polite">
+                                        Hiển thị 1 đến {{$paginate ?? ''}} trong tổng số {{$sumOrder ?? ''}} hoá đơn
                                     </div>
                                 </div>
                                 <div class="col-sm-7">
@@ -342,16 +485,18 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
+
 @endsection
 @section('page-script')
     {{--    date picker--}}
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <script src="/js/jquery.toast.min.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             {{--  Form search       --}}
             $('.delete-search').on('click', function () {
                 $(this).siblings().val('')
@@ -382,36 +527,98 @@
                     $('#endDate').val(endDate.format('YYYY-MM-DD'))
                 });
         });
-            //=========================== update status =========================================
+        //=========================== update status =========================================
         $('.status-update').change(function () {
-            let id = $(this).data('id');
-            let status = $('select[name=status-update]').val();
-            let data = {
-                id: id,
-                status: status
+            this.form.submit();
+        })
+        // $('.status-update').change(function () {
+        //     let id = $(this).data('id');
+        //     let status = $('select[name=status-update]').val();
+        //     let data = {
+        //         id: id,
+        //         status: status
+        //     }
+        //     $.ajax({
+        //         url: `http://127.0.0.1:8000/admin/order/update/status`,
+        //         method: 'POST',
+        //         data: JSON.stringify(data),
+        //         success: function (response) {
+        //             message();
+        //             console.log(response)
+        //         },
+        //
+        //     });
+        //
+        // })
+        //
+        // function message() {
+        //     $.toast({
+        //         icon: 'success',
+        //         heading: 'Thành công',
+        //         text: 'Cập nhật trạng thái thành công.',
+        //         bgColor: '#81b03f',
+        //         textColor: 'white',
+        //         position: 'top-right',
+        //     })
+        // }
+    </script>
+    <script>
+        //============================= Handler Checked product ================================================================
+        const selectItem = $('.selected-item')
+        let hrefDeleteAll = $('#deleteAll').attr('href');
+        let hrefUpdateAll = $('#updateAll').attr('href');
+
+
+        $('input[name="selected-all"]').on('click', function () {
+            let arr = new Set();
+            selectItem.prop('checked', this.checked);
+
+            if (this.checked) {
+                $('#menu-table').css('display', 'flex')
+                for (const ele of selectItem) {
+                    arr.add(ele.value);
+                    console.log(ele.value)
+                }
+
+                $('#deleteAll').attr('href', hrefDeleteAll + Array.from(arr).join(','))
+                $('#updateAll').attr('href', hrefUpdateAll + Array.from(arr).join(','))
+                $('#numberChoice').text(selectItem.length + " select")
+
+            } else {
+                $('#deleteAll').attr('href', hrefDeleteAll)
+                $('#updateAll').attr('href', hrefUpdateAll)
+                $('#menu-table').css('display', 'none')
             }
-            $.ajax({
-                url: `http://127.0.0.1:8000/admin/order/update/status`,
-                method: 'POST',
-                data: JSON.stringify(data),
-                success: function (response) {
-                    message();
-                    console.log(response)
-                },
-
-            });
-
         })
 
-        function message() {
-            $.toast({
-                icon: 'success',
-                heading: 'Thành công',
-                text: 'Cập nhật trạng thái thành công.',
-                bgColor: '#81b03f',
-                textColor: 'white'
-            })
-        }
+        selectItem.on('click', function () {
+            let arr = new Set();
+            let value = this.value;
+            for (let i = 0; i < selectItem.length; i++) {
+                if (selectItem[i].checked) {
+                    arr.add(selectItem[i].value)
+                }
+            }
+            if ($(this).prop('checked')) {
+                $('#menu-table').css('display', 'flex')
+                arr.add(value);
+            } else {
+                if (arr.has(value)) {
+                    arr.delete(value)
+                }
+                if (arr.size === 0) {
+                    $('#menu-table').css('display', 'none')
+                }
+            }
+
+            if (arr.size > 0) {
+                $('#deleteAll').attr('href', hrefDeleteAll + Array.from(arr).join(','))
+                $('#updateAll').attr('href', hrefUpdateAll + Array.from(arr).join(','))
+            } else {
+                $('#deleteAll').attr('href', hrefDeleteAll)
+                $('#updateAll').attr('href', hrefUpdateAll)
+            }
+        })
     </script>
 @endsection
 

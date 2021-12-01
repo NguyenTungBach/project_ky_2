@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Session;
 class ProductController extends Controller
 {
 
+
     public function getAll(){
         $products = Product::where('status','!=',0);
         $paginate = 9;
@@ -23,6 +24,7 @@ class ProductController extends Controller
             'paginate'=>$paginate,
             'sum' => $products->count(),
             'categories' => Category::withCount('products')->get()]);
+
     }
 
     public function getForm()

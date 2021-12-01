@@ -81,6 +81,7 @@ Route::get('admin/orders', [OrderController::class, 'getAll']);
 Route::get('admin/order/detail/{id}', [OrderController::class, 'getInformation']);
 //update các trạng thái của order
 Route::post('admin/order/update/status', [OrderController::class, 'updateStatus']);
+Route::post('admin/order/update-all/status', [OrderController::class, 'updateAllStatus']);
 
 //xoá đơn hàng(xoá mềm)
 Route::get('admin/order/delete/{id}', [OrderController::class, 'delete']);
@@ -109,7 +110,7 @@ Route::get('/about', [AboutUsController::class, 'getAboutUs']);
 Route::get('/cart', [CartController::class, 'getCart']);
 Route::post('/cart/add', [CartController::class, 'add']);
 Route::post('/cart/update', [CartController::class, 'update']);
-Route::get('/cart/remove', [CartController::class, 'remove']);
+Route::post('/cart/remove', [CartController::class, 'remove']);
 
 // Checkout
 Route::post('/order', [\App\Http\Controllers\client\OrderController::class, 'process']);
