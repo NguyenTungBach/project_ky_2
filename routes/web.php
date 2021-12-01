@@ -89,7 +89,7 @@ Route::get('admin/order/search', [OrderController::class, 'index']);
 
 //======================================================================================================================
 //========================================= CLIENT =====================================================================
-Route::get('/home', [HomeController::class, 'getHome']);
+Route::get('/', [HomeController::class, 'getHome']);
 
 Route::get('/products', [ProductController::class, 'getShop']);
 Route::get('/product/search', [ProductController::class, 'index']);

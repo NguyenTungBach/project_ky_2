@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function getHome()
     {
-        return view('client.page.home.template',['items' => Product::paginate(8)]);
+        return view('client.page.home.template',['items'=>Product::paginate(8)]);
     }
 
 }

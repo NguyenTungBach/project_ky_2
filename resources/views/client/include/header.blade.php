@@ -6,7 +6,7 @@
                 <div class="left-header">
                     <!-- Logo desktop -->
                     <div class="logo">
-                        <a href="/home"><img src="/client/images/icons/favicon-no-background.png" alt="IMG-LOGO"></a>
+                        <a href="/"><img src="/client/images/icons/favicon-no-background.png" alt="IMG-LOGO"></a>
                     </div>
                 </div>
 
@@ -15,7 +15,7 @@
                     <div class="menu-desktop">
                         <ul class="main-menu">
                             <li class="active-menu">
-                                <a href="/home">Trang chủ</a>
+                                <a href="/">Trang chủ</a>
                             </li>
 
                             <li>
@@ -90,11 +90,11 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="size-w-14 flex-b">
-                                                        <a href="/cart/delete/{{$product->id}}" style="position: absolute;top: 0;" class="lh-10">
-                                                            <img src="/client/images/icons/icon-close.png" alt="CLOSE">
-                                                        </a>
-                                                    </div>
+{{--                                                    <div class="size-w-14 flex-b">--}}
+{{--                                                        <a href="/cart/delete/{{$product->id}}" style="position: absolute;top: 0;" class="lh-10">--}}
+{{--                                                            <img src="/client/images/icons/icon-close.png" alt="CLOSE">--}}
+{{--                                                        </a>--}}
+{{--                                                    </div>--}}
                                                 </div>
                                             @endforeach
                                         @else
@@ -213,7 +213,7 @@
     <div class="menu-mobile">
         <ul class="main-menu-m">
             <li>
-                <a href="/home">Trang chủ</a>
+                <a href="/">Trang chủ</a>
             </li>
 
             <li>
