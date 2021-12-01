@@ -9,9 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Product extends Model
 {
     use HasFactory;
-
+    public $timestamps = false;
     protected $fillable = [
-        'name', 'category_id', 'thumbnail', 'price', 'detail', 'description',
+        'name', 'category_id', 'thumbnail', 'price', 'detail', 'description', 'created_at', 'updated_at', 'deleted_at'
     ];
 
     public function category(): BelongsTo
