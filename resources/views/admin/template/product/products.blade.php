@@ -19,16 +19,102 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Default Example</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                        <div class="col-md-12 col-sm-12 form-group pull-right top_search">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for...">
-                                <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
+                    <div class="x_title">
+                        <form action="/admin/product/search" method="get" id="form-search">
+                            @csrf
+                            <div class="col-sm-12 col-md-12">
+                                {{--              Find By Name                  --}}
+                                <div class="col-md-3 col-sm-3 form-group pull-right pr-2  top_search">
+                                    <input type="text" class=" form-control query"
+                                           value="{{$oldName ?? ""}}" name="name"
+                                           placeholder="Tên...">
+                                    <span class="delete-search">&times;</span>
+                                    <span class="icon-search"><i class="fa fa-search"></i></span>
+                                </div>
+                                {{--              Find By Category               --}}
+                                <div class="col-md-3 col-sm-3 form-group pull-right top_search pr-2">
+                                    <select name="categories" id="category" class="form-control sortOrder">
+                                        <option value="">---Lọc theo danh mục sản phẩm---</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{$category->id}}"
+                                            {{isset($oldCategory) && $oldCategory == $category->id ? 'selected' : ''}}>{{$category->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                {{--       Lọc theo tên      --}}
+                                <div class="col-md-3 col-sm-3 form-group pull-right top_search pr-2">
+                                    <select name="nameSort" id="nameSort" class="form-control sortOrder">
+                                        <option value="">---Lọc theo tên---</option>
+                                        <option
+                                            value="{{\App\Enums\Sort::Asc}}" {{isset($nameSort) && $nameSort == \App\Enums\Sort::Asc ? 'selected' : ''}}>
+                                            Tên: A-Z
+                                        </option>
+                                        <option
+                                            value="{{\App\Enums\Sort::Desc}}"
+                                            {{isset($sortName) && $sortName == \App\Enums\Sort::Desc ? 'selected' : ''}}>
+                                            Tên: Z-A
+                                        </option>
+                                    </select>
+                                </div>
+                                {{--                                --}}{{--        Sort price             --}}
+                                <div class="col-md-3 col-sm-3 form-group pull-right top_search pr-2">
+                                    <select name="priceSort" class="form-control sortOrder" id="priceSort">
+                                        <option value="">---Lọc theo giá---</option>
+                                        <option
+                                            value="{{\App\Enums\Sort::Asc}}"
+                                            {{isset($priceSort) && $priceSort == \App\Enums\Sort::Asc? 'selected' : ''}}>
+                                            Giá: Thấp đến Cao
+                                        </option>
+                                        <option
+                                            value="{{\App\Enums\Sort::Desc}}"
+                                            {{isset($priceSort) && $priceSort == \App\Enums\Sort::Desc? 'selected' : ''}}>
+                                            Giá: Cao đến Thấp
+                                        </option>
+                                    </select>
+                                </div>
+                                {{--                                --}}{{--        Search status             --}}
+                                <div class="col-md-3 col-sm-3 form-group pull-right top_search pr-2">
+                                    <select name="status" class="form-control" id="status">
+                                        <option value="">---Trạng thái---</option>
+                                        <option value="1"{{isset($status) && $status == 1 ? 'selected' : ''}}>Còn hàng</option>
+                                        <option value="2"{{isset($status) && $status == 2 ? 'selected' : ''}}>Hết hàng</option>
+                                        <option value="0"{{isset($status) && $status == 0 ? 'selected' : ''}}>Đã xóa</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 col-sm-3 form-group pull-right top_search pr-2">
+                                    <select name="price" class="form-control sortOrder" id="price">
+                                        <option value="">---Tổng giá (VND)---</option>
+                                        <option
+                                            value="1" {{isset($oldPrice) && $oldPrice == 1 ? 'selected' : ''}}>
+                                            Từ 0 - 100,000
+                                        </option>
+                                        <option
+                                            value="2" {{isset($oldPrice) && $oldPrice == 2 ? 'selected' : ''}}>
+                                            Từ 100,000 - 200,000
+                                        </option>
+                                        <option
+                                            value="3" {{isset($oldPrice) && $oldPrice == 3 ? 'selected' : ''}}>
+                                            Từ 100,000 - 200,000
+                                        </option>
+                                        <option
+                                            value="4" {{isset($oldPrice) && $oldPrice == 4 ? 'selected' : ''}}>
+                                            Từ 200,000 - 300,000
+                                        </option>
+                                        <option
+                                            value="5" {{isset($oldPrice) && $oldPrice == 5 ? 'selected' : ''}}>
+                                            Từ 300,000 - 400,000
+                                        </option>
+                                        <option
+                                            value="6" {{isset($oldPrice) && $oldPrice == 6 ? 'selected' : ''}}>
+                                            Đơn hàng trên 500,000
+                                        </option>
+                                    </select>
+                                </div>
+
                             </div>
-                        </div>
-                    </ul>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
 
                     <div class="clearfix"></div>
                 </div>
@@ -110,4 +196,26 @@
     </div>
 @endsection
 @section('page-script')
+    <script>
+        $('.icon-search').on('click', function () {
+            $('#form-search').submit();
+        })
+        $('#category').change(function () {
+            this.form.submit();
+        })
+        $('#nameSort').change(function () {
+            this.form.submit();
+        })
+        $('#priceSort').change(function () {
+            this.form.submit();
+        })
+        $('#status').change(function () {
+            this.form.submit();
+        })
+        $('#price').change(function () {
+            this.form.submit();
+        })
+
+
+    </script>
 @endsection

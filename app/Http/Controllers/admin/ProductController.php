@@ -13,15 +13,20 @@ use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
+
     public function getAll(){
         $totalItem = Product::where('status','!=',0);
         $limit = 9;
         $items = Product::orderBy('created_at','DESC')->where('status','!=',0)->paginate($limit);
-        return view('admin.template.product.products', ['items'=>$items,'limit'=>$limit,'totalItem'=>$totalItem]);
+        return view('admin.template.product.products', ['items'=>$items,
+            'limit'=>$limit,
+            'totalItem'=>$totalItem,
+            'categories' => Category::withCount('products')->get()]);
     }
 
-    public function getForm(){
-        return view('admin.template.product.create',[
+    public function getForm()
+    {
+        return view('admin.template.product.create', [
             'categories' => Category::withCount('products')->get()
         ]);
     }
@@ -42,6 +47,7 @@ class ProductController extends Controller
     public function getDetail($id){
         return view('admin.template.product.detail',['item' =>Product::find($id)]);
     }
+
 
     public function getInformation($id){
         return view('admin.template.product.update',['item' =>Product::find($id),'categories' => Category::withCount('products')->get()]);
@@ -68,7 +74,8 @@ class ProductController extends Controller
         return view('admin.template.product.delete',['item' =>Product::find($id)]);
     }
 
-    public function delete(Request $request){
+    public function delete(Request $request)
+    {
         $id = $request->get('id');
         try {
             $product = Product::find($id);
@@ -76,9 +83,42 @@ class ProductController extends Controller
             $product->status = 0;
             $product->save();
             Session::flash('message', "Xóa sản phẩm có id= $id, thành công");
-        } catch (\Exception $e){
+        } catch (\Exception $e) {
             Session::flash('message', "Xóa sản phẩm có id= $id, thất bại");
         }
         return redirect('admin/products');
+    }
+
+    public function search(Request $request)
+    {
+        $totalItem = Product::where('status','!=',0); // tính tổng số item
+        try {
+            $paginate = 9;
+            $products = Product::query()
+                ->name($request)
+                ->price($request)
+                ->cate($request)
+                ->sortByName($request)
+                ->sortByPrice($request)
+                ->status($request);
+//        return $products;
+            return view('admin.template.product.products', [
+                'totalItem'=>$totalItem,
+                'items' => $products->where('status','!=',0)->paginate($paginate),
+                'oldName' => $request->get('name'),
+                'oldPrice' => $request->get('price'),
+                'limit' => $paginate,
+                'sumProduct' => $products->count(),
+                'priceSort' => $request->get('priceSort'),
+                'status' => $request->get('status'),
+                'nameSort' => $request->get('nameSort'),
+                'oldCategory' => $request->get('categories'),
+                'categories' => Category::withCount('products')->get(),
+            ]);
+        }
+        catch (\Exception $exception){
+            return $exception;
+        }
+
     }
 }
