@@ -197,25 +197,28 @@
 @endsection
 @section('page-script')
     <script>
-        $('.icon-search').on('click', function () {
-            $('#form-search').submit();
-        })
-        $('#category').change(function () {
-            this.form.submit();
-        })
-        $('#nameSort').change(function () {
-            this.form.submit();
-        })
-        $('#priceSort').change(function () {
-            this.form.submit();
-        })
-        $('#status').change(function () {
-            this.form.submit();
-        })
-        $('#price').change(function () {
-            this.form.submit();
-        })
-
-
+        $(document).ready(function() {
+            $('.icon-search').on('click', function () {
+                $('#form-search').submit();
+            })
+            $('.delete-search').on('click', function () {
+                $(this).siblings().val('')
+            })
+            $('#category').change(function () {
+                this.form.submit();
+            })
+            $('#nameSort').change(function () {
+                this.form.submit();
+            })
+            $('#priceSort').change(function () {
+                this.form.submit();
+            })
+            $('#status').change(function () {
+                this.form.submit();
+            })
+            $('#price').change(function () {
+                this.form.submit();
+            })
+        });
     </script>
 @endsection
