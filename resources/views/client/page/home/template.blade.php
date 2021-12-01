@@ -301,6 +301,8 @@
                     let stringHtml = ``;
                     let totalCart = 0;
                     console.log("result la: ",result);
+                    console.log("Object key la: ",Object.keys(result));
+                    console.log("Object values la: ",Object.values(result));
                     Object.entries(result).forEach(([key, value]) => {
                         stringHtml += cartHeader(value);
                         totalCart += value.unitPrice * value.quantity;

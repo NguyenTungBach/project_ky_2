@@ -165,11 +165,7 @@
                                                        data-original-title="Edit"
                                                        class="fa fa-edit mr-1 text-primary"></i></a>
                                                 <a href="/admin/product/delete/{{$item->id}}" id="delete"
-                                                   class="hover-pointer dataItem"
-                                                   data-toggle="modal"
-                                                   data-target="#deleteModal"
-                                                   data-name="{{$item->name}}"
-                                                   data-id="{{$item->id}}">
+                                                   class="hover-pointer dataItem">
                                                     <i data-toggle="tooltip" data-placement="bottom" title=""
                                                        data-original-title="Delete"
                                                        class="fa fa-trash mr-1 text-primary"></i></a></td>
@@ -232,7 +228,6 @@
         $('#price').change(function () {
             this.form.submit();
         })
-
 
     </script>
 @endsection
