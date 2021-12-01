@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Enums\OrderStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -14,18 +16,22 @@ class OrderController extends Controller
         $paginate = 12;
         $orders = Order::query();
         return view('admin.template.order.table', [
-            'items' => $orders->paginate($paginate),
+            'items' => $orders->orderBy('created_at', 'desc')->paginate($paginate),
+            'paginate' => $paginate,
+            'sumOrder' => $orders->count(),
         ]);
     }
 
     public function updateStatus()
     {
         try {
-            $data = json_decode(file_get_contents("php://input"), true);
-            // lấy thông tin sản phẩm.
-            $orderId = $data['id'];
-            // lấy số lượng sản phẩm cần thêm vào giỏ hàng.
-            $orderStatus = $data['status'];
+//            $data = json_decode(file_get_contents("php://input"), true);
+//            // lấy thông tin sản phẩm.
+//            $orderId = $data['id'];
+//            // lấy số lượng sản phẩm cần thêm vào giỏ hàng.
+//            $orderStatus = $data['status'];
+            $orderId = request()->get('id');
+            $orderStatus = request()->get('status-update');
             $order = Order::find($orderId);
 //            return $order;
             if (!$order->exists()) {
@@ -34,10 +40,32 @@ class OrderController extends Controller
             $order->ship_status = $orderStatus;
             $order->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
             $order->save();
-            return true;
+
+            $title = "";
+            switch ($orderStatus) {
+                case OrderStatus::Cancel;
+                    $title = "Đơn hàng với mã #$order->id đã bị huỷ";
+                    break;
+                case OrderStatus::Done;
+                    $title = "Đơn hàng với mã #$order->id đã được gia thành công";
+                    break;
+                case OrderStatus::Waiting;
+                    $title = "Đơn hàng với mã #$order->id đang chờ được xử lý";
+                    break;
+                case OrderStatus::Processing;
+                    $title = "Đơn hàng với mã #$order->id đang được xử lý";
+                    break;
+            }
+            $this->sendMail($order->id, $title);
+            session()->flash('updateStatus','Cập nhật trạng thái đơn hàng thành công');
+            return redirect()->back();
         } catch (\Exception $e) {
             return $e;
         }
+    }
+
+    public function updateAllStatus(){
+
     }
 
     public function index(Request $request)
@@ -78,5 +106,16 @@ class OrderController extends Controller
 
             return redirect()->back();
         }
+    }
+    function sendMail($id,$title)
+    {
+        $data = Order::find($id);
+        $data->subject = $title;
+        Mail::send('client.mailOrder.mailOrder', ['order' => $data ],
+            function ($message) use ($data) {
+                $message->to( $data->ship_email, 'Tutorials Point')
+                    ->subject($data->subject);
+                $message->from('rausachtdhhn@gmail.com', 'Cửa hàng Cần Rau');
+            });
     }
 }

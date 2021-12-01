@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Session;
 class ProductController extends Controller
 {
 
+
     public function getAll(){
         $totalItem = Product::where('status','!=',0);
         $limit = 9;
@@ -22,6 +23,7 @@ class ProductController extends Controller
             'limit'=>$limit,
             'totalItem'=>$totalItem,
             'categories' => Category::withCount('products')->get()]);
+
     }
 
     public function getForm()
