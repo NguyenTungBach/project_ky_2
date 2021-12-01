@@ -13,36 +13,41 @@
                 <div class="x_title">
                     <h2>Form</h2>
                     <div class="clearfix"></div>
+                    @if ($errors->any())
+                        <div class="alert " style="margin-top: 10px">
+                            <h4 class="text-danger">List Errors</h4>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li class="text-danger">{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </div>
                 <div class="x_content">
                     <br/>
-                    <form method="post" action="">
+                    <form method="post" action="/admin/category/form/create">
                         @csrf
-                        <div class="item form-group">
+                        <div class="item form-group row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align"> Name *</label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input type="text" name="name" required="required" class="form-control ">
+                                <input type="text" name="name"  class="form-control ">
+                                @error('name')
+                                <div class="text-danger col-md-12 col-sm-12 mt-2 " >* {{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
-
-                        <div class="item form-group">
+                        <div class="item form-group row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align"> Description *</label>
                             <div class="col-md-6 col-sm-6 ">
-                                <label>
                                     <textarea style="width: 100%" name="description" rows="4" cols="50"></textarea>
-                                </label>
+                                    @error('description')
+                                    <div class="text-danger col-md-12 col-sm-12  mt-2" >* {{ $message }}</div>
+                                    @enderror
                             </div>
                         </div>
 
-                        <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Image *</label>
-                            <div class="col-md-6 col-sm-6 ">
-                                <label>
-                                    <button id="upload_widget" class="cloudinary-button">Upload files</button>
-                                </label>
-                            </div>
-                        </div>
 
 
                         <div class="ln_solid"></div>
@@ -50,7 +55,7 @@
                             <div class="col-md-6 col-sm-6 offset-md-3">
                                 <button class="btn btn-primary" type="button">Cancel</button>
                                 <button class="btn btn-primary" type="reset">Reset</button>
-                                <button type="submit" class="btn btn-success">Submit</button>
+                                <button class="btn btn-success">Submit</button>
                             </div>
                         </div>
 
@@ -62,22 +67,6 @@
 @endsection
 @section('page-script')
     <script src="//cdn.ckeditor.com/4.17.1/full/ckeditor.js"></script>
-    <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
-
-    <script type="text/javascript">
-        var myWidget = cloudinary.createUploadWidget({
-                cloudName: 'my_cloud_name',
-                uploadPreset: 'my_preset'}, (error, result) => {
-                if (!error && result && result.event === "success") {
-                    console.log('Done! Here is the image info: ', result.info);
-                }
-            }
-        )
-
-        document.getElementById("upload_widget").addEventListener("click", function(){
-            myWidget.open();
-        }, false);
-    </script>
     <script>
         CKEDITOR.editorConfig = function( config ) {
             config.toolbar = [

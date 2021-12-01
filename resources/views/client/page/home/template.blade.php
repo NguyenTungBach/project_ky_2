@@ -110,6 +110,7 @@
                                         <img src="/client/images/icons/icon-cart.png"
                                              alt="ICON">
                                     </p>
+
                                 </div>
                             </div>
                         </div>
