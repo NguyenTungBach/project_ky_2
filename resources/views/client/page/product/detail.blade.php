@@ -4,6 +4,7 @@
 @endsection
 @section('css-page')
     @include('client.page.product.css')
+    <link rel="stylesheet" href="/css/jquery.toast.min.css">
     <style>
         .thumbnail-custom {
             border: 1px solid #000;
@@ -43,15 +44,16 @@
 
                         <div class="flex-w flex-m p-t-55 p-b-30">
                             <div class="wrap-num-product flex-w flex-m bg12 p-rl-10 m-r-30 m-b-30">
-                                <div class="btn-num-product-down flex-c-m fs-29"></div>
+                                <div class="btn-num-product-down flex-c-m fs-29 detail-down"></div>
 
-                                <input class="txt-m-102 cl6 txt-center num-product" type="number" name="num-product"
-                                       value="1">
+                                <input  class="txt-m-102 cl6 txt-center num-product"
+                                       value="1"
+                                       type="number" name="quantity">
 
-                                <div class="btn-num-product-up flex-c-m fs-16"></div>
+                                <div class="btn-num-product-up flex-c-m fs-16 detail-up"></div>
                             </div>
 
-                            <button class="flex-c-m txt-s-103 cl0 bg10 size-a-2 hov-btn2 trans-04 m-b-30 js-addcart1">
+                            <button data-id="{{$items->id}}" data-quantity="1" class="flex-c-m txt-s-103 cl0 bg10 size-a-2 hov-btn2 trans-04 m-b-30 detail-add-cart">
                                 Add to cart
                             </button>
                         </div>
@@ -74,7 +76,7 @@
                             @switch($items->status)
                                 @case(1)
                                 <span class="cl9">
-                                    Còn hàng
+                                    Đang bán
 							</span>
                                 @break
                                 @case(2)
@@ -189,6 +191,8 @@
 @endsection
 @section('js-page')
     @include('client.page.product.js')
+    <script src="/js/jquery.toast.min.js"></script>
+    <script src="/js/client-custom.js"></script>
     <script>
         function openDetailAndReview(reviewOrDetail) {
             var x = document.getElementsByClassName('reviewAndDetail')

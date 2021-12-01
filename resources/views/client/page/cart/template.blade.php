@@ -71,12 +71,12 @@
                                     <td class="column-3">
                                         <div class="wrap-num-product flex-w flex-m bg12 p-rl-10">
                                             <input type="hidden" name="id" value="{{$cartItem->id}}">
-                                            <div class="btn-num-product-down flex-c-m fs-29 "></div>
+                                            <div class="btn-num-product-down flex-c-m fs-29 cart-down"></div>
                                             <input class="txt-m-102 cl6 txt-center num-product" type="number"
                                                    name="quantity"
                                                    data-id="{{$cartItem->id}}"
                                                    value="{{$cartItem->quantity}}" min="1">
-                                            <div class="btn-num-product-up flex-c-m fs-16 "></div>
+                                            <div class="btn-num-product-up flex-c-m fs-16 cart-up"></div>
                                         </div>
                                     </td>
                                     <td class="column-4">

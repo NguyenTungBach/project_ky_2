@@ -87,7 +87,7 @@
                                     <p style="word-wrap: break-word;" class="pl-2">{{$order->ship_email}}</p>
                                 </div>
                             </div>
-                            <div class="col-sm-12 p-b-23">
+                            <div class="col-sm-12 p-b-5">
                                 <div>
                                     <div class="txt-m-104 cl6 p-b-10">
                                         Địa chỉ:
@@ -104,7 +104,7 @@
                                 </div>
                             </div>
                         </div>
-{{--                        <a href="/check-mail?orderID={{$order->id}}">Thư hóa đơn thanh toán</a>--}}
+                        <a href="/check-mail?orderID={{$order->id}}">Thư hóa đơn thanh toán</a>
                     </div>
                 </div>
 

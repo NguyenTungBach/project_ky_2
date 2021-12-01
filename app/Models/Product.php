@@ -33,6 +33,22 @@ class Product extends Model
         return number_format($this->price);
     }
 
+    function getHandlerStatusAttribute(): string //dữ liệu trả về là string
+    {
+        $text = '';
+        $status = $this->status;
+        if ($status == 1) {
+            $text = "Đang bán";
+        }
+        if ($status == 2) {
+            $text = "Hết hàng";
+        }
+        if ($status == 0) {
+            $text = 'Đã xoá';
+        }
+        return $text;
+    }
+
     public function scopeName($query, $request)
     {
         if ($request->has('name')) {
@@ -118,9 +134,9 @@ class Product extends Model
 
     public function scopeStatus($query, $request)
     {
-        if ($request->has('status')){
-            if ($request->status != null){
-                $query->where('status',$request->status);
+        if ($request->has('status')) {
+            if ($request->status != null) {
+                $query->where('status', $request->status);
             }
         }
         return $query;

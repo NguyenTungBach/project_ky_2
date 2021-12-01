@@ -80,6 +80,7 @@ Route::get('admin/orders', [OrderController::class, 'getAll']);
 Route::get('admin/order/detail/{id}', [OrderController::class, 'getInformation']);
 //update các trạng thái của order
 Route::post('admin/order/update/status', [OrderController::class, 'updateStatus']);
+Route::post('admin/order/update-all/status', [OrderController::class, 'updateAllStatus']);
 
 //xoá đơn hàng(xoá mềm)
 Route::get('admin/order/delete/{id}', [OrderController::class, 'delete']);

@@ -9,7 +9,7 @@
 @section('breadcrumb')
     <div class="page-title">
         <div class="title_left">
-            <h3>Table Product</h3>
+            <h3>Danh sách sản phẩm</h3>
         </div>
     </div>
 @endsection
@@ -18,7 +18,7 @@
         <div class="col-md-12 col-sm-12 ">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Default Example</h2>
+                    <h5>Lọc sản phẩm</h5>
                     <div class="x_title">
                         <form action="/admin/product/search" method="get" id="form-search">
                             @csrf
@@ -44,7 +44,7 @@
                                 {{--       Lọc theo tên      --}}
                                 <div class="col-md-3 col-sm-3 form-group pull-right top_search pr-2">
                                     <select name="nameSort" id="nameSort" class="form-control sortOrder">
-                                        <option value="">---Lọc theo tên---</option>
+                                        <option value="0">---Lọc theo tên---</option>
                                         <option
                                             value="{{\App\Enums\Sort::Asc}}" {{isset($nameSort) && $nameSort == \App\Enums\Sort::Asc ? 'selected' : ''}}>
                                             Tên: A-Z
@@ -59,7 +59,7 @@
                                 {{--                                --}}{{--        Sort price             --}}
                                 <div class="col-md-3 col-sm-3 form-group pull-right top_search pr-2">
                                     <select name="priceSort" class="form-control sortOrder" id="priceSort">
-                                        <option value="">---Lọc theo giá---</option>
+                                        <option value="0">---Lọc theo giá---</option>
                                         <option
                                             value="{{\App\Enums\Sort::Asc}}"
                                             {{isset($priceSort) && $priceSort == \App\Enums\Sort::Asc? 'selected' : ''}}>
@@ -147,11 +147,11 @@
                                     @foreach($items as $item)
                                         <tr>
                                             <td>{{$item->name}}</td>
-                                            <td><img src="{{$item->firstImage}}" style="width: 75%" alt=""></td>
+                                            <td><img src="{{$item->firstImage}}" style="width: 100px" alt=""></td>
                                             <td>{{$item->description}}</td>
-                                            <td>{{$item->price}}</td>
-                                            <td>{{$item->category_id}}</td>
-                                            <td>{{$item->status}}</td>
+                                            <td>{{\App\Helpers\Helper::formatVND($item->price)}}</td>
+                                            <td>{{$item->category->name}}</td>
+                                            <td>{{$item->handlerStatus}}</td>
                                             <td><a href="/admin/product/{{$item->id}}" class="hover-pointer dataItem"
                                                 >
                                                     <i class="fa fa-info mr-1 text-primary"
@@ -182,7 +182,7 @@
                                 <div class="row">
                                     <div class="col-sm-5">
                                         <div class="dataTables_info" id="datatable_info" role="status"
-                                             aria-live="polite">Showing 1 to 10 of 57 entries
+                                             aria-live="polite">Hiển thị 1 tới {{$paginate ?? ''}} trong số {{$sum?? ''}} sản phẩm
                                         </div>
                                     </div>
                                     <div class="col-sm-7">
@@ -201,17 +201,30 @@
 @endsection
 @section('page-script')
     <script>
+        $('.delete-search').on('click', function () {
+            $(this).siblings().val('')
+        })
         $('.icon-search').on('click', function () {
             $('#form-search').submit();
         })
+        let price = $('select[name=priceSort]');
+        $('#nameSort').change(function () {
+            if (price.val() !== 0) {
+                price.val(0)
+            }
+            this.form.submit();
+        })
+        let name = $('select[name=nameSort]');
+        $('#priceSort').change(function () {
+            if (name.val() !== 0) {
+                name.val(0)
+            }
+            this.form.submit();
+        })
+
         $('#category').change(function () {
             this.form.submit();
-        })
-        $('#nameSort').change(function () {
-            this.form.submit();
-        })
-        $('#priceSort').change(function () {
-            this.form.submit();
+
         })
         $('#status').change(function () {
             this.form.submit();

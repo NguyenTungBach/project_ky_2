@@ -8,6 +8,10 @@ $(document).ready(function () {
             id: id,
             quantity: 1
         };
+        addToCart(data);
+    });
+
+    function addToCart(data) {
         $.ajax({
             url: `http://127.0.0.1:8000/cart/add`,
             method: 'POST',
@@ -33,8 +37,7 @@ $(document).ready(function () {
             }
 
         });
-
-    });
+    }
 
     // ========================== xoá sản phẩm ========================================
 
@@ -90,9 +93,48 @@ $(document).ready(function () {
     // $('.update-cart').on('click',function () {
     //    alert($(this).val());
     // });
-    //    ==================== quantity update product ================================
 
-    body.on('click', '.btn-num-product-up', function () {
+
+    //    ==================== add to cart in detail product ================================
+    body.on('click', '.detail-up', function () {
+        let value = parseInt($(this).prev().val()) + 1;
+        $(this).prev().val(value);
+        let quantity =  $(this).prev().val();
+
+        $('.detail-add-cart').data('quantity',quantity);
+
+    });
+    body.on('click', '.detail-down', function () {
+        let value = parseInt($(this).next().val()) - 1;
+        if (value < 1) {
+            $(this).next().val(1);
+            $.toast({
+                heading: 'Error',
+                text: 'Cập nhật giỏ hàng thất bại, Số lượng sản phảm không được nhỏ hơn 1',
+                icon: 'error',
+            });
+        } else {
+            $(this).next().val(value);
+            let quantity =  $(this).next().val();
+            $('.detail-add-cart').data('quantity',quantity);
+        }
+
+    });
+
+    $('.detail-add-cart').on('click', function () {
+        let id = $(this).data('id');
+        let quantity = $(this).data('quantity');
+        let data = {
+            id: id,
+            quantity: quantity
+        };
+        addToCart(data);
+    });
+
+
+    //    ==================== quantity update product in cart ================================
+
+    body.on('click', '.cart-up', function () {
 
         let value = parseInt($(this).prev().val()) + 1;
         $(this).prev().val(value);
@@ -106,7 +148,7 @@ $(document).ready(function () {
     });
 
 
-    body.on('click', '.btn-num-product-down', function () {
+    body.on('click', '.cart-down', function () {
         let value = parseInt($(this).next().val()) - 1;
         if (value < 1) {
             $(this).next().val(1);
@@ -126,6 +168,9 @@ $(document).ready(function () {
             updateCart(data);
         }
     });
+
+
+
 
 
     function handlerSumCart(totalCart) {

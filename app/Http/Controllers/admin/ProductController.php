@@ -14,9 +14,14 @@ class ProductController extends Controller
 {
     public function getAll()
     {
+        $paginate = 9;
+        $products = Product::orderBy('created_at', 'DESC');
+
         return view('admin.template.product.products', [
-            'items' => Product::orderBy('created_at', 'DESC')->paginate(9),
-            'categories' => Category::withCount('products')->get()
+            'items' => $products->paginate($paginate),
+            'categories' => Category::withCount('products')->get(),
+            'sum'=> $products->count(),
+            'paginate'=> $paginate
         ]);
     }
 
