@@ -127,7 +127,7 @@
                                 <div class="p-t-20">
                                     <a href="/products" style="color: #FFF;background-color: #81b03f"
                                        class="btn float-right">
-                                        Làm mới
+                                        Bỏ lọc
                                     </a>
                                 </div>
                             </div>
@@ -239,78 +239,7 @@
 @section('js-page')
     @include('client.page.product.js')
     <script src="/js/jquery.toast.min.js"></script>
-    <script>
-        {{--   Add to Cart Ajax     --}}
-        $('.cart-add').on('click', function () {
-            let id = $(this).data('id');
-            let data = {
-                id: id,
-                quantity: 1
-            }
-            $.ajax({
-                url: `http://127.0.0.1:8000/cart/add`,
-                method: 'POST',
-                data: JSON.stringify(data),
-                success: function (response) {
-                    let result = JSON.parse(response);
-                    let stringHtml = ``;
-                    let totalCart = 0;
-                    Object.entries(result).forEach(([key, value]) => {
-                        stringHtml += cartHeader(value);
-                        totalCart += value.unitPrice * value.quantity;
-                    });
-                    $('#cart-header').html(stringHtml)
-                    $('#total-cart').html(`
-                    <p>${new Intl.NumberFormat().format(totalCart)} <small>VND</small></p>
-                    `)
-                    $('.icon-header-item').attr('data-notify', Object.keys(result).length);
-                    message();
-                },
-
-            });
-
-        })
-
-        function cartHeader(data) {
-
-            return `
-            <div class="flex-w flex-str m-b-25 " style="position: relative">
-                <div class="size-w-15 flex-w flex-t">
-                    <a href="/product/${data.id}"
-                       class="wrap-pic-w bo-all-1 bocl12 size-w-16 hov3 trans-04 m-r-14">
-                        <img src="${data.thumbnail}" alt="PRODUCT">
-                    </a>
-
-                    <div class="size-w-17 flex-col-l">
-                        <a href="/product/${data.id}" class="txt-s-108 cl3 hov-cl10 trans-04">${data.name}</a>
-                        <span class="txt-s-101 cl9">${new Intl.NumberFormat().format(data.unitPrice)} <small>VND</small></span>
-                        <span class="txt-s-109 cl12">x${data.quantity}</span>
-                    </div>
-                </div>
-
-                <div class="size-w-14 flex-b">
-                    <a href="/cart/delete/${data.id}"
-                       style="position: absolute;top: 0;" class="lh-10">
-                        <img src="/client/images/icons/icon-close.png" alt="CLOSE">
-                    </a>
-                </div>
-            </div>
-
-            `;
-
-        }
-
-        function message() {
-            $.toast({
-                icon: 'success',
-                heading: 'Thành công',
-                text: 'Thêm mới sản phẩm thành công vào giỏ hàng.',
-                bgColor: '#81b03f',
-                textColor: 'white'
-            });
-        }
-
-    </script>
+    <script src="/js/client-custom.js"></script>
     <script>
         let oldMaxPrice = parseInt($('#oldMaxPrice').text());
         let oldMinPrice = parseInt($('#oldMinPrice').text());

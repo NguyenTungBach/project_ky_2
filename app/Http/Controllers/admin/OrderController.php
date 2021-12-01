@@ -14,7 +14,9 @@ class OrderController extends Controller
         $paginate = 12;
         $orders = Order::query();
         return view('admin.template.order.table', [
-            'items' => $orders->paginate($paginate),
+            'items' => $orders->orderBy('created_at', 'desc')->paginate($paginate),
+            'paginate' => $paginate,
+            'sumOrder' => $orders->count(),
         ]);
     }
 

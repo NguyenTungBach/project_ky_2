@@ -5,14 +5,17 @@
 @section('css-page')
     @include('client.page.cart.css')
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="/css/jquery.toast.min.css">
     <style>
-        .error-input{
+        .error-input {
             border: 1px solid red !important;
         }
-        .success-input{
+
+        .success-input {
             border: none !important;
         }
-        .message-error{
+
+        .message-error {
             font-size: 13px;
             padding-left: 5px;
         }
@@ -28,7 +31,7 @@
     <div class="bg0 p-tb-100">
         <div class="container">
 
-            <div class="wrap-table-shopping-cart">
+            <div id="table-cart-ajax" class="wrap-table-shopping-cart">
                 <table class="table-shopping-cart">
                     <tr class="table_head bg12">
                         <th class="column-1 p-l-30">SẢN PHẨM</th>
@@ -37,21 +40,20 @@
                         <th class="column-4" style="width: 16%">TỔNG GIÁ (VND)</th>
                         <th class="column-4">Thay đổi</th>
                     </tr>
-                <?php
-                $totalPrice = 0;
-                ?>
+                    <div>
+                    <?php
+                    $totalPrice = 0;
+                    ?>
 
-                @if(sizeof($shoppingCart) > 0)
-                    @foreach($shoppingCart as $cartItem)
-                        <?php
-                        if (isset($cartItem)) {
-                            $totalPrice += $cartItem->unitPrice * $cartItem->quantity;
-                        }
-                        ?>
-                        <!-- cart header item -->
-                            <tr class="table_row">
-                                <form action="/cart/update" method="post">
-                                    @csrf
+                    @if(sizeof($shoppingCart) > 0)
+                        @foreach($shoppingCart as $cartItem)
+                            <?php
+                            if (isset($cartItem)) {
+                                $totalPrice += $cartItem->unitPrice * $cartItem->quantity;
+                            }
+                            ?>
+                            <!-- cart header item -->
+                                <tr class="table_row">
                                     <td class="column-1">
                                         <div class="flex-w flex-m">
                                             <div class="wrap-pic-w size-w-50 bo-all-1 bocl12 m-r-30">
@@ -84,9 +86,14 @@
                                     </td>
                                     <td class="column-4">
                                         <div class="dis-flex position-relative">
-                                            <button type="button" id="delete-product"
+{{--                                            <button type="button"--}}
+{{--                                                    data-id="{{$cartItem->id}}"--}}
+{{--                                                    class="update-cart mr-1 delete-cart flex-c-m txt-s-105 cl0 bg10 p-1 hov-btn2 trans-04 pointer">--}}
+{{--                                                Update--}}
+{{--                                            </button>--}}
+                                            <button type="button"
                                                     onclick="document.getElementById('id01').style.display='block'"
-                                                    class=" ml-2 pt-1"
+                                                    class=" ml-2 pt-1 delete-product"
                                                     style="border-radius: 2px; font-size: 14px; color: #a7a7a8">
                                                 Xóa
                                             </button>
@@ -97,10 +104,12 @@
                                                         <span
                                                             onclick="document.getElementById('id01').style.display='none'"
                                                             class="w3-button w3-display-topright">&times;</span>
-                                                        <p class="p-3">Bạn có chắc muốn xóa sản phẩm {{$cartItem->name}} , khỏi giỏ hàng</p>
+                                                        <p class="p-3">Bạn có chắc muốn xóa sản phẩm {{$cartItem->name}}
+                                                            , khỏi giỏ hàng</p>
                                                         <div class="float-right">
-                                                            <a class="btn btn-secondary"
-                                                               href="/cart/remove?id={{$cartItem->id}}">Yes</a>
+                                                            <button data-id="{{$cartItem->id}}" type="button"
+                                                                    class="btn btn-secondary remove-product">Yes
+                                                            </button>
                                                             <button type="button"
                                                                     onclick="document.getElementById('id01').style.display='none'"
                                                                     class="btn btn-success">No
@@ -111,15 +120,17 @@
                                             </div>
                                         </div>
                                     </td>
-                                </form>
-                            </tr>
-                        @endforeach
-                    @else
-                        <div class="text-center alert alert-info">
-                            <p>Giỏ hàng trống, xin vui lòng <a href="/products" class="text-primary">Nhấn vào đây</a> để chọn vài sản phẩm bạn muốn </p>
-                        </div>
-                    @endif
+                                </tr>
 
+                            @endforeach
+                        @else
+                            <div class="text-center alert alert-info">
+                                <p>Giỏ hàng trống, xin vui lòng <a href="/products" class="text-primary">Nhấn vào
+                                        đây</a> để
+                                    chọn vài sản phẩm bạn muốn </p>
+                            </div>
+                        @endif
+                    </div>
                 </table>
             </div>
             <form action="/order" method="post" name="orderForm">
@@ -132,14 +143,13 @@
                                     <h4 class="txt-m-124 cl3 p-b-28">
                                         Chi tiết thanh toán
                                     </h4>
-{{--                                    <div id="error" class="cl12 alert-danger pl-3 mb-3 "></div>--}}
                                     <div class="row">
                                         <div class="col-12 p-b-23">
                                             <div>
                                                 <div class="txt-s-101 cl6 p-b-10">Người nhận:</div>
                                                 <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
                                                        type="text" name="ship_name" placeholder="Nhập tên">
-                                                <span  class="cl12 message-error errorShip_name"></span>
+                                                <span class="cl12 message-error errorShip_name"></span>
                                             </div>
                                         </div>
 
@@ -167,8 +177,7 @@
 
                                         <div class="col-12 p-b-23">
                                             <div>
-                                                <div class="txt-s-101 cl6 p-b-10">Address
-{{--                                                    <span class="cl12">*</span>--}}
+                                                <div class="txt-s-101 cl6 p-b-10">Địa chỉ
                                                 </div>
                                                 <input
                                                     class="plh2 txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1 "
@@ -181,7 +190,7 @@
                                             <div>
                                                 <div class="txt-s-101 cl6 p-b-10">Chú thích:</div>
                                                 <textarea
-                                                    class="plh2 txt-s-120 cl3 size-a-38 bo-all-1 bocl15 p-rl-20 p-tb-10 focus1"
+                                                    class="plh2 txt-s-115 cl3 size-a-38 bo-all-1 bocl15 p-rl-20 p-tb-10 focus1"
                                                     name="ship_note"
                                                     placeholder="Những yêu cầu về sản phẩm muốn được giao">
                                                 </textarea>
@@ -200,8 +209,9 @@
 
                         <div class="d-flex bo-b-1 bocl15 w-100  p-tb-18">
 
-                            <p class="w-50 txt-m-109 cl3">Phụ phí</p>
-                            <p class=" w-50 txt-m-104 cl6">{{\App\Helpers\Helper::formatVND($totalPrice)}} <small>VND</small></p>
+                            <p class="w-50 txt-m-109 cl3">Tổng phụ</p>
+                            <p class=" w-50 txt-m-104 cl6" id="tongPhu">{{\App\Helpers\Helper::formatVND($totalPrice)}}
+                                <small>VND</small></p>
 
                         </div>
 
@@ -210,7 +220,7 @@
                     <span class="w-50 txt-m-109 cl3">
                         Tổng giá tiền
                     </span>
-                            <span class="w-50 txt-m-104 cl10">
+                            <span class="w-50 txt-m-104 cl10" id="tongTien">
                         {{\App\Helpers\Helper::formatVND($totalPrice)}} <small>(VND)</small>
                                 ~ ${{\App\Helpers\Helper::convertVNDtoUSD($totalPrice)}}
                     </span>
@@ -222,7 +232,8 @@
                                 Tiếp tục mua hàng
                             </a>
 
-                            <button style="background-color: #8db263" class="flex-c-m txt-s-105 cl0  size-a-34 hov-btn2 trans-04 p-rl-10 m-t-43 ">
+                            <button style="background-color: #8db263"
+                                    class="flex-c-m txt-s-105 cl0  size-a-34 hov-btn2 trans-04 p-rl-10 m-t-43 ">
                                 Tiến hành thanh toán
                             </button>
                         </div>
@@ -235,6 +246,8 @@
 
         @section('js-page')
             @include('client.page.cart.js')
+            <script src="/js/jquery.toast.min.js"></script>
+            <script src="/js/client-custom.js"></script>
             <script>
                 $(document).ready(function () {
                     //================================= validate form ======================================
@@ -314,48 +327,10 @@
                             return false;
                         }
                     });
-                    //    ==================== quantity update product ================================
 
-                    $('.btn-num-product-up').on('click', function () {
-
-                        let value = parseInt($(this).prev().val()) + 1
-                        $(this).prev().val(value)
-                        let id = $(this).prev().data('id');
-                        let quantity = $(this).prev().val();
-                        let data = {
-                            id: id,
-                            quantity: quantity
-                        }
-                        updateCart(data)
-                    })
-
-                    function updateCart(data) {
-                        $.ajax({
-                            url : 'http://127.0.0.1:8000/cart/update',
-                            type : 'POST',
-                            data : JSON.stringify(data),
-
-                            success : function(data) {
-                                console.log('Data: '+data);
-                            },
-                            error : function(request,error)
-                            {
-                                console.log("Request: "+JSON.parse(request));
-                            }
-                        })
-                    }
-
-
-
-                    $('.btn-num-product-down').on('click', function () {
-                        let value = parseInt($(this).next().val()) - 1
-                        if (value < 0) {
-                            $(this).next().val(0)
-                        } else {
-                            $(this).next().val(value)
-                        }
-                    })
 
                 });
+
+
             </script>
 @endsection

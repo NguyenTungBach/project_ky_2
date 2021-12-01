@@ -4,6 +4,9 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
     <link rel="stylesheet" href="/css/jquery.toast.min.css">
     <style>
+        .dataTables_paginate .pagination .active .text-pagination {
+            color: #0e7aff !important;
+        }
         .sortOrder {
             color: #495057 !important;
         }
@@ -274,6 +277,7 @@
                                 <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                                     <thead>
                                     <tr>
+                                        <th><input type="checkbox" value="" name="selected-all"></th>
                                         <th>Mã đơn hàng</th>
                                         <th>Trạng thái</th>
                                         <th>Tổng giá(VND)</th>
@@ -288,6 +292,7 @@
                                     <tbody>
                                     @foreach($items as $item)
                                         <tr>
+                                            <td><input type="checkbox" value="{{$item->id}}" class="selected-item">
                                             <td>{{$item->id}}</td>
                                             <form action="" method="post">
                                                 @include('admin.template.order.status-select')
@@ -329,8 +334,8 @@
                             <div class="row">
                                 <div class="col-sm-5">
                                     <div class="dataTables_info" id="datatable_info" role="status"
-                                         aria-live="polite">Showing 1 to {{$paginate ?? ''}} of {{$sumOrder ?? ''}}
-                                        entries
+                                         aria-live="polite">
+                                        Hiển thị 1 đến {{$paginate ?? ''}} trong tổng số {{$sumOrder ?? ''}} hoá đơn
                                     </div>
                                 </div>
                                 <div class="col-sm-7">
@@ -409,9 +414,67 @@
                 heading: 'Thành công',
                 text: 'Cập nhật trạng thái thành công.',
                 bgColor: '#81b03f',
-                textColor: 'white'
+                textColor: 'white',
+                position: 'top-right',
             })
         }
+    </script>
+    <script>
+        //============================= Handler Checked product ================================================================
+        const selectItem = $('.selected-item')
+        let hrefDeleteAll = $('#deleteAll').attr('href');
+        let hrefUpdateAll = $('#updateAll').attr('href');
+
+
+        $('input[name="selected-all"]').on('click', function () {
+            let arr = new Set();
+            selectItem.prop('checked', this.checked);
+
+            if (this.checked) {
+                $('#menu-table').css('display', 'block')
+                for (const ele of selectItem) {
+                    arr.add(ele.value);
+                }
+
+                $('#deleteAll').attr('href', hrefDeleteAll + Array.from(arr).join(','))
+                $('#updateAll').attr('href', hrefUpdateAll + Array.from(arr).join(','))
+                $('#numberChoice').text(selectItem.length + " select")
+
+            } else {
+                $('#deleteAll').attr('href', hrefDeleteAll)
+                $('#updateAll').attr('href', hrefUpdateAll)
+                $('#menu-table').css('display', 'none')
+            }
+        })
+
+        selectItem.on('click', function () {
+            let arr = new Set();
+            let value = this.value;
+            for (let i = 0; i < selectItem.length; i++) {
+                if (selectItem[i].checked) {
+                    arr.add(selectItem[i].value)
+                }
+            }
+            if ($(this).prop('checked')) {
+                $('#menu-table').css('display', 'block')
+                arr.add(value);
+            } else {
+                if (arr.has(value)) {
+                    arr.delete(value)
+                }
+                if (arr.size === 0) {
+                    $('#menu-table').css('display', 'none')
+                }
+            }
+
+            if (arr.size > 0) {
+                $('#deleteAll').attr('href', hrefDeleteAll + Array.from(arr).join(','))
+                $('#updateAll').attr('href', hrefUpdateAll + Array.from(arr).join(','))
+            } else {
+                $('#deleteAll').attr('href', hrefDeleteAll)
+                $('#updateAll').attr('href', hrefUpdateAll)
+            }
+        })
     </script>
 @endsection
 

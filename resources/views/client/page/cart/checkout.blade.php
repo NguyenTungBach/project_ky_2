@@ -34,30 +34,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-lg-4 p-b-10">
-                    @if(session()->has('orderMessage'))
-                        <div class=" alert alert-success">{{session()->get('orderMessage')}}</div>
-                    @endif
 
-                    @if($order->check_out)
-                        <div class=" alert alert-success">Đã thanh toán</div>
-                    @else
-                        <div class=" alert alert-danger">Chưa thanh toán</div>
-                    @endif
-
-                    @switch($order->ship_status)
-                        @case (2)
-                        <div class="alert alert-warning">Đang chờ</div>
-                        @break
-                        @case (3)
-                        <div class=" alert alert-primary">Đang giao hàng</div>
-                        @break
-                        @case (1)
-                        <div class=" alert alert-success">Đã giao hàng</div>
-                        @break
-                        @case (0)
-                        <div class=" alert alert-danger">Hủy đơn</div>
-                        @break
-                    @endswitch
                     <div>
                         <h4 class="txt-m-124 cl3 p-b-28">
                             Chi tiết đơn hàng
@@ -65,9 +42,28 @@
                         @php
                             $total_price_in_usd = 0;
                         @endphp
-
                         <div class="row p-b-10">
-                            <div class="col-sm-12 p-b-23">
+                            <div class="col-sm-12 p-b-5">
+                                <div>
+                                    <span class="txt-m-104 cl6 p-b-5">
+                                        Trạng thái đơn hàng:
+                                    </span>
+                                    <span style="font-weight: unset !important;" class="pl-2">{{$order->handlerStatus}}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 p-b-5">
+                                <div>
+                                    <span class="txt-m-104 cl6 p-b-5">
+                                        Tình trạng thanh toán :
+                                    </span>
+                                    @if($order->check_out)
+                                        <span style="font-weight: unset !important;" class="pl-2">Đã thanh toán <i class="fa fa-check-circle ml-2 text-success" aria-hidden="true"></i></span>
+                                    @else
+                                        <span style="font-weight: unset !important;" class="pl-2">Chưa thanh toán <i class="fa fa-times-circle-o ml-2 text-danger" aria-hidden="true"></i></span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-sm-12 p-b-5">
                                 <div>
                                     <div class="txt-m-104 cl6 p-b-10">
                                         Người nhận:
@@ -75,7 +71,7 @@
                                     <span class="pl-2">{{$order->ship_name}}</span>
                                 </div>
                             </div>
-                            <div class="col-sm-12 p-b-23">
+                            <div class="col-sm-12 p-b-5">
                                 <div>
                                     <div class="txt-m-104 cl6 p-b-10">
                                         Số điện thoại:
@@ -83,12 +79,12 @@
                                     <p class="pl-2">{{$order->ship_phone}}</p>
                                 </div>
                             </div>
-                            <div class="col-sm-12 p-b-23">
+                            <div class="col-sm-12 p-b-5">
                                 <div>
                                     <div class="txt-m-104 cl6 p-b-10">
                                         Email:
                                     </div>
-                                    <p class="pl-2">{{$order->ship_email}}</p>
+                                    <p style="word-wrap: break-word;" class="pl-2">{{$order->ship_email}}</p>
                                 </div>
                             </div>
                             <div class="col-sm-12 p-b-23">
@@ -96,7 +92,7 @@
                                     <div class="txt-m-104 cl6 p-b-10">
                                         Địa chỉ:
                                     </div>
-                                    <p class="pl-2">{{$order->ship_address}}</p>
+                                    <p style="word-wrap: break-word;" class="pl-2">{{$order->ship_address}}</p>
                                 </div>
                             </div>
                             <div class="size-a-38 p-rl-15">
@@ -104,7 +100,7 @@
                                     <div class="txt-m-104 cl6 p-b-10">
                                         Chú thích:
                                     </div>
-                                    <p class="pl-2">{{$order->ship_note}}</p>
+                                    <p style="word-wrap: break-word;" class="pl-2">{{$order->ship_note}}</p>
                                 </div>
                             </div>
                         </div>
@@ -121,7 +117,7 @@
                         <div class="wrap-table-shopping-cart">
                             <table class="table-shopping-cart table-shop">
                                 <tr class="table_head bg12">
-                                    <th class="column-1 p-l-30">Sản phẩm</th>
+                                    <th class="column-1 p-l-30" style="width: 50%">Sản phẩm</th>
                                     <th class="column-2 text-center">Giá (VND)</th>
                                     <th class="column-3 text-center" style="width: 15%">Số lượng</th>
                                     <th class="column-4 text-center" style="width: 20%">Tổng giá (VND)</th>
@@ -134,10 +130,10 @@
                                     <tr class="table_row">
                                         <td class="column-1">
                                             <div class="flex-w flex-m">
-                                                <div class="wrap-pic-w size-w-56 bo-all-1 bocl12 m-r-20">
+                                                <div class="wrap-pic-w size-w-56 bo-all-1 bocl12 m-r-10">
                                                     <img src="{{$orderDetail->product->FirstImage}}" alt="IMG">
                                                 </div>
-                                                <span style="font-size: 14px">
+                                                <span style="font-size: 16px">
                                                     {{$orderDetail->product->name}}
                                                 </span>
                                             </div>
@@ -176,7 +172,7 @@
                                     <a style="color: #FFFFFF;" href="/products">Continue Shopping</a>
                                 </button>
                             @else
-                                <div class="p-rl-25" id="paypal-button"></div>
+                                <div class="p-rl-140" id="paypal-button"></div>
                                 <div class="dis-flex align-items-center justify-content-end mt-3">
                                     <i class="fa fa-home" aria-hidden="true"></i>
                                     <a href="/home"

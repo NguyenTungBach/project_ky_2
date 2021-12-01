@@ -107,7 +107,7 @@ Route::get('/about', [AboutUsController::class, 'getAboutUs']);
 Route::get('/cart', [CartController::class, 'getCart']);
 Route::post('/cart/add', [CartController::class, 'add']);
 Route::post('/cart/update', [CartController::class, 'update']);
-Route::get('/cart/remove', [CartController::class, 'remove']);
+Route::post('/cart/remove', [CartController::class, 'remove']);
 
 // Checkout
 Route::post('/order', [\App\Http\Controllers\client\OrderController::class, 'process']);
