@@ -9,9 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Product extends Model
 {
     use HasFactory;
-
+    public $timestamps = false;
     protected $fillable = [
-        'name', 'category_id', 'thumbnail', 'price', 'detail', 'description',
+        'name', 'category_id', 'thumbnail', 'price', 'detail', 'description', 'created_at', 'updated_at', 'deleted_at'
     ];
 
     public function category(): BelongsTo
@@ -37,7 +37,7 @@ class Product extends Model
     {
         if ($request->has('name')) {
             if ($request->name != null) {
-                $query->where('name', 'LIKE', '%' . $request->name . '%');
+                $query->where('name', 'LIKE', '%' . $request->name . '%')->where('status','!=',0);
             }
         }
         return $query;
@@ -49,22 +49,22 @@ class Product extends Model
             if ($request->price != null) {
                 switch ($request->price) {
                     case '1':
-                        $query->whereBetween('price', [0, 100000]);
+                        $query->whereBetween('price', [0, 100000])->where('status','!=',0);
                         break;
                     case '2':
-                        $query->whereBetween('price', [100000, 200000]);
+                        $query->whereBetween('price', [100000, 200000])->where('status','!=',0);
                         break;
                     case '3':
-                        $query->whereBetween('price', [200000, 300000]);
+                        $query->whereBetween('price', [200000, 300000])->where('status','!=',0);
                         break;
                     case '4':
-                        $query->whereBetween('price', [300000, 400000]);
+                        $query->whereBetween('price', [300000, 400000])->where('status','!=',0);
                         break;
                     case '5':
-                        $query->whereBetween('price', [400000, 500000]);
+                        $query->whereBetween('price', [400000, 500000])->where('status','!=',0);
                         break;
                     case '6':
-                        $query->whereBetween('price', [500000, 5000000]);
+                        $query->whereBetween('price', [500000, 5000000])->where('status','!=',0);
                         break;
                 }
             }
@@ -76,7 +76,7 @@ class Product extends Model
     {
         if ($request->has('categories')) {
             if ($request->categories != null) {
-                $query->where('category_id', $request->categories);
+                $query->where('category_id', $request->categories)->where('status','!=',0);
             }
         }
         return $query;
@@ -88,10 +88,10 @@ class Product extends Model
             if ($request->nameSort != null) {
                 switch ($request->nameSort) {
                     case 1:
-                        $query->orderBy('name', 'asc');
+                        $query->orderBy('name', 'asc')->where('status','!=',0);
                         break;
                     case -1:
-                        $query->orderBy('name', 'desc');
+                        $query->orderBy('name', 'desc')->where('status','!=',0);
                         break;
                 }
             }
@@ -105,10 +105,10 @@ class Product extends Model
             if ($request->priceSort != null) {
                 switch ($request->priceSort) {
                     case 1:
-                        $query->orderBy('price', 'asc');
+                        $query->orderBy('price', 'asc')->where('status','!=',0);
                         break;
                     case -1:
-                        $query->orderBy('price', 'desc');
+                        $query->orderBy('price', 'desc')->where('status','!=',0);
                         break;
                 }
             }
@@ -120,7 +120,7 @@ class Product extends Model
     {
         if ($request->has('status')){
             if ($request->status != null){
-                $query->where('status',$request->status);
+                $query->where('status',$request->status)->where('status','!=',0);
             }
         }
         return $query;

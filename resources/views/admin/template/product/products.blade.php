@@ -165,11 +165,7 @@
                                                        data-original-title="Edit"
                                                        class="fa fa-edit mr-1 text-primary"></i></a>
                                                 <a href="/admin/product/delete/{{$item->id}}" id="delete"
-                                                   class="hover-pointer dataItem"
-                                                   data-toggle="modal"
-                                                   data-target="#deleteModal"
-                                                   data-name="{{$item->name}}"
-                                                   data-id="{{$item->id}}">
+                                                   class="hover-pointer dataItem">
                                                     <i data-toggle="tooltip" data-placement="bottom" title=""
                                                        data-original-title="Delete"
                                                        class="fa fa-trash mr-1 text-primary"></i></a></td>
@@ -182,7 +178,7 @@
                                 <div class="row">
                                     <div class="col-sm-5">
                                         <div class="dataTables_info" id="datatable_info" role="status"
-                                             aria-live="polite">Showing 1 to 10 of 57 entries
+                                             aria-live="polite">Showing {{($items->currentPage() -1)* $limit + 1}} to {{($items->currentPage() -1)* $limit + $limit }} of {{$totalItem->count()}} items, total page {{$items->lastPage()}}
                                         </div>
                                     </div>
                                     <div class="col-sm-7">
@@ -201,25 +197,28 @@
 @endsection
 @section('page-script')
     <script>
-        $('.icon-search').on('click', function () {
-            $('#form-search').submit();
-        })
-        $('#category').change(function () {
-            this.form.submit();
-        })
-        $('#nameSort').change(function () {
-            this.form.submit();
-        })
-        $('#priceSort').change(function () {
-            this.form.submit();
-        })
-        $('#status').change(function () {
-            this.form.submit();
-        })
-        $('#price').change(function () {
-            this.form.submit();
-        })
-
-
+        $(document).ready(function() {
+            $('.icon-search').on('click', function () {
+                $('#form-search').submit();
+            })
+            $('.delete-search').on('click', function () {
+                $(this).siblings().val('')
+            })
+            $('#category').change(function () {
+                this.form.submit();
+            })
+            $('#nameSort').change(function () {
+                this.form.submit();
+            })
+            $('#priceSort').change(function () {
+                this.form.submit();
+            })
+            $('#status').change(function () {
+                this.form.submit();
+            })
+            $('#price').change(function () {
+                this.form.submit();
+            })
+        });
     </script>
 @endsection

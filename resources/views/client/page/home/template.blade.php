@@ -82,39 +82,40 @@
 
             <div class="row isotope-grid">
                 @foreach($items as $item)
-                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-75 isotope-item fruit-juic-fill other-fill">
-                        <!-- Block1 -->
-                        <div class="block1">
-                            <div class="block1-bg wrap-pic-w bo-all-1 bocl12 hov3 trans-04">
-                                <img src="{{$item->FirstImage}}" alt="IMG">
+                <div class="col-sm-6 col-md-4 col-lg-3 p-b-75 isotope-item fruit-juic-fill other-fill">
+                    <!-- Block1 -->
+                    <div class="block1">
+                        <div class="block1-bg wrap-pic-w bo-all-1 bocl12 hov3 trans-04">
+                            <img src="{{$item->FirstImage}}" alt="IMG">
 
-                                <div class="block1-content flex-col-c-m p-b-46">
-                                    <a href="/product/{{$item->id}}" class="txt-m-103 cl3 txt-center hov-cl10 trans-04 js-name-b1">
-                                        {{$item->name}}
-                                    </a>
+                            <div class="block1-content flex-col-c-m p-b-46">
+                                <a href="/product/{{$item->id}}" class="txt-m-103 cl3 txt-center hov-cl10 trans-04 js-name-b1">
+                                    {{$item->name}}
+                                </a>
 
-                                    <span class="block1-content-more txt-m-104 cl9 p-t-21 trans-04">
+                                <span class="block1-content-more txt-m-104 cl9 p-t-21 trans-04">
 									{{$item->FormatPrice}} VND
 								</span>
 
-                                    <div class="block1-wrap-icon flex-c-m flex-w trans-05">
-                                        <a href="/product/{{$item->id}}"
-                                           class="block1-icon flex-c-m wrap-pic-max-w">
-                                            <img style="padding: 6px"
-                                                 src="/client/images/icons/information.png"
-                                                 alt="ICON">
-                                        </a>
+                                <div class="block1-wrap-icon flex-c-m flex-w trans-05">
+                                    <a href="/product/{{$item->id}}"
+                                       class="block1-icon flex-c-m wrap-pic-max-w">
+                                        <img style="padding: 6px"
+                                             src="/client/images/icons/information.png"
+                                             alt="ICON">
+                                    </a>
 
-                                        <p data-id="{{$item->id}}"
-                                           class=" pointer cart-add block1-icon flex-c-m wrap-pic-max-w">
-                                            <img src="/client/images/icons/icon-cart.png"
-                                                 alt="ICON">
-                                        </p>
-                                    </div>
+                                    <p data-id="{{$item->id}}"
+                                       class=" pointer cart-add block1-icon flex-c-m wrap-pic-max-w">
+                                        <img src="/client/images/icons/icon-cart.png"
+                                             alt="ICON">
+                                    </p>
+
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
                 @endforeach
             </div>
         </div>
