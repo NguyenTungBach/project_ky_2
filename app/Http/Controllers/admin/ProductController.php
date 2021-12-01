@@ -104,7 +104,7 @@ class ProductController extends Controller
 //        return $products;
             return view('admin.template.product.products', [
                 'totalItem'=>$totalItem,
-                'items' => $products->where('status','!=',0)->paginate($paginate),
+                'items' => $products->paginate($paginate),
                 'oldName' => $request->get('name'),
                 'oldPrice' => $request->get('price'),
                 'limit' => $paginate,
