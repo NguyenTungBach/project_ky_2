@@ -178,7 +178,7 @@
                                 <div class="row">
                                     <div class="col-sm-5">
                                         <div class="dataTables_info" id="datatable_info" role="status"
-                                             aria-live="polite">Showing {{($items->currentPage() -1)* $limit + 1}} to {{($items->currentPage() -1)* $limit + $limit }} of {{$totalItem->count()}} items, total page {{$items->lastPage()}}
+                                             aria-live="polite">Hiển thị 1 tới {{$paginate ?? ''}} trong số {{$sum?? ''}} sản phẩm
                                         </div>
                                     </div>
                                     <div class="col-sm-7">

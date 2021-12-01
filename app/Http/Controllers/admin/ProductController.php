@@ -15,12 +15,13 @@ class ProductController extends Controller
 {
 
     public function getAll(){
-        $totalItem = Product::where('status','!=',0);
-        $limit = 9;
-        $items = Product::orderBy('created_at','DESC')->where('status','!=',0)->paginate($limit);
-        return view('admin.template.product.products', ['items'=>$items,
-            'limit'=>$limit,
-            'totalItem'=>$totalItem,
+        $products = Product::where('status','!=',0);
+        $paginate = 9;
+        $items = Product::orderBy('created_at','DESC')->where('status','!=',0)->paginate($paginate);
+        return view('admin.template.product.products', [
+            'items'=>$items,
+            'paginate'=>$paginate,
+            'sum' => $products->count(),
             'categories' => Category::withCount('products')->get()]);
     }
 
@@ -91,7 +92,7 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
-        $totalItem = Product::where('status','!=',0); // tính tổng số item
+        $sum = Product::where('status','!=',0); // tính tổng số item
         try {
             $paginate = 9;
             $products = Product::query()
@@ -103,12 +104,11 @@ class ProductController extends Controller
                 ->status($request);
 //        return $products;
             return view('admin.template.product.products', [
-                'totalItem'=>$totalItem,
                 'items' => $products->paginate($paginate),
                 'oldName' => $request->get('name'),
                 'oldPrice' => $request->get('price'),
-                'limit' => $paginate,
-                'sumProduct' => $products->count(),
+                'paginate' => $paginate,
+                'sum' => $products->count(),
                 'priceSort' => $request->get('priceSort'),
                 'status' => $request->get('status'),
                 'nameSort' => $request->get('nameSort'),
