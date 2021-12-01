@@ -16,7 +16,7 @@
 @endsection
 @section('content-page')
     <!-- Title page -->
-    @include('client.include.title-page',['title'=>'Product detail'])
+    @include('client.include.title-page',['title'=>'Sản phẩm chi tiết'])
 
     <!-- Product detail -->
     <section class="sec-product-detail bg0 p-t-105 p-b-70">
@@ -69,12 +69,26 @@
 
                         <div class="txt-s-107 p-b-6">
 							<span class="cl6">
-								Tải xuống:
+								Tình Trạng:
 							</span>
-
-                            <span class="cl9">
-
+                            @switch($items->status)
+                                @case(1)
+                                <span class="cl9">
+                                    Còn hàng
 							</span>
+                                @break
+                                @case(2)
+                                <span class="cl9">
+                                    Hết hàng
+							</span>
+                                @break
+                                @case(0)
+                                <span class="cl9">
+                                   Đã xóa
+							</span>
+                                @break
+                            @endswitch
+
                         </div>
 
                     </div>
@@ -101,140 +115,11 @@
                         {!! $items->detail !!}
                     </div>
                     <!-- - -->
-                    <div class="tab-pane fade" id="info" role="tabpanel">
-                        <ul class="p-t-21">
-                            <li class="txt-s-101 flex-w how-bor2 p-tb-14">
-								<span class="cl6 size-w-54">
-									Weight
-								</span>
-
-                                <span class="cl9 size-w-55">
-									0.5 kg
-								</span>
-                            </li>
-
-                            <li class="txt-s-101 flex-w how-bor2 p-tb-14">
-								<span class="cl6 size-w-54">
-									Counrty of Origin
-								</span>
-
-                                <span class="cl9 size-w-55">
-									Imported
-								</span>
-                            </li>
-
-                            <li class="txt-s-101 flex-w how-bor2 p-tb-14">
-								<span class="cl6 size-w-54">
-									Quality
-								</span>
-
-                                <span class="cl9 size-w-55">
-									Oraganic
-								</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- - -->
                     <div id="review-product" style="display: none;" class=" reviewAndDetail">
                         <div class="fb-comments"
                              data-href="https://developers.facebook.com/docs/plugins/comments#configurator"
                              data-width="" data-numposts="5"></div>
-                        {{--                        <div class="p-t-36">--}}
-                        {{--                            <h5 class="txt-m-102 cl3 p-b-36">--}}
-                        {{--                                1 review for Cauliflower--}}
-                        {{--                            </h5>--}}
 
-                        {{--                            <div class="flex-w flex-sb-t bo-b-1 bocl15 p-b-37">--}}
-                        {{--                                <div class="wrap-pic-w size-w-56">--}}
-                        {{--                                    <img src="/client/images/avatar-03.jpg" alt="AVATAR">--}}
-                        {{--                                </div>--}}
-
-                        {{--                                <div class="size-w-57 p-t-2">--}}
-                        {{--                                    <div class="flex-w flex-sb-m p-b-8">--}}
-                        {{--                                        <div class="flex-w flex-b m-r-20 p-tb-5">--}}
-                        {{--											<span class="txt-m-103 cl6 m-r-20">--}}
-                        {{--												Crystal Jimenez--}}
-                        {{--											</span>--}}
-
-                        {{--                                            <span class="txt-s-120 cl9">--}}
-                        {{--												( United States – June 21, 2017 )--}}
-                        {{--											</span>--}}
-                        {{--                                        </div>--}}
-
-                        {{--                                        <span class="fs-16 cl11 lh-15 txt-center m-r-15 p-tb-5">--}}
-                        {{--											<i class="fa fa-star m-rl-1"></i>--}}
-                        {{--											<i class="fa fa-star m-rl-1"></i>--}}
-                        {{--											<i class="fa fa-star m-rl-1"></i>--}}
-                        {{--											<i class="fa fa-star m-rl-1"></i>--}}
-                        {{--											<i class="fa fa-star m-rl-1"></i>--}}
-                        {{--										</span>--}}
-                        {{--                                    </div>--}}
-
-                        {{--                                    <p class="txt-s-101 cl6">--}}
-                        {{--                                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur.--}}
-                        {{--                                    </p>--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-
-                        {{--                            <!-- Add review -->--}}
-                        {{--                            <form class="w-full p-t-42">--}}
-                        {{--                                <h5 class="txt-m-102 cl3 p-b-20">--}}
-                        {{--                                    Add a review--}}
-                        {{--                                </h5>--}}
-
-                        {{--                                <p class="txt-s-101 cl6 p-b-10">--}}
-                        {{--                                    Your email address will not be published. Required fields are marked *--}}
-                        {{--                                </p>--}}
-
-                        {{--                                <div class="flex-w flex-m p-b-3">--}}
-                        {{--									<span class="txt-s-101 cl6 p-b-5 m-r-10">--}}
-                        {{--										Your Rating--}}
-                        {{--									</span>--}}
-
-                        {{--                                    <span class="wrap-rating fs-16 cl11 pointer">--}}
-                        {{--										<i class="item-rating pointer fa fa-star-o m-rl-1"></i>--}}
-                        {{--										<i class="item-rating pointer fa fa-star-o m-rl-1"></i>--}}
-                        {{--										<i class="item-rating pointer fa fa-star-o m-rl-1"></i>--}}
-                        {{--										<i class="item-rating pointer fa fa-star-o m-rl-1"></i>--}}
-                        {{--										<i class="item-rating pointer fa fa-star-o m-rl-1"></i>--}}
-                        {{--										<input class="dis-none" type="number" name="rating">--}}
-                        {{--									</span>--}}
-                        {{--                                </div>--}}
-
-                        {{--                                <span class="txt-s-101 cl6">--}}
-                        {{--									Your review *--}}
-                        {{--								</span>--}}
-
-                        {{--                                <div class="row p-t-12">--}}
-                        {{--                                    <div class="col-sm-6 p-b-30">--}}
-                        {{--                                        <input class="txt-s-101 cl3 plh1 size-a-25 bo-all-1 bocl11 focus1 p-rl-20" type="text" name="name" placeholder="Name *">--}}
-                        {{--                                    </div>--}}
-
-                        {{--                                    <div class="col-sm-6 p-b-30">--}}
-                        {{--                                        <input class="txt-s-101 cl3 plh1 size-a-25 bo-all-1 bocl11 focus1 p-rl-20" type="text" name="email" placeholder="Email *">--}}
-                        {{--                                    </div>--}}
-
-                        {{--                                    <div class="col-12 p-b-30">--}}
-                        {{--                                        <textarea class="txt-s-101 cl3 plh1 size-a-26 bo-all-1 bocl11 focus1 p-rl-20 p-tb-10" name="review" placeholder="Your review *"></textarea>--}}
-                        {{--                                    </div>--}}
-                        {{--                                </div>--}}
-
-                        {{--                                <div class="flex-r">--}}
-                        {{--                                    <button class="flex-c-m txt-s-103 cl0 bg10 size-a-27 hov-btn2 trans-04">--}}
-                        {{--                                        Submit--}}
-                        {{--                                    </button>--}}
-                        {{--                                </div>--}}
-                        {{--                            </form>--}}
-
-
-                        {{--                        </div>--}}
-                        {{--=======--}}
-                        {{--                    <div id="review-product" style="display: none;" class=" reviewAndDetail"><br>--}}
-                        {{--                        <h3>Menu 2</h3>--}}
-                        {{--                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque--}}
-                        {{--                            laudantium, totam rem aperiam.</p>--}}
-                        {{-->>>>>>> dc5e67f85656caa2965f48a2002fa297e40ca9a6--}}
                     </div>
                 </div>
             </div>

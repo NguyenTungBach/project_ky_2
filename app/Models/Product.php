@@ -40,7 +40,6 @@ class Product extends Model
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             }
         }
-
         return $query;
     }
 
@@ -50,22 +49,22 @@ class Product extends Model
             if ($request->price != null) {
                 switch ($request->price) {
                     case '1':
-                        $query->whereBetween('price',[0,100000]);
+                        $query->whereBetween('price', [0, 100000]);
                         break;
                     case '2':
-                        $query->whereBetween('price',[100000,200000]);
+                        $query->whereBetween('price', [100000, 200000]);
                         break;
                     case '3':
-                        $query->whereBetween('price',[200000,300000]);
+                        $query->whereBetween('price', [200000, 300000]);
                         break;
                     case '4':
-                        $query->whereBetween('price',[300000,400000]);
+                        $query->whereBetween('price', [300000, 400000]);
                         break;
                     case '5':
-                        $query->whereBetween('price',[400000,500000]);
+                        $query->whereBetween('price', [400000, 500000]);
                         break;
                     case '6':
-                        $query->whereBetween('price',[500000,5000000]);
+                        $query->whereBetween('price', [500000, 5000000]);
                         break;
                 }
             }
@@ -112,6 +111,16 @@ class Product extends Model
                         $query->orderBy('price', 'desc');
                         break;
                 }
+            }
+        }
+        return $query;
+    }
+
+    public function scopeStatus($query, $request)
+    {
+        if ($request->has('status')){
+            if ($request->status != null){
+                $query->where('status',$request->status);
             }
         }
         return $query;

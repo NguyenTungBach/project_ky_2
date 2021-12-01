@@ -12,17 +12,23 @@ use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
-    public function getAll(){
-        return view('admin.template.product.products', ['items'=>Product::orderBy('created_at','DESC')->paginate(9)]);
-    }
-
-    public function getForm(){
-        return view('admin.template.product.create',[
+    public function getAll()
+    {
+        return view('admin.template.product.products', [
+            'items' => Product::orderBy('created_at', 'DESC')->paginate(9),
             'categories' => Category::withCount('products')->get()
         ]);
     }
 
-    public function create(StoreProductRequest $request){
+    public function getForm()
+    {
+        return view('admin.template.product.create', [
+            'categories' => Category::withCount('products')->get()
+        ]);
+    }
+
+    public function create(StoreProductRequest $request)
+    {
         $product = new Product($request->all());
         $product->save();
         Session::flash('message', 'Tạo mới sản phẩm thành công');
@@ -30,7 +36,39 @@ class ProductController extends Controller
         return redirect('admin/products');
 
     }
-    public function getDetail(){
 
+    public function getDetail($id)
+    {
+
+    }
+
+    public function search(Request $request)
+    {
+        try {
+            $paginate = 9;
+            $products = Product::query()
+                ->name($request)
+                ->price($request)
+                ->cate($request)
+                ->sortByName($request)
+                ->sortByPrice($request)
+                ->status($request);
+//        return $products;
+            return view('admin.template.product.products', [
+                'items' => $products->paginate($paginate),
+                'oldName' => $request->get('name'),
+                'oldPrice' => $request->get('price'),
+                'limit' => $paginate,
+                'sumProduct' => $products->count(),
+                'priceSort' => $request->get('priceSort'),
+                'status' => $request->get('status'),
+                'nameSort' => $request->get('nameSort'),
+                'oldCategory' => $request->get('categories'),
+                'categories' => Category::withCount('products')->get(),
+            ]);
+        }
+        catch (\Exception $exception){
+            return $exception;
+        }
     }
 }
