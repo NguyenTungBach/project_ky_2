@@ -63,7 +63,6 @@
             </div>
         </div>
     </section>
-
     <!-- Product -->
     <div class="sec-product bg0 p-t-145 p-b-25">
         <div class="container">
@@ -83,7 +82,6 @@
 
             <div class="row isotope-grid">
                 @foreach($items as $item)
-                <!-- - -->
                 <div class="col-sm-6 col-md-4 col-lg-3 p-b-75 isotope-item fruit-juic-fill other-fill">
                     <!-- Block1 -->
                     <div class="block1">
@@ -118,7 +116,6 @@
                     </div>
                 </div>
                 @endforeach
-
             </div>
         </div>
     </div>
@@ -146,7 +143,6 @@
             </div>
         </div>
     </section>
-
 
     <!-- Blog -->
     <section class="sec-blog bg0 p-t-145 p-b-64">
