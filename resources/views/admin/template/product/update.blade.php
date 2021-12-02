@@ -6,6 +6,20 @@
         </div>
     </div>
 @endsection
+
+@section('page-css')
+    <style>
+        .close-preview {
+            font-size: 15px;
+            position: absolute;
+            right: 5px;
+            top: -9px;
+            z-index: 1000;
+            cursor: pointer;
+        }
+    </style>
+@endsection
+
 @section('page-content')
     <div class="row">
         <div class="col-md-12 col-sm-12 ">
@@ -73,20 +87,20 @@
                             </div>
                         </div>
 
-                        <div class="item form-group row">
+                        <div class="item form-group">
                             <label class="col-form-label col-md-3 col-sm-3 label-align"> Image *</label>
-                            <div class="col-md-9 col-sm-9 ">
-                                <label>
-                                    <button type="button" id="upload_widget" class="cloudinary-button">Upload files</button>
-                                </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input type="hidden" class="form-control" name="thumbnail">
+                                <button type="button" id="upload_widget" class="cloudinary-button mb-3">Upload files
+                                </button>
+                                <div id="preview-image">
+                                    <div class="col-md-3 col-sm-3 position-relative" style="padding-left: 0 !important;">
+                                        <span class="close-preview">&#10006;</span>
+                                        <img src="{{$item->FirstImage}}"
+                                             class="col-md-12 col-sm-12 img-thumbnail mr-2 mb-2 imagesChoice">
+                                    </div>
+                                </div>
                             </div>
-                            <div id="preview-image" class="col-2">
-                                <img class="img-thumbnail" style="margin-left: 400px"  src="{{$item->FirstImage}}" alt="">
-                            </div>
-                            <input type="hidden" name="thumbnail" id="thumbnail" value="{{$item->thumbnail}}">
-                            @error('thumbnail')
-                            <div class="text-danger col-12" style="margin-left: 400px">* {{ $message }}</div>
-                            @enderror
                         </div>
 
                         <div class="item form-group">
@@ -129,7 +143,12 @@
                 uploadPreset: 'hwftk7ro'}, function (error, result) {
                 if (!error && result && result.event === "success") {
                     form.value =  result.info.secure_url
-                    listImg.innerHTML = `<img class="img-thumbnail" style="margin-left: 400px"  src="${result.info.secure_url}" alt="">`
+                    listImg.innerHTML = `
+                    <div class="col-md-3 col-sm-3 position-relative" style="padding-left: 0 !important;">
+                                        <span class="close-preview">&#10006;</span>
+                                        <img src="${result.info.secure_url}"
+                                             class="col-md-12 col-sm-12 img-thumbnail mr-2 mb-2 imagesChoice">
+                                    </div>`
                     // console.log('Done! Here is the image info: ', result.info.url);
                     console.log('Done! Here is the image info: ', result.info.secure_url);
                 }

@@ -56,9 +56,9 @@ Route::post('admin/product/delete', [\App\Http\Controllers\admin\ProductControll
 Route::get('admin/categories', [CategoryController::class, 'getAll']);
 
 //lấy ra form
-Route::get('admin/category/form', [CategoryController::class, 'getForm']);
+Route::get('/admin/category/form', [CategoryController::class, 'getForm']);
 // lấy thông tin trên form rồi tạo mới
-Route::post('admin/category/form', [CategoryController::class, 'create']);
+Route::post('/admin/category/form/create', [CategoryController::class, 'create']);
 
 // lấy thông tin chi tiết
 Route::get('admin/category/{id}', [CategoryController::class, 'getDetail']);
@@ -70,7 +70,9 @@ Route::post('admin/category/update', [CategoryController::class, 'update']);
 
 //xác nhận lại người dùng có muốn xoá không rồi mới xoá
 // không xoá cứng mà update status = 0 và cập nhật deleted_at = Carbon.now()
-Route::get('admin/category/delete', [CategoryController::class, 'delete']);
+Route::get('admin/category/delete/{id}', [\App\Http\Controllers\admin\CategoryController::class, 'getConfirmDelete']);
+Route::post('admin/category/delete', [CategoryController::class, 'delete']);
+
 
 Route::get('admin/category/search', [CategoryController::class, 'search']);
 

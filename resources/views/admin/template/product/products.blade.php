@@ -74,7 +74,7 @@
                                 </div>
                                 {{--                                --}}{{--        Search status             --}}
                                 <div class="col-md-3 col-sm-3 form-group pull-right top_search pr-2">
-                                    <select name="status" class="form-control" id="status">
+                                    <select name="status" class="form-control sortOrder" id="status">
                                         <option value="">---Trạng thái---</option>
                                         <option value="1"{{isset($status) && $status == 1 ? 'selected' : ''}}>Còn hàng</option>
                                         <option value="2"{{isset($status) && $status == 2 ? 'selected' : ''}}>Hết hàng</option>
@@ -134,13 +134,13 @@
                                 <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                                     <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Image</th>
-                                        <th>Description</th>
-                                        <th>Price</th>
-                                        <th>Category</th>
-                                        <th>Status</th>
-                                        <th style="width: 7%">Action</th>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Ảnh sản phẩm</th>
+                                        <th>Chi tiết sản phẩm</th>
+                                        <th>Giá</th>
+                                        <th>Danh mục sản phẩm</th>
+                                        <th>Trạng thái</th>
+                                        <th style="width: 7%">Hành động</th>
                                     </tr>
                                     </thead>
                                     <tbody>

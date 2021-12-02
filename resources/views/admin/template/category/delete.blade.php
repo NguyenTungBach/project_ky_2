@@ -14,28 +14,23 @@
                     <h2>Bạn có chắc muốn xóa sản phẩm này</h2>
                     <div class="clearfix"></div>
                 </div>
-                <form action="/admin/product/delete?id={{$item->id}}" method="post">
+                <form action="/admin/category/delete?id={{$items->id}}" method="post">
                 @csrf
                     <div class="x_content">
                         <br/>
                         <div class="item form-group row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align"> Id *</label>
                             <div class="col-md-6 col-sm-6 ">
-                                <label class="col-form-label">{{$item->id}}</label>
+                                <label class="col-form-label">{{$items->id}}</label>
                             </div>
                         </div>
                         <div class="item form-group row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align"> Name *</label>
                             <div class="col-md-6 col-sm-6 ">
-                                <label class="col-form-label">{{$item->name}}</label>
+                                <label class="col-form-label">{{$items->name}}</label>
                             </div>
                         </div>
-                        <div class="item form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Thumbnail *</label>
-                            <div class="col-md-2 col-sm-2 ">
-                                <img src="{{$item->firstImage}}" class="img-thumbnail" alt="">
-                            </div>
-                        </div>
+
                         <div class="ln_solid"></div>
                         <div class="item form-group">
                             <div class="col-md-6 col-sm-6 offset-md-3">
