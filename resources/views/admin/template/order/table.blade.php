@@ -3,165 +3,14 @@
     {{--    date picker--}}
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
     <link rel="stylesheet" href="/css/jquery.toast.min.css">
-    <style>
-        #menu-table {
-            background-color: #ebebeb;
-            /*display: flex !important;*/
-            top: -43px;
-            right: 10px;
-            width: 750px;
-            height: 40px;
-            border-radius: 6px;
-            color: #545454;
-        }
+    <link rel="stylesheet" href="/admin/css/admin.css">
 
-        #menu-table ul {
-            padding-left: 20px;
-            list-style-type: none;
-            margin-bottom: 0;
-            align-items: center;
-        }
-
-        #menu-table ul li {
-            text-decoration: unset;
-            margin-right: 30px;
-            font-weight: 600;
-            cursor: pointer;
-
-        }
-
-        #menu-table ul li:hover {
-            color: #000;
-
-        }
-
-        #menu-table ul li div {
-            display: flex;
-            align-items: center;
-        }
-
-        #menu-table ul li div span {
-            font-size: 13px;
-        }
-
-        #menu-table ul li div i {
-            font-size: 20px;
-            margin-right: 5px;
-        }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            top: 18px;
-            display: none !important;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 110px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-        }
-        .dropdown-content ul li {
-            margin: 0 !important;
-            padding: 5px;
-        }
-        .dropdown-content ul li:hover{
-            background-color: #c4c4c4;
-            cursor: pointer;
-        }
-        .dropdown:hover{
-            cursor: pointer;
-        }
-
-
-        .dropdown:hover .dropdown-content {
-            display: block !important;
-
-        }
-
-        .dataTables_paginate .pagination .active .text-pagination {
-            color: #0e7aff !important;
-        }
-
-        .sortOrder {
-            color: #495057 !important;
-        }
-
-        .btn-price {
-            background-color: #20b426;
-            padding: 3px;
-            border-radius: 7px;
-            color: #FFFFFF;
-        }
-
-        .fa-sort-amount-desc {
-            cursor: pointer;
-        }
-
-        .bs-glyphicons-list li span {
-            float: left;
-            font-size: 16px;
-        }
-
-        .bs-glyphicons-list li i {
-            color: #000;
-            float: left;
-            margin-right: 20px;
-            font-size: 20px;
-        }
-
-        .bs-glyphicons-list li {
-            display: flex;
-            align-items: baseline;
-            width: 20%;
-            height: auto;
-            background-color: #ececec;
-
-        }
-
-        .bs-glyphicons-list a:hover {
-            background-color: #c4dcf4;
-            color: #FFF;
-        }
-
-        .bs-glyphicons-list li:hover {
-            background-color: #c4dcf4;
-            color: #FFF;
-        }
-
-
-        .status-order div {
-            display: inline-block;
-            padding: 2px 10px;
-            border-radius: 8px;
-        }
-
-        .checkOut-order div {
-            display: inline-block;
-            padding: 2px 10px;
-            border-radius: 8px;
-        }
-
-        #menu-table {
-            display: none;
-        }
-        .message-update{
-
-            min-width: 250px;
-            padding: 5px;
-            right: 30px;
-            background: #84c739;
-            color: #FFF;
-        }
-    </style>
 @endsection
 @section('breadcrumb')
     <div class="page-title position-relative">
-        <div class="position-absolute message-update"><i style="font-size: 18px" class="fa fa-check"></i> Cập nhật trạng thái giỏ hàng thành công</div>
+        {{--        <div class="position-absolute message-update"><i style="font-size: 18px" class="fa fa-check"></i> Cập nhật trạng thái giỏ hàng thành công</div>--}}
         <div class="title_left">
-            <h3>Table Order</h3>
+            <h3>Danh sách hoá đơn đặt hàng</h3>
         </div>
     </div>
 @endsection
@@ -169,8 +18,67 @@
     <div class="row">
         <div class="col-md-12 col-sm-12 ">
             <div class="x_panel">
-                <div class="x_title">
-                    <h2 class="col-sm-12 col-md-12">Order Manager</h2>
+                <div class="x_title position-relative">
+                    <div id="menu-table" class="position-fixed">
+                        <ul style="display: flex">
+                            <li>
+                                <div>
+                                    <i class="fa fa-check-circle"></i>
+                                    <span class="data-quantity-choice">Đã chọn : 1</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <i class="fa fa-edit"></i>
+                                    <div class="dropdown">
+                                        <span>Update status</span>
+                                        <div class="dropdown-content">
+                                            <ul style="padding: 0;" class="ids-update-choice" data-id="0">
+                                                <li class="update-status-choice" data-status="2">
+                                                    <span>Chờ xác nhận</span></li>
+                                                <li class="update-status-choice" data-status="3"><span>Đang xử lí</span>
+                                                </li>
+                                                <li class="update-status-choice" data-status="1">
+                                                    <span>Đã giao hàng</span></li>
+                                                <li class="update-status-choice" data-status="0"><span>Huỷ đơn</span>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="delete-all" data-toggle="modal" data-target="#exampleModal">
+                                <div class="position-relative">
+                                    <i class="fa fa-trash"></i>
+                                    <span>Xoá</span>
+                                </div>
+                            </li>
+                            <form name="export-order" action="/admin/order/export" method="post">
+                                @csrf
+                                <li id="download-order">
+                                    <input type="hidden" name="ids">
+                                    <div>
+                                        <i class="fa fa-download"></i>
+                                        <span>Tải xuống</span>
+                                    </div>
+                                </li>
+                            </form>
+                            <li class="check-all">
+                                <div>
+                                    <i class="fa fa-th-list"></i>
+                                    <span>Chọn tất cả</span>
+                                </div>
+                            </li>
+                            <li class="clear-check-all">
+                                <div>
+                                    <i class="fa fa-times-circle"></i>
+                                    <span>Bỏ chọn tất cả</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <h2 class="col-sm-12 col-md-12">Lọc hoá đơn</h2>
                     <div class="x_title">
                         <form action="/admin/order/search" method="get" id="form-search">
                             @csrf
@@ -179,7 +87,7 @@
                                 <div class="col-md-3 col-sm-3 form-group pull-right pr-2  top_search">
                                     <input type="text" class=" form-control query"
                                            value="{{$oldName ?? ""}}" name="name"
-                                           placeholder="Tên...">
+                                           placeholder="Tên khách hàng">
                                     <span class="delete-search">&times;</span>
                                     <span class="icon-search"><i class="fa fa-search"></i></span>
                                 </div>
@@ -187,7 +95,7 @@
                                 <div class="col-md-3 col-sm-3 form-group pull-right pr-2 top_search">
                                     <input type="text" class=" form-control query"
                                            value="{{$oldPhone ?? ""}}" name="phone"
-                                           placeholder="Số điện thoại...">
+                                           placeholder="Số điện thoại">
                                     <span class="delete-search">&times;</span>
                                     <span class="icon-search"><i class="fa fa-search"></i></span>
                                 </div>
@@ -195,7 +103,7 @@
                                 <div class="col-md-3 col-sm-3 form-group pull-right pr-2 top_search">
                                     <input type="text" class=" form-control query"
                                            value="{{$oldEmail ?? ""}}" name="email"
-                                           placeholder="Email...">
+                                           placeholder="Email">
                                     <span class="delete-search">&times;</span>
                                     <span class="icon-search"><i class="fa fa-search"></i></span>
                                 </div>
@@ -203,14 +111,14 @@
                                 <div class="col-md-3 col-sm-3 form-group pull-right pr-2 top_search">
                                     <input type="text" class=" form-control query"
                                            value="{{$oldId ?? ""}}" name="id"
-                                           placeholder="Mã đơn hàng...">
+                                           placeholder="Mã đơn hàng">
                                     <span class="delete-search">&times;</span>
                                     <span class="icon-search"><i class="fa fa-search"></i></span>
                                 </div>
                                 {{--       Lọc theo tên      --}}
                                 <div class="col-md-3 col-sm-3 form-group pull-right top_search pr-2">
                                     <select name="sortName" class="form-control sortOrder">
-                                        <option value="">---Lọc theo tên---</option>
+                                        <option value="">Lọc theo tên</option>
                                         <option
                                             value="{{\App\Enums\Sort::Asc}}"
                                             {{isset($sortName) && $sortName == \App\Enums\Sort::Asc ? 'selected' : ''}}>
@@ -223,10 +131,10 @@
                                         </option>
                                     </select>
                                 </div>
-                                {{--                                --}}{{--        Sort price             --}}
+                                {{--        Sort price             --}}
                                 <div class="col-md-3 col-sm-3 form-group pull-right top_search pr-2">
                                     <select name="sortPrice" class="form-control sortOrder" id="">
-                                        <option value="">---Lọc theo giá---</option>
+                                        <option value="">Lọc theo giá</option>
                                         <option
                                             value="{{\App\Enums\Sort::Asc}}"
                                             {{isset($sortPrice) && $sortPrice == \App\Enums\Sort::Asc? 'selected' : ''}}>
@@ -239,10 +147,10 @@
                                         </option>
                                     </select>
                                 </div>
-                                {{--                                --}}{{--        Search status             --}}
+                                {{--        Search status             --}}
                                 <div class="col-md-3 col-sm-3 form-group pull-right top_search pr-2">
                                     <select name="status" class="form-control" id="select-category">
-                                        <option value="">---Trạng thái---</option>
+                                        <option value="">Trạng thái</option>
                                         <option
                                             value="{{\App\Enums\OrderStatus::Cancel}}"
                                             {{isset($oldStatus) && $oldStatus == (\App\Enums\OrderStatus::Cancel)? 'selected' : ''}}>
@@ -273,7 +181,7 @@
                                 {{--       Thanh toán                          --}}
                                 <div class="col-md-3 col-sm-3 form-group pull-right top_search pr-2">
                                     <select name="payment" class="form-control sortOrder" id="">
-                                        <option value="">---Thanh toán---</option>
+                                        <option value="">Thanh toán</option>
                                         <option
                                             value="0" {{isset($oldPayment) && $oldPayment == 0 ? 'selected' : ''}}>
                                             Chưa thanh toán
@@ -286,22 +194,22 @@
                                 </div>
                                 <div class="col-md-3 col-sm-3 form-group pull-right top_search pr-2">
                                     <select name="created_at" class="form-control sortOrder" id="">
-                                        <option value="">---Lọc theo thời gian----</option>
+                                        <option value="">Lọc theo thời gian</option>
                                         <option
                                             value="{{\App\Enums\Sort::Asc}}"
                                             {{isset($oldCreated_at) && $oldCreated_at == \App\Enums\Sort::Asc ? 'selected' : ''}}>
-                                            Mới nhất đến muộn nhất
+                                            Cũ nhất đến mới nhất
                                         </option>
                                         <option
                                             value="{{\App\Enums\Sort::Desc}}"
                                             {{isset($oldCreated_at) && $oldCreated_at == \App\Enums\Sort::Desc ? 'selected' : ''}}>
-                                            Muộn nhất đến mới nhất
+                                            Mới nhất đến cũ nhất
                                         </option>
                                     </select>
                                 </div>
                                 <div class="col-md-3 col-sm-3 form-group pull-right top_search pr-2">
                                     <select name="totalPrice" class="form-control sortOrder" id="">
-                                        <option value="">---Tổng giá (VND)---</option>
+                                        <option value="">Tổng giá (VND)</option>
                                         <option
                                             value="1" {{isset($oldTotalPrice) && $oldTotalPrice == 1 ? 'selected' : ''}}>
                                             Từ 0 - 100,000
@@ -350,7 +258,10 @@
                                     <span class="icon-search"><i
                                             class="fa fa-search"></i></span>
                                 </div>
-
+                                <div class="col-md-3 col-sm-3 form-group pull-right pr-2 top_search float-right">
+                                    <a style="border-radius: 10px" class="btn btn-secondary ml-2" href="/admin/orders">Bỏ
+                                        lọc</a>
+                                </div>
                             </div>
                             <div class="clearfix"></div>
                         </form>
@@ -359,71 +270,23 @@
 
                 <div class="x_content">
                     <div class="row">
-                        <div class="col-sm-12 position-relative">
-                            <div id="menu-table" class="position-absolute">
-                                <ul style="display: flex">
-                                    <li>
-                                        <div>
-                                            <i class="fa fa-check-circle"></i>
-                                            <span>Đã chọn : 1</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <i class="fa fa-edit"></i>
-                                            <div class="dropdown">
-                                                <span>Update status</span>
-                                                <div class="dropdown-content">
-                                                    <ul style="padding: 0;">
-                                                        <li><a href="/admin/order/update-all/status">Chờ xác nhận</a></li>
-                                                        <li>Đang xử lí</li>
-                                                        <li>Đã giao hàng</li>
-                                                        <li>Chờ xác nhận</li>
+                        <div class="col-sm-12 ">
 
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <i class="fa fa-trash"></i>
-                                            <span>Xoá</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <i class="fa fa-download"></i>
-                                            <span>Tải xuống</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <i class="fa fa-th-list"></i>
-                                            <span>Chọn tất cả</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <i class="fa fa-times-circle"></i>
-                                            <span>Bỏ chọn tất cả</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
                             <div class="card-box table-responsive">
                                 <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                                     <thead>
                                     <tr>
-                                        <th><input type="checkbox" value="" name="selected-all"></th>
+                                        <th><input type="checkbox" value="" class="check-all-order" name="selected-all">
+                                        </th>
                                         <th>Mã đơn hàng</th>
                                         <th>Trạng thái</th>
-                                        <th>Tổng giá(VND)</th>
+
                                         <th>Tên</th>
                                         <th>Số điên thoại</th>
                                         <th>Email</th>
                                         <th>Thanh toán</th>
                                         <th style="width: 10%">Ngày đặt hàng</th>
+                                        <th>Tổng giá(VND)</th>
                                         <th style="width: 7%">Hành động</th>
                                     </tr>
                                     </thead>
@@ -435,12 +298,13 @@
                                             <form action="/admin/order/update/status" method="post">
                                                 @include('admin.template.order.status-select')
                                             </form>
-                                            <td>{{number_format($item['total_price'])}}</td>
+
                                             <td>{{$item->ship_name}}</td>
                                             <td>{{$item->ship_phone}}</td>
                                             <td>{{$item->ship_email}}</td>
                                             <td>{{$item->handlerPayment}}</td>
                                             <td>{{ $item->created_at}}</td>
+                                            <td>{{number_format($item['total_price'])}}</td>
                                             <td><a href="/admin/order/{{$item->id}}" class="hover-pointer dataItem"
                                                 >
                                                     <i class="fa fa-info mr-1 text-primary"
@@ -448,11 +312,6 @@
                                                        title="Information"
                                                        data-original-title="Tooltip bottom"></i></a>
 
-                                                <a href="/admin/order/update/{{$item->id}}"
-                                                   class="hover-pointer">
-                                                    <i data-toggle="tooltip" data-placement="bottom" title=""
-                                                       data-original-title="Edit"
-                                                       class="fa fa-edit mr-1 text-primary"></i></a>
                                                 <a href="/admin/order/delete/{{$item->id}}" id="delete"
                                                    class="hover-pointer dataItem"
                                                    data-toggle="modal"
@@ -465,6 +324,16 @@
 
                                         </tr>
                                     @endforeach
+
+                                    <tr style="font-size: 16px;font-weight: 600;">
+                                        <td colspan="8">
+                                            Tổng giá tiền
+                                        </td>
+                                        <td colspan="2">{{number_format($items->getCollection()->sum('total_price'))}}
+                                            <span
+                                                style="font-weight: 6000; font-size: 13px">VND</span></td>
+                                    </tr>
+
                                     </tbody>
 
                                 </table>
@@ -485,7 +354,24 @@
                         </div>
                     </div>
                 </div>
-
+            </div>
+        </div>
+        <!-- Modal xác nhận xoá tất cả order đã chọn-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Bạn có muốn xoá các hoá đơn đã chọn?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                        <button data-id="0" id="confirm-delete-all" type="button" class="btn btn-primary">Đồng ý
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -495,130 +381,162 @@
     {{--    date picker--}}
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <script src="/js/jquery.toast.min.js"></script>
+    <script src="/admin/js/admin.js"></script>
     <script>
-        $(document).ready(function () {
-            {{--  Form search       --}}
-            $('.delete-search').on('click', function () {
-                $(this).siblings().val('')
-            })
-            // id form category admin
-            $('#delete-cate').on('click', function () {
-                $(this).siblings().val('')
-            })
-            $('.icon-search').on('click', function () {
-                $('#form-search').submit();
-            })
-            $('.sortOrder').change(function () {
-                this.form.submit();
-            })
-            $('.sortProduct').change(function () {
-                this.form.submit();
-            })
-            $('#select-category').change(function () {
-                this.form.submit();
-            })
-            {{--================       date picker flatpick========================================== --}}
-
-            $('#picker').daterangepicker({
-                    opens: 'left'
-                }
-                , function (startDate, endDate, label) {
-                    $('#startDate').val(startDate.format('YYYY-MM-DD'))
-                    $('#endDate').val(endDate.format('YYYY-MM-DD'))
-                });
-        });
-        //=========================== update status =========================================
-        $('.status-update').change(function () {
-            this.form.submit();
-        })
-        // $('.status-update').change(function () {
-        //     let id = $(this).data('id');
-        //     let status = $('select[name=status-update]').val();
-        //     let data = {
-        //         id: id,
-        //         status: status
-        //     }
-        //     $.ajax({
-        //         url: `http://127.0.0.1:8000/admin/order/update/status`,
-        //         method: 'POST',
-        //         data: JSON.stringify(data),
-        //         success: function (response) {
-        //             message();
-        //             console.log(response)
-        //         },
-        //
-        //     });
-        //
-        // })
-        //
-        // function message() {
-        //     $.toast({
-        //         icon: 'success',
-        //         heading: 'Thành công',
-        //         text: 'Cập nhật trạng thái thành công.',
-        //         bgColor: '#81b03f',
-        //         textColor: 'white',
-        //         position: 'top-right',
-        //     })
-        // }
-    </script>
-    <script>
-        //============================= Handler Checked product ================================================================
-        const selectItem = $('.selected-item')
+        //============================= Handler Checked Order ================================================================
+        let body = $('body');
+        const selectItem = $('.selected-item');
         let hrefDeleteAll = $('#deleteAll').attr('href');
         let hrefUpdateAll = $('#updateAll').attr('href');
 
-
+        // xử lý check all
         $('input[name="selected-all"]').on('click', function () {
-            let arr = new Set();
+            let ids = new Set();
             selectItem.prop('checked', this.checked);
-
             if (this.checked) {
                 $('#menu-table').css('display', 'flex')
                 for (const ele of selectItem) {
-                    arr.add(ele.value);
-                    console.log(ele.value)
+                    ids.add(ele.value);
                 }
-
-                $('#deleteAll').attr('href', hrefDeleteAll + Array.from(arr).join(','))
-                $('#updateAll').attr('href', hrefUpdateAll + Array.from(arr).join(','))
-                $('#numberChoice').text(selectItem.length + " select")
-
+                $('#confirm-delete-all').data('id', ids)
+                $('.ids-update-choice').data('id', ids)
+                $('input[name=ids]').val(Array.from(ids))
+                //hiển thị số lượng đã chon trên menu xử lý nhiều order 1 lúc
+                $('.data-quantity-choice').text(`Đã chọn: ${ids.size}`)
             } else {
-                $('#deleteAll').attr('href', hrefDeleteAll)
-                $('#updateAll').attr('href', hrefUpdateAll)
-                $('#menu-table').css('display', 'none')
+                $('#deleteAll').attr('href', hrefDeleteAll);
+                $('#updateAll').attr('href', hrefUpdateAll);
+                $('#menu-table').css('display', 'none');
             }
         })
 
+        // xử lý check từng order
         selectItem.on('click', function () {
-            let arr = new Set();
+            let ids = new Set();
             let value = this.value;
             for (let i = 0; i < selectItem.length; i++) {
                 if (selectItem[i].checked) {
-                    arr.add(selectItem[i].value)
+                    ids.add(selectItem[i].value);
                 }
             }
             if ($(this).prop('checked')) {
-                $('#menu-table').css('display', 'flex')
-                arr.add(value);
+                $('#menu-table').css('display', 'flex');
+                ids.add(value);
             } else {
-                if (arr.has(value)) {
-                    arr.delete(value)
+
+                if (ids.has(value)) {
+                    ids.delete(value);
                 }
-                if (arr.size === 0) {
-                    $('#menu-table').css('display', 'none')
+                if (ids.size === 0) {
+                    $('#menu-table').css('display', 'none');
                 }
             }
 
-            if (arr.size > 0) {
-                $('#deleteAll').attr('href', hrefDeleteAll + Array.from(arr).join(','))
-                $('#updateAll').attr('href', hrefUpdateAll + Array.from(arr).join(','))
+            if (ids.size > 0) {
+                $('#confirm-delete-all').data('id', ids)
+                $('.ids-update-choice').data('id', ids)
+                $('input[name=ids]').val(Array.from(ids))
+
+                //hiển thị số lượng đã chon trên menu xử lý nhiều order 1 lúc
+                $('.data-quantity-choice').text(`Đã chọn: ${ids.size}`)
+
             } else {
-                $('#deleteAll').attr('href', hrefDeleteAll)
-                $('#updateAll').attr('href', hrefUpdateAll)
+                $('#confirm-delete-all').data('id', '')
+                $('.ids-update-choice').data('id', '')
+                $('input[name=ids]').val([])
+
             }
         })
+        //============================================ Download tất cả order đã chọn ==================================================
+        body.on('click', '#download-order', function () {
+            $('form[name=export-order]').submit();
+
+        })
+
+        //============================================ Bỏ chọn tất cả ==================================================
+        body.on('click', '.clear-check-all', function () {
+            selectItem.attr('checked', false)
+            $('.check-all-order').attr('checked', false)
+        })
+        //============================================  chọn tất cả ==================================================
+        body.on('click', '.check-all', function () {
+            selectItem.prop('checked', 'checked')
+            $('.check-all-order').prop('checked', 'checked')
+        })
+        // ======================================== Update status tat ca order da chon ==============================
+        body.on('click', '.update-status-choice', function () {
+            let ids = Array.from($(this).parent().data('id'));
+            let status = $(this).data('status');
+            let data = {
+                ids: ids,
+                status: status
+            }
+
+            $.ajax({
+                url: 'http://127.0.0.1:8000/admin/order/update-multi/status',
+                type: 'POST',
+                data: JSON.stringify(data),
+
+                success: function (data) {
+                    console.log(JSON.parse(data))
+                    $.toast({
+                        heading: 'Success',
+                        text: 'Cập nhật trạng thái hoá đơn thành công',
+                        showHideTransition: 'slide',
+                        icon: 'success',
+                        position: 'top-right'
+                    })
+                    setTimeout(function () {
+                        window.location.reload(false);
+                    }, 3000);
+                },
+                error: function (request, error) {
+                    console.log("Request: " + JSON.parse(request));
+
+                    function messageError() {
+                        $.toast({
+                            heading: 'Error',
+                            text: 'Cập nhật giỏ hàng thất bại',
+                            icon: 'error',
+
+                        });
+                    }
+                }
+            });
+        });
+
+        // ======================================== Xoa tat ca order da chon ==============================
+        body.on('click', '#confirm-delete-all', function () {
+            $('#exampleModal').css('display', 'none');
+            let listId = Array.from($(this).data('id'));
+            let data = {
+                ids: listId
+            };
+            console.log(listId)
+            $.ajax({
+                url: 'http://127.0.0.1:8000/admin/order/remove-multi/status',
+                type: 'POST',
+                data: JSON.stringify(data),
+
+                success: function (data) {
+                    $.toast({
+                        heading: 'Success',
+                        text: 'Xoá thành công hoá đơn',
+                        showHideTransition: 'slide',
+                        icon: 'success',
+                        position: 'top-right'
+                    })
+                    setTimeout(function () {
+                        window.location.reload(false);
+                    }, 3000);
+                },
+                error: function (request, error) {
+                    console.log("Request: " + JSON.parse(request));
+                    messageError();
+                }
+            });
+        })
     </script>
+
 @endsection
 

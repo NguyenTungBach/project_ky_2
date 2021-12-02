@@ -16,7 +16,7 @@
                 </div>
                 <div class="x_content">
                     <br/>
-                    <form method="post" action="">
+                    <form method="post" action="/admin/category/form">
                         @csrf
                         <div class="item form-group">
                             <label class="col-form-label col-md-3 col-sm-3 label-align"> Name *</label>

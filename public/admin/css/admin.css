@@ -71,3 +71,185 @@
 #select-category {
     border-radius: 20px;
 }
+/*============================================= Order table page ================================================*/
+
+ #menu-table {
+     background-color: #484848;
+     /*display: flex !important;*/
+     top: 20px;
+     right: 20px;
+     width: 750px;
+
+     border-radius: 6px;
+     color: #d3d3d3;
+     z-index: 20;
+ }
+
+#menu-table ul {
+    padding-left: 20px;
+    list-style-type: none;
+    margin-bottom: 0;
+    align-items: center;
+}
+
+#menu-table ul li {
+    text-decoration: unset;
+    margin-right: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#menu-table ul li:hover div span{
+    color: #FFF !important;
+}
+
+#menu-table ul a:hover li div i{
+    color: #FFF !important;
+}
+
+
+#menu-table ul li:hover{
+    color: #FFF ;
+    background-color: #434343;
+}
+
+#menu-table ul li div {
+    display: flex;
+    align-items: center;
+}
+
+#menu-table ul li div span {
+    font-size: 13px;
+    color: #d3d3d3 !important;
+}
+
+#menu-table ul a li div i {
+    font-size: 13px;
+    color: #d3d3d3 !important;
+}
+
+
+#menu-table ul li div span a{
+    font-size: 13px;
+    color: #d3d3d3 !important;
+}
+
+#menu-table ul li div i {
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    top: 18px;
+    display: none !important;
+    position: absolute;
+    background-color: #505050;
+    min-width: 110px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+.dropdown-content ul li {
+    margin: 0 !important;
+    padding: 5px;
+}
+.dropdown-content ul li:hover{
+    background-color: #747474 !important;
+    cursor: pointer;
+
+}
+.dropdown-content ul li:hover  span{
+    color: #FFF ;
+}
+
+.dropdown:hover{
+    cursor: pointer;
+}
+
+
+.dropdown:hover .dropdown-content {
+    display: block !important;
+
+}
+
+.dataTables_paginate .pagination .active .text-pagination {
+    color: #0e7aff !important;
+}
+
+.sortOrder {
+    color: #495057 !important;
+}
+
+.btn-price {
+    background-color: #20b426;
+    padding: 3px;
+    border-radius: 7px;
+    color: #FFFFFF;
+}
+
+.fa-sort-amount-desc {
+    cursor: pointer;
+}
+
+.bs-glyphicons-list li span {
+    float: left;
+    font-size: 16px;
+}
+
+.bs-glyphicons-list li i {
+    color: #000;
+    float: left;
+    margin-right: 20px;
+    font-size: 20px;
+}
+
+.bs-glyphicons-list li {
+    display: flex;
+    align-items: baseline;
+    width: 20%;
+    height: auto;
+    background-color: #ececec;
+
+}
+
+.bs-glyphicons-list a:hover {
+    background-color: #c4dcf4;
+    color: #FFF;
+}
+
+.bs-glyphicons-list li:hover {
+    background-color: #c4dcf4;
+    color: #FFF;
+}
+
+
+.status-order div {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 8px;
+}
+
+.checkOut-order div {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 8px;
+}
+
+#menu-table {
+    display: none;
+}
+.message-update{
+
+    min-width: 250px;
+    padding: 5px;
+    right: 30px;
+    background: #84c739;
+    color: #FFF;
+}
+

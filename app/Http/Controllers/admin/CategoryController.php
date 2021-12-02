@@ -17,6 +17,6 @@ class CategoryController extends Controller
     }
 
     public function create(){
-        return view('admin.template.category.table');
+        return "view('admin.template.category.table')";
     }
 }

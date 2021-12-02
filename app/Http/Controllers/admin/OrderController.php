@@ -3,23 +3,31 @@
 namespace App\Http\Controllers\admin;
 
 use App\Enums\OrderStatus;
+use App\Exports\OrderExport;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OrderController extends Controller
 {
     public function getAll()
     {
-        $paginate = 12;
+        $paginate = 9;
         $orders = Order::query();
         return view('admin.template.order.table', [
             'items' => $orders->orderBy('created_at', 'desc')->paginate($paginate),
             'paginate' => $paginate,
             'sumOrder' => $orders->count(),
+            'totalOrderSearch' => $orders->sum('total_price'),
         ]);
+    }
+
+    public function exportOrder(){
+        $ids = explode(",", request('ids'));
+        return (new OrderExport($ids))->download('orders.xlsx');
     }
 
     public function updateStatus()
@@ -65,13 +73,38 @@ class OrderController extends Controller
     }
 
     public function updateAllStatus(){
+        try {
+            $data = json_decode(file_get_contents("php://input"), true);
+            $ids = $data['ids'];
+            $status = $data['status'];
+            Order::whereIn('id',$ids)->update([
+                'ship_status'=>$status,
+                'updated_at'=>Carbon::now('Asia/Ho_Chi_Minh')
+            ]);
+            return json_encode($ids);
+        }catch (\Exception $e){
+            return $e;
+        }
+    }
 
+    public function removeAllStatus(){
+        try {
+            $data = json_decode(file_get_contents("php://input"), true);
+            $ids = $data['ids'];
+             Order::whereIn('id',$ids)->update([
+                 'ship_status'=>OrderStatus::Deleted,
+                 'deleted_at'=>Carbon::now('Asia/Ho_Chi_Minh')
+             ]);
+            return true;
+        }catch (\Exception $e){
+            return $e;
+        }
     }
 
     public function index(Request $request)
     {
         try {
-            $paginate = 12;
+            $paginate = 9;
             $order = Order::query()
                 ->findByName()
                 ->findByPhone()
@@ -84,9 +117,9 @@ class OrderController extends Controller
                 ->sortByName()
                 ->sortByCreatedAt()
                 ->sortByPrice();
-
             return view('admin.template.order.table', [
                 'items' => $order->paginate($paginate),
+                'totalOrderSearch' => $order->sum('total_price'),
                 'oldName' => $request->get('name'),
                 'oldId' => $request->get('id'),
                 'oldPhone' => $request->get('phone'),
