@@ -26,7 +26,7 @@
                     <div class="item form-group row">
                         <label class="col-form-label col-md-3 col-sm-3 label-align"> Tên người nhận *</label>
                         <div class="col-md-6 col-sm-6 ">
-                            <label class="col-form-label">{{$item->ship_name}} VNĐ</label>
+                            <label class="col-form-label">{{$item->ship_name}}</label>
                         </div>
                     </div>
 
@@ -82,7 +82,7 @@
                     <div class="form-group item row">
                         <label class="col-form-label col-md-3 col-sm-3 label-align">Tổng giá *</label>
                         <div class="col-md-6 col-sm-6 ">
-                            <label class="col-form-label">{{number_format($item->total_price)}}</label>
+                            <label class="col-form-label">{{number_format($item->total_price)}} VNĐ</label>
                         </div>
                     </div>
 
