@@ -238,9 +238,7 @@
                                 </div>
                                 <div class="col-md-3 col-sm-3 form-group pull-right pr-2 top_search">
                                     @php
-                                        use Carbon\Carbon;
-                                       $startCarbon = Carbon::now('Asia/Ho_Chi_Minh')->subDay(30)->isoFormat('MM/DD/YYYY');
-                                       $endCarbon = Carbon::now('Asia/Ho_Chi_Minh')->isoFormat('MM/DD/YYYY');
+                                    use Carbon\Carbon;
                                     if (isset($oldStartDate) && isset($oldEndDate)){
                                         $oldStartDate = Carbon::parse($oldStartDate)->isoFormat('MM/DD/YYYY');
                                         $oldEndDate = Carbon::parse($oldEndDate)->isoFormat('MM/DD/YYYY');

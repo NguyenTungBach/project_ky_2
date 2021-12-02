@@ -19,6 +19,11 @@ class Order extends Model
         return $this->hasMany(OrderDetail::class, 'order_id', 'id');
     }
 
+    function getFormatPriceAttribute(): string //dữ liệu trả về là string
+    {
+        return number_format($this->total_price);
+    }
+
     public function scopeFindByName($query)
     {
         if (request()->filled('name')) {
