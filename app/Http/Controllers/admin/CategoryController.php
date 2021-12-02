@@ -21,6 +21,7 @@ class CategoryController extends Controller
         return view('admin.template.category.form');
     }
 
+
     public function create(StoreCategoryRequest $request)
     {
         $category = new Category($request->all());
@@ -70,5 +71,6 @@ class CategoryController extends Controller
         catch (\Exception $e){
             Session::flash('message', "Xóa sản phẩm có id= $id, thất bại");
         }
+
     }
 }
