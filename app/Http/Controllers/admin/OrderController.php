@@ -55,7 +55,7 @@ class OrderController extends Controller
                     $title = "Đơn hàng với mã #$order->id đã bị huỷ";
                     break;
                 case OrderStatus::Done;
-                    $title = "Đơn hàng với mã #$order->id đã được gia thành công";
+                    $title = "Đơn hàng với mã #$order->id đã được giao hàng thành công";
                     break;
                 case OrderStatus::Waiting;
                     $title = "Đơn hàng với mã #$order->id đang chờ được xử lý";
@@ -140,6 +140,15 @@ class OrderController extends Controller
             return redirect()->back();
         }
     }
+
+    public function getInformation($id){
+        try {
+            return view('admin.template.order.detail',['item' =>Order::find($id)]);
+        }catch (\Exception $e){
+            return "Id không tồn tại hoặc lỗi lấy trang.";
+        }
+    }
+
     function sendMail($id,$title)
     {
         $data = Order::find($id);

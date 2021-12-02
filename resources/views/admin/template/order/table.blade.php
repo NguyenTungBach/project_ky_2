@@ -287,7 +287,7 @@
                                         <th>Thanh toán</th>
                                         <th style="width: 10%">Ngày đặt hàng</th>
                                         <th>Tổng giá(VND)</th>
-                                        <th style="width: 7%">Hành động</th>
+                                        <th style="width: 8%">Hành động</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -304,7 +304,7 @@
                                             <td>{{$item->ship_email}}</td>
                                             <td>{{$item->handlerPayment}}</td>
                                             <td>{{ $item->created_at}}</td>
-                                            <td>{{number_format($item['total_price'])}}</td>
+                                            <td>{{number_format($item['total_price'])}} VNĐ</td>
                                             <td><a href="/admin/order/{{$item->id}}" class="hover-pointer dataItem"
                                                 >
                                                     <i class="fa fa-info mr-1 text-primary"
@@ -312,15 +312,15 @@
                                                        title="Information"
                                                        data-original-title="Tooltip bottom"></i></a>
 
-                                                <a href="/admin/order/delete/{{$item->id}}" id="delete"
-                                                   class="hover-pointer dataItem"
-                                                   data-toggle="modal"
-                                                   data-target="#deleteModal"
-                                                   data-name="{{$item->name}}"
-                                                   data-id="{{$item->id}}">
-                                                    <i data-toggle="tooltip" data-placement="bottom" title=""
-                                                       data-original-title="Delete"
-                                                       class="fa fa-trash mr-1 text-primary"></i></a></td>
+{{--                                                <a href="/admin/order/delete/{{$item->id}}" id="delete"--}}
+{{--                                                   class="hover-pointer dataItem"--}}
+{{--                                                   data-toggle="modal"--}}
+{{--                                                   data-target="#deleteModal"--}}
+{{--                                                   data-name="{{$item->name}}"--}}
+{{--                                                   data-id="{{$item->id}}">--}}
+{{--                                                    <i data-toggle="tooltip" data-placement="bottom" title=""--}}
+{{--                                                       data-original-title="Delete"--}}
+{{--                                                       class="fa fa-trash mr-1 text-primary"></i></a></td>--}}
 
                                         </tr>
                                     @endforeach

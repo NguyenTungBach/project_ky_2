@@ -29,7 +29,7 @@
                     <div class="clearfix"></div>
                     @if ($errors->any())
                         <div class="alert " style="margin-top: 10px">
-                            <h4 class="text-danger">List Errors</h4>
+                            <h4 class="text-danger">Danh sách lỗi</h4>
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li class="text-danger">{{ $error }}</li>
@@ -43,7 +43,7 @@
                     <form method="post" name="form" action="/admin/product/update?id={{$item['id']}}">
                         @csrf
                         <div class="item form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Name *</label>
+                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Tên sản phẩm *</label>
                             <div class="col-md-6 col-sm-6 ">
                                 <input type="text" name="name" class="form-control " value="{{$item->name}}">
                             </div>
@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="item form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Price *</label>
+                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Giá *</label>
                             <div class="col-md-6 col-sm-6 ">
                                 <input type="text" name="price" class="form-control" value="{{$item->price}}">
                             </div>
@@ -63,7 +63,7 @@
                         </div>
 
                         <div class="form-group item row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align">Categories *</label>
+                            <label class="col-form-label col-md-3 col-sm-3 label-align">Danh mục *</label>
                             <div class="col-md-6 col-sm-6 col-form-label">
                                 <select class="form-control" name="category_id">
                                     @foreach($categories as $category)
@@ -75,7 +75,7 @@
 
 
                         <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Description *</label>
+                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Mô tả *</label>
                             <div class="col-md-6 col-sm-6 ">
                                 <label>
                                     <textarea style="width: 100%" name="description" rows="4" cols="50">{{$item->description}}</textarea>
@@ -87,7 +87,7 @@
                         </div>
 
                         <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Image *</label>
+                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Ảnh *</label>
                             <div class="col-md-6 col-sm-6 ">
                                 <input type="hidden" class="form-control" name="thumbnail">
                                 <button type="button" id="upload_widget" class="cloudinary-button mb-3">Upload files
@@ -103,7 +103,7 @@
                         </div>
 
                         <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align">Detail content *</label>
+                            <label class="col-form-label col-md-3 col-sm-3 label-align">Nội dung chi tiết *</label>
                             <div class="col-md-6 col-sm-6">
                                 <div class="x_content">
                                     <textarea name="detail">{{$item->detail}}</textarea>
@@ -117,9 +117,9 @@
                         <div class="ln_solid"></div>
                         <div class="item form-group">
                             <div class="col-md-6 col-sm-6 offset-md-3">
-                                <a href="/admin/products"><button class="btn btn-primary" type="button">Back to list</button></a>
-                                <button class="btn btn-primary" type="reset">Reset</button>
-                                <button type="submit" class="btn btn-success">Update</button>
+                                <a href="/admin/products"><button class="btn btn-primary" type="button">Quay về danh sách</button></a>
+                                <button class="btn btn-info" type="reset">Reset</button>
+                                <button type="submit" class="btn btn-success">Cập nhật</button>
                             </div>
                         </div>
 
