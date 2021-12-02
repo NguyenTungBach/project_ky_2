@@ -26,7 +26,7 @@ class OrderController extends Controller
     }
 
     public function exportOrder(){
-        $ids = explode(",", request('ids'));
+        $ids = explode(",", request('ids')); // tạo mảng ids
         return (new OrderExport($ids))->download('orders.xlsx');
     }
 

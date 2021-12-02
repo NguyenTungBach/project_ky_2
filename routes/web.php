@@ -37,6 +37,8 @@ Route::get('admin/product/form', [\App\Http\Controllers\admin\ProductController:
 Route::post('admin/product/form', [\App\Http\Controllers\admin\ProductController::class, 'create']);
 // lọc sản phẩm
 Route::get('/admin/product/search', [\App\Http\Controllers\admin\ProductController::class,'search']);
+// cập nhật trạng thái theo check
+Route::post('/admin/product/update-multi/status', [\App\Http\Controllers\admin\ProductController::class,'updateAllStatus']);
 
 // lấy thông tin chi tiết
 Route::get('admin/product/{id}', [\App\Http\Controllers\admin\ProductController::class, 'getDetail']);
