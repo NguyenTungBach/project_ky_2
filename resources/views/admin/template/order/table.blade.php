@@ -115,6 +115,14 @@
                                     <span class="delete-search">&times;</span>
                                     <span class="icon-search"><i class="fa fa-search"></i></span>
                                 </div>
+{{--                                --}}{{--              Find By Product name                  --}}
+{{--                                <div class="col-md-3 col-sm-3 form-group pull-right pr-2 top_search">--}}
+{{--                                    <input type="text" class="form-control query"--}}
+{{--                                           value="{{$oldProductName ?? ""}}" name="productName"--}}
+{{--                                           placeholder="Tên sản phẩm">--}}
+{{--                                    <span class="delete-search">&times;</span>--}}
+{{--                                    <span class="icon-search"><i class="fa fa-search"></i></span>--}}
+{{--                                </div>--}}
                                 {{--       Lọc theo tên      --}}
                                 <div class="col-md-3 col-sm-3 form-group pull-right top_search pr-2">
                                     <select name="sortName" class="form-control sortOrder">
@@ -305,7 +313,7 @@
                                             <td>{{$item->handlerPayment}}</td>
                                             <td>{{ $item->created_at}}</td>
                                             <td>{{number_format($item['total_price'])}}</td>
-                                            <td><a href="/admin/order/{{$item->id}}" class="hover-pointer dataItem"
+                                            <td><a href="/admin/order/detail/120" class="hover-pointer dataItem"
                                                 >
                                                     <i class="fa fa-info mr-1 text-primary"
                                                        data-toggle="tooltip" data-placement="bottom"

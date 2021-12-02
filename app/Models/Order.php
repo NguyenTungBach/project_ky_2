@@ -36,6 +36,16 @@ class Order extends Model
 
         return $query;
     }
+//
+//    public function scopeFindByProductName($query)
+//    {
+//        if (request()->filled('productName')) {
+//
+//            $query->where('id', request()->get('id'));
+//        }
+//
+//        return $query;
+//    }
 
     public function scopeFindByPhone($query)
     {

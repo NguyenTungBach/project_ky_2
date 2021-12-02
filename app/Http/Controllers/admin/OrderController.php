@@ -8,8 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use Maatwebsite\Excel\Facades\Excel;
 
 class OrderController extends Controller
 {
@@ -25,7 +25,27 @@ class OrderController extends Controller
         ]);
     }
 
-    public function exportOrder(){
+    public function getInformation()
+    {
+        $order = DB::table('orders')
+            ->whereExists(function ($query) {
+                $query->select(DB::raw(1))
+                    ->from('order_details')
+                    ->whereColumn('order_details.order_id', 'orders.id')
+                    ->whereExists(function ($query) {
+                        $query->select(DB::raw(1))
+                            ->from('products')
+                            ->whereColumn('products.id', 'order_details.product_id')
+                            ->where('products.name', 'like', 'Cải');
+                    });
+            })
+            ->get();
+        echo $order;
+
+    }
+
+    public function exportOrder()
+    {
         $ids = explode(",", request('ids'));
         return (new OrderExport($ids))->download('orders.xlsx');
     }
@@ -65,38 +85,40 @@ class OrderController extends Controller
                     break;
             }
             $this->sendMail($order->id, $title);
-            session()->flash('updateStatus','Cập nhật trạng thái đơn hàng thành công');
+            session()->flash('updateStatus', 'Cập nhật trạng thái đơn hàng thành công');
             return redirect()->back();
         } catch (\Exception $e) {
             return $e;
         }
     }
 
-    public function updateAllStatus(){
+    public function updateAllStatus()
+    {
         try {
             $data = json_decode(file_get_contents("php://input"), true);
             $ids = $data['ids'];
             $status = $data['status'];
-            Order::whereIn('id',$ids)->update([
-                'ship_status'=>$status,
-                'updated_at'=>Carbon::now('Asia/Ho_Chi_Minh')
+            Order::whereIn('id', $ids)->update([
+                'ship_status' => $status,
+                'updated_at' => Carbon::now('Asia/Ho_Chi_Minh')
             ]);
             return json_encode($ids);
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             return $e;
         }
     }
 
-    public function removeAllStatus(){
+    public function removeAllStatus()
+    {
         try {
             $data = json_decode(file_get_contents("php://input"), true);
             $ids = $data['ids'];
-             Order::whereIn('id',$ids)->update([
-                 'ship_status'=>OrderStatus::Deleted,
-                 'deleted_at'=>Carbon::now('Asia/Ho_Chi_Minh')
-             ]);
+            Order::whereIn('id', $ids)->update([
+                'ship_status' => OrderStatus::Deleted,
+                'deleted_at' => Carbon::now('Asia/Ho_Chi_Minh')
+            ]);
             return true;
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             return $e;
         }
     }
@@ -140,13 +162,14 @@ class OrderController extends Controller
             return redirect()->back();
         }
     }
-    function sendMail($id,$title)
+
+    function sendMail($id, $title)
     {
         $data = Order::find($id);
         $data->subject = $title;
-        Mail::send('client.mailOrder.mailOrder', ['order' => $data ],
+        Mail::send('client.mailOrder.mailOrder', ['order' => $data],
             function ($message) use ($data) {
-                $message->to( $data->ship_email, 'Tutorials Point')
+                $message->to($data->ship_email, 'Tutorials Point')
                     ->subject($data->subject);
                 $message->from('rausachtdhhn@gmail.com', 'Cửa hàng Cần Rau');
             });
