@@ -65,7 +65,7 @@ class OrderController extends Controller
                     break;
             }
             $this->sendMail($order->id, $title);
-            session()->flash('updateStatus','Cập nhật trạng thái đơn hàng thành công');
+            session()->flash('message',"Cập nhật trạng thái đơn hàng mã $orderId, thành công");
             return redirect()->back();
         } catch (\Exception $e) {
             return $e;

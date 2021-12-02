@@ -25,6 +25,7 @@
             color: #4c4c4c;
         }
     </style>
+    <link rel="stylesheet" href="/css/jquery.toast.min.css">
 @endsection
 @section('breadcrumb')
     <div class="page-title mb-4">
@@ -40,6 +41,14 @@
                 <div class="x_title">
                     <h3>Chi tiết hóa đơn thanh toán </h3>
                     <div class="clearfix"></div>
+                    @if(\Illuminate\Support\Facades\Session::has('message'))
+                        <div style="margin-top: 15px">
+                            <div class="alert alert-success">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <strong>{{\Illuminate\Support\Facades\Session::get('message')}}</strong>
+                            </div>
+                        </div>
+                    @endif
                 </div>
                 <div class="x_content">
                     @if(isset($item))
@@ -184,6 +193,7 @@
 @endsection
 @section('page-script')
     <script src="/admin/js/manager-page.js"></script>
+    <script src="/js/jquery.toast.min.js"></script>
     <script>
         $('#status').change(function () {
             this.form.submit();

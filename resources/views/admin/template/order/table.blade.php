@@ -24,7 +24,7 @@
                             <li>
                                 <div>
                                     <i class="fa fa-check-circle"></i>
-                                    <span class="data-quantity-choice">Đã chọn : 1</span>
+                                    <span class="data-quantity-choice">Đã chọn : 0</span>
                                 </div>
                             </li>
                             <li>
@@ -262,6 +262,14 @@
                                 </div>
                             </div>
                             <div class="clearfix"></div>
+                            @if(\Illuminate\Support\Facades\Session::has('message'))
+                                <div style="margin-top: 15px">
+                                    <div class="alert alert-success">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        <strong>{{\Illuminate\Support\Facades\Session::get('message')}}</strong>
+                                    </div>
+                                </div>
+                            @endif
                         </form>
                     </div>
                 </div>
