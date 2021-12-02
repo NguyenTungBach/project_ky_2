@@ -111,6 +111,7 @@ Route::get('/farm', [FarmController::class, 'getFarms']);
 Route::get('/contact', [ContactController::class, 'getContact']);
 
 Route::get('/blog', [BlogController::class, 'getBlog']);
+Route::get('/blogs/{id}', [BlogController::class, 'getDetail']);
 
 Route::get('/about', [AboutUsController::class, 'getAboutUs']);
 
