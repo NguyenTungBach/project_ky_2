@@ -128,31 +128,69 @@
     <script src="//cdn.ckeditor.com/4.17.1/full/ckeditor.js"></script>
     <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
     <script type="text/javascript">
-        var form = document.forms['form']['thumbnail']
-        var listImg = document.getElementById('preview-image')
-        console.log(listImg)
-        console.log(form);
-        var myWidget = cloudinary.createUploadWidget({
-                cloudName: 'hoangkien0601',
-                uploadPreset: 'hwftk7ro'}, function (error, result) {
-                if (!error && result && result.event === "success") {
-                    form.value =  result.info.secure_url + ',';
-                    listImg.innerHTML = `
+        $(document).ready(function () {
+            var form = document.forms['form']['thumbnail']
+            var listImg = document.getElementById('preview-image')
+            console.log(listImg)
+            console.log(form);
+            var myWidget = cloudinary.createUploadWidget({
+                    // cloudName: 'hoangkien0601',
+                    // uploadPreset: 'hwftk7ro'}, function (error, result) {
+                    cloudName: 'dark-faith',
+                    uploadPreset: 'nqbsybdh'}, (error, result) => {
+                    if (!error && result && result.event === "success") {
+                        console.log('Done! Here is the image info: ', result.info);
+                        form.value =  result.info.secure_url + ',';
+                        listImg.innerHTML = `
                     <div class="col-md-3 col-sm-3 position-relative" style="padding-left: 0 !important;">
-                                        <span class="close-preview">&#10006;</span>
+                                        <a id="close_img" class="close-preview" onclick="deleteImage('${result.info.delete_token}','${result.info.secure_url}')">&#10006;</a>
                                         <img src="${result.info.secure_url}"
                                              class="col-md-12 col-sm-12 img-thumbnail mr-2 mb-2 imagesChoice">
                                     </div>
                        `
-                    // console.log('Done! Here is the image info: ', result.info.url);
-                    console.log('Done! Here is the image info: ', result.info.secure_url);
+                        // console.log('Done! Here is the image info: ', result.info.url);
+                        console.log('Done! Here is the image info: ', result.info.secure_url);
+                    }
                 }
-            }
-        )
+            )
 
-        document.getElementById("upload_widget").addEventListener("click", function(){
-            myWidget.open();
-        }, false);
+            document.getElementById("upload_widget").addEventListener("click", function(){
+                myWidget.open();
+            }, false);
+        });
+
+        $(document).on("click",'#close_img',function () {
+            $(this).parent().hide();
+        });
+
+        function deleteImage(delete_token,secure_url){
+            var src = secure_url;
+            const url = "https://api.cloudinary.com/v1_1/dark-faith/delete_by_token"; // Nếu đổi tài khoản thì nhớ chú ý đổi cái api này
+            $.ajax({
+                url : url, // gửi ajax đến file result.php
+                type : "POST", // chọn phương thức gửi là post
+                data : { // Danh sách các thuộc tính sẽ gửi đi
+                    token: delete_token
+                },
+                error: function (){
+                    alert("Có lỗi xảy ra!");
+                }
+            });
+            var array_thubmail_before = document.forms['form']['thumbnail'].value.split(',');
+            array_thubmail_before.pop();
+            // const obj = JSON.parse(src);
+            // tìm đến những phần tử khác obj.secure_url
+            const array_thubmail_after = array_thubmail_before.filter(thumbnail => {return thumbnail !== src});
+            if (array_thubmail_after.length>0){
+                document.forms['form']['thumbnail'].value = array_thubmail_after.join(',') + ',';
+            } else{
+                document.forms['form']['thumbnail'].value = "";
+            }
+
+            // console.log("Phần tử hiện tại là:", this );
+            console.log("Giá trị trong thumbnail là:", document.forms['form']['thumbnail'].value);
+        }
+
     </script>
 
     <script>
