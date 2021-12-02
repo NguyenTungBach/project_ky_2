@@ -48,27 +48,27 @@
 
                                 <div class="col-sm-4 invoice-col information-order">
                                     <div class="mb-2 font-weight-bold col-sm-12 col-md-12">
-                                        <h3>General detail:</h3>
+                                        <h3>Mã đơn hàng {{$item->id}}:</h3>
                                     </div>
                                     <div class="mb-2 font-weight-bold col-sm-12 col-md-12">
-                                        <label for="">Order creation date:</label>
+                                        <label for="">Ngày tạo đơn hàng:</label>
                                         <div>
                                             <input type="text" disabled value="{{$item->created_at}}">
                                         </div>
                                     </div>
                                     <div class="mb-2 font-weight-bold col-sm-12 col-md-12">
-                                        <label for="">Order update date:</label>
+                                        <label for="">Ngày cập nhật đơn hàng:</label>
                                         <div>
                                             <input type="text" disabled value="{{$item->updated_at}}">
                                         </div>
                                     </div>
                                     <div class="mb-2 font-weight-bold col-sm-12 col-md-12">
-                                        <label for="">Order delete date:</label>
+                                        <label for="">Ngày hủy đơn hàng:</label>
                                         <div>
                                             <input type="text" disabled value="{{$item->deleted_at}}">
                                         </div>
                                     </div>
-                                    <form action="/admin/order/update/status" method="get">
+                                    <form action="/admin/order/update/status" method="post">
                                         @csrf
                                         <input type="hidden" name="id" value="{{$item->id}}">
                                         <div class="mb-2 font-weight-bold col-sm-12 col-md-12">
@@ -82,30 +82,30 @@
                                 <!-- /.col -->
                                 <div class="col-sm-4 invoice-col information-order">
                                     <div class="mb-2 font-weight-bold col-sm-12 col-md-12">
-                                        <h3>Shipping information:</h3>
+                                        <h3>Thông tin người nhận:</h3>
                                     </div>
                                     <div class="mb-2 font-weight-bold col-sm-12 col-md-12">
-                                        <label for="">Recipient's name :</label>
+                                        <label for="">Tên người nhận :</label>
                                         <p style="word-break: break-all;"
                                            class="font-weight-light">{{$item->ship_name}}</p>
                                     </div>
                                     <div class="mb-2 font-weight-bold col-sm-12 col-md-12">
-                                        <label for="">Recipient's phone :</label>
+                                        <label for="">Số điện thoại :</label>
                                         <p style="word-break: break-all;"
                                            class="font-weight-light">{{$item->ship_phone}}</p>
                                     </div>
                                     <div class="mb-2 font-weight-bold col-sm-12 col-md-12">
-                                        <label for="">Recipient's email :</label>
+                                        <label for="">Email :</label>
                                         <p style="word-break: break-all;"
                                            class="font-weight-light">{{$item->ship_email}}</p>
                                     </div>
                                     <div class="mb-2 font-weight-bold col-sm-12 col-md-12">
-                                        <label for="">Recipient's address :</label>
+                                        <label for="">Địa chỉ :</label>
                                         <p style="word-break: break-all;"
                                            class="font-weight-light">{{$item->ship_address}}</p>
                                     </div>
                                     <div class="mb-2 font-weight-bold col-sm-12 col-md-12">
-                                        <label for="">Recipient's address :</label>
+                                        <label for="">Chú thích :</label>
                                         <p style="word-break: break-all;" class="font-weight-light">
                                             {{$item->ship_note ?? 'Not note'}}
                                         </p>
@@ -114,16 +114,16 @@
                                 <!-- /.col -->
                                 <div class="col-sm-4 invoice-col information-order">
                                     <div class="mb-2 font-weight-bold col-sm-12 col-md-12">
-                                        <h3>Payment:</h3>
+                                        <h3>Thanh toán:</h3>
                                     </div>
                                     <div class="mb-2 font-weight-bold col-sm-12 col-md-12">
-                                        <label for="">Total <small>(VND)</small>:</label>
+                                        <label for="">Tổng <small>(VND)</small>:</label>
                                         <p style="word-break: break-all;" class="font-weight-light">
                                             {{$item->FormatPrice}}
                                         </p>
                                     </div>
                                     <div class="mb-2 font-weight-bold col-sm-12 col-md-12">
-                                        <label for="">Payment:</label>
+                                        <label for="">Trạng thái:</label>
                                         <p style="word-break: break-all;" class="font-weight-light">
                                             {{$item->check_out ? 'Đã thanh toán' : 'Chưa thanh toán'}}
                                         </p>
@@ -135,20 +135,20 @@
 
                             <!-- Table row -->
                             <div class="row">
-                                <h3>Order detail</h3>
+                                <h3>Chi tiết đơn hàng</h3>
                             </div>
                             <div class="row">
                                 <div class="table table-striped table-bordered">
                                     <table class="table table-striped">
                                         <thead>
                                         <tr>
-                                            <th>OrderID</th>
-                                            <th>Product name</th>
-                                            <th>Unit price<small>(VND)</small></th>
-                                            <th>Quantity</th>
-                                            <th>Ship</th>
-                                            <th>Discount</th>
-                                            <th>Total<small>(VND)</small></th>
+                                            <th>ID đơn hàng</th>
+                                            <th>Tên sản phẩm</th>
+                                            <th>Giá sản phẩm<small>(VND)</small></th>
+                                            <th>Số lượng mua</th>
+                                            <th>Tiền vận chuyển</th>
+                                            <th>Giảm giá</th>
+                                            <th>Tổng tiền<small>(VND)</small></th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -164,7 +164,7 @@
                                             </tr>
                                         @endforeach
                                         <tr>
-                                            <td class="text-center font-weight-bold" colspan="4">Total price order</td>
+                                            <td class="text-center font-weight-bold" colspan="4">Tổng tiền hóa đơn</td>
                                             <td class="text-center font-weight-bold" colspan="3">{{$item->FormatPrice}} <small>(VND)</small> </td>
                                         </tr>
                                         </tbody>
@@ -173,7 +173,7 @@
                                 <!-- /.col -->
                             </div>
                             <!-- /.row -->
-                            <a class="btn btn-secondary" href="/admin/orders"><i class="fa fa-arrow-left"></i> Back to Orders</a>
+                            <a class="btn btn-secondary" href="/admin/orders"><i class="fa fa-arrow-left"></i> Quay về danh sách đơn hàng</a>
                         </section>
 
                     @endif
