@@ -19,6 +19,14 @@
 
                 </ul>
             </li>
+{{--            --Blog Menu----}}
+            <li><a><i class="fa fa-tags"></i> Danh mục bài viết <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="/admin/blog">Manager Blog</a></li>
+                    <li><a href="/admin/blog/form">Form Blog</a></li>
+
+                </ul>
+            </li>
             {{--Category Menu--}}
 
             {{--Product Menu--}}
