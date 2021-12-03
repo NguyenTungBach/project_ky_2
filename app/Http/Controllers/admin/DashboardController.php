@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 class DashboardController extends Controller
 {
 
-
     public function __construct()
     {
         $this->middleware('isLoggedIn');
