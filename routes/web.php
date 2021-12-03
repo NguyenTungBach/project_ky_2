@@ -95,6 +95,7 @@ Route::post('admin/order/export', [OrderController::class, 'exportOrder']);
 Route::get('admin/order/delete/{id}', [OrderController::class, 'delete']);
 
 Route::get('admin/order/search', [OrderController::class, 'index']);
+
 //Route::get('admin/order/index', [OrderController::class, 'index']);
 
 //======================================================================================================================
