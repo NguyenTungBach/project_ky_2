@@ -13,10 +13,12 @@ use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('isLoggedIn');
     }
+
 
     public function getAll(){
         $products = Product::where('status','!=',0);
@@ -125,5 +127,20 @@ class ProductController extends Controller
             return $exception;
         }
 
+    }
+
+    public function updateAllStatus(){
+        try {
+            $data = json_decode(file_get_contents("php://input"), true);
+            $ids = $data['ids'];
+            $status = $data['status'];
+            Product::whereIn('id',$ids)->update([
+                'status'=>$status,
+                'updated_at'=>Carbon::now('Asia/Ho_Chi_Minh')
+            ]);
+            return json_encode($ids); // trả về danh sách id (ids) được cập nhật
+        }catch (\Exception $e){
+            return $e;
+        }
     }
 }

@@ -29,28 +29,9 @@ class OrderController extends Controller
         ]);
     }
 
-    public function getInformation()
-    {
-        $order = DB::table('orders')
-            ->whereExists(function ($query) {
-                $query->select(DB::raw(1))
-                    ->from('order_details')
-                    ->whereColumn('order_details.order_id', 'orders.id')
-                    ->whereExists(function ($query) {
-                        $query->select(DB::raw(1))
-                            ->from('products')
-                            ->whereColumn('products.id', 'order_details.product_id')
-                            ->where('products.name', 'like', 'Cải');
-                    });
-            })
-            ->get();
-        echo $order;
+    public function exportOrder(){
+        $ids = explode(",", request('ids')); // tạo mảng ids
 
-    }
-
-    public function exportOrder()
-    {
-        $ids = explode(",", request('ids'));
         return (new OrderExport($ids))->download('orders.xlsx');
     }
 
@@ -79,7 +60,7 @@ class OrderController extends Controller
                     $title = "Đơn hàng với mã #$order->id đã bị huỷ";
                     break;
                 case OrderStatus::Done;
-                    $title = "Đơn hàng với mã #$order->id đã được gia thành công";
+                    $title = "Đơn hàng với mã #$order->id đã được giao hàng thành công";
                     break;
                 case OrderStatus::Waiting;
                     $title = "Đơn hàng với mã #$order->id đang chờ được xử lý";
@@ -89,7 +70,9 @@ class OrderController extends Controller
                     break;
             }
             $this->sendMail($order->id, $title);
-            session()->flash('updateStatus', 'Cập nhật trạng thái đơn hàng thành công');
+
+            session()->flash('message',"Cập nhật trạng thái đơn hàng mã $orderId, thành công");
+
             return redirect()->back();
         } catch (\Exception $e) {
             return $e;
@@ -167,7 +150,17 @@ class OrderController extends Controller
         }
     }
 
-    function sendMail($id, $title)
+
+    public function getInformation($id){
+        try {
+            return view('admin.template.order.order-detail',['item' =>Order::find($id)]);
+        }catch (\Exception $e){
+            return "Id không tồn tại hoặc lỗi lấy trang.";
+        }
+    }
+
+    function sendMail($id,$title)
+
     {
         $data = Order::find($id);
         $data->subject = $title;

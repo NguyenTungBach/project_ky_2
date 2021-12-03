@@ -24,7 +24,7 @@
                             <li>
                                 <div>
                                     <i class="fa fa-check-circle"></i>
-                                    <span class="data-quantity-choice">Đã chọn : 1</span>
+                                    <span class="data-quantity-choice">Đã chọn : 0</span>
                                 </div>
                             </li>
                             <li>
@@ -246,9 +246,7 @@
                                 </div>
                                 <div class="col-md-3 col-sm-3 form-group pull-right pr-2 top_search">
                                     @php
-                                        use Carbon\Carbon;
-                                       $startCarbon = Carbon::now('Asia/Ho_Chi_Minh')->subDay(30)->isoFormat('MM/DD/YYYY');
-                                       $endCarbon = Carbon::now('Asia/Ho_Chi_Minh')->isoFormat('MM/DD/YYYY');
+                                    use Carbon\Carbon;
                                     if (isset($oldStartDate) && isset($oldEndDate)){
                                         $oldStartDate = Carbon::parse($oldStartDate)->isoFormat('MM/DD/YYYY');
                                         $oldEndDate = Carbon::parse($oldEndDate)->isoFormat('MM/DD/YYYY');
@@ -272,6 +270,14 @@
                                 </div>
                             </div>
                             <div class="clearfix"></div>
+                            @if(\Illuminate\Support\Facades\Session::has('message'))
+                                <div style="margin-top: 15px">
+                                    <div class="alert alert-success">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        <strong>{{\Illuminate\Support\Facades\Session::get('message')}}</strong>
+                                    </div>
+                                </div>
+                            @endif
                         </form>
                     </div>
                 </div>
@@ -295,7 +301,7 @@
                                         <th>Thanh toán</th>
                                         <th style="width: 10%">Ngày đặt hàng</th>
                                         <th>Tổng giá(VND)</th>
-                                        <th style="width: 7%">Hành động</th>
+                                        <th style="width: 8%">Hành động</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -312,23 +318,25 @@
                                             <td>{{$item->ship_email}}</td>
                                             <td>{{$item->handlerPayment}}</td>
                                             <td>{{ $item->created_at}}</td>
-                                            <td>{{number_format($item['total_price'])}}</td>
-                                            <td><a href="/admin/order/detail/120" class="hover-pointer dataItem"
+
+                                            <td>{{number_format($item['total_price'])}} VNĐ</td>
+                                            <td><a href="/admin/order/{{$item->id}}" class="hover-pointer dataItem"
+
                                                 >
                                                     <i class="fa fa-info mr-1 text-primary"
                                                        data-toggle="tooltip" data-placement="bottom"
                                                        title="Information"
                                                        data-original-title="Tooltip bottom"></i></a>
 
-                                                <a href="/admin/order/delete/{{$item->id}}" id="delete"
-                                                   class="hover-pointer dataItem"
-                                                   data-toggle="modal"
-                                                   data-target="#deleteModal"
-                                                   data-name="{{$item->name}}"
-                                                   data-id="{{$item->id}}">
-                                                    <i data-toggle="tooltip" data-placement="bottom" title=""
-                                                       data-original-title="Delete"
-                                                       class="fa fa-trash mr-1 text-primary"></i></a></td>
+{{--                                                <a href="/admin/order/delete/{{$item->id}}" id="delete"--}}
+{{--                                                   class="hover-pointer dataItem"--}}
+{{--                                                   data-toggle="modal"--}}
+{{--                                                   data-target="#deleteModal"--}}
+{{--                                                   data-name="{{$item->name}}"--}}
+{{--                                                   data-id="{{$item->id}}">--}}
+{{--                                                    <i data-toggle="tooltip" data-placement="bottom" title=""--}}
+{{--                                                       data-original-title="Delete"--}}
+{{--                                                       class="fa fa-trash mr-1 text-primary"></i></a></td>--}}
 
                                         </tr>
                                     @endforeach

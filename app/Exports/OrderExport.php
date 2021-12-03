@@ -21,11 +21,11 @@ class OrderExport implements FromQuery,WithHeadings,WithMapping,ShouldAutoSize
      */
     public function __construct($selectedId)
     {
-        $this->selectedId = $selectedId;
+        $this->selectedId = $selectedId; // mảng id truyền vào
     }
 
 
-    public function headings():array{
+    public function headings():array{ // các tên cột
         return [
             'Mã đơn hàng',
             'Thanh toán',
@@ -44,10 +44,9 @@ class OrderExport implements FromQuery,WithHeadings,WithMapping,ShouldAutoSize
         ];
     }
 
-
     public function query()
     {
-        return Order::whereIn('id' ,$this->selectedId);
+        return Order::whereIn('id' ,$this->selectedId); // where chỉ lấy 1, còn whereIn lấy
     }
 
     /**
@@ -75,14 +74,18 @@ class OrderExport implements FromQuery,WithHeadings,WithMapping,ShouldAutoSize
                 break;
         }
         $order->ship_status = $status;
+
+
         $check = '';
-        if ($order->check_out == 1){
+        if ($order->check_out ==1){
+
             $check = 'Đã thanh toán';
         }
         if ($order->check_out == 0){
             $check = 'Chưa thanh toán';
         }
         $order->check_out =  $check;
+
         return [
             $order->id,
             $order->check_out,
