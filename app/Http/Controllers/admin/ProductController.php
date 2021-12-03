@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('isLoggedIn');
+    }
+
+
     public function getAll(){
         $products = Product::where('status','!=',0);
         $paginate = 9;

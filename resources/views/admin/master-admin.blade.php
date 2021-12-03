@@ -18,19 +18,27 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="/admin" class="site_title"><img class="thumbnail-admin" src="/client/images/icons/favicon.png" alt=""> <span>Fresh vegetables</span></a>
+                    <a href="/admin/home" class="site_title"><img class="thumbnail-admin"
+                                                                  src="/client/images/icons/favicon.png" alt=""> <span>Fresh vegetables</span></a>
                 </div>
 
                 <div class="clearfix"></div>
+            <?php
+            use App\Models\Admin;
+            if (session()->has('loginId')) {
+                $admin = Admin::find(session()->get('loginId'));
+            }
+            ?>
 
-                <!-- menu profile quick info -->
+            <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img src="/admin/images/admin.gif" alt="..." class="img-circle profile_img">
+                        <img src="{{$admin->thumbnail ?? '/admin/images/admin.gif'}}" alt="..."
+                             class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>Welcome,</span>
-                        <h2>Admin</h2>
+                        <h2>{{$admin->full_name ?? 'Admin'}}</h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -42,7 +50,7 @@
         </div>
 
         <!-- top navigation -->
-{{--    @include('admin.include.top-navigation')--}}
+    @include('admin.include.top-navigation')
     <!-- /top navigation -->
 
         <!-- page content -->

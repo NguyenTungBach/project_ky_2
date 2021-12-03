@@ -75,8 +75,10 @@ class OrderExport implements FromQuery,WithHeadings,WithMapping,ShouldAutoSize
         }
         $order->ship_status = $status;
 
+
         $check = '';
         if ($order->check_out ==1){
+
             $check = 'Đã thanh toán';
         }
         if ($order->check_out == 0){
