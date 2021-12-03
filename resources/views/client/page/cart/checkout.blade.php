@@ -167,10 +167,12 @@
                             </div>
 
                             @if($order->check_out)
-                                <button type="button" style=" border-radius: 20px"
-                                        class="flex-c-m txt-s-105 cl0 bg10 size-a-21 hov-btn1 trans-04 p-rl-10">
-                                    <a style="color: #FFFFFF;" href="/products">Continue Shopping</a>
-                                </button>
+                                <div style="padding: 3px 140px">
+                                    <button type="button" style=" border-radius: 20px"
+                                            class="flex-c-m txt-s-105 cl0 bg10 size-a-21 hov-btn1 trans-04 p-rl-140">
+                                        <a style="color: #FFFFFF;" href="/products">Continue Shopping</a>
+                                    </button>
+                                </div>
                             @else
                                 <div class="p-rl-140" id="paypal-button"></div>
                                 <div class="dis-flex align-items-center justify-content-end mt-3">

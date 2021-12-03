@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\OrderController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\client\AboutUsController;
 use App\Http\Controllers\client\BlogController;
 use App\Http\Controllers\client\CartController;
@@ -23,11 +24,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //============================================== ADMIN =================================================================
-//***************************** Example ************************************
-Route::prefix('admin')->group(function () {
-    Route::get('/form', [Admincontroller::class, 'getForm']);
-    Route::get('/table', [Admincontroller::class, 'getTable']);
-});
+//************************************Login and Register*************
+Route::get('admin/login', [AdminController::class, 'showLogin']);
+Route::post('admin/login', [AdminController::class, 'postLogin'])->name('auth.login');
+Route::get('admin/register', [AdminController::class, 'showRegister']);
+Route::post('admin/register', [AdminController::class, 'register']);
+Route::get('admin/logOut', [AdminController::class, 'logOut'])->name('auth.logOut');
+//***************************** Dashboard ************************************
+Route::get('admin/dashboard', [DashboardController::class, 'displayDashboard']);
+
 //***************************** Product ************************************
 Route::get('admin/products', [\App\Http\Controllers\admin\ProductController::class, 'getAll']);
 
@@ -70,7 +75,7 @@ Route::post('admin/category/update', [CategoryController::class, 'update']);
 
 //xác nhận lại người dùng có muốn xoá không rồi mới xoá
 // không xoá cứng mà update status = 0 và cập nhật deleted_at = Carbon.now()
-Route::get('admin/category/delete/{id}', [\App\Http\Controllers\admin\CategoryController::class, 'getConfirmDelete']);
+Route::get('admin/category/delete/{id}', [CategoryController::class, 'getConfirmDelete']);
 Route::post('admin/category/delete', [CategoryController::class, 'delete']);
 
 

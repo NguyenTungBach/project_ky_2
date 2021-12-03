@@ -18,7 +18,7 @@ if (session()->has('loginId'))
             <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                     <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                        <img src="/admin/images/jjjj.jpg" alt="">
+                        <img src="/admin/images/admin.gif" alt="">
                         @if($admin != null && ($admin->fullname) != null)
                             {{$admin->fullname}}
                         @else
@@ -27,7 +27,7 @@ if (session()->has('loginId'))
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item"  href="javascript:;"> Profile</a>
-                        <a class="dropdown-item"  href="{{route('admin.logOut')}}"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                        <a class="dropdown-item"  href="/admin/logOut"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                     </div>
                 </li>
             </ul>

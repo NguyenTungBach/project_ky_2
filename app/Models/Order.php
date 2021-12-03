@@ -203,7 +203,7 @@ class Order extends Model
     {
         if ($this->check_out == 1) {
             $payment = 'Đã thanh toán';
-        } else {
+        } else if($this->check_out == 0){
             $payment = 'Chưa thanh toán';
         }
         return $payment;

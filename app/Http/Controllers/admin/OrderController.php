@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('isLoggedIn');
+    }
     public function getAll()
     {
         $paginate = 9;
