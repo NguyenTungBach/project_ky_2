@@ -306,6 +306,7 @@
                                     </thead>
                                     <tbody>
                                     @foreach($items as $item)
+                                        <p>{{$item->products}}</p>
                                         <tr>
                                             <td><input type="checkbox" value="{{$item->id}}" class="selected-item">
                                             <td>{{$item->id}}</td>

@@ -114,7 +114,7 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                                <div id="piechart" style="width: 900px; height: 500px;"></div>
+                                <div id="piechart" style="width: 900px; height: 550px;"></div>
                             </div>
                         </div>
                     </div>
@@ -186,7 +186,8 @@
 
             var options = {
                 title: '10 Sản phẩm bán chạy nhất',
-                chartArea:{left:0,top:30,width:'100%',height:'100%'},
+
+                chartArea:{left:130,top:80,width:'80%',height:'70%'},
 
             };
             var chart = new google.visualization.PieChart(document.getElementById('piechart'));

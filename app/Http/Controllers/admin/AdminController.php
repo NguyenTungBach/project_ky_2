@@ -21,7 +21,7 @@ class AdminController extends Controller
     {
         $email = $request->get('email');
         $password = $request->get('password');
-        $remember_me = $request->has('remember_me');
+//        $remember_me = $request->has('remember_me');
         $admin = DB::table('admins')->where('email', $email)->first();
         $isLogin = $admin != null && Hash::check($password, $admin->password);
         if ($isLogin) {
