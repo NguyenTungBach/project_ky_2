@@ -24,7 +24,7 @@
                             <li>
                                 <div>
                                     <i class="fa fa-check-circle"></i>
-                                    <span class="data-quantity-choice">Đã chọn : 1</span>
+                                    <span class="data-quantity-choice">Đã chọn : 0</span>
                                 </div>
                             </li>
                             <li>
@@ -115,6 +115,14 @@
                                     <span class="delete-search">&times;</span>
                                     <span class="icon-search"><i class="fa fa-search"></i></span>
                                 </div>
+{{--                                --}}{{--              Find By Product name                  --}}
+{{--                                <div class="col-md-3 col-sm-3 form-group pull-right pr-2 top_search">--}}
+{{--                                    <input type="text" class="form-control query"--}}
+{{--                                           value="{{$oldProductName ?? ""}}" name="productName"--}}
+{{--                                           placeholder="Tên sản phẩm">--}}
+{{--                                    <span class="delete-search">&times;</span>--}}
+{{--                                    <span class="icon-search"><i class="fa fa-search"></i></span>--}}
+{{--                                </div>--}}
                                 {{--       Lọc theo tên      --}}
                                 <div class="col-md-3 col-sm-3 form-group pull-right top_search pr-2">
                                     <select name="sortName" class="form-control sortOrder">
@@ -238,9 +246,7 @@
                                 </div>
                                 <div class="col-md-3 col-sm-3 form-group pull-right pr-2 top_search">
                                     @php
-                                        use Carbon\Carbon;
-                                       $startCarbon = Carbon::now('Asia/Ho_Chi_Minh')->subDay(30)->isoFormat('MM/DD/YYYY');
-                                       $endCarbon = Carbon::now('Asia/Ho_Chi_Minh')->isoFormat('MM/DD/YYYY');
+                                    use Carbon\Carbon;
                                     if (isset($oldStartDate) && isset($oldEndDate)){
                                         $oldStartDate = Carbon::parse($oldStartDate)->isoFormat('MM/DD/YYYY');
                                         $oldEndDate = Carbon::parse($oldEndDate)->isoFormat('MM/DD/YYYY');
@@ -264,6 +270,14 @@
                                 </div>
                             </div>
                             <div class="clearfix"></div>
+                            @if(\Illuminate\Support\Facades\Session::has('message'))
+                                <div style="margin-top: 15px">
+                                    <div class="alert alert-success">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        <strong>{{\Illuminate\Support\Facades\Session::get('message')}}</strong>
+                                    </div>
+                                </div>
+                            @endif
                         </form>
                     </div>
                 </div>
@@ -304,8 +318,10 @@
                                             <td>{{$item->ship_email}}</td>
                                             <td>{{$item->handlerPayment}}</td>
                                             <td>{{ $item->created_at}}</td>
+
                                             <td>{{number_format($item['total_price'])}} VNĐ</td>
                                             <td><a href="/admin/order/{{$item->id}}" class="hover-pointer dataItem"
+
                                                 >
                                                     <i class="fa fa-info mr-1 text-primary"
                                                        data-toggle="tooltip" data-placement="bottom"

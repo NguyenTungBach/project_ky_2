@@ -19,6 +19,11 @@ class Order extends Model
         return $this->hasMany(OrderDetail::class, 'order_id', 'id');
     }
 
+    function getFormatPriceAttribute(): string //dữ liệu trả về là string
+    {
+        return number_format($this->total_price);
+    }
+
     public function scopeFindByName($query)
     {
         if (request()->filled('name')) {
@@ -36,6 +41,16 @@ class Order extends Model
 
         return $query;
     }
+//
+//    public function scopeFindByProductName($query)
+//    {
+//        if (request()->filled('productName')) {
+//
+//            $query->where('id', request()->get('id'));
+//        }
+//
+//        return $query;
+//    }
 
     public function scopeFindByPhone($query)
     {
@@ -193,7 +208,7 @@ class Order extends Model
     {
         if ($this->check_out == 1) {
             $payment = 'Đã thanh toán';
-        } else {
+        } else if($this->check_out == 0){
             $payment = 'Chưa thanh toán';
         }
         return $payment;
