@@ -11,7 +11,7 @@ use BenSampo\Enum\Enum;
  */
 final class ContactStatus extends Enum
 {
-    const Unread =   -1;
-    const Read =   1;
+    const Unread =   1;
+    const Read =   2;
     const Delete =   0;
 }

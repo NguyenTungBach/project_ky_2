@@ -81,7 +81,7 @@
                                         @csrf
                                         <input type="hidden" name="id" value="{{$item->id}}">
                                         <div class="mb-2 font-weight-bold col-sm-12 col-md-12">
-                                            <label for="">Order status:</label>
+                                            <label for="">Trạng thái:</label>
                                             <div class="w-75">
                                                 @include('admin.template.order.status-select')
                                             </div>
