@@ -153,6 +153,11 @@ Route::get('/order/{id}', [\App\Http\Controllers\client\OrderController::class, 
 Route::post('/order/create-payment', [\App\Http\Controllers\client\OrderController::class, 'createPayment']);
 Route::post('/order/execute-payment', [\App\Http\Controllers\client\OrderController::class, 'executePayment']);
 Route::get('/check-mail', [\App\Http\Controllers\client\OrderController::class, 'getCheckMail']);
+
 // User
 Route::get('/user/register', [\App\Http\Controllers\client\UserController::class,'getForm']);
+Route::post('/user/register', [\App\Http\Controllers\client\UserController::class,'create']);
 Route::get('/user/oder', [\App\Http\Controllers\client\UserController::class,'getOrder']);
+Route::get('/user/login', [\App\Http\Controllers\client\UserController::class,'getLogin']);
+Route::post('/user/login', [\App\Http\Controllers\client\UserController::class,'login']);
+//Route::post('/user/login/{email}', [\App\Http\Controllers\client\UserController::class,'getDetail']);
