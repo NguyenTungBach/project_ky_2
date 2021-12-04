@@ -208,6 +208,9 @@ class OrderController extends Controller
             $order->check_out =true;
 
             $order->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
+            if (Session::has('loginUserId')){
+                $order->user_id = Session::get('loginUserId');
+            }
             $order->save();
             $title = "Đơn hàng với mã #$order->id, đã được thanh toán thành công";
             $this->sendMail($order->id,$title);
@@ -236,7 +239,7 @@ class OrderController extends Controller
         $data->subject = $title;
         Mail::send('client.mailOrder.mailOrder', ['order' => $data ],
             function ($message) use ($data) {
-                $message->to( $data->ship_email, 'Tutorials Point')
+                $message->to( $data->ship_email, $data->ship_name)
                     ->subject($data->subject);
                 $message->from('rausachtdhhn@gmail.com', 'Cửa hàng Cần Rau');
             });

@@ -24,9 +24,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('helloword', function (){
-    return "hello";
-});
 //Route::get('/clear-cache', function() {
 //    Artisan::call('cache:clear');
 //    return "Cache is cleared";

@@ -9,6 +9,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -23,7 +24,7 @@ class UserController extends Controller
         $password = Hash::make($request->get('password'));
         $existAccount = User::where('email',$email)->exists();
         if ($existAccount){
-            return "Account have exist";
+            return "Tài khoản đã tồn tại";
         }
         else{
             $user = new User();
@@ -48,6 +49,7 @@ class UserController extends Controller
             $password = $request->get('password');
             $isLogin = Hash::check($password, $user->password);
             if ($isLogin){
+                Session::put('loginUserId', $user->id);
                 return view('client.page.account.detail',[
                     'items' =>$user
                 ]);

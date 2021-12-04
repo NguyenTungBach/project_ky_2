@@ -35,6 +35,17 @@
                     <div class=" p-t-35 p-l-0-lg">
                         <div class="txt-s-107 p-b-6">
 							<span class="cl6">
+								Id người dùng:
+							</span>
+
+                            <span class="cl9">
+                                @if(\Illuminate\Support\Facades\Session::has('loginUserId'))
+                                    {{\Illuminate\Support\Facades\Session::get('loginUserId')}}
+                                @endif
+							</span>
+                        </div>
+                        <div class="txt-s-107 p-b-6">
+							<span class="cl6">
 								Họ và tên:
 							</span>
 

@@ -148,7 +148,7 @@
                                             <div>
                                                 <div class="txt-s-101 cl6 p-b-10">Người nhận:</div>
                                                 <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
-                                                       type="text" name="ship_name" placeholder="Nhập tên">
+                                                       type="text" name="ship_name" placeholder="Nhập tên" value="{{$item->name ?? ""}}">
                                                 <span class="cl12 message-error errorShip_name"></span>
                                             </div>
                                         </div>
@@ -159,7 +159,7 @@
 
                                                 </div>
                                                 <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
-                                                       type="text" name="ship_phone" placeholder="Nhập số điện thoại">
+                                                       type="text" name="ship_phone" placeholder="Nhập số điện thoại" value="{{$item->phone ?? ""}}">
                                                 <span class="cl12 message-error errorShip_phone"></span>
                                             </div>
                                         </div>
@@ -170,7 +170,7 @@
 
                                                 </div>
                                                 <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
-                                                       type="text" name="ship_email" placeholder="Nhập email">
+                                                       type="text" name="ship_email" placeholder="Nhập email" value="{{$item->email ?? ""}}">
                                                 <span class="cl12 message-error errorShip_email"></span>
                                             </div>
                                         </div>
@@ -181,7 +181,7 @@
                                                 </div>
                                                 <input
                                                     class="plh2 txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1 "
-                                                    type="text" name="ship_address" placeholder="Nhập địa chỉ">
+                                                    type="text" name="ship_address" placeholder="Nhập địa chỉ" value="{{$item->address ?? ""}}">
                                                 <span class="cl12 errorShip_address"></span>
                                             </div>
                                         </div>
