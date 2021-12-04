@@ -40,6 +40,9 @@ class UserController extends Controller
         }
     }
     function getLogin(){
+        if (Session::has('loginUserId')){
+            return Session::get('loginUserId');
+        }
         return view('client.page.account.login');
     }
     function login(LoginRequest  $request){
