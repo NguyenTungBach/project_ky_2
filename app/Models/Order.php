@@ -24,8 +24,8 @@ class Order extends Model
 
     public function products() : BelongsToMany
     {
-        return $this->belongsToMany(Product::class,'order_details')
-            ->using(OrderDetail::class);
+        return $this->belongsToMany(Product::class,'order_details');
+//            ->using(OrderDetail::class);
     }
 
 

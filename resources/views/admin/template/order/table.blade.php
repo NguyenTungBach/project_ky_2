@@ -78,7 +78,9 @@
                             </li>
                         </ul>
                     </div>
-                    <h2 class="col-sm-12 col-md-12">Lọc hoá đơn</h2>
+                    <h2 class="col-sm-12 col-md-12">Lọc hoá đơn
+                        <a style="border-radius: 10px" class="mr-3 float-right btn btn-secondary" href="/admin/orders">Bỏ lọc</a>
+                    </h2>
                     <div class="x_title">
                         <form action="/admin/order/search" method="get" id="form-search">
                             @csrf
@@ -298,7 +300,7 @@
                                         <th>Thanh toán</th>
                                         <th style="width: 10%">Ngày đặt hàng</th>
                                         <th>Tổng giá(VND)</th>
-                                        <th style="width: 8%">Hành động</th>
+                                        <th style="width: 2%">Hành động</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -317,10 +319,8 @@
                                             <td>{{ $item->created_at}}</td>
 
                                             <td>{{number_format($item['total_price'])}} VNĐ</td>
-
-                                            <td><a href="/admin/order/detail/{{$item->id}}" class="hover-pointer dataItem">
-
-                                                    <i class="fa fa-info mr-1 text-primary"
+                                            <td><a href="/admin/order/{{$item->id}}" class="hover-pointer dataItem">
+                                                    <i class="fa fa-info-circle mr-1 text-primary" style="font-size: 16px;"
                                                        data-toggle="tooltip" data-placement="bottom"
                                                        title="Information"
                                                        data-original-title="Tooltip bottom"></i></a>
@@ -418,6 +418,7 @@
             } else {
                 $('#deleteAll').attr('href', hrefDeleteAll);
                 $('#updateAll').attr('href', hrefUpdateAll);
+                $('input[name=ids]').val('')
                 $('#menu-table').css('display', 'none');
             }
         })
@@ -455,7 +456,7 @@
             } else {
                 $('#confirm-delete-all').data('id', '')
                 $('.ids-update-choice').data('id', '')
-                $('input[name=ids]').val([])
+                $('input[name=ids]').val('')
 
             }
         })
@@ -469,11 +470,17 @@
         body.on('click', '.clear-check-all', function () {
             selectItem.attr('checked', false)
             $('.check-all-order').attr('checked', false)
+            $('input[name=ids]').val('')
         })
         //============================================  chọn tất cả ==================================================
         body.on('click', '.check-all', function () {
             selectItem.prop('checked', 'checked')
             $('.check-all-order').prop('checked', 'checked')
+            let ids = new Set();
+            for (const ele of selectItem) {
+                ids.add(ele.value);
+            }
+            $('input[name=ids]').val(Array.from(ids))
         })
         // ======================================== Update status tat ca order da chon ==============================
         body.on('click', '.update-status-choice', function () {
