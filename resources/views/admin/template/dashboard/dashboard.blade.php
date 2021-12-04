@@ -155,7 +155,11 @@
             data.addColumn('number', 'Amount');
 
             data.addRows([
-                <?php  echo $dataLineChart; ?>
+                <?php
+                if (isset($dataLineChart)){
+                    echo $dataLineChart;
+                }
+                ?>
             ]);
 
             var options = {
@@ -181,14 +185,16 @@
 
             var data = google.visualization.arrayToDataTable([
                 ['Task', 'Hours per Day', 'id'],
-                <?php echo $dataPieChart;?>
+                <?php
+                if (isset($dataPieChart)){
+                    echo $dataPieChart;
+                }
+                ?>
             ]);
 
             var options = {
                 title: '10 Sản phẩm bán chạy nhất',
-
                 chartArea:{left:130,top:80,width:'80%',height:'70%'},
-
             };
             var chart = new google.visualization.PieChart(document.getElementById('piechart'));
             chart.draw(data, options);

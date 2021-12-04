@@ -15,6 +15,7 @@ class DashboardController extends Controller
 
     public function displayDashboard()
     {
+        // tìm đến các ngày và tổng giá từ bảng orders, nhóm vào theo ngày
         $totalPriceQuery = "
         SELECT DATE(created_at) as date, SUM(`total_price`) totalPriceDay
         FROM `orders` GROUP BY DATE(created_at)
@@ -24,6 +25,7 @@ class DashboardController extends Controller
         foreach ($resultTotalPrice as $val) {
             $dataPrice .= "['" . $val->date . "', " . $val->totalPriceDay . "],";
         }
+
 
         $quantityProductQuery = "
         SELECT SUM(`quantity`) totalQuantity, products.name as nameProduct, product_id FROM order_details

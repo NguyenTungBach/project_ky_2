@@ -21,9 +21,16 @@ class AdminController extends Controller
     {
         $email = $request->get('email');
         $password = $request->get('password');
-//        $remember_me = $request->has('remember_me');
-        $admin = DB::table('admins')->where('email', $email)->first();
-        $isLogin = $admin != null && Hash::check($password, $admin->password);
+
+        $remember_me = $request->has('remember_me');
+        // tìm đến email có tên đó
+//        $admin = DB::table('admins')->where('email', $email)->first();
+//        $admin = Admin::where('email', $email)->get(); // trả về mảng
+        $admin = Admin::where('email', $email)->first(); // trả về 1 đối tượng
+//        // kiểm tra mật khẩu
+//        $isLogin = $admin != null && Hash::check($password, $admin[0]->password); // lấy với get vì nó là mảng
+        $isLogin = $admin != null && Hash::check($password, $admin->password); // lấy với first vì nó là 1 đối tượng
+
         if ($isLogin) {
             Session::put('loginId', $admin->id);
             return redirect('/admin/dashboard');
@@ -52,11 +59,13 @@ class AdminController extends Controller
         $email =$request->get('email');
         $fullname = $request->get('fullname');
         $password = Hash::make($request->get('password'));
-        $existUser = DB::table('admins')->where('email',$email )->exists();
+        // kiểm tra sự tồn tại của tài khoản
+//        $existUser = DB::table('admins')->where('email',$email )->exists();
+        $existUser = Admin::where('email',$email )->exists();
         if ($existUser) {
             return redirect()
                 ->back()
-                ->with('emailExist', 'Email Exists')
+                ->with('emailExist', 'Email đã tồn tại')
                 ->withInput();
         } else {
             $admin = new Admin();
@@ -66,8 +75,7 @@ class AdminController extends Controller
             $admin->save();
             return redirect()
                 ->back()
-                ->with('success', 'Successfully created a new account');
+                ->with('success', 'Tạo tài khoản mới thành công');
         }
-
     }
 }

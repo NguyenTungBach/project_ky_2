@@ -10,4 +10,6 @@ class ContactController extends Controller
     function getContact(){
         return view('client.page.contact.template');
     }
+
+
 }
