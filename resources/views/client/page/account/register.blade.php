@@ -27,107 +27,114 @@
 
     <!-- content page -->
     <div class="bg0 p-tb-100">
-        <div style="margin-left: 600px">
-            <form action="/user/register" method="post" name="register">
-                @csrf
-                <div class="w-100 d-flex">
-                    <div class="w-60  p-t-68 pr-5">
-                        <div class="row " >
-                            <div class="col-md-12 col-lg-12 p-b-50">
-                                <div>
-                                    <h5 class="txt-m-124 cl3 p-b-28" style="text-align: center;font-weight: bolder " >
-                                        Đăng kí tài khoản
-                                    </h5>
-                                    <div class="row ">
-                                        <div class="col-12 p-b-23">
-                                            <div>
-                                                <div class="txt-s-101 cl6 p-b-10" style="font-weight: bolder">Email:</div>
-                                                <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
-                                                       type="text" name="email" placeholder="Nhập tên tài khoản">
-                                                @error('email')
-                                                <div class="text-danger col-12">* {{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
+        <div class="container">
+               <form action="/user/register" method="post"  name="register">
+                   @csrf
+                   <div class="row">
+                       <div class="col-3"></div>
+                       <div class="col-6">
+                           <div class="w-100">
+                               <div>
+                                   <div class="row " >
+                                       <div class="col-md-12 col-lg-12 p-b-50">
+                                           <div>
+                                               <h5 class="txt-m-124 cl3 p-b-28" style="text-align: center;font-weight: bolder " >
+                                                   Đăng kí tài khoản
+                                               </h5>
+                                               <div class="row ">
+                                                   <div class="col-12 p-b-23">
+                                                       <div>
+                                                           <div class="txt-s-101 cl6 p-b-10" style="font-weight: bolder">Email:</div>
+                                                           <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
+                                                                  type="text" name="email" placeholder="Nhập tên tài khoản">
+                                                           @error('email')
+                                                           <div class="text-danger col-12">* {{ $message }}</div>
+                                                           @enderror
+                                                       </div>
+                                                   </div>
 
-                                        <div class="col-sm-6 p-b-23">
-                                            <div>
-                                                <div class="txt-s-101 cl6 p-b-10" style="font-weight: bolder">Họ và tên
+                                                   <div class="col-sm-6 p-b-23">
+                                                       <div>
+                                                           <div class="txt-s-101 cl6 p-b-10" style="font-weight: bolder">Họ và tên
 
-                                                </div>
-                                                <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
-                                                       type="text" name="name" placeholder="Nhập tên">
-                                                @error('name')
-                                                <div class="text-danger col-12">* {{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
+                                                           </div>
+                                                           <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
+                                                                  type="text" name="name" placeholder="Nhập tên">
+                                                           @error('name')
+                                                           <div class="text-danger col-12">* {{ $message }}</div>
+                                                           @enderror
+                                                       </div>
+                                                   </div>
 
-                                        <div class="col-sm-6 p-b-23">
-                                            <div>
-                                                <div class="txt-s-101 cl6 p-b-10" style="font-weight: bolder">Địa chỉ
+                                                   <div class="col-sm-6 p-b-23">
+                                                       <div>
+                                                           <div class="txt-s-101 cl6 p-b-10" style="font-weight: bolder">Địa chỉ
 
-                                                </div>
-                                                <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
-                                                       type="text" name="address" placeholder="Nhập địa chỉ">
-                                                @error('address')
-                                                <div class="text-danger col-12">* {{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
+                                                           </div>
+                                                           <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
+                                                                  type="text" name="address" placeholder="Nhập địa chỉ">
+                                                           @error('address')
+                                                           <div class="text-danger col-12">* {{ $message }}</div>
+                                                           @enderror
+                                                       </div>
+                                                   </div>
 
-                                        <div class="col-sm-12 p-b-23">
-                                            <div>
-                                                <div class="txt-s-101 cl6 p-b-10" style="font-weight: bolder">Số điện thoại:
+                                                   <div class="col-sm-12 p-b-23">
+                                                       <div>
+                                                           <div class="txt-s-101 cl6 p-b-10" style="font-weight: bolder">Số điện thoại:
 
-                                                </div>
-                                                <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
-                                                       type="text" name="phone" placeholder="Nhập số điện thoại">
-                                                @error('phone')
-                                                <div class="text-danger col-12">* {{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
+                                                           </div>
+                                                           <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
+                                                                  type="text" name="phone" placeholder="Nhập số điện thoại">
+                                                           @error('phone')
+                                                           <div class="text-danger col-12">* {{ $message }}</div>
+                                                           @enderror
+                                                       </div>
+                                                   </div>
 
 
 
-                                        <div class="col-12 p-b-23">
-                                            <div>
-                                                <div class="txt-s-101 cl6 p-b-10" style="font-weight: bolder">Mật khẩu:
-                                                </div>
-                                                <input
-                                                    class="plh2 txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1 "
-                                                    type="password" name="password" placeholder="Nhập mật khẩu">
-                                                @error('password')
-                                                <div class="text-danger col-12">* {{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="col-12 p-b-23">
-                                            <div>
-                                                <div class="txt-s-101 cl6 p-b-10" style="font-weight: bolder">Xác nhận mật khẩu:
-                                                </div>
-                                                <input
-                                                    class="plh2 txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1 "
-                                                    type="password" name="confirmPassword" placeholder="Nhập lại mật khẩu">
-                                                @error('confirmPassword')
-                                                <div class="text-danger col-12">* {{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                            <div class="dis-flex col-12" style="margin-left: 250px">
-                                                <button style="background-color: #8db263"
-                                                        class="flex-c-m txt-s-105 cl0  size-a-34 hov-btn2 trans-04 p-rl-10 m-t-43 ">
-                                                   Đăng ký
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
+                                                   <div class="col-12 p-b-23">
+                                                       <div>
+                                                           <div class="txt-s-101 cl6 p-b-10" style="font-weight: bolder">Mật khẩu:
+                                                           </div>
+                                                           <input
+                                                               class="plh2 txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1 "
+                                                               type="password" name="password" placeholder="Nhập mật khẩu">
+                                                           @error('password')
+                                                           <div class="text-danger col-12">* {{ $message }}</div>
+                                                           @enderror
+                                                       </div>
+                                                   </div>
+                                                   <div class="col-12 p-b-23">
+                                                       <div>
+                                                           <div class="txt-s-101 cl6 p-b-10" style="font-weight: bolder">Xác nhận mật khẩu:
+                                                           </div>
+                                                           <input
+                                                               class="plh2 txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1 "
+                                                               type="password" name="confirmPassword" placeholder="Nhập lại mật khẩu">
+                                                           @error('confirmPassword')
+                                                           <div class="text-danger col-12">* {{ $message }}</div>
+                                                           @enderror
+                                                       </div>
+                                                       <div style="margin-left: 200px">
+                                                           <button style="background-color: #8db263 "
+                                                                   class="flex-c-m txt-s-105 cl0  size-a-34 hov-btn2 trans-04 p-rl-10 m-t-43 ">
+                                                               Đăng ký
+                                                           </button>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="col-3"></div>
+
+                   </div>
+               </form>
         </div>
 
         @endsection
