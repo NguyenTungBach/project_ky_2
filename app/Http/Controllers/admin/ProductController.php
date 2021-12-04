@@ -56,7 +56,6 @@ class ProductController extends Controller
         return view('admin.template.product.detail',['item' =>Product::find($id)]);
     }
 
-
     public function getInformation($id){
         return view('admin.template.product.update',['item' =>Product::find($id),'categories' => Category::withCount('products')->get()]);
     }

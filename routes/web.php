@@ -100,7 +100,6 @@ Route::get('admin/order/detail/{id}', [OrderController::class, 'getInformation']
 Route::post('admin/order/update/status', [OrderController::class, 'updateStatus']);
 Route::post('admin/order/update-multi/status', [OrderController::class, 'updateAllStatus']);
 Route::post('admin/order/remove-multi/status', [OrderController::class, 'removeAllStatus']);
-Route::get('admin/order/search', [OrderController::class, 'index']);
 
 //download excel
 Route::post('admin/order/export', [OrderController::class, 'exportOrder']);
@@ -122,6 +121,15 @@ Route::post('admin/blog/update',[\App\Http\Controllers\admin\BlogController::cla
 Route::get('admin/blog/delete/{id}', [\App\Http\Controllers\admin\BlogController::class, 'getConfirmDelete']);
 Route::post('admin/blog/delete', [\App\Http\Controllers\admin\BlogController::class, 'delete']);
 
+//***************************** Contact ************************************
+Route::get('admin/contacts',[\App\Http\Controllers\admin\ContactController::class,'getAll']);
+Route::get('admin/contact/detail/{id}',[\App\Http\Controllers\admin\ContactController::class,'getDetail']);
+Route::post('admin/contact/update/status',[\App\Http\Controllers\admin\ContactController::class,'updateStatus']);
+Route::post('admin/contact/update-multi/status',[\App\Http\Controllers\admin\ContactController::class,'updateAllStatus']);
+
+// tìm kiếm
+Route::get('admin/contact/search',[\App\Http\Controllers\admin\ContactController::class,'search']);
+
 //======================================================================================================================
 //========================================= CLIENT =====================================================================
 Route::get('/', [HomeController::class, 'getHome']);
@@ -134,7 +142,7 @@ Route::get('/product/{id}', [ProductController::class, 'getDetail']);
 Route::get('/farm', [FarmController::class, 'getFarms']);
 
 Route::get('/contact', [ContactController::class, 'getContact']);
-Route::post('/contact', [ContactController::class, 'contact'])->name('contact');
+Route::post('/contact', [ContactController::class, 'contact']);
 
 Route::get('/blog', [BlogController::class, 'getBlog']);
 Route::get('/blogs/{id}', [BlogController::class, 'getDetail']);

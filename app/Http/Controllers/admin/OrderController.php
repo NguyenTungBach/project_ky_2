@@ -46,7 +46,7 @@ class OrderController extends Controller
             $order = Order::find($orderId);
 //            return $order;
             if (!$order->exists()) {
-                return 'can not found order';
+                return 'Không tìm thấy đơn hàng';
             }
             $order->ship_status = $orderStatus;
             $order->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
@@ -166,7 +166,6 @@ class OrderController extends Controller
     }
 
     function sendMail($id,$title)
-
     {
         $data = Order::find($id);
         $data->subject = $title;

@@ -182,7 +182,6 @@
         google.charts.load('current', {'packages': ['corechart']});
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
-
             var data = google.visualization.arrayToDataTable([
                 ['Task', 'Hours per Day', 'id'],
                 <?php
