@@ -1,3 +1,9 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+    #account a:hover{
+        color: black;
+    }
+</style>
 <header>
     <!-- Header desktop -->
     <div class="container-menu-desktop">
@@ -49,6 +55,9 @@
                     }
                 @endphp
                 <!-- Icon header -->
+                    <div class="wrap-icon-header flex-w flex-r-m h-full wrap-menu-click p-t-8" id="account">
+                        <a href="/user/login"><i class="far fa-user-circle"></i></a>
+                    </div>
                     <div class="wrap-icon-header flex-w flex-r-m h-full wrap-menu-click p-t-8">
                         <div class="wrap-cart-header h-full flex-m m-l-10 menu-click">
                             <div class="icon-header-item flex-c-m trans-04 icon-header-noti"
@@ -140,6 +149,9 @@
             <div class="wrap-cart-header h-full flex-m m-l-5 menu-click">
                 <div class="icon-header-item flex-c-m trans-04 icon-header-noti" data-notify="{{isset($shopCart) ? sizeof($shopCart) : ''}}">
                     <img src="/client/images/icons/icon-cart-2.png" alt="CART">
+                    <div>
+                        <i class="far fa-user-circle"><a href="$"></a></i>
+                    </div>
                 </div>
                 {{--Shop cart--}}
                 <div class="cart-header menu-click-child trans-04" style="right: 20px">
