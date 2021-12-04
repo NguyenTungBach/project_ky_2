@@ -1,11 +1,10 @@
 <?php
 
-use App\Enums\Status;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBlogsTable extends Migration
+class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +13,14 @@ class CreateBlogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('blogs', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->text('title');
-            $table->text('description');
-            $table->text('content');
-            $table->text('thumbnail');
-            $table->integer('status')->default(Status::Active);
+            $table->string('name');
+            $table->text('password');
+            $table->string('phone');
+            $table->string('email');
+            $table->text('address');
+            $table->integer('status')->default(1);
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
@@ -33,6 +33,6 @@ class CreateBlogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blogs');
+        Schema::dropIfExists('users');
     }
 }

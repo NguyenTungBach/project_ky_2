@@ -7,6 +7,9 @@ use App\Enums\Sort;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Ramsey\Uuid\Type\Integer;
 
 class Order extends Model
@@ -14,10 +17,18 @@ class Order extends Model
     public $timestamps = false;
     use HasFactory;
 
-    public function orderDetails()
+    public function orderDetails() : HasMany
     {
         return $this->hasMany(OrderDetail::class, 'order_id', 'id');
     }
+
+    public function products() : BelongsToMany
+    {
+        return $this->belongsToMany(Product::class,'order_details')
+            ->using(OrderDetail::class);
+    }
+
+
 
     function getFormatPriceAttribute(): string //dữ liệu trả về là string
     {
@@ -33,6 +44,18 @@ class Order extends Model
         return $query;
     }
 
+    public function scopeFindByNameProduct($query)
+    {
+        if (request()->filled('nameProduct')) {
+            $name =request()->get('nameProduct');
+            $query->whereHas('products', function($q) use ($name) {
+                $q->where('name', 'like' , '%'."$name". '%');
+            });
+        }
+
+        return $query;
+    }
+
     public function scopeFindById($query)
     {
         if (request()->filled('id')) {
@@ -41,16 +64,16 @@ class Order extends Model
 
         return $query;
     }
-//
-//    public function scopeFindByProductName($query)
-//    {
-//        if (request()->filled('productName')) {
-//
-//            $query->where('id', request()->get('id'));
-//        }
-//
-//        return $query;
-//    }
+
+    public function scopeFindByProductName($query)
+    {
+        if (request()->filled('productName')) {
+
+            $query->where('id', request()->get('id'));
+        }
+
+        return $query;
+    }
 
     public function scopeFindByPhone($query)
     {

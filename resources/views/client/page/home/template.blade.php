@@ -150,7 +150,7 @@
         <div class="container">
             <div class="size-a-1 flex-col-c-m p-b-70">
                 <div class="txt-center txt-m-201 cl10 how-pos1-parent m-b-14">
-                    Keep Updated With Us
+                   Theo dõi tin tức
 
                     <div class="how-pos1">
                         <img src="/client/images/icons/symbol-02.png" alt="IMG">
@@ -158,124 +158,45 @@
                 </div>
 
                 <h3 class="txt-center txt-l-101 cl3 respon1">
-                    From our blog
+                    Bài viết
                 </h3>
             </div>
 
             <div class="row">
-                <div class="col-sm-6 col-md-4 p-b-30">
-                    <div>
-                        <a href="blog-single.html" class="wrap-pic-w hov4">
-                            <img src="/client/images/blog-11.jpg" alt="BLOG">
-                        </a>
+                @foreach($blog as $blogs)
+                    <div class="col-sm-6 col-md-4 p-b-30">
+                        <div>
+                            <a href="/blog/{{$blogs->id}}" class="wrap-pic-w hov4">
+                                <img src="{{$blogs->thumbnail}}" alt="BLOG">
+                            </a>
 
-                        <div class="p-t-18">
+                            <div class="p-t-18">
                             <span class="txt-s-107 cl3">
-								Dec 20.2018
+								{{$blogs->created_at->format('d/m/y')}}
 							</span>
 
-                            <h4 class="p-t-5 p-b-14">
-                                <a href="blog-single.html" class="txt-m-109 cl3 hov-cl10 trans-04">
-                                    At vero eos et accusamus et iusto
-                                </a>
-                            </h4>
+                                <h4 class="p-t-5 p-b-14">
+                                    <a href="blog-single.html" class="txt-m-109 cl3 hov-cl10 trans-04">
+                                        {{$blogs->title}}
+                                    </a>
+                                </h4>
 
-                            <div class="flex-w flex-m">
-                                <div class="p-r-19">
+                                <div class="flex-w flex-m">
+                                    <div class="p-r-19">
                                     <span class="txt-s-111 cl9">
-										Post by
+										Đăng bởi:
 									</span>
 
-                                    <span class="txt-s-119 cl6">
-										Evelyn Guzman
+                                        <span class="txt-s-119 cl6">
+										Râu cần sạch
 									</span>
-                                </div>
-
-                                <div>
-                                    <span class="txt-s-111 cl9">
-										22 Comments
-									</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
 
-                <div class="col-sm-6 col-md-4 p-b-30">
-                    <div>
-                        <a href="blog-single.html" class="wrap-pic-w hov4">
-                            <img src="/client/images/blog-12.jpg" alt="BLOG">
-                        </a>
-
-                        <div class="p-t-18">
-                            <span class="txt-s-107 cl3">
-								March 18.2018
-							</span>
-
-                            <h4 class="p-t-5 p-b-14">
-                                <a href="blog-single.html" class="txt-m-109 cl3 hov-cl10 trans-04">
-                                    Temporibus autem quibusdam
-                                </a>
-                            </h4>
-
-                            <div class="flex-w flex-m">
-                                <div class="p-r-19">
-                                    <span class="txt-s-111 cl9">
-										Post by
-									</span>
-
-                                    <span class="txt-s-119 cl6">
-										Samuel Stewart
-									</span>
-                                </div>
-
-                                <div>
-                                    <span class="txt-s-111 cl9">
-										15 Comments
-									</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4 p-b-30">
-                    <div>
-                        <a href="blog-single.html" class="wrap-pic-w hov4">
-                            <img src="/client/images/blog-13.jpg" alt="BLOG">
-                        </a>
-
-                        <div class="p-t-18">
-                            <span class="txt-s-107 cl3">
-								June 05.2018
-							</span>
-
-                            <h4 class="p-t-5 p-b-14">
-                                <a href="blog-single.html" class="txt-m-109 cl3 hov-cl10 trans-04">
-                                    Excepteur sint occaecat cupidatat
-                                </a>
-                            </h4>
-
-                            <div class="flex-w flex-m">
-                                <div class="p-r-19">
-                                    <span class="txt-s-111 cl9">
-										Post by
-									</span>
-
-                                    <span class="txt-s-119 cl6">
-										Justin Foster
-									</span>
-                                </div>
-
-                                <div>
-                                    <span class="txt-s-111 cl9">
-										53 Comments
-									</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>

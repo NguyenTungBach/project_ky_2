@@ -21,6 +21,7 @@ class AdminController extends Controller
     {
         $email = $request->get('email');
         $password = $request->get('password');
+
         $remember_me = $request->has('remember_me');
         // tìm đến email có tên đó
 //        $admin = DB::table('admins')->where('email', $email)->first();
@@ -29,6 +30,7 @@ class AdminController extends Controller
 //        // kiểm tra mật khẩu
 //        $isLogin = $admin != null && Hash::check($password, $admin[0]->password); // lấy với get vì nó là mảng
         $isLogin = $admin != null && Hash::check($password, $admin->password); // lấy với first vì nó là 1 đối tượng
+
         if ($isLogin) {
             Session::put('loginId', $admin->id);
             return redirect('/admin/dashboard');

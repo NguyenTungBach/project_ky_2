@@ -89,11 +89,13 @@ Route::get('admin/category/delete/{id}', [CategoryController::class, 'getConfirm
 Route::post('admin/category/delete', [CategoryController::class, 'delete']);
 
 Route::get('admin/category/search', [CategoryController::class, 'search']);
+
 //***************************** Order ************************************
 Route::get('admin/orders', [OrderController::class, 'getAll']);
 
 // hiển thị thông tin order
 Route::get('admin/order/detail/{id}', [OrderController::class, 'getInformation']);
+
 //update các trạng thái của order
 Route::post('admin/order/update/status', [OrderController::class, 'updateStatus']);
 Route::post('admin/order/update-multi/status', [OrderController::class, 'updateAllStatus']);
@@ -106,7 +108,19 @@ Route::post('admin/order/export', [OrderController::class, 'exportOrder']);
 //xoá đơn hàng(xoá mềm)
 Route::get('admin/order/delete/{id}', [OrderController::class, 'delete']);
 
-//Route::get('admin/order/index', [OrderController::class, 'index']);
+//Tìm kiếm
+Route::get('admin/order/search', [OrderController::class, 'index']);
+
+//***************************** Blog ************************************
+
+Route::get('admin/blog',[\App\Http\Controllers\admin\BlogController::class,'getAll']);
+Route::get('admin/blog/form',[\App\Http\Controllers\admin\BlogController::class,'getForm']);
+Route::post('admin/blog/form',[\App\Http\Controllers\admin\BlogController::class,'createBlog']);
+Route::get('admin/blog/{id}',[\App\Http\Controllers\admin\BlogController::class,'getDetail']);
+Route::get('admin/blog/update/{id}',[\App\Http\Controllers\admin\BlogController::class,'getInformation']);
+Route::post('admin/blog/update',[\App\Http\Controllers\admin\BlogController::class,'update']);
+Route::get('admin/blog/delete/{id}', [\App\Http\Controllers\admin\BlogController::class, 'getConfirmDelete']);
+Route::post('admin/blog/delete', [\App\Http\Controllers\admin\BlogController::class, 'delete']);
 
 //======================================================================================================================
 //========================================= CLIENT =====================================================================
@@ -123,6 +137,7 @@ Route::get('/contact', [ContactController::class, 'getContact']);
 Route::post('/contact', [ContactController::class, 'contact'])->name('contact');
 
 Route::get('/blog', [BlogController::class, 'getBlog']);
+Route::get('/blogs/{id}', [BlogController::class, 'getDetail']);
 
 Route::get('/about', [AboutUsController::class, 'getAboutUs']);
 
@@ -138,3 +153,6 @@ Route::get('/order/{id}', [\App\Http\Controllers\client\OrderController::class, 
 Route::post('/order/create-payment', [\App\Http\Controllers\client\OrderController::class, 'createPayment']);
 Route::post('/order/execute-payment', [\App\Http\Controllers\client\OrderController::class, 'executePayment']);
 Route::get('/check-mail', [\App\Http\Controllers\client\OrderController::class, 'getCheckMail']);
+// User
+Route::get('/user/register', [\App\Http\Controllers\client\UserController::class,'getForm']);
+Route::get('/user/oder', [\App\Http\Controllers\client\UserController::class,'getOrder']);
