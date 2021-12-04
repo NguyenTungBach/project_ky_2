@@ -19,6 +19,7 @@ class CreateBlogsTable extends Migration
             $table->text('title');
             $table->text('description');
             $table->text('content');
+            $table->text('thumbnail');
             $table->integer('status')->default(Status::Active);
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
