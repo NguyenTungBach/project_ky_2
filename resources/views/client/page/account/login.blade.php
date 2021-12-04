@@ -19,6 +19,11 @@
             font-size: 13px;
             padding-left: 5px;
         }
+        #create a:hover{
+            font-weight: bolder;
+            transition: 2s;
+            color: #8db263;
+        }
     </style>
 @endsection
 @section('content-page')
@@ -61,6 +66,9 @@
                                                 <div class="text-danger col-12">* {{ $message }}</div>
                                                 @enderror
                                             </div>
+                                        </div>
+                                        <div class="col-12 p-b-23"  id="create" style="text-align: center">
+                                            <a href="/user/register">Tạo mới tài khoản</a>
                                         </div>
                                         <div class="col-12 p-b-23">
                                             <div class="dis-flex col-12" style="margin-left: 250px">
