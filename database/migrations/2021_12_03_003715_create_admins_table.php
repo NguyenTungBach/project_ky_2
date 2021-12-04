@@ -18,10 +18,12 @@ class CreateAdminsTable extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('full_name');
-            $table->string('thumbnail')->nullable();
-            $table->string('address')->nullable();
-            $table->string('phone')->nullable();
+            $table->string('status')->default(1);
+//            $table->string('thumbnail')->nullable();
+//            $table->string('address')->nullable();
+//            $table->string('phone')->nullable();
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 

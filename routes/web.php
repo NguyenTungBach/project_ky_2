@@ -11,6 +11,7 @@ use App\Http\Controllers\client\ContactController;
 use App\Http\Controllers\client\FarmController;
 use App\Http\Controllers\client\HomeController;
 use App\Http\Controllers\client\ProductController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('helloword', function (){
+    return "hello";
+});
+//Route::get('/clear-cache', function() {
+//    Artisan::call('cache:clear');
+//    return "Cache is cleared";
+//});
 //============================================== ADMIN =================================================================
 //************************************Login and Register*************
 Route::get('admin/login', [AdminController::class, 'showLogin']);
@@ -80,26 +88,23 @@ Route::post('admin/category/update', [CategoryController::class, 'update']);
 Route::get('admin/category/delete/{id}', [CategoryController::class, 'getConfirmDelete']);
 Route::post('admin/category/delete', [CategoryController::class, 'delete']);
 
-
 Route::get('admin/category/search', [CategoryController::class, 'search']);
-
 //***************************** Order ************************************
 Route::get('admin/orders', [OrderController::class, 'getAll']);
 
 // hiển thị thông tin order
-Route::get('admin/order/{id}', [OrderController::class, 'getInformation']);
+Route::get('admin/order/detail/{id}', [OrderController::class, 'getInformation']);
 //update các trạng thái của order
 Route::post('admin/order/update/status', [OrderController::class, 'updateStatus']);
 Route::post('admin/order/update-multi/status', [OrderController::class, 'updateAllStatus']);
 Route::post('admin/order/remove-multi/status', [OrderController::class, 'removeAllStatus']);
+Route::get('admin/order/search', [OrderController::class, 'index']);
 
 //download excel
 Route::post('admin/order/export', [OrderController::class, 'exportOrder']);
 
 //xoá đơn hàng(xoá mềm)
 Route::get('admin/order/delete/{id}', [OrderController::class, 'delete']);
-
-Route::get('admin/order/search', [OrderController::class, 'index']);
 
 //Route::get('admin/order/index', [OrderController::class, 'index']);
 
@@ -115,6 +120,7 @@ Route::get('/product/{id}', [ProductController::class, 'getDetail']);
 Route::get('/farm', [FarmController::class, 'getFarms']);
 
 Route::get('/contact', [ContactController::class, 'getContact']);
+Route::post('/contact', [ContactController::class, 'contact'])->name('contact');
 
 Route::get('/blog', [BlogController::class, 'getBlog']);
 

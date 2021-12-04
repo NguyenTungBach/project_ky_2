@@ -7,7 +7,7 @@
 @endsection
 @section('content-page')
     {{--    title page --}}
-    @include('client.include.title-page',['title'=>'Contact'])
+    @include('client.include.title-page',['title'=>'Phản hồi'])
 
     <!-- Form Contact -->
     <section class="container bg0 p-t-150 p-b-90">
@@ -22,7 +22,7 @@
                 <div class="p-t-75 p-l-70 p-rl-0-lg">
                     <div class="size-a-1 flex-col-l p-b-70">
                         <div class="txt-m-201 cl10 how-pos1-parent m-b-14">
-                            Get In Touch
+                            Phản hồi để web tốt hơn
 
                             <div class="how-pos1">
                                 <img src="/client/images/icons/symbol-02.png" alt="IMG">
@@ -30,52 +30,51 @@
                         </div>
 
                         <h3 class="txt-l-101 cl3 respon1">
-                            Leave us a message!
+                            Nơi xin ý kiến!
                         </h3>
                     </div>
 
-                    <form id="contact-form" class="validate-form" method="post" action="includes/contact-form.php"
-                          name="contact">
+                    <form id="contact-form" class="validate-form" method="post" name="contact">
                         <div class="row">
                             <div class="col-lg-6 p-b-20">
                                 <div class="m-r--5 m-rl-0-lg validate-input" data-validate="Name is required">
                                     <input class="txt-s-115 cl3 plh1 size-a-25 bo-all-1 bocl15 focus1 p-rl-20" type="text"
-                                           name="name" placeholder="Your Full Name *">
+                                           name="name" placeholder="Nhập tên của bạn *">
                                 </div>
                             </div>
 
                             <div class="col-lg-6 p-b-20">
                                 <div class="m-l--5 m-rl-0-lg validate-input" data-validate="Valid email is: ex@abc.xyz">
                                     <input class="txt-s-115 cl3 plh1 size-a-25 bo-all-1 bocl15 focus1 p-rl-20" type="text"
-                                           name="email" placeholder="Your Email *">
+                                           name="email" placeholder="Email của bạn *">
                                 </div>
                             </div>
 
                             <div class="col-lg-6 p-b-20">
                                 <div class="m-r--5 m-rl-0-lg">
                                     <input class="txt-s-115 cl3 plh1 size-a-25 bo-all-1 bocl15 focus1 p-rl-20" type="text"
-                                           name="address" placeholder="Your Address">
+                                           name="address" placeholder="Địa chỉ">
                                 </div>
                             </div>
 
                             <div class="col-lg-6 p-b-20">
                                 <div class="m-l--5 m-rl-0-lg validate-input" data-validate="Phone is required">
                                     <input class="txt-s-115 cl3 plh1 size-a-25 bo-all-1 bocl15 focus1 p-rl-20" type="text"
-                                           name="phone" placeholder="Your Phone *">
+                                           name="phone" placeholder="Số điện thoại *">
                                 </div>
                             </div>
 
                             <div class="col-12 p-b-20">
                                 <div class="validate-input" data-validate="Message is required">
                                 <textarea class="txt-s-115 cl3 plh1 size-a-48 bo-all-1 bocl15 focus1 p-rl-20 p-tb-10"
-                                          name="msg" placeholder="Your Message"></textarea>
+                                          name="message" placeholder="Lời nhắn"></textarea>
                                 </div>
                             </div>
                         </div>
 
                         <div class="flex-l p-t-10">
                             <button class="flex-c-m txt-s-103 cl0 bg10 size-a-2 hov-btn2 trans-04">
-                                Send us now
+                                Gửi ngay
                             </button>
                         </div>
                     </form>
@@ -95,12 +94,11 @@
             <div class="m-rl--15 flex-r">
                 <div class="pointer-e-auto size-a-49 bg10 p-rl-40 p-t-50 p-b-30 w-full-lg p-rl-15-ssm">
                     <h4 class="txt-l-108 cl0 p-b-18">
-                        Contact info
+                        Thông tin nơi phản hồi
                     </h4>
 
                     <p class="txt-s-101 cl0">
-                        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                        deleniti atque.
+                        Văn Miếu
                     </p>
 
                     <ul class="p-t-44">
@@ -110,7 +108,7 @@
                             </div>
 
                             <span class="size-w-74 txt-s-101 cl0">
-								8901 Marmora Road, Glasgow, D04 89GR
+								8901
 							</span>
                         </li>
 
@@ -144,7 +142,7 @@
                             </div>
 
                             <span class="size-w-74 txt-s-101 cl0">
-								www.organive.store.com
+								www.canrau.com
 							</span>
                         </li>
                     </ul>
