@@ -125,6 +125,7 @@ class OrderController extends Controller
                 ->sortByName()
                 ->sortByCreatedAt()
                 ->sortByPrice();
+
             return view('admin.template.order.table', [
                 'items' => $order->paginate($paginate),
                 'totalOrderSearch' => $order->sum('total_price'),

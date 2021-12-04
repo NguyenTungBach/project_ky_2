@@ -26,6 +26,7 @@ class Order extends Model
     // 1 order thuộc về nhiều product, (n - 1)
     public function products() : BelongsToMany
     {
+
         // sử dụng bảng OrderDetail làm trung gian để tìm kiếm product
         return $this->belongsToMany(Product::class,'order_details');
 //            ->using(OrderDetail::class);
