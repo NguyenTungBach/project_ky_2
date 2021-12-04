@@ -114,7 +114,7 @@ class OrderController extends Controller
         try {
             $paginate = 9;
             $order = Order::query()
-//                ->findByNameProduct();
+                ->findByNameProduct()
                 ->findByName()
                 ->findByPhone()
                 ->findById()
@@ -130,6 +130,7 @@ class OrderController extends Controller
                 'items' => $order->paginate($paginate),
                 'totalOrderSearch' => $order->sum('total_price'),
                 'oldName' => $request->get('name'),
+                'oldNameProduct' => $request->get('nameProduct'),
                 'oldId' => $request->get('id'),
                 'oldPhone' => $request->get('phone'),
                 'oldEmail' => $request->get('email'),

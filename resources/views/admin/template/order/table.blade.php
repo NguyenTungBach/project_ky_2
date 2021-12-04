@@ -118,7 +118,7 @@
 {{--                                              Find By Product name--}}
                                 <div class="col-md-3 col-sm-3 form-group pull-right pr-2 top_search">
                                     <input type="text" class="form-control query"
-                                           value="{{$oldProductName ?? ""}}" name="nameProduct"
+                                           value="{{$oldNameProduct ?? ""}}" name="nameProduct"
                                            placeholder="Tên sản phẩm">
                                     <span class="delete-search">&times;</span>
                                     <span class="icon-search"><i class="fa fa-search"></i></span>
@@ -264,10 +264,7 @@
                                     <span class="icon-search"><i
                                             class="fa fa-search"></i></span>
                                 </div>
-                                <div class="col-md-3 col-sm-3 form-group pull-right pr-2 top_search float-right">
-                                    <a style="border-radius: 10px" class="btn btn-secondary ml-2" href="/admin/orders">Bỏ
-                                        lọc</a>
-                                </div>
+
                             </div>
                             <div class="clearfix"></div>
                             @if(\Illuminate\Support\Facades\Session::has('message'))
