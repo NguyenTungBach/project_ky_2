@@ -152,6 +152,7 @@
                                         <thead>
                                         <tr>
                                             <th>ID đơn hàng</th>
+                                            <th>Ảnh</th>
                                             <th>Tên sản phẩm</th>
                                             <th>Giá sản phẩm<small>(VND)</small></th>
                                             <th>Số lượng mua</th>
@@ -160,10 +161,13 @@
                                             <th>Tổng tiền<small>(VND)</small></th>
                                         </tr>
                                         </thead>
+
                                         <tbody>
                                         @foreach($item->orderDetails as $orderDetail)
                                             <tr>
+
                                                 <td>{{$item->id}}</td>
+                                                <td><img style="width: 80px" src="{{$orderDetail->product->firstImage}}" alt=""></td>
                                                 <td>{{$orderDetail->product->name}}</td>
                                                 <td>{{$orderDetail->FormatPrice}}</td>
                                                 <td>{{$orderDetail->quantity}}</td>
@@ -192,7 +196,6 @@
     </div>
 @endsection
 @section('page-script')
-    <script src="/admin/js/manager-page.js"></script>
     <script src="/js/jquery.toast.min.js"></script>
     <script>
         $('#status').change(function () {
@@ -201,3 +204,4 @@
 
     </script>
 @endsection
+

@@ -24,7 +24,8 @@ class Order extends Model
 
     public function products() : BelongsToMany
     {
-        return $this->belongsToMany(Product::class)->using(OrderDetail::class);;
+        return $this->belongsToMany(Product::class,'order_details')
+            ->using(OrderDetail::class);
     }
 
 
@@ -38,6 +39,18 @@ class Order extends Model
     {
         if (request()->filled('name')) {
             $query->where('ship_name', 'LIKE', '%' . request()->get('name') . '%');
+        }
+
+        return $query;
+    }
+
+    public function scopeFindByNameProduct($query)
+    {
+        if (request()->filled('nameProduct')) {
+            $name =request()->get('nameProduct');
+            $query->whereHas('products', function($q) use ($name) {
+                $q->where('name', 'like' , '%'."$name". '%');
+            });
         }
 
         return $query;

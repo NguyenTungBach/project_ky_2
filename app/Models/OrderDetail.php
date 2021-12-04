@@ -10,11 +10,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class OrderDetail extends Pivot
 {
     use HasFactory;
-    protected $table = 'order_product';
-    function getFormatPriceAttribute(): string //dữ liệu trả về là string
-    {
-        return number_format($this->unit_price);
-    }
+    protected $table = 'order_details';
 
     public function product(): BelongsTo
     {
@@ -24,6 +20,11 @@ class OrderDetail extends Pivot
     public function order(): BelongsTo
     {
         return $this->belongsTo(Order::class);
+    }
+
+    function getFormatPriceAttribute(): string //dữ liệu trả về là string
+    {
+        return number_format($this->unit_price);
     }
 
 

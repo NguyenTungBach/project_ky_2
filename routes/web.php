@@ -11,6 +11,7 @@ use App\Http\Controllers\client\ContactController;
 use App\Http\Controllers\client\FarmController;
 use App\Http\Controllers\client\HomeController;
 use App\Http\Controllers\client\ProductController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -86,8 +87,6 @@ Route::get('admin/category/search', [CategoryController::class, 'search']);
 //***************************** Order ************************************
 Route::get('admin/orders', [OrderController::class, 'getAll']);
 
-// hiển thị thông tin order
-Route::get('admin/order/{id}', [OrderController::class, 'getInformation']);
 //update các trạng thái của order
 Route::post('admin/order/update/status', [OrderController::class, 'updateStatus']);
 Route::post('admin/order/update-multi/status', [OrderController::class, 'updateAllStatus']);
@@ -99,7 +98,12 @@ Route::post('admin/order/export', [OrderController::class, 'exportOrder']);
 //xoá đơn hàng(xoá mềm)
 Route::get('admin/order/delete/{id}', [OrderController::class, 'delete']);
 
+//Tìm kiếm
 Route::get('admin/order/search', [OrderController::class, 'index']);
+
+// hiển thị thông tin order
+//Route::get('admin/order/detail/{id}', [OrderController::class, 'getDetail']);
+Route::get('admin/order/{id}', [OrderController::class, 'getInformation']);
 //Route::get('admin/order/index', [OrderController::class, 'index']);
 
 //======================================================================================================================

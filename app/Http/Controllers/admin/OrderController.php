@@ -114,6 +114,7 @@ class OrderController extends Controller
         try {
             $paginate = 9;
             $order = Order::query()
+//                ->findByNameProduct();
                 ->findByName()
                 ->findByPhone()
                 ->findById()
@@ -149,10 +150,16 @@ class OrderController extends Controller
         }
     }
 
+    public function getDetail($id){
+        return "id $id";
+    }
 
     public function getInformation($id){
         try {
-            return view('admin.template.order.order-detail',['item' =>Order::find($id)]);
+
+            return view('admin.template.order.order-detail',[
+                'item' =>Order::find($id)
+            ]);
         }catch (\Exception $e){
             return "Id không tồn tại hoặc lỗi lấy trang.";
         }
