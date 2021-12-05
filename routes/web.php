@@ -95,7 +95,6 @@ Route::get('admin/order/detail/{id}', [OrderController::class, 'getInformation']
 
 //update các trạng thái của order
 Route::post('admin/order/update/status', [OrderController::class, 'updateStatus']);
-Route::post('admin/order/update-multi/status', [OrderController::class, 'updateAllStatus']);
 Route::post('admin/order/remove-multi/status', [OrderController::class, 'removeAllStatus']);
 
 //download excel
@@ -126,6 +125,19 @@ Route::post('admin/contact/update-multi/status',[\App\Http\Controllers\admin\Con
 
 // tìm kiếm
 Route::get('admin/contact/search',[\App\Http\Controllers\admin\ContactController::class,'search']);
+
+//***************************** User ************************************
+Route::get('admin/users',[\App\Http\Controllers\admin\UserController::class,'getAll']);
+Route::get('admin/user/search',[\App\Http\Controllers\admin\UserController::class,'search']);
+
+//lấy thông tin đưa ra form
+Route::get('admin/user/detail/{id}', [\App\Http\Controllers\admin\UserController::class, 'getDetail']);
+Route::get('admin/user/update/{id}', [\App\Http\Controllers\admin\UserController::class, 'getInformation']);
+//lấy thông tin sau khi chỉnh sửa rồi update
+Route::post('admin/user/update', [\App\Http\Controllers\admin\UserController::class, 'update']);
+Route::post('admin/user/remove-multi/status', [\App\Http\Controllers\admin\UserController::class, 'removeAllStatus']);
+Route::post('admin/user/update/status', [\App\Http\Controllers\admin\UserController::class, 'updateStatus']);
+
 
 //======================================================================================================================
 //========================================= CLIENT =====================================================================

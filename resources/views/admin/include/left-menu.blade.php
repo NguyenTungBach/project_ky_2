@@ -37,9 +37,14 @@
                 </ul>
             </li>
             {{--Product Menu--}}
+
             {{--Quản lý phản hồi--}}
             <li><a href="/admin/contacts"><i class="fa fa-shopping-cart"></i> Phản hồi </a>
             {{--Quản lý phản hồi--}}
+
+            {{--Quản lý khách hàng--}}
+            <li><a href="/admin/users"><i class="fa fa-shopping-cart"></i> Khách hàng </a>
+            {{--Quản lý khách hàng--}}
         </ul>
     </div>
 </div>

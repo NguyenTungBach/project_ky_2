@@ -319,7 +319,7 @@
                                             <td>{{ $item->created_at}}</td>
 
                                             <td>{{number_format($item['total_price'])}} VNĐ</td>
-                                            <td><a href="/admin/order/{{$item->id}}" class="hover-pointer dataItem">
+                                            <td><a href="/admin/order/detail/{{$item->id}}" class="hover-pointer dataItem">
                                                     <i class="fa fa-info-circle mr-1 text-primary" style="font-size: 16px;"
                                                        data-toggle="tooltip" data-placement="bottom"
                                                        title="Information"

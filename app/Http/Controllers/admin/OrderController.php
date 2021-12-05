@@ -151,13 +151,12 @@ class OrderController extends Controller
         }
     }
 
-    public function getDetail($id){
-        return "id $id";
-    }
+//    public function getDetail($id){
+//        return "id $id";
+//    }
 
     public function getInformation($id){
         try {
-
             return view('admin.template.order.order-detail',[
                 'item' =>Order::find($id)
             ]);

@@ -34,21 +34,27 @@ class UserController extends Controller
             $user->phone = $phone;
             $user->password = $password;;
             $user->created_at = Carbon::now('Asia/Ho_Chi_Minh');
-            $user->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
+//            $user->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
             $user->save();
             return view('client.page.account.login');
         }
     }
     function getLogin(){
-        if (Session::has('loginUserId')){
-            return Session::get('loginUserId');
-        }
+//        if (Session::has('loginUserId')){
+//            return Session::get('loginUserId');
+//        }
         return view('client.page.account.login');
     }
     function login(LoginRequest  $request){
         $email = $request->get('email');
         $user = User::where('email',$email)->first();
         if ($user){
+            if ($user->status == 0){
+                return redirect()
+                    ->back()
+                    ->with('loginFail', 'Tài khoản này đã bị xóa xin gọi admin để lấy lại')
+                    ->withInput();
+            }
             $password = $request->get('password');
             $isLogin = Hash::check($password, $user->password);
             if ($isLogin){

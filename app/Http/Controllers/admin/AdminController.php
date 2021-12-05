@@ -61,7 +61,7 @@ class AdminController extends Controller
         $password = Hash::make($request->get('password'));
         // kiểm tra sự tồn tại của tài khoản
 //        $existUser = DB::table('admins')->where('email',$email )->exists();
-        $existUser = Admin::where('email',$email )->exists();
+        $existUser = Admin::where('email',$email)->exists();
         if ($existUser) {
             return redirect()
                 ->back()
