@@ -43,9 +43,12 @@ class UserController extends Controller
     }
 
     function getLogin(){
-//        if (Session::has('loginUserId')){
-//            return Session::get('loginUserId');
-//        }
+        if (Session::has('loginUserId')){
+            $user = User::where('id',Session::get('loginUserId'))->first();
+            return view('client.page.account.detail',[
+                'items' =>$user
+            ]);
+        }
         return view('client.page.account.login');
     }
     function login(LoginRequest  $request){

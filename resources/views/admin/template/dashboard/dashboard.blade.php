@@ -173,7 +173,35 @@
             };
 
             var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+            google.visualization.events.addListener(chart, 'select', selectLine);
+            function selectLine() {
+                let id = '';
+                let name ='';
+                var selection = chart.getSelection();
+                for (var i = 0; i < selection.length; i++) {
+                    var item = selection[i];
+                    if (item.row != null) {
+                        id = data.getFormattedValue(item.row, 2);
+                        name = data.getFormattedValue(item.row, 0);
+                        alert(id)
+                    }
+                }
 
+                if(id.length > 0){
+                    console.log(id, name);
+                    modalFindProduct(id,name);
+                }else {
+                    $.toast({
+                        heading: 'Information',
+                        text: `Bạn không lựa chọn sản phẩm nào.`,
+                        icon: 'info',
+                        loader: true,        // Change it to false to disable loader
+                        loaderBg: '#9EC600',  // To change the background
+                        position: 'top-right'
+                    })
+                }
+
+            }
             chart.draw(data, options);
         }
 
@@ -232,7 +260,7 @@
             var span = document.getElementsByClassName("close")[0];
             var modal = document.getElementById("myModal");
 
-            $('.header-modal-text h5').html(`Bạn đã có muốn tìn kiếm những hoá đơn có chưa '${name}'?`)
+            $('.header-modal-text h5').html(`Bạn đã có muốn tìn kiếm những hoá đơn có sản phẩm '${name}'?`)
             modal.style.display = "block";
             // When the user clicks on <span> (x), close the modal
             span.onclick = function() {

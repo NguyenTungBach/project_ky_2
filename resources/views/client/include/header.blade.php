@@ -1,7 +1,44 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
-    #account a:hover{
+    #account a:hover {
         color: black;
+    }
+
+    .cart-header {
+        top: 75%;
+        right: 20px;
+    }
+
+    #menu-user {
+        display: none;
+        position: absolute;
+        z-index: 1200;
+        right: 20px;
+        top: 75%;
+        width: 244px;
+        background: #fff;
+        padding: 20px 20px;
+
+        box-shadow: 0 0px 7px 0px rgb(0 0 0 / 10%);
+        -moz-box-shadow: 0 0px 7px 0px rgba(0, 0, 0, 0.1);
+        -webkit-box-shadow: 0 0px 7px 0px rgb(0 0 0 / 10%);
+        -o-box-shadow: 0 0px 7px 0px rgba(0, 0, 0, 0.1);
+
+    }
+
+    #user:hover #menu-user {
+        display: block;
+    }
+    #menu-user ul a {
+        color: #000 ;
+
+    }
+    #menu-user ul a li{
+       padding: 4px 2px;
+    }
+    #menu-user ul a:hover li{
+        background-color: #8db263;
+        color: #FFF;
     }
 </style>
 <header>
@@ -55,15 +92,35 @@
                     }
                 @endphp
                 <!-- Icon header -->
-                    <a href="/user/login">
-                        <div class="wrap-icon-header flex-w flex-r-m h-full wrap-menu-click p-t-8">
-                            <div class="wrap-cart-header h-full flex-m m-l-10 menu-click">
-                                <div class="icon-header-item flex-c-m trans-04">
-                                    <img style="width: 20px;" src="/client/images/icons/User.png" alt="CART">
-                                </div>
+
+                    <div class="wrap-icon-header flex-w flex-r-m h-full wrap-menu-click p-t-8">
+                        <div class="wrap-cart-header h-full flex-m m-l-10 ">
+                            <div class="icon-header-item flex-c-m trans-04" id="user">
+                                <img style="width: 20px;" src="/client/images/icons/User.png" alt="CART">
+                            </div>
+                            <div class="trans-04" id="menu-user">
+                                <ul>
+                                    @if(session()->has('loginUserId'))
+                                        <a href="/user/login">
+                                            <li><i class="fa fa-info-circle mr-2"></i>Thông tin cá nhân</li>
+                                        </a>
+                                        <a href="">
+                                            <li><i class="fa fa-list mr-2"></i>Danh sách đơn hàng đã đặt hàng</li>
+                                        </a>
+                                    @else
+                                        <a href="/user/login">
+                                            <li><i class="fa fa-sign-out mr-2"></i>Đăng kí tài khoản</li>
+                                        </a>
+                                        <a href="">
+                                            <li><i class="fa fa-sign-in mr-2"></i>Đăng nhập</li>
+                                        </a>
+                                    @endif
+
+                                </ul>
                             </div>
                         </div>
-                    </a>
+                    </div>
+
 
                     <div class="wrap-icon-header flex-w flex-r-m h-full wrap-menu-click p-t-8">
                         <div class="wrap-cart-header h-full flex-m m-l-10 menu-click">
@@ -106,15 +163,15 @@
                                                         </div>
                                                     </div>
 
-{{--                                                    <div class="size-w-14 flex-b">--}}
-{{--                                                        <a href="/cart/delete/{{$product->id}}" style="position: absolute;top: 0;" class="lh-10">--}}
-{{--                                                            <img src="/client/images/icons/icon-close.png" alt="CLOSE">--}}
-{{--                                                        </a>--}}
-{{--                                                    </div>--}}
+                                                    {{--                                                    <div class="size-w-14 flex-b">--}}
+                                                    {{--                                                        <a href="/cart/delete/{{$product->id}}" style="position: absolute;top: 0;" class="lh-10">--}}
+                                                    {{--                                                            <img src="/client/images/icons/icon-close.png" alt="CLOSE">--}}
+                                                    {{--                                                        </a>--}}
+                                                    {{--                                                    </div>--}}
                                                 </div>
                                             @endforeach
                                         @else
-                                        <div></div>
+                                            <div></div>
                                         @endif
                                     </div>
                                 </div>
@@ -154,7 +211,8 @@
                 }
             @endphp
             <div class="wrap-cart-header h-full flex-m m-l-5 menu-click">
-                <div class="icon-header-item flex-c-m trans-04 icon-header-noti" data-notify="{{isset($shopCart) ? sizeof($shopCart) : ''}}">
+                <div class="icon-header-item flex-c-m trans-04 icon-header-noti"
+                     data-notify="{{isset($shopCart) ? sizeof($shopCart) : ''}}">
                     <img src="/client/images/icons/icon-cart-2.png" alt="CART">
                     <div>
                         <i class="far fa-user-circle"><a href="$"></a></i>
@@ -198,7 +256,7 @@
                                     </div>
                                 @endforeach
                             @else
-                            <div></div>
+                                <div></div>
                             @endif
                         </div>
                     </div>

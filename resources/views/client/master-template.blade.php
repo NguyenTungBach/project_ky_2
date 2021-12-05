@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   @yield('title')
+@yield('title')
 {{--    @include('client.include.css')--}}
-    @yield('css-page')
-   <!--===============================================================================================-->
-       <link rel="stylesheet" type="text/css" href="/client/css/util.css">
-       <link rel="stylesheet" type="text/css" href="/client/css/main.css">
-       <link rel="stylesheet" type="text/css" href="/client/css/custom-client.css">
+@yield('css-page')
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/client/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/client/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/client/css/custom-client.css">
 </head>
 <body class="animsition">
 
@@ -40,6 +40,20 @@
 @yield('js-page')
 <!--===============================================================================================-->
 <script src="/client/js/main.js"></script>
-
+<script>
+    let menuUser = $('#menu-user');
+    $('#user').on('click', function () {
+        if (menuUser.css('display') === 'none') {
+            menuUser.css('display', 'block')
+        } else {
+            menuUser.css('display', 'none')
+        }
+    })
+    if (menuUser.css('display') === 'block') {
+        $('body').on('click', function () {
+            menuUser.css('display', 'none')
+        })
+    }
+</script>
 </body>
 </html>
