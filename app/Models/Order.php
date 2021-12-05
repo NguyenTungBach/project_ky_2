@@ -17,13 +17,17 @@ class Order extends Model
     public $timestamps = false;
     use HasFactory;
 
+    // 1 Order có nhiều OrderDetail (1 - n)
     public function orderDetails() : HasMany
     {
         return $this->hasMany(OrderDetail::class, 'order_id', 'id');
     }
 
+    // 1 order thuộc về nhiều product, (n - 1)
     public function products() : BelongsToMany
     {
+
+        // sử dụng bảng OrderDetail làm trung gian để tìm kiếm product
         return $this->belongsToMany(Product::class,'order_details');
 //            ->using(OrderDetail::class);
     }
@@ -48,6 +52,7 @@ class Order extends Model
     {
         if (request()->filled('nameProduct')) {
             $name =request()->get('nameProduct');
+            // tìm đến bảng product gọi đến name bên ngoài bảng order
             $query->whereHas('products', function($q) use ($name) {
                 $q->where('name', 'like' , '%'."$name". '%');
             });

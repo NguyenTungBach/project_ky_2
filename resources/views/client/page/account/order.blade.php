@@ -55,7 +55,7 @@
                             Hoàng nguyên
                         </td>
                         <td class="column-3">
-                            Ngọc Hà Ba Đình Hà Nội
+
                         </td>
                         <td class="column-6">
                             0946654123
@@ -85,7 +85,6 @@
                     </tr>
                 </table>
             </div>
-
             <div class=" flex-w flex-sb-m p-t-30">
                 <a href="shop-sidebar-grid.html"
                    class="flex-c-m txt-s-103 cl0 bg10 size-h-9 hov-btn2 trans-04 pointer p-rl-29 m-tb-10">

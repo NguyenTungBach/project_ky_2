@@ -37,7 +37,7 @@ class AdminController extends Controller
         } else {
             return redirect()
                 ->back()
-                ->with('loginFail', 'Please check username or password')
+                ->with('loginFail', 'Xin hãy kiểm tra lại tên đăng nhập và mật khẩu')
                 ->withInput();
         }
     }

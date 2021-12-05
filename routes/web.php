@@ -24,9 +24,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('helloword', function (){
-    return "hello";
-});
 //Route::get('/clear-cache', function() {
 //    Artisan::call('cache:clear');
 //    return "Cache is cleared";
@@ -100,7 +97,6 @@ Route::get('admin/order/detail/{id}', [OrderController::class, 'getInformation']
 Route::post('admin/order/update/status', [OrderController::class, 'updateStatus']);
 Route::post('admin/order/update-multi/status', [OrderController::class, 'updateAllStatus']);
 Route::post('admin/order/remove-multi/status', [OrderController::class, 'removeAllStatus']);
-Route::get('admin/order/search', [OrderController::class, 'index']);
 
 //download excel
 Route::post('admin/order/export', [OrderController::class, 'exportOrder']);
@@ -123,6 +119,15 @@ Route::post('admin/blog/update',[\App\Http\Controllers\admin\BlogController::cla
 Route::get('admin/blog/delete/{id}', [\App\Http\Controllers\admin\BlogController::class, 'getConfirmDelete']);
 Route::post('admin/blog/delete', [\App\Http\Controllers\admin\BlogController::class, 'delete']);
 
+//***************************** Contact ************************************
+Route::get('admin/contacts',[\App\Http\Controllers\admin\ContactController::class,'getAll']);
+Route::get('admin/contact/detail/{id}',[\App\Http\Controllers\admin\ContactController::class,'getDetail']);
+Route::post('admin/contact/update/status',[\App\Http\Controllers\admin\ContactController::class,'updateStatus']);
+Route::post('admin/contact/update-multi/status',[\App\Http\Controllers\admin\ContactController::class,'updateAllStatus']);
+
+// tìm kiếm
+Route::get('admin/contact/search',[\App\Http\Controllers\admin\ContactController::class,'search']);
+
 //======================================================================================================================
 //========================================= CLIENT =====================================================================
 Route::get('/', [HomeController::class, 'getHome']);
@@ -135,7 +140,7 @@ Route::get('/product/{id}', [ProductController::class, 'getDetail']);
 Route::get('/farm', [FarmController::class, 'getFarms']);
 
 Route::get('/contact', [ContactController::class, 'getContact']);
-Route::post('/contact', [ContactController::class, 'contact'])->name('contact');
+Route::post('/contact', [ContactController::class, 'contact']);
 
 Route::get('/blog', [BlogController::class, 'getBlog']);
 Route::get('/blogs/{id}', [BlogController::class, 'getDetail']);
@@ -154,6 +159,11 @@ Route::get('/order/{id}', [\App\Http\Controllers\client\OrderController::class, 
 Route::post('/order/create-payment', [\App\Http\Controllers\client\OrderController::class, 'createPayment']);
 Route::post('/order/execute-payment', [\App\Http\Controllers\client\OrderController::class, 'executePayment']);
 Route::get('/check-mail', [\App\Http\Controllers\client\OrderController::class, 'getCheckMail']);
+
 // User
 Route::get('/user/register', [\App\Http\Controllers\client\UserController::class,'getForm']);
-Route::get('/user/oder', [\App\Http\Controllers\client\UserController::class,'getOrder']);
+Route::post('/user/register', [\App\Http\Controllers\client\UserController::class,'create']);
+Route::get('/user/order', [\App\Http\Controllers\client\UserController::class,'getOrder']);
+Route::get('/user/login', [\App\Http\Controllers\client\UserController::class,'getLogin']);
+Route::post('/user/login', [\App\Http\Controllers\client\UserController::class,'login']);
+//Route::post('/user/login/{email}', [\App\Http\Controllers\client\UserController::class,'getDetail']);

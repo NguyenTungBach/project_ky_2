@@ -4,6 +4,7 @@ namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use stdClass;
@@ -21,8 +22,15 @@ class CartController extends Controller
             // nếu chưa có thì tạo shopping cart mới.
             $shoppingCart = [];
         }
+        $user = null;
+        if (Session::has('loginUserId')){
+            $loginUserId = Session::get('loginUserId');
+            $user = User::find($loginUserId);
+        }
+
         return view('client.page.cart.template', [
-            'shoppingCart' => $shoppingCart
+            'shoppingCart' => $shoppingCart,
+            'item' => $user
         ]);
 
 //        return view('client.page.cart.template');

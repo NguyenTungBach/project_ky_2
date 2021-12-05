@@ -31,8 +31,8 @@ class LoginRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.required'=>"Username cannot be blank",
-            'password.required'=>"Password cannot be blank",
+            'email.required'=>"Vui lòng nhập tên đăng nhập",
+            'password.required'=>"Vui lòng nhập mật khẩu",
         ];
     }
 }
