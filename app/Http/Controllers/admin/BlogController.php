@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Session;
 
 class BlogController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('isLoggedIn');
+    }
+
     function getAll(){
         return view('admin.template.blog.table',[
             'items' =>Blog::all()

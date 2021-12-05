@@ -43,18 +43,29 @@ class UserController extends Controller
     }
 
     function getLogin(){
-        if (Session::has('loginUserId')){
-            return Session::get('loginUserId');
-        }
+//        if (Session::has('loginUserId')){
+//            return Session::get('loginUserId');
+//        }
         return view('client.page.account.login');
     }
     function login(LoginRequest  $request){
         $email = $request->get('email');
         $user = User::where('email',$email)->first();
+        $remember_user = $request->has('remember_user');
         if ($user){
+
             $password = $request->get('password');
             $isLogin = Hash::check($password, $user->password);
             if ($isLogin){
+                if ($remember_user) {
+                    setcookie('email', $email, time() + 3600 * 24 * 7);
+                    setcookie('password', $password, time() + 3600 * 24 * 7);
+                    setcookie('remember_user', $remember_user, time() + 3600 * 24 * 7);
+                } else {
+                    setcookie('email', $email, 30);
+                    setcookie('password', $password, 30);
+                    setcookie("remember_user", "", time() - 3600);
+                }
                 Session::put('loginUserId', $user->id);
                 return view('client.page.account.detail',[
                     'items' =>$user

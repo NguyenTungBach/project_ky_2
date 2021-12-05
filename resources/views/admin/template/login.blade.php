@@ -27,6 +27,9 @@
             background-color: #9d9d9d;
             width: 100%;
         }
+        .custom-clear{
+            clear: left;
+        }
     </style>
 </head>
 
@@ -42,21 +45,22 @@
                         <div class="text-danger"><i class="fa fa-info-circle mr-2"></i> {{ session()->get('loginFail') }}</div>
                     @endif
                     <div class="mb-4">
-                        <input type="text" class="form-control mb-0" name="email" value="{{ Request::old('email') }}"
+                        <input type="text" class="form-control mb-0" name="email" value="{{ $_COOKIE['email'] ?? Request::old('email')}}"
                                placeholder="Email"/>
                         @if($errors->has('email'))
-                            <span class="ml-2 text-danger float-left"><i class="fa fa-info-circle mr-2"></i>{{ $errors->first('email') }}</span>
+                           <div> <p class="ml-2 text-danger float-left"><i class="fa fa-info-circle mr-2"></i>{{ $errors->first('email') }}</p></div>
                         @endif
                     </div>
-                    <div class="">
-                        <input type="password" class="form-control mb-0" name="password" value="{{ Request::old('password') }}"
+                    <div class="w-100">
+                        <input type="password" class="form-control mb-0" name="password" value="{{$_COOKIE['password'] ?? '' }}"
                                placeholder="Password"/>
                         @if($errors->has('password'))
-                            <span class="ml-2 text-danger float-left"><i class="fa fa-info-circle mr-2"></i>{{ $errors->first('password') }}</span>
+                           <div class="w-100"><p class="ml-2 text-danger float-left clearfix"><i class="fa fa-info-circle mr-2"></i>{{ $errors->first('password') }}</p></div>
                         @endif
                     </div>
-                    <div class="dis-flex align-items-center row ml-1 mt-2 mb-4">
-                        <input class=""  type="checkbox" name="remember_me" id="remember_me" value="remember_me">
+                    <div class="dis-flex align-items-center row ml-1 mt-2 mb-4 custom-clear">
+                        <input class=""  type="checkbox" name="remember_admin" id="remember_me"
+                               <?php if(isset($_COOKIE['remember_admin'])){ echo 'checked';} ?> value="remember_me">
                         <span class="ml-2" >Giữ tôi luôn đăng nhập</span>
                     </div>
                     <div class="mt-2">

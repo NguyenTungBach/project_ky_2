@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\Admin;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -22,7 +21,7 @@ class AdminController extends Controller
         $email = $request->get('email');
         $password = $request->get('password');
 
-        $remember_me = $request->has('remember_me');
+        $remember_admin = $request->has('remember_admin');
         // tìm đến email có tên đó
 //        $admin = DB::table('admins')->where('email', $email)->first();
 //        $admin = Admin::where('email', $email)->get(); // trả về mảng
@@ -32,8 +31,18 @@ class AdminController extends Controller
         $isLogin = $admin != null && Hash::check($password, $admin->password); // lấy với first vì nó là 1 đối tượng
 
         if ($isLogin) {
+            if ($remember_admin) {
+                setcookie('email', $email, time() + 3600 * 24 * 7);
+                setcookie('password', $password, time() + 3600 * 24 * 7);
+                setcookie('remember_admin', $remember_admin, time() + 3600 * 24 * 7);
+            } else {
+                setcookie('email', $email, 30);
+                setcookie('password', $password, 30);
+                setcookie("remember_admin", "", time() - 3600);
+            }
             Session::put('loginId', $admin->id);
             return redirect('/admin/dashboard');
+
         } else {
             return redirect()
                 ->back()
@@ -42,8 +51,9 @@ class AdminController extends Controller
         }
     }
 
-    public function logOut(){
-        if (Session::has('loginId')){
+    public function logOut()
+    {
+        if (Session::has('loginId')) {
             session()->pull('loginId');
             return redirect('/admin/login');
         }
@@ -56,12 +66,12 @@ class AdminController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        $email =$request->get('email');
+        $email = $request->get('email');
         $fullname = $request->get('fullname');
         $password = Hash::make($request->get('password'));
         // kiểm tra sự tồn tại của tài khoản
 //        $existUser = DB::table('admins')->where('email',$email )->exists();
-        $existUser = Admin::where('email',$email )->exists();
+        $existUser = Admin::where('email', $email)->exists();
         if ($existUser) {
             return redirect()
                 ->back()
