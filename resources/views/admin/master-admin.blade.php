@@ -18,7 +18,7 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="/admin/home" class="site_title"><img class="thumbnail-admin"
+                    <a href="/admin/dashboard" class="site_title"><img class="thumbnail-admin"
                                                                   src="/client/images/icons/favicon.png" alt=""> <span>Fresh vegetables</span></a>
                 </div>
 
@@ -37,7 +37,7 @@
                              class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
-                        <span>Welcome,</span>
+                        <span>Xin chào,</span>
                         <h2>{{$admin->full_name ?? 'Admin'}}</h2>
                     </div>
                 </div>

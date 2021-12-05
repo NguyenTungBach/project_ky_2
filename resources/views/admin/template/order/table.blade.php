@@ -304,46 +304,51 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($items as $item)
-                                        <tr>
-                                            <td><input type="checkbox" value="{{$item->id}}" class="selected-item">
-                                            <td>{{$item->id}}</td>
-                                            <form action="/admin/order/update/status" method="post">
-                                                @include('admin.template.order.status-select')
-                                            </form>
+                                    @if(isset($items))
+                                        @foreach($items as $item)
+                                            <tr>
+                                                <td><input type="checkbox" value="{{$item->id}}" class="selected-item">
+                                                <td>{{$item->id}}</td>
+                                                <form action="/admin/order/update/status" method="post">
+                                                    @include('admin.template.order.status-select')
+                                                </form>
 
-                                            <td>{{$item->ship_name}}</td>
-                                            <td>{{$item->ship_phone}}</td>
-                                            <td>{{$item->ship_email}}</td>
-                                            <td>{{$item->handlerPayment}}</td>
-                                            <td>{{ $item->created_at}}</td>
+                                                <td>{{$item->ship_name}}</td>
+                                                <td>{{$item->ship_phone}}</td>
+                                                <td>{{$item->ship_email}}</td>
+                                                <td>{{$item->handlerPayment}}</td>
+                                                <td>{{ $item->created_at}}</td>
 
-                                            <td>{{number_format($item['total_price'])}} VNĐ</td>
-                                            <td><a href="/admin/order/{{$item->id}}" class="hover-pointer dataItem">
-                                                    <i class="fa fa-info-circle mr-1 text-primary" style="font-size: 16px;"
-                                                       data-toggle="tooltip" data-placement="bottom"
-                                                       title="Information"
-                                                       data-original-title="Tooltip bottom"></i></a>
-{{--                                                <a href="/admin/order/delete/{{$item->id}}" id="delete"--}}
-{{--                                                   class="hover-pointer dataItem"--}}
-{{--                                                   data-toggle="modal"--}}
-{{--                                                   data-target="#deleteModal"--}}
-{{--                                                   data-name="{{$item->name}}"--}}
-{{--                                                   data-id="{{$item->id}}">--}}
-{{--                                                    <i data-toggle="tooltip" data-placement="bottom" title=""--}}
-{{--                                                       data-original-title="Delete"--}}
-{{--                                                       class="fa fa-trash mr-1 text-primary"></i></a></td>--}}
+                                                <td>{{number_format($item['total_price'])}} VNĐ</td>
+                                                <td><a href="/admin/order/detail/{{$item->id}}" class=" hover-pointer dataItem">
+                                                        <i class="fa fa-info-circle mr-1 text-primary" style="font-size: 16px;"
+                                                           data-toggle="tooltip" data-placement="bottom"
+                                                           title="Information"
+                                                           data-original-title="Tooltip bottom"></i></a>
+                                                {{--                                                <a href="/admin/order/delete/{{$item->id}}" id="delete"--}}
+                                                {{--                                                   class="hover-pointer dataItem"--}}
+                                                {{--                                                   data-toggle="modal"--}}
+                                                {{--                                                   data-target="#deleteModal"--}}
+                                                {{--                                                   data-name="{{$item->name}}"--}}
+                                                {{--                                                   data-id="{{$item->id}}">--}}
+                                                {{--                                                    <i data-toggle="tooltip" data-placement="bottom" title=""--}}
+                                                {{--                                                       data-original-title="Delete"--}}
+                                                {{--                                                       class="fa fa-trash mr-1 text-primary"></i></a></td>--}}
 
-                                        </tr>
-                                    @endforeach
+                                            </tr>
+                                        @endforeach
+                                    @endif
+
 
                                     <tr style="font-size: 16px;font-weight: 600;">
                                         <td colspan="8">
                                             Tổng giá tiền
                                         </td>
-                                        <td colspan="2">{{number_format($items->getCollection()->sum('total_price'))}}
-                                            <span
-                                                style="font-weight: 6000; font-size: 13px">VND</span></td>
+                                        @if(isset($items))
+                                            <td colspan="2">{{number_format($items->getCollection()->sum('total_price'))}}
+                                                <span
+                                                    style="font-weight: 6000; font-size: 13px">VND</span></td>
+                                        @endif
                                     </tr>
 
                                     </tbody>
@@ -359,7 +364,9 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <div class="dataTables_paginate">
-                                        {{$items->appends(request()->all())->links('admin.include.pagination')}}
+                                        @if(isset($items))
+                                            {{$items->appends(request()->all())->links('admin.include.pagination')}}
+                                        @endif
                                     </div>
                                 </div>
                             </div>

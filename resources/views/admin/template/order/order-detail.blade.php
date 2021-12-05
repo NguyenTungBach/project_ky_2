@@ -177,7 +177,7 @@
                                             </tr>
                                         @endforeach
                                         <tr>
-                                            <td class="text-center font-weight-bold" colspan="4">Tổng tiền hóa đơn</td>
+                                            <td class="text-center font-weight-bold" colspan="5">Tổng tiền hóa đơn</td>
                                             <td class="text-center font-weight-bold" colspan="3">{{$item->FormatPrice}} <small>(VND)</small> </td>
                                         </tr>
                                         </tbody>

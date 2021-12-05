@@ -1,5 +1,6 @@
 @extends('admin.master-admin')
 @section('page-css')
+    <link rel="stylesheet" href="/css/jquery.toast.min.css">
     <style>
         /* The Modal (background) */
         .modal {
@@ -86,7 +87,7 @@
 
                 <div class="row x_title">
                     <div class="col-md-6">
-                        <h3>Biểu đồ</h3>
+                        <h5>Biểu đồ</h5>
                     </div>
                 </div>
                 <div class="row">
@@ -127,21 +128,21 @@
     <br/>
     <!-- The Modal -->
     <div id="myModal" class="modal">
-
         <!-- Modal content -->
         <div class="modal-content">
-            <div class="modal-header">
-                <h4>Bạn đã chọn sản phẩm này.Bạn có muốn tìm kiếm những hoá đơn chứa sản phẩm này?</h4>
+            <div class="modal-header header-modal-text">
+                <h5></h5>
                 <span class="close">&times;</span>
             </div>
             <div class="modal-footer">
                <button class="btn btn-secondary btn-close" type="button"> Thoát </button>
-                <a class="btn btn-success" href="">Tìm kiếm</a>
+                <a class="btn btn-success" id="search-order" href="/admin/order/search-product/">Tìm kiếm</a>
             </div>
         </div>
     </div>
 @endsection
 @section('page-script')
+    <script src="/js/jquery.toast.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script>
@@ -198,51 +199,60 @@
             };
             var chart = new google.visualization.PieChart(document.getElementById('piechart'));
             chart.draw(data, options);
-            // google.visualization.events.addListener(chart, 'select', selectHandler);
-            // function selectHandler(e) {
-            //     var selection = chart.getValue(0,2);
-            //     var message = '';
-            //     console.log(selection)
-            //     // for (var i = 0; i < selection.length; i++) {
-            //     //     var item = selection[i];
-            //     //     if (item.row != null && item.column != null) {
-            //     //         var str = data.getFormattedValue(item.row, item.column);
-            //     //         message += '{row:' + item.row + ',column:' + item.column + '} = ' + str + '\n';
-            //     //     } else if (item.row != null) {
-            //     //         var str = data.getFormattedValue(item.row, 2);
-            //     //         message += '{row:' + item.row + ', column:none}; value (col 0) = ' + str + '\n';
-            //     //     } else if (item.column != null) {
-            //     //         var str = data.getFormattedValue(0, item.column);
-            //     //         message += '{row:none, column:' + item.column + '}; value (row 0) = ' + str + '\n';
-            //     //     }
-            //     // }
-            //     // if (message == '') {
-            //     //     message = 'nothing';
-            //     // }
-            //     // var span = document.getElementsByClassName("close")[0];
-            //     // var modal = document.getElementById("myModal");
-            //     // var btnClose = document.getElementsByClassName(".btn-close");
-            //     // alert('You selected ' + message);
-            //     // modal.style.display = "block";
-            //     // // When the user clicks on <span> (x), close the modal
-            //     // span.onclick = function() {
-            //     //     modal.style.display = "none";
-            //     // }
-            //     // btnClose.onclick = function() {
-            //     //     alert(1);
-            //     //     // modal.style.display = "none";
-            //     // }
-            //     //
-            //     // // When the user clicks anywhere outside of the modal, close it
-            //     // window.onclick = function(event) {
-            //     //     if (event.target == modal) {
-            //     //         modal.style.display = "none";
-            //     //     }
-            //     // }
-            // }
+
+            google.visualization.events.addListener(chart, 'select', selectHandler);
+            function selectHandler() {
+                let id = '';
+                let name ='';
+                var selection = chart.getSelection();
+                for (var i = 0; i < selection.length; i++) {
+                    var item = selection[i];
+                    if (item.row != null) {
+                        id = data.getFormattedValue(item.row, 2);
+                        name = data.getFormattedValue(item.row, 0);
+                    }
+                }
+
+                if(id.length > 0){
+                    console.log(id, name);
+                    modalFindProduct(id,name);
+                }else {
+                    $.toast({
+                        heading: 'Information',
+                        text: `Bạn không lựa chọn sản phẩm nào.`,
+                        icon: 'info',
+                        loader: true,        // Change it to false to disable loader
+                        loaderBg: '#9EC600',  // To change the background
+                        position: 'top-right'
+                    })
+                }
+
+            }
         }
+        function modalFindProduct(id,name){
+            var span = document.getElementsByClassName("close")[0];
+            var modal = document.getElementById("myModal");
+
+            $('.header-modal-text h5').html(`Bạn đã có muốn tìn kiếm những hoá đơn có chưa '${name}'?`)
+            modal.style.display = "block";
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            $('#search-order').attr('href', `/admin/order/search-product/${id}`)
 
 
+            $('.btn-close').on('click', function() {
+                modal.style.display = "none";
+            })
 
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        }
     </script>
 @endsection

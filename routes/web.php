@@ -110,6 +110,7 @@ Route::get('admin/order/delete/{id}', [OrderController::class, 'delete']);
 
 //Tìm kiếm
 Route::get('admin/order/search', [OrderController::class, 'index']);
+Route::get('admin/order/search-product/{id}', [OrderController::class, 'searchByIdProduct']);
 
 //***************************** Blog ************************************
 

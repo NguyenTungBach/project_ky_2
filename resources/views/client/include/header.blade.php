@@ -49,6 +49,15 @@
                     }
                 @endphp
                 <!-- Icon header -->
+                    <a href="/user/oder">
+                        <div class="wrap-icon-header flex-w flex-r-m h-full wrap-menu-click p-t-8">
+                            <div class="wrap-cart-header h-full flex-m m-l-10 menu-click">
+                                <div class="icon-header-item flex-c-m trans-04">
+                                    <img style="width: 20px;" src="/client/images/icons/User.png" alt="CART">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                     <div class="wrap-icon-header flex-w flex-r-m h-full wrap-menu-click p-t-8">
                         <div class="wrap-cart-header h-full flex-m m-l-10 menu-click">
                             <div class="icon-header-item flex-c-m trans-04 icon-header-noti"

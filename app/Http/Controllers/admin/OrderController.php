@@ -16,6 +16,7 @@ class OrderController extends Controller
     {
         $this->middleware('isLoggedIn');
     }
+
     public function getAll()
     {
         $paginate = 9;
@@ -28,7 +29,8 @@ class OrderController extends Controller
         ]);
     }
 
-    public function exportOrder(){
+    public function exportOrder()
+    {
         $ids = explode(",", request('ids')); // tạo mảng ids
         return (new OrderExport($ids))->download('orders.xlsx');
     }
@@ -69,7 +71,7 @@ class OrderController extends Controller
             }
             $this->sendMail($order->id, $title);
 
-            session()->flash('message',"Cập nhật trạng thái đơn hàng mã $orderId, thành công");
+            session()->flash('message', "Cập nhật trạng thái đơn hàng mã $orderId, thành công");
 
             return redirect()->back();
         } catch (\Exception $e) {
@@ -112,7 +114,7 @@ class OrderController extends Controller
     {
         try {
             $paginate = 9;
-            $order = Order::query()
+            $orders = Order::query()
                 ->findByNameProduct()
                 ->findByName()
                 ->findByPhone()
@@ -127,8 +129,10 @@ class OrderController extends Controller
                 ->sortByPrice();
 
             return view('admin.template.order.table', [
-                'items' => $order->paginate($paginate),
-                'totalOrderSearch' => $order->sum('total_price'),
+                'items' => $orders->paginate($paginate),
+                'paginate' => $paginate,
+                'sumOrder' => $orders->count(),
+                'totalOrderSearch' => $orders->sum('total_price'),
                 'oldName' => $request->get('name'),
                 'oldNameProduct' => $request->get('nameProduct'),
                 'oldId' => $request->get('id'),
@@ -140,10 +144,10 @@ class OrderController extends Controller
                 'oldEndDate' => $request->get('endDate'),
                 'oldStartDate' => $request->get('startDate'),
                 'oldTotalPrice' => $request->get('totalPrice'),
-                'paginate' => $paginate,
-                'sumOrder' => $order->count(),
                 'sortPrice' => $request->get('sortPrice'),
                 'sortName' => $request->get('sortName'),
+
+
             ]);
         } catch (\Exception $e) {
 
@@ -151,22 +155,34 @@ class OrderController extends Controller
         }
     }
 
-    public function getDetail($id){
-        return "id $id";
+    public function searchByIdProduct($id)
+    {
+        $paginate = 9;
+        $orders = Order::whereHas('products', function ($q) use ($id) {
+            $q->where('id', $id);
+        });
+        return view('admin.template.order.table', [
+            'items' => $orders->paginate($paginate),
+            'sumOrder' => $orders->count(),
+            'totalOrderSearch' => $orders->sum('total_price'),
+            'paginate' => $paginate,
+        ]);
     }
 
-    public function getInformation($id){
+
+    public function getInformation($id)
+    {
         try {
 
-            return view('admin.template.order.order-detail',[
-                'item' =>Order::find($id)
+            return view('admin.template.order.order-detail', [
+                'item' => Order::find($id)
             ]);
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             return "Id không tồn tại hoặc lỗi lấy trang.";
         }
     }
 
-    function sendMail($id,$title)
+    function sendMail($id, $title)
 
     {
         $data = Order::find($id);
