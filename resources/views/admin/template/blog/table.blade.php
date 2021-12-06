@@ -31,10 +31,10 @@
                                     <thead>
                                     <tr>
                                         <th>Id</th>
+                                        <th>Ảnh bài viết</th>
                                         <th>Tên bài viết</th>
                                         <th>Mô tả</th>
-                                        <th>Chi tiết</th>
-                                        <th>Ảnh bài viết</th>
+
                                         <th>Trạng thái</th>
                                         <th style="width: 7%">Hành động</th>
                                     </tr>
@@ -43,10 +43,10 @@
                                     @foreach($items as $item)
                                         <tr>
                                             <td>{{$item->id}}</td>
+                                            <td><img style="width: 300px" src="{{$item->thumbnail}}" class="img-thumbnail" alt=""></td>
                                             <td>{{$item->title}}</td>
                                             <td>{{$item->description}}</td>
-                                            <td>{!! $item->content !!}</td>
-                                            <td><img src="{{$item->thumbnail}}" class="img-thumbnail" alt=""></td>
+
                                             @switch($item->status)
                                                 @case(1)
                                                     <td>Chưa xóa</td>

@@ -23,6 +23,32 @@
             width: 100%;
             min-width: unset !important;
         }
+
+        #table-wrapper {
+            position:relative;
+        }
+        #table-scroll {
+            height:400px;
+            overflow:auto;
+            margin-top:20px;
+        }
+        #table-wrapper table {
+            width:100%;
+
+        }
+        #table-wrapper table * {
+            background: #ffffff;
+            color:black;
+        }
+        #table-wrapper table thead th .text {
+            position:absolute;
+            top:-20px;
+            z-index:2;
+            height:20px;
+            width:35%;
+            border:1px solid red;
+        }
+
     </style>
 @endsection
 @section('content-page')
@@ -48,7 +74,8 @@
                                     <span class="txt-m-104 cl6 p-b-5">
                                         Trạng thái đơn hàng:
                                     </span>
-                                    <span style="font-weight: unset !important;" class="pl-2">{{$order->handlerStatus}}</span>
+                                    <span style="font-weight: unset !important;"
+                                          class="pl-2">{{$order->handlerStatus}}</span>
                                 </div>
                             </div>
                             <div class="col-sm-12 p-b-5">
@@ -57,9 +84,13 @@
                                         Tình trạng thanh toán :
                                     </span>
                                     @if($order->check_out)
-                                        <span style="font-weight: unset !important;" class="pl-2">Đã thanh toán <i class="fa fa-check-circle ml-2 text-success" aria-hidden="true"></i></span>
+                                        <span style="font-weight: unset !important;" class="pl-2">Đã thanh toán <i
+                                                class="fa fa-check-circle ml-2 text-success"
+                                                aria-hidden="true"></i></span>
                                     @else
-                                        <span style="font-weight: unset !important;" class="pl-2">Chưa thanh toán <i class="fa fa-times-circle-o ml-2 text-danger" aria-hidden="true"></i></span>
+                                        <span style="font-weight: unset !important;" class="pl-2">Chưa thanh toán <i
+                                                class="fa fa-times-circle-o ml-2 text-danger"
+                                                aria-hidden="true"></i></span>
                                     @endif
                                 </div>
                             </div>
@@ -115,42 +146,47 @@
                         </h4>
 
                         <div class="wrap-table-shopping-cart">
-                            <table class="table-shopping-cart table-shop">
-                                <tr class="table_head bg12">
-                                    <th class="column-1 p-l-30" style="width: 50%">Sản phẩm</th>
-                                    <th class="column-2 text-center">Giá (VND)</th>
-                                    <th class="column-3 text-center" style="width: 15%">Số lượng</th>
-                                    <th class="column-4 text-center" style="width: 20%">Tổng giá (VND)</th>
-                                </tr>
-                            @foreach($order->orderDetails as $orderDetail)
-                                @php
-                                    if (isset($total_price_in_usd) && isset($orderDetail))
-                                @endphp
-                                <!-- cart header item -->
-                                    <tr class="table_row">
-                                        <td class="column-1">
-                                            <div class="flex-w flex-m">
-                                                <div class="wrap-pic-w size-w-56 bo-all-1 bocl12 m-r-10">
-                                                    <img src="{{$orderDetail->product->FirstImage}}" alt="IMG">
-                                                </div>
-                                                <span style="font-size: 16px">
+                            <div id="table-wrapper">
+                                <div id="table-scroll">
+                                    <table class="table-shopping-cart table-shop">
+                                            <tr class="table_head bg12">
+                                                <th class="column-1 p-l-30 .text" style="width: 50%">Sản phẩm</th>
+                                                <th class="column-2 text-center .text">Giá (VND)</th>
+                                                <th class="column-3 text-center .text" style="width: 15%">Số lượng</th>
+                                                <th class="column-4 text-center .text" style="width: 20%">Tổng giá (VND)</th>
+                                            </tr>
+                                    @foreach($order->orderDetails as $orderDetail)
+                                        @php
+                                            if (isset($total_price_in_usd) && isset($orderDetail))
+                                        @endphp
+                                        <!-- cart header item -->
+                                            <tr class="table_row">
+                                                <td class="column-1">
+                                                    <div class="flex-w flex-m">
+                                                        <div class="wrap-pic-w size-w-56 bo-all-1 bocl12 m-r-10">
+                                                            <img src="{{$orderDetail->product->FirstImage}}" alt="IMG">
+                                                        </div>
+                                                        <span style="font-size: 16px">
                                                     {{$orderDetail->product->name}}
                                                 </span>
-                                            </div>
-                                        </td>
-                                        <td class="column-2 text-center">
-                                            {{\App\Helpers\Helper::formatVND($orderDetail->product->price)}}
-                                        </td>
-                                        <td class="column-3 text-center">
-                                            {{$orderDetail->quantity}}
-                                        </td>
-                                        <td class="column-4 text-center">
-                                            {{\App\Helpers\Helper::formatVND($orderDetail->product->price * $orderDetail->quantity)}}
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </table>
-                            <div class="flex-w flex-sb-m txt-m-103 p-tb-23 pl-4 pr-4">
+                                                    </div>
+                                                </td>
+                                                <td class="column-2 text-center">
+                                                    {{\App\Helpers\Helper::formatVND($orderDetail->product->price)}}
+                                                </td>
+                                                <td class="column-3 text-center">
+                                                    {{$orderDetail->quantity}}
+                                                </td>
+                                                <td class="column-4 text-center">
+                                                    {{\App\Helpers\Helper::formatVND($orderDetail->product->price * $orderDetail->quantity)}}
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="flex-w flex-sb-m txt-m-103 p-tb-23 mt-3 pl-4 pr-4">
                                 <h3 class="size-w-61 cl6">
                                     Total
                                 </h3>

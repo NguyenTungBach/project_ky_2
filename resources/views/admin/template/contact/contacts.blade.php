@@ -117,7 +117,7 @@
                                         <th>Số điện thoại</th>
                                         <th>Email</th>
                                         <th>Trạng thái</th>
-                                        <th style="width: 8%">Hành động</th>
+                                        <th style="width: 5%">Hành động</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -132,15 +132,11 @@
                                                 <form action="/admin/contact/update/status" method="post">
                                                     @csrf
                                                     <input type="hidden" value="{{$item->id}}" name="id">
-                                                    <select name="status-update" class="status-update" data-id="{{$item->id}}" style="font-size: 14px; padding: 5px; border: 1px solid #bdbdbd" >
-                                                        <option value="0" {{$item->status == \App\Enums\ContactStatus::Delete ? 'selected' : ''}}>Đã xóa</option>
-                                                        <option value="1" {{$item->status == \App\Enums\ContactStatus::Unread ? 'selected' : ''}}>Chưa đọc</option>
-                                                        <option value="2" {{$item->status == \App\Enums\ContactStatus::Read ? 'selected' : ''}}>Đã đọc</option>
-                                                    </select>
+                                                    @include('admin.template.contact.status')
                                                 </form>
                                             </td>
-                                            <td><a href="/admin/contact/detail/{{$item->id}}" class="hover-pointer dataItem">
-                                                    <i class="fa fa-info mr-1 text-primary"
+                                            <td class="text-center"><a href="/admin/contact/detail/{{$item->id}}" class="hover-pointer dataItem">
+                                                    <i style="font-size: 18px" class="fa fa-info-circle mr-1 text-primary"
                                                        data-toggle="tooltip" data-placement="bottom"
                                                        title="Information"
                                                        data-original-title="Tooltip bottom"></i></a>

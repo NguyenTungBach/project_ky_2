@@ -122,7 +122,7 @@
                                                     </select>
                                                 </form>
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 <a href="/admin/user/detail/{{$item->id}}" class="hover-pointer dataItem">
                                                     <i style="font-size: 16px" class="fa fa-info-circle mr-1 text-primary"
                                                        data-toggle="tooltip" data-placement="bottom"

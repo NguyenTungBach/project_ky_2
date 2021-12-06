@@ -37,7 +37,6 @@
 <div>
     <div class="login_wrapper">
         <div class="animate form login_form">
-            <?php print_r($_COOKIE)?>
             <section class="login_content">
                 <form method="POST" name="login" action="{{route('auth.login')}}">
                     @csrf

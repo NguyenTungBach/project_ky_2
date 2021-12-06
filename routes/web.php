@@ -96,6 +96,7 @@ Route::get('admin/order/detail/{id}', [OrderController::class, 'getInformation']
 //update các trạng thái của order
 Route::post('admin/order/update/status', [OrderController::class, 'updateStatus']);
 Route::post('admin/order/remove-multi/status', [OrderController::class, 'removeAllStatus']);
+Route::post('admin/order/update-multi/status', [OrderController::class, 'updateAllStatus']);
 
 //download excel
 Route::post('admin/order/export', [OrderController::class, 'exportOrder']);
@@ -106,6 +107,7 @@ Route::get('admin/order/delete/{id}', [OrderController::class, 'delete']);
 //Tìm kiếm
 Route::get('admin/order/search', [OrderController::class, 'index']);
 Route::get('admin/order/search-product/{id}', [OrderController::class, 'searchByIdProduct']);
+Route::get('admin/order/search-date/{date}', [OrderController::class, 'searchByDate']);
 
 //***************************** Blog ************************************
 

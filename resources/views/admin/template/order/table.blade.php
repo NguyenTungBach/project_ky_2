@@ -4,7 +4,11 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
     <link rel="stylesheet" href="/css/jquery.toast.min.css">
     <link rel="stylesheet" href="/admin/css/admin.css">
-
+    <style>
+        .top_search:hover select{
+            cursor: pointer!important;
+        }
+    </style>
 @endsection
 @section('breadcrumb')
     <div class="page-title position-relative">
@@ -79,7 +83,8 @@
                         </ul>
                     </div>
                     <h2 class="col-sm-12 col-md-12">Lọc hoá đơn
-                        <a style="border-radius: 10px" class="mr-3 float-right btn btn-secondary" href="/admin/orders">Bỏ lọc</a>
+                        <a style="border-radius: 10px" class="mr-3 float-right btn btn-secondary" href="/admin/orders">Bỏ
+                            lọc</a>
                     </h2>
                     <div class="x_title">
                         <form action="/admin/order/search" method="get" id="form-search">
@@ -125,7 +130,7 @@
                                     <span class="delete-search">&times;</span>
                                     <span class="icon-search"><i class="fa fa-search"></i></span>
                                 </div>
-{{--                                              Find By Product name--}}
+                                {{--                                              Find By Product name--}}
                                 <div class="col-md-3 col-sm-3 form-group pull-right pr-2 top_search">
                                     <input type="text" class="form-control query"
                                            value="{{$oldNameProduct ?? ""}}" name="nameProduct"
@@ -133,7 +138,7 @@
                                     <span class="delete-search">&times;</span>
                                     <span class="icon-search"><i class="fa fa-search"></i></span>
                                 </div>
-{{--                                       Lọc theo tên      --}}
+                                {{--                                       Lọc theo tên      --}}
                                 <div class="col-md-3 col-sm-3 form-group pull-right top_search pr-2">
                                     <select name="sortName" class="form-control sortOrder">
                                         <option value="">Lọc theo tên</option>
@@ -256,11 +261,11 @@
                                 </div>
                                 <div class="col-md-3 col-sm-3 form-group pull-right pr-2 top_search">
                                     @php
-                                    use Carbon\Carbon;
-                                    if (isset($oldStartDate) && isset($oldEndDate)){
-                                        $oldStartDate = Carbon::parse($oldStartDate)->isoFormat('MM/DD/YYYY');
-                                        $oldEndDate = Carbon::parse($oldEndDate)->isoFormat('MM/DD/YYYY');
-                                    }
+                                        use Carbon\Carbon;
+                                        if (isset($oldStartDate) && isset($oldEndDate)){
+                                            $oldStartDate = Carbon::parse($oldStartDate)->isoFormat('MM/DD/YYYY');
+                                            $oldEndDate = Carbon::parse($oldEndDate)->isoFormat('MM/DD/YYYY');
+                                        }
                                     @endphp
                                     <input type="hidden" name="startDate" id="startDate"
                                            value="{{$oldStartDate ?? ''}}">
@@ -280,7 +285,8 @@
                             @if(\Illuminate\Support\Facades\Session::has('message'))
                                 <div style="margin-top: 15px">
                                     <div class="alert alert-success">
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×
+                                        </button>
                                         <strong>{{\Illuminate\Support\Facades\Session::get('message')}}</strong>
                                     </div>
                                 </div>
@@ -321,10 +327,10 @@
                                                 <form action="/admin/order/update/status" method="post">
                                                     @include('admin.template.order.status-select')
                                                 </form>
-                                               @if($item->user_id != null)
+                                                @if($item->user_id != null)
                                                     <td>{{$item->user_id}}</td>
                                                 @else
-                                                   <td>Khách</td>
+                                                    <td>Khách</td>
                                                 @endif
                                                 <td>{{$item->ship_name}}</td>
                                                 <td>{{$item->ship_phone}}</td>
@@ -333,25 +339,26 @@
                                                 <td>{{ $item->created_at}}</td>
 
                                                 <td>{{number_format($item['total_price'])}}</td>
-                                                <td><a href="/admin/order/detail/{{$item->id}}" class=" hover-pointer dataItem">
-                                                        <i class="fa fa-info-circle mr-1 text-primary" style="font-size: 16px;"
+                                                <td class="text-center"><a href="/admin/order/detail/{{$item->id}}"
+                                                       class=" hover-pointer dataItem">
+                                                        <i class="fa fa-info-circle mr-1 text-primary"
+                                                           style="font-size: 16px;"
                                                            data-toggle="tooltip" data-placement="bottom"
                                                            title="Information"
                                                            data-original-title="Tooltip bottom"></i></a>
-                                                {{--                                                <a href="/admin/order/delete/{{$item->id}}" id="delete"--}}
-                                                {{--                                                   class="hover-pointer dataItem"--}}
-                                                {{--                                                   data-toggle="modal"--}}
-                                                {{--                                                   data-target="#deleteModal"--}}
-                                                {{--                                                   data-name="{{$item->name}}"--}}
-                                                {{--                                                   data-id="{{$item->id}}">--}}
-                                                {{--                                                    <i data-toggle="tooltip" data-placement="bottom" title=""--}}
-                                                {{--                                                       data-original-title="Delete"--}}
-                                                {{--                                                       class="fa fa-trash mr-1 text-primary"></i></a></td>--}}
+{{--                                                    <a href="/admin/order/delete/{{$item->id}}" id="delete"--}}
+{{--                                                       class="hover-pointer dataItem"--}}
+{{--                                                       data-toggle="modal"--}}
+{{--                                                       data-target="#deleteModal"--}}
+{{--                                                       data-name="{{$item->name}}"--}}
+{{--                                                       data-id="{{$item->id}}">--}}
+{{--                                                        <i data-toggle="tooltip" data-placement="bottom" title=""--}}
+{{--                                                           data-original-title="Delete"--}}
+{{--                                                           class="fa fa-trash mr-1 text-primary"></i></a></td>--}}
 
                                             </tr>
                                         @endforeach
                                     @endif
-
 
 
                                     <tr style="font-size: 16px;font-weight: 600;">
@@ -359,7 +366,7 @@
                                             Tổng giá tiền
                                         </td>
                                         @if(isset($items))
-                                            <td colspan="2">{{number_format($items->getCollection()->sum('total_price'))}}
+                                            <td colspan="3" class="text-center">{{number_format($items->getCollection()->sum('total_price'))}}
                                                 <span
                                                     style="font-weight: 6000; font-size: 13px">VND</span></td>
                                         @endif
@@ -492,6 +499,7 @@
             selectItem.attr('checked', false)
             $('.check-all-order').attr('checked', false)
             $('input[name=ids]').val('')
+            $('#menu-table').css('display', 'none');
         })
         //============================================  chọn tất cả ==================================================
         body.on('click', '.check-all', function () {
@@ -511,14 +519,13 @@
                 ids: ids,
                 status: status
             }
-
             $.ajax({
                 url: 'http://127.0.0.1:8000/admin/order/update-multi/status',
                 type: 'POST',
                 data: JSON.stringify(data),
 
                 success: function (data) {
-                    console.log(JSON.parse(data))
+                    console.log(data)
                     $.toast({
                         heading: 'Success',
                         text: 'Cập nhật trạng thái hoá đơn thành công',
@@ -531,16 +538,14 @@
                     }, 3000);
                 },
                 error: function (request, error) {
-                    console.log("Request: " + JSON.parse(request));
+                    console.log(request)
+                    $.toast({
+                        heading: 'Error',
+                        text: 'Cập nhật giỏ hàng thất bại',
+                        icon: 'error',
 
-                    function messageError() {
-                        $.toast({
-                            heading: 'Error',
-                            text: 'Cập nhật giỏ hàng thất bại',
-                            icon: 'error',
+                    });
 
-                        });
-                    }
                 }
             });
         });
@@ -571,8 +576,7 @@
                     }, 3000);
                 },
                 error: function (request, error) {
-                    console.log("Request: " + JSON.parse(request));
-                    messageError();
+
                 }
             });
         })

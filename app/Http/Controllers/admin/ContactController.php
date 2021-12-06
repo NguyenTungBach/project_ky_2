@@ -20,7 +20,7 @@ class ContactController extends Controller
         $paginate = 9;
         $contacts = Contact::query();
         return view('admin.template.contact.contacts', [
-            'items' => $contacts->orderBy('created_at', 'desc')->where('status','!=',0)->paginate($paginate),
+            'items' => $contacts->orderBy('created_at', 'desc')->where('status', '!=', 0)->paginate($paginate),
             'paginate' => $paginate,
             'sum' => $contacts->count(),
         ]);
@@ -28,7 +28,20 @@ class ContactController extends Controller
 
     public function getDetail($id)
     {
-        return view('admin.template.contact.detail',['item' =>Contact::find($id)]);
+        try {
+            $contacts = Contact::find($id);
+            if ($contacts != null && $contacts->status == ContactStatus::Unread){
+                $contacts->status = ContactStatus::Read;
+                $contacts->save();
+            }else{
+                session()->flash('fail','Không tìm thấy tin nhắn của khách hàng, vui lòng thử lại.');
+                redirect()->back();
+            }
+            return view('admin.template.contact.detail', ['item' => $contacts]);
+        } catch (\Exception $e) {
+            session()->flash('fail', $e);
+            return redirect()->back();
+        }
     }
 
     public function search(Request $request)
@@ -50,8 +63,7 @@ class ContactController extends Controller
                 'sum' => $contacts->count(),
                 'status' => $request->get('status'),
             ]);
-        }
-        catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return $exception;
         }
     }
@@ -88,14 +100,15 @@ class ContactController extends Controller
             $contact->status = $contactStatus;
             $contact->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
             $contact->save();
-            session()->flash('message',"Cập nhật trạng thái phản hồi $title, có mã là $contactId, thành công");
+            session()->flash('message', "Cập nhật trạng thái phản hồi $title, có mã là $contactId, thành công");
             return redirect()->back();
         } catch (\Exception $e) {
             return $e;
         }
     }
 
-    public function updateAllStatus (){
+    public function updateAllStatus()
+    {
         try {
             $data = json_decode(file_get_contents("php://input"), true);
             $ids = $data['ids'];

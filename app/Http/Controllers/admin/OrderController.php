@@ -172,6 +172,22 @@ class OrderController extends Controller
         ]);
     }
 
+    public function searchByDate($date){
+        try {
+            $paginate = 9;
+            $orders = Order::whereDate('created_at','=',Carbon::parse($date));
+            return view('admin.template.order.table', [
+                'items' => $orders->paginate($paginate),
+                'sumOrder' => $orders->count(),
+                'totalOrderSearch' => $orders->sum('total_price'),
+                'paginate' => $paginate,
+            ]);
+        }catch (\Exception $e){
+            session()->flash('fail',$e);
+            redirect()->back();
+        }
+    }
+
 
 
     public function getInformation($id)

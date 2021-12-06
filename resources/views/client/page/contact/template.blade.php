@@ -45,7 +45,7 @@
                         </div>
 
                         <h3 class="txt-l-101 cl3 respon1">
-                            Nơi xin ý kiến!
+                            Đóng góp ý kiến!
                         </h3>
                     </div>
 

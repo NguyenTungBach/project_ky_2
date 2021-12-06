@@ -73,5 +73,31 @@
 <!-- Custom Theme Scripts -->
 <script src="/admin/build/js/custom.min.js"></script>
 <script src="/admin/js/admin.js"></script>
+<script>
+    //======================================= Btn On Top ==================================================================
+    //Get the button
+    var mybutton = document.getElementById("btnToTop");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+        scrollFunction();
+    };
+
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    // ======================================= Btn On Top ==================================================================
+</script>
 </body>
 </html>
