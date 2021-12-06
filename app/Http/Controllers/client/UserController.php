@@ -106,7 +106,7 @@ class UserController extends Controller
             if ($user->status == 0) {
                 return redirect()
                     ->back()
-                    ->with('loginFail', 'Tài khoản này đã bị xóa xin gọi admin để lấy lại')
+                    ->with('userDeleted', 'Tài khoản này đã bị xóa xin gọi admin để lấy lại')
                     ->withInput();
             }
             $password = $request->get('password');
@@ -123,9 +123,19 @@ class UserController extends Controller
                 }
                 Session::put('loginUserId', $user->id);
                 return redirect('/user/information');
+            }else {
+                return redirect()
+                    ->back()
+                    ->with('loginFail', 'Xin hãy kiểm tra lại tên đăng nhập và mật khẩu')
+                    ->withInput();
             }
+        } else{
+            return redirect()
+                ->back()
+                ->with('loginFail', 'Tài khoản này đang không tồn tại, vui lòng đăng ký')
+                ->withInput();
         }
-        return redirect()->back()->withInput();
+
     }
 
     function logOut()
