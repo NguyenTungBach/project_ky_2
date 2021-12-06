@@ -29,14 +29,17 @@
     #user:hover #menu-user {
         display: block;
     }
+
     #menu-user ul a {
-        color: #000 ;
+        color: #000;
 
     }
-    #menu-user ul a li{
-       padding: 4px 2px;
+
+    #menu-user ul a li {
+        padding: 4px 2px;
     }
-    #menu-user ul a:hover li{
+
+    #menu-user ul a:hover li {
         background-color: #8db263;
         color: #FFF;
     }
@@ -101,19 +104,23 @@
                             <div class="trans-04" id="menu-user">
                                 <ul>
                                     @if(session()->has('loginUserId'))
-                                        <a href="/user/login">
+                                        <a href="/user/information">
                                             <li><i class="fa fa-info-circle mr-2"></i>Thông tin cá nhân</li>
                                         </a>
-                                        <a href="">
+                                        <a href="/user/orders">
                                             <li><i class="fa fa-list mr-2"></i>Danh sách đơn hàng đã đặt hàng</li>
                                         </a>
-                                    @else
-                                        <a href="/user/login">
-                                            <li><i class="fa fa-sign-out mr-2"></i>Đăng kí tài khoản</li>
+                                        <a href="/user/logOut">
+                                            <li><i class="fa fa-sign-in mr-2"></i>Đăng xuất</li>
                                         </a>
-                                        <a href="">
+                                    @else
+                                        <a href="/user/register">
+                                            <li><i class="fa fa-registered mr-2"></i>Đăng kí tài khoản</li>
+                                        </a>
+                                        <a href="/user/login">
                                             <li><i class="fa fa-sign-in mr-2"></i>Đăng nhập</li>
                                         </a>
+
                                     @endif
 
                                 </ul>
@@ -124,7 +131,7 @@
 
                     <div class="wrap-icon-header flex-w flex-r-m h-full wrap-menu-click p-t-8">
                         <div class="wrap-cart-header h-full flex-m m-l-10 menu-click">
-                            <div class="icon-header-item flex-c-m trans-04 icon-header-noti"
+                            <div id="cart-header-custom" class="icon-header-item flex-c-m trans-04 icon-header-noti"
                                  data-notify="{{isset($shopCart) ? sizeof($shopCart) : ''}}">
                                 <img src="/client/images/icons/icon-cart-2.png" alt="CART">
                             </div>
@@ -162,12 +169,6 @@
 										</span>
                                                         </div>
                                                     </div>
-
-                                                    {{--                                                    <div class="size-w-14 flex-b">--}}
-                                                    {{--                                                        <a href="/cart/delete/{{$product->id}}" style="position: absolute;top: 0;" class="lh-10">--}}
-                                                    {{--                                                            <img src="/client/images/icons/icon-close.png" alt="CLOSE">--}}
-                                                    {{--                                                        </a>--}}
-                                                    {{--                                                    </div>--}}
                                                 </div>
                                             @endforeach
                                         @else

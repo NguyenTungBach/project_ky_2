@@ -95,7 +95,6 @@ Route::get('admin/order/detail/{id}', [OrderController::class, 'getInformation']
 
 //update các trạng thái của order
 Route::post('admin/order/update/status', [OrderController::class, 'updateStatus']);
-Route::post('admin/order/update-multi/status', [OrderController::class, 'updateAllStatus']);
 Route::post('admin/order/remove-multi/status', [OrderController::class, 'removeAllStatus']);
 
 //download excel
@@ -127,6 +126,19 @@ Route::post('admin/contact/update-multi/status',[\App\Http\Controllers\admin\Con
 
 // tìm kiếm
 Route::get('admin/contact/search',[\App\Http\Controllers\admin\ContactController::class,'search']);
+
+//***************************** User ************************************
+Route::get('admin/users',[\App\Http\Controllers\admin\UserController::class,'getAll']);
+Route::get('admin/user/search',[\App\Http\Controllers\admin\UserController::class,'search']);
+
+//lấy thông tin đưa ra form
+Route::get('admin/user/detail/{id}', [\App\Http\Controllers\admin\UserController::class, 'getDetail']);
+Route::get('admin/user/update/{id}', [\App\Http\Controllers\admin\UserController::class, 'getInformation']);
+//lấy thông tin sau khi chỉnh sửa rồi update
+Route::post('admin/user/update', [\App\Http\Controllers\admin\UserController::class, 'update']);
+Route::post('admin/user/remove-multi/status', [\App\Http\Controllers\admin\UserController::class, 'removeAllStatus']);
+Route::post('admin/user/update/status', [\App\Http\Controllers\admin\UserController::class, 'updateStatus']);
+
 
 //======================================================================================================================
 //========================================= CLIENT =====================================================================
@@ -163,7 +175,13 @@ Route::get('/check-mail', [\App\Http\Controllers\client\OrderController::class, 
 // User
 Route::get('/user/register', [\App\Http\Controllers\client\UserController::class,'getForm']);
 Route::post('/user/register', [\App\Http\Controllers\client\UserController::class,'create']);
-Route::get('/user/order', [\App\Http\Controllers\client\UserController::class,'getOrder']);
+Route::get('/user/edit/{id}', [\App\Http\Controllers\client\UserController::class,'getFormEdit']);
+Route::post('/user/edit', [\App\Http\Controllers\client\UserController::class,'edit']);
+
+Route::get('/user/information', [\App\Http\Controllers\client\UserController::class,'getInformation']);
+
 Route::get('/user/login', [\App\Http\Controllers\client\UserController::class,'getLogin']);
 Route::post('/user/login', [\App\Http\Controllers\client\UserController::class,'login']);
-//Route::post('/user/login/{email}', [\App\Http\Controllers\client\UserController::class,'getDetail']);
+Route::get('/user/logOut', [\App\Http\Controllers\client\UserController::class,'logOut']);
+
+Route::get('/user/orders', [\App\Http\Controllers\client\UserController::class,'getOrder']);

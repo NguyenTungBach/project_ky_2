@@ -70,6 +70,16 @@ class Order extends Model
         return $query;
     }
 
+    public function scopeFindByUserId($query)
+    {
+        if (request()->filled('user_id')) {
+            $query->where('user_id', request()->get('user_id'));
+        }
+
+        return $query;
+    }
+
+
     public function scopeFindByProductName($query)
     {
         if (request()->filled('productName')) {

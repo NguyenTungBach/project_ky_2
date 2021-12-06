@@ -88,6 +88,9 @@ class OrderController extends Controller
         //3. Save thông tin order và order details trong transaction
         try {
             DB::beginTransaction();
+            if (Session::has('loginUserId')){
+                $order->user_id = Session::get('loginUserId');
+            }
             $order->save();
             $order_id = $order->id;
             $order_details = [];
@@ -208,9 +211,7 @@ class OrderController extends Controller
             $order->check_out =true;
 
             $order->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
-            if (Session::has('loginUserId')){
-                $order->user_id = Session::get('loginUserId');
-            }
+
             $order->save();
             $title = "Đơn hàng với mã #$order->id, đã được thanh toán thành công";
             $this->sendMail($order->id,$title);

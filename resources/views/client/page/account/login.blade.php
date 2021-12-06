@@ -28,6 +28,7 @@
 
     <!-- content page -->
     <div class="bg0 p-tb-100">
+
         <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4  m-b-50">
@@ -43,12 +44,14 @@
                                     <div>
                                         <div class="txt-s-101 cl6 p-b-10" style="font-weight: bolder">Email:</div>
                                         <input class="txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1"
-                                               value="{{$_COOKIE['email'] ?? Request::old('email')}}" type="text" name="email" placeholder="Nhập tên tài khoản">
+                                               value="{{$_COOKIE['email'] ?? Request::old('email')}}" type="text"
+                                               name="email" placeholder="Nhập tên tài khoản">
                                         @error('email')
                                         <div class="text-danger col-12">* {{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
+
 
                                 <div class="col-12">
                                     <div>
@@ -56,7 +59,8 @@
                                         </div>
                                         <input
                                             class="plh2 txt-s-115 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1 "
-                                            value="{{$_COOKIE['password'] ?? ''}}" type="password" name="password" placeholder="Nhập mật khẩu">
+                                            value="{{$_COOKIE['password'] ?? ''}}" type="password" name="password"
+                                            placeholder="Nhập mật khẩu">
                                         @error('password')
                                         <div class="text-danger col-12">* {{ $message }}</div>
                                         @enderror
@@ -64,7 +68,9 @@
                                 </div>
                                 <div class="col-12 p-b-23 mt-3">
                                     <input class="dis-inline-block plh2 txt-s-115 cl3 bo-all-1 bocl15 p-rl-20 focus1 "
-                                           <?php if(isset($_COOKIE['remember_user'])){ echo 'checked';} ?> type="checkbox" name="remember_user">
+                                           <?php if (isset($_COOKIE['remember_user'])) {
+                                               echo 'checked';
+                                           } ?> type="checkbox" name="remember_user">
                                     <span>Giữ tôi luôn đăng nhập</span>
                                 </div>
                                 <div class="col-12 mb-2" style="text-align: center">

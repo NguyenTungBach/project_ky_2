@@ -186,8 +186,8 @@
                                             <td>{{\App\Helpers\Helper::formatVND($item->price)}}</td>
                                             <td>{{$item->category->name}}</td>
                                             <td>{{$item->handlerStatus}}</td>
-                                            <td><a href="/admin/product/{{$item->id}}" class="hover-pointer dataItem"
-                                                >
+                                            <td>
+                                                <a href="/admin/product/{{$item->id}}" class="hover-pointer dataItem">
                                                     <i class="fa fa-info mr-1 text-primary"
                                                        data-toggle="tooltip" data-placement="bottom"
                                                        title="Information"

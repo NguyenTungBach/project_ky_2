@@ -42,6 +42,7 @@
 <script src="/client/js/main.js"></script>
 <script>
     let menuUser = $('#menu-user');
+    let menu = document.getElementById('menu-user');
     $('#user').on('click', function () {
         if (menuUser.css('display') === 'none') {
             menuUser.css('display', 'block')
@@ -49,11 +50,18 @@
             menuUser.css('display', 'none')
         }
     })
-    if (menuUser.css('display') === 'block') {
-        $('body').on('click', function () {
+    $('#cart-header-custom').on('click', function () {
+        if (menuUser.css('display') === 'block') {
             menuUser.css('display', 'none')
-        })
-    }
+        }
+    });
+
+    $(document).on('click', function (event) {
+        if (!$(event.target).closest('#user').length) {
+            menuUser.css('display', 'none')
+        }
+    });
+
 </script>
 </body>
 </html>

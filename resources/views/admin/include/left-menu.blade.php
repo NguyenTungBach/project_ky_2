@@ -20,7 +20,7 @@
                 </ul>
             </li>
 {{--            --Blog Menu----}}
-            <li><a><i class="fa fa-tags"></i> Danh mục bài viết <span class="fa fa-chevron-down"></span></a>
+            <li><a><i class="fa fa-newspaper-o"></i> Danh mục bài viết <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="/admin/blog">Quản lý</a></li>
                     <li><a href="/admin/blog/form">Tạo mới</a></li>
@@ -37,9 +37,14 @@
                 </ul>
             </li>
             {{--Product Menu--}}
+
             {{--Quản lý phản hồi--}}
-            <li><a href="/admin/contacts"><i class="fa fa-shopping-cart"></i> Phản hồi </a>
+            <li><a href="/admin/contacts"><i class="fa fa-envelope-o"></i> Phản hồi </a>
             {{--Quản lý phản hồi--}}
+
+            {{--Quản lý khách hàng--}}
+            <li><a href="/admin/users"><i class="fa fa-user"></i> Khách hàng </a>
+            {{--Quản lý khách hàng--}}
         </ul>
     </div>
 </div>

@@ -26,7 +26,7 @@
 @endsection
 @section('content-page')
     {{--    title page --}}
-    @include('client.include.title-page',['title'=>'Tài khoản'])
+    @include('client.include.title-page',['title'=>'Danh sách đơn hàng'])
 
     <!-- content page -->
     <div class="bg0 p-t-100 p-b-80">
@@ -34,7 +34,7 @@
             <div class="wrap-table-shopping-cart rs1-table">
                 <table class="table-shopping-cart">
                     <tr class="table_head bg12">
-                        <th class="column-9" style="width: 10%;">Mã đơn hàng</th>
+                        <th class="column-9">Mã đơn hàng</th>
                         <th class="column-4">Tên người nhận</th>
                         <th class="column-3">Địa chỉ</th>
                         <th class="column-6">Số điện thoại</th>
@@ -43,50 +43,54 @@
                         <th class="column-4">Tổng tiền (VND)</th>
                         <th class="column-8">Trạng thái thanh toán</th>
                         <th class="column-8">Trạng thái đơn hàng</th>
-                        <th class="column-9">Ngày đặt hàng</th>
+                        <th class="column-6" style="width: 8%">Ngày đặt hàng</th>
                         <th class="column-9">Xem chi tiết</th>
                     </tr>
+                    @if(isset($items))
+                        @foreach($items as $order)
+                            <tr class="table_row">
+                                <td class="column-9">
+                                    {{$order->id}}
+                                </td>
+                                <td class="column-4">
+                                    {{$order->ship_name}}
+                                </td>
+                                <td class="column-3">
+                                    {{$order->ship_address}}
+                                </td>
+                                <td class="column-6">
+                                    {{$order->ship_phone}}
+                                </td>
+                                <td class="column-5">
+                                    {{$order->ship_email}}
+                                </td>
+                                <td class="column-4">
+                                    {{$order->ship_note}}
+                                </td>
+                                <td class="column-4">
+                                    {{\App\Helpers\Helper::formatVND($order->total_price)}}
+                                </td>
+                                <td class="column-8">
+                                    {{$order->handlerPayment}}
+                                </td>
+                                <td class="column-9">
+                                    {{$order->handlerStatus}}
+                                </td>
+                                <td class="column-6">
+                                    {{$order->created_at}}
+                                </td>
+                                <td class="column-9">
+                                    <a href="/order/{{$order->id}}" class="fa fa-info-circle text-info">
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
 
-                    <tr class="table_row">
-                        <td class="column-9">
-                            1
-                        </td>
-                        <td class="column-4">
-                            Hoàng nguyên
-                        </td>
-                        <td class="column-3">
-
-                        </td>
-                        <td class="column-6">
-                            0946654123
-                        </td>
-                        <td class="column-5">
-                            hoangkien3411@gmail.com
-                        </td>
-                        <td class="column-4">
-                            giao tận cửa
-                        </td>
-                        <td class="column-4">
-                            1,000,000
-                        </td>
-                        <td class="column-8">
-                            chưa thanh toán
-                        </td>
-                        <td class="column-9">
-                            đang giao
-                        </td>
-                        <td class="column-9">
-                            13/03/2011
-                        </td>
-                        <td class="column-9">
-                            <a href="/order/{id}" class="fa fa-info-circle text-info">
-                            </a>
-                        </td>
-                    </tr>
                 </table>
             </div>
             <div class=" flex-w flex-sb-m p-t-30">
-                <a href="shop-sidebar-grid.html"
+                <a href="/products"
                    class="flex-c-m txt-s-103 cl0 bg10 size-h-9 hov-btn2 trans-04 pointer p-rl-29 m-tb-10">
                     Continue shopping
                 </a>

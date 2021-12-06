@@ -93,6 +93,14 @@
                                     <span class="delete-search">&times;</span>
                                     <span class="icon-search"><i class="fa fa-search"></i></span>
                                 </div>
+                                {{--              Find By User Id                  --}}
+                                <div class="col-md-3 col-sm-3 form-group pull-right pr-2  top_search">
+                                    <input type="text" class=" form-control query"
+                                           value="{{$oldUserId ?? ""}}" name="user_id"
+                                           placeholder="Mã khách hàng">
+                                    <span class="delete-search">&times;</span>
+                                    <span class="icon-search"><i class="fa fa-search"></i></span>
+                                </div>
                                 {{--              Find By Phone                  --}}
                                 <div class="col-md-3 col-sm-3 form-group pull-right pr-2 top_search">
                                     <input type="text" class=" form-control query"
@@ -293,7 +301,7 @@
                                         </th>
                                         <th>Mã đơn hàng</th>
                                         <th>Trạng thái</th>
-
+                                        <th>Mã khách hàng</th>
                                         <th>Tên</th>
                                         <th>Số điên thoại</th>
                                         <th>Email</th>
@@ -304,6 +312,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+
                                     @if(isset($items))
                                         @foreach($items as $item)
                                             <tr>
@@ -312,14 +321,18 @@
                                                 <form action="/admin/order/update/status" method="post">
                                                     @include('admin.template.order.status-select')
                                                 </form>
-
+                                               @if($item->user_id != null)
+                                                    <td>{{$item->user_id}}</td>
+                                                @else
+                                                   <td>Khách</td>
+                                                @endif
                                                 <td>{{$item->ship_name}}</td>
                                                 <td>{{$item->ship_phone}}</td>
                                                 <td>{{$item->ship_email}}</td>
                                                 <td>{{$item->handlerPayment}}</td>
                                                 <td>{{ $item->created_at}}</td>
 
-                                                <td>{{number_format($item['total_price'])}} VNĐ</td>
+                                                <td>{{number_format($item['total_price'])}}</td>
                                                 <td><a href="/admin/order/detail/{{$item->id}}" class=" hover-pointer dataItem">
                                                         <i class="fa fa-info-circle mr-1 text-primary" style="font-size: 16px;"
                                                            data-toggle="tooltip" data-placement="bottom"
@@ -338,6 +351,7 @@
                                             </tr>
                                         @endforeach
                                     @endif
+
 
 
                                     <tr style="font-size: 16px;font-weight: 600;">

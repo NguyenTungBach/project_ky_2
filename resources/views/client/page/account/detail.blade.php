@@ -1,6 +1,6 @@
 @extends('client.master-template')
 @section('title')
-    <title>Product detail</title>
+    <title>Thông tin cá nhân</title>
 @endsection
 @section('css-page')
     @include('client.page.product.css')
@@ -17,7 +17,7 @@
 @endsection
 @section('content-page')
     <!-- Title page -->
-    @include('client.include.title-page',['title'=>'Sản phẩm chi tiết'])
+    @include('client.include.title-page',['title'=>'Thông tin cá nhân'])
 
     <!-- Product detail -->
     <section class="sec-product-detail bg0 p-t-105 p-b-70">
@@ -31,10 +31,10 @@
                     </div>
                 </div>
 
-                <div class="col-md-5 col-lg-6">
-                    <div class=" p-t-35 p-l-0-lg">
-                        <div class="txt-s-107 p-b-6">
-							<span class="cl6">
+                <div class="col-md-5 col-lg-5">
+                    <div id="infor-user" class=" p-t-35 p-l-0-lg mb-5">
+                        <div class="txt-m-108 p-b-6 mb-2 dis-flex">
+							<span class="cl6 font-weight-bold mr-3">
 								Id người dùng:
 							</span>
 
@@ -43,43 +43,62 @@
                                     {{\Illuminate\Support\Facades\Session::get('loginUserId')}}
                                 @endif
 							</span>
+                            <span class="cl9">
+
+							</span>
                         </div>
-                        <div class="txt-s-107 p-b-6">
-							<span class="cl6">
+                        <div class="txt-m-108 p-b-6 mb-2 dis-flex">
+							<span class="cl6 font-weight-bold mr-3">
 								Họ và tên:
 							</span>
 
                             <span class="cl9">
 								{{$items->name}}
 							</span>
+
                         </div>
-                        <div class="txt-s-107 p-b-6">
-							<span class="cl6">
+                        <div class="txt-m-108 p-b-6 mb-2 dis-flex">
+							<span class="cl6 font-weight-bold mr-3 ">
 								Email:
 							</span>
-
                             <span class="cl9">
 								{{$items->email}}
 							</span>
+                            <span class="cl9">
+
+							</span>
                         </div>
-                        <div class="txt-s-107 p-b-6">
-							<span class="cl6">
+                        <div class="txt-m-108 p-b-6 mb-2 dis-flex">
+							<span class="cl6 font-weight-bold mr-3">
 								Số điện thoại:
 							</span>
 
                             <span class="cl9">
 								{{$items->phone}}
 							</span>
+
                         </div>
-                        <div class="txt-s-107 p-b-6">
-							<span class="cl6">
+                        <div class="txt-m-108 p-b-6 dis-flex">
+							<span class="cl6 font-weight-bold mr-3">
 								Địa chỉ:
 							</span>
 
                             <span class="cl9">
 								{{$items->address}}
 							</span>
+                            <span class="cl9">
+								<input type="text" value="{{$items->address}}" style="display: none">
+							</span>
+
                         </div>
+                    </div>
+                    <div class=" p-t-35 p-l-0-lg">
+                        <div class="txt-m-108 p-b-6 mb-2 dis-flex justify-content-between">
+                            <a class="btn btn-info" href="/user/orders">Xem danh sách đơn hàng</a>
+                            <a class="btn btn-primary" href="/user/edit/{{session()->get('loginUserId')}}">Chỉnh sửa thông tin</a>
+                            <a class="btn btn-dark" href="/user/logOut">Đăng xuất</a>
+                        </div>
+
                     </div>
                 </div>
             </div>

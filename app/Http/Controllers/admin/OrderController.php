@@ -117,6 +117,7 @@ class OrderController extends Controller
             $orders = Order::query()
                 ->findByNameProduct()
                 ->findByName()
+                ->findByUserId()
                 ->findByPhone()
                 ->findById()
                 ->findByEmail()
@@ -136,6 +137,7 @@ class OrderController extends Controller
                 'oldName' => $request->get('name'),
                 'oldNameProduct' => $request->get('nameProduct'),
                 'oldId' => $request->get('id'),
+                'oldUserId' => $request->get('user_id'),
                 'oldPhone' => $request->get('phone'),
                 'oldEmail' => $request->get('email'),
                 'oldStatus' => $request->get('status'),
@@ -155,6 +157,7 @@ class OrderController extends Controller
         }
     }
 
+
     public function searchByIdProduct($id)
     {
         $paginate = 9;
@@ -170,10 +173,10 @@ class OrderController extends Controller
     }
 
 
+
     public function getInformation($id)
     {
         try {
-
             return view('admin.template.order.order-detail', [
                 'item' => Order::find($id)
             ]);
