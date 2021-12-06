@@ -55,46 +55,46 @@
                     @endif
                 </div>
                 <div class="x_content">
-                    @if(isset($item))
+                    @if(isset($user))
                         <section class="content invoice">
                             <div class="row invoice-info">
                                 <div class="col-sm-4 invoice-col information-order">
                                     <div class="mb-2 font-weight-bold col-sm-12 col-md-12">
-                                        <p style="font-size: 20px">Mã khách hàng: <span> {{$item->id}}</span></p>
+                                        <p style="font-size: 20px">Mã khách hàng: <span> {{$user->id}}</span></p>
                                     </div>
                                     <div class="mb-2 font-weight-bold col-sm-12 col-md-12">
                                         <label for="">Ngày tạo :</label>
                                         <div>
-                                            <input type="text" disabled value="{{$item->created_at}}">
+                                            <input type="text" disabled value="{{$user->created_at}}">
                                         </div>
                                     </div>
                                     <div class="mb-2 font-weight-bold col-sm-12 col-md-12">
                                         <label for="">Ngày cập nhật :</label>
                                         <div>
-                                            <input type="text" disabled value="{{$item->updated_at}}">
+                                            <input type="text" disabled value="{{$user->updated_at}}">
                                         </div>
                                     </div>
                                     <div class="mb-2 font-weight-bold col-sm-12 col-md-12">
                                         <label for="">Ngày bị xóa:</label>
                                         <div>
-                                            <input type="text" disabled value="{{$item->deleted_at}}">
+                                            <input type="text" disabled value="{{$user->deleted_at}}">
                                         </div>
                                     </div>
                                     <form action="/admin/user/update/status" method="post">
                                         @csrf
-                                        <input type="hidden" name="id" value="{{$item->id}}">
+                                        <input type="hidden" name="id" value="{{$user->id}}">
                                         <div class="mb-2 font-weight-bold col-sm-12 col-md-12">
                                             <label for="">Trạng thái:</label>
                                             <div class="w-75">
                                                 <select name="status-update" class="status-update"
-                                                        data-id="{{$item->id}}"
+                                                        data-id="{{$user->id}}"
                                                         style="font-size: 14px; padding: 5px; border: 1px solid #bdbdbd">
                                                     <option
-                                                        value="0" {{$item->status == \App\Enums\UserStatus::Deleted ? 'selected' : ''}}>
+                                                        value="0" {{$user->status == \App\Enums\UserStatus::Deleted ? 'selected' : ''}}>
                                                         Đã xóa
                                                     </option>
                                                     <option
-                                                        value="1" {{$item->status == \App\Enums\UserStatus::Existed ? 'selected' : ''}}>
+                                                        value="1" {{$user->status == \App\Enums\UserStatus::Existed ? 'selected' : ''}}>
                                                         Đã kích hoạt
                                                     </option>
                                                 </select>
@@ -111,24 +111,24 @@
                                         <div class="mb-2 font-weight-bold col-sm-6 col-md-6">
                                             <label for="">Tên khách :</label>
                                             <p style="word-break: break-all;"
-                                               class="font-weight-light">{{$item->name}}</p>
+                                               class="font-weight-light">{{$user->name}}</p>
                                         </div>
                                         <div class="mb-2 font-weight-bold col-sm-6 col-md-6">
                                             <label for="">Số điện thoại :</label>
                                             <p style="word-break: break-all;"
-                                               class="font-weight-light">{{$item->phone}}</p>
+                                               class="font-weight-light">{{$user->phone}}</p>
                                         </div>
                                     </div>
 
                                     <div class="mb-2 font-weight-bold col-sm-12 col-md-12">
                                         <label for="">Email :</label>
                                         <p style="word-break: break-all;"
-                                           class="font-weight-light">{{$item->email}}</p>
+                                           class="font-weight-light">{{$user->email}}</p>
                                     </div>
                                     <div class="mb-2 font-weight-bold col-sm-12 col-md-12">
                                         <label for="">Địa chỉ :</label>
                                         <p style="word-break: break-all;"
-                                           class="font-weight-light">{{$item->address}}</p>
+                                           class="font-weight-light">{{$user->address}}</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-4 invoice-col information-order">
@@ -142,7 +142,7 @@
                             </div>
 
                             <div class="row">
-                                @if(sizeof($item->orders) == 0)
+                                @if(sizeof($items) == 0)
                                     <div class="alert alert-info col-sm-12 col-md-12 text-center text-white mb-2 pb-1 pt-1" style="font-size: 18px;">
                                         Người dùng không có đơn hàng nào.
                                     </div>
@@ -160,7 +160,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($item->orders as $order)
+                                        @foreach($items as $order)
                                             <tr>
                                                 <td>{{$order->id}}</td>
                                                 <td>{{$order->HandlerStatus}}</td>
@@ -180,6 +180,36 @@
                                         @endforeach
                                         </tbody>
                                     </table>
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <div class="dataTables_info" id="datatable_info" role="status"
+                                                 aria-live="polite">Hiển thị 1 tới {{$paginate ?? ''}} trong số {{$sum?? ''}} đơn hàng
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <div class="dataTables_paginate">
+                                                {{$items->appends(request()->all())->links('admin.include.pagination')}}
+                                            </div>
+                                        </div>
+                                        <!-- Modal xác nhận xoá tất cả order đã chọn-->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Bạn có muốn xoá các khách hàng đã chọn?</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                                                        <button data-id="0" id="confirm-delete-all" type="button" class="btn btn-primary">Đồng ý
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <!-- /.col -->
                             </div>
@@ -187,7 +217,6 @@
                             <a class="btn btn-secondary" href="/admin/users"><i class="fa fa-arrow-left"></i> Quay về
                                 danh sách khách hàng</a>
                         </section>
-
                     @endif
                 </div>
             </div>

@@ -32,36 +32,6 @@ $(document).ready(function () {
     $('.status-update').change(function () {
         this.form.submit();
     });
-    // $('.status-update').change(function () {
-    //     let id = $(this).data('id');
-    //     let status = $('select[name=status-update]').val();
-    //     let data = {
-    //         id: id,
-    //         status: status
-    //     }
-    //     $.ajax({
-    //         url: `http://127.0.0.1:8000/admin/order/update/status`,
-    //         method: 'POST',
-    //         data: JSON.stringify(data),
-    //         success: function (response) {
-    //             message();
-    //             console.log(response)
-    //         },
-    //
-    //     });
-    //
-    // })
-    //
-    // function message() {
-    //     $.toast({
-    //         icon: 'success',
-    //         heading: 'Thành công',
-    //         text: 'Cập nhật trạng thái thành công.',
-    //         bgColor: '#81b03f',
-    //         textColor: 'white',
-    //         position: 'top-right',
-    //     })
-    // }
 
 
 

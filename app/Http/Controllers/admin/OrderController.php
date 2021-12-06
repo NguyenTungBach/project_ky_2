@@ -5,10 +5,14 @@ namespace App\Http\Controllers\admin;
 use App\Enums\OrderStatus;
 use App\Exports\OrderExport;
 use App\Http\Controllers\Controller;
+use App\Imports\DistrictsImport;
+use App\Imports\WardsImport;
 use App\Models\Order;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OrderController extends Controller
 {
@@ -74,7 +78,7 @@ class OrderController extends Controller
             session()->flash('message', "Cập nhật trạng thái đơn hàng mã $orderId, thành công");
 
             return redirect()->back();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e;
         }
     }
@@ -90,7 +94,7 @@ class OrderController extends Controller
                 'updated_at' => Carbon::now('Asia/Ho_Chi_Minh')
             ]);
             return json_encode($ids);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e;
         }
     }
@@ -105,7 +109,7 @@ class OrderController extends Controller
                 'deleted_at' => Carbon::now('Asia/Ho_Chi_Minh')
             ]);
             return true;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e;
         }
     }
@@ -151,7 +155,7 @@ class OrderController extends Controller
 
 
             ]);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
 
             return redirect()->back();
         }
@@ -182,7 +186,7 @@ class OrderController extends Controller
                 'totalOrderSearch' => $orders->sum('total_price'),
                 'paginate' => $paginate,
             ]);
-        }catch (\Exception $e){
+        }catch (Exception $e){
             session()->flash('fail',$e);
             redirect()->back();
         }
@@ -196,7 +200,7 @@ class OrderController extends Controller
             return view('admin.template.order.order-detail', [
                 'item' => Order::find($id)
             ]);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return "Id không tồn tại hoặc lỗi lấy trang.";
         }
     }

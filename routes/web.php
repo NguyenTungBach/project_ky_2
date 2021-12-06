@@ -11,6 +11,7 @@ use App\Http\Controllers\client\ContactController;
 use App\Http\Controllers\client\FarmController;
 use App\Http\Controllers\client\HomeController;
 use App\Http\Controllers\client\ProductController;
+use App\Http\Controllers\client\UserController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -175,15 +176,14 @@ Route::post('/order/execute-payment', [\App\Http\Controllers\client\OrderControl
 Route::get('/check-mail', [\App\Http\Controllers\client\OrderController::class, 'getCheckMail']);
 
 // User
-Route::get('/user/register', [\App\Http\Controllers\client\UserController::class,'getForm']);
-Route::post('/user/register', [\App\Http\Controllers\client\UserController::class,'create']);
-Route::get('/user/edit/{id}', [\App\Http\Controllers\client\UserController::class,'getFormEdit']);
-Route::post('/user/edit', [\App\Http\Controllers\client\UserController::class,'edit']);
+Route::get('/user/register', [UserController::class,'getForm']);
+Route::post('/user/register', [UserController::class,'create']);
+Route::get('/user/edit/{id}', [UserController::class,'getFormEdit']);
+Route::post('/user/edit', [UserController::class,'edit']);
 
-Route::get('/user/information', [\App\Http\Controllers\client\UserController::class,'getInformation']);
+Route::get('/user/information', [UserController::class,'getInformation']);
 
-Route::get('/user/login', [\App\Http\Controllers\client\UserController::class,'getLogin']);
-Route::post('/user/login', [\App\Http\Controllers\client\UserController::class,'login']);
-Route::get('/user/logOut', [\App\Http\Controllers\client\UserController::class,'logOut']);
-
-Route::get('/user/orders', [\App\Http\Controllers\client\UserController::class,'getOrder']);
+Route::get('/user/login', [UserController::class,'getLogin']);
+Route::post('/user/login', [UserController::class,'login']);
+Route::get('/user/logOut', [UserController::class,'logOut']);
+Route::get('/user/orders', [UserController::class,'getOrder']);

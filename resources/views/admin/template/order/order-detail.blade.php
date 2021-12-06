@@ -24,6 +24,30 @@
         .information-order .col-sm-12 label, .information-order .col-sm-12 p {
             color: #4c4c4c;
         }
+        #table-wrapper {
+            position:relative;
+        }
+        #table-scroll {
+            height:400px;
+            overflow:auto;
+            margin-top:20px;
+        }
+        #table-wrapper table {
+            width:100%;
+
+        }
+        #table-wrapper table * {
+            background: #ffffff;
+            color:black;
+        }
+        #table-wrapper table thead th .text {
+            position:absolute;
+            top:-20px;
+            z-index:2;
+            height:20px;
+            width:35%;
+            border:1px solid red;
+        }
     </style>
     <link rel="stylesheet" href="/css/jquery.toast.min.css">
 @endsection
@@ -158,40 +182,44 @@
                             </div>
                             <div class="row">
                                 <div class="table table-striped table-bordered">
-                                    <table class="table table-striped">
-                                        <thead>
-                                        <tr>
-                                            <th>ID đơn hàng</th>
-                                            <th>Ảnh</th>
-                                            <th>Tên sản phẩm</th>
-                                            <th>Giá sản phẩm<small>(VND)</small></th>
-                                            <th>Số lượng mua</th>
-                                            <th>Tiền vận chuyển</th>
-                                            <th>Giảm giá</th>
-                                            <th>Tổng tiền<small>(VND)</small></th>
-                                        </tr>
-                                        </thead>
+                                    <div id="table-wrapper">
+                                        <div id="table-scroll">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th class="text">ID đơn hàng</th>
+                                                    <th class="text">Ảnh</th>
+                                                    <th class="text">Tên sản phẩm</th>
+                                                    <th class="text">Giá sản phẩm<small>(VND)</small></th>
+                                                    <th class="text">Số lượng mua</th>
+                                                    <th class="text">Tiền vận chuyển</th>
+                                                    <th class="text">Giảm giá</th>
+                                                    <th class="text">Tổng tiền<small>(VND)</small></th>
+                                                </tr>
+                                                </thead>
 
-                                        <tbody>
-                                        @foreach($item->orderDetails as $orderDetail)
-                                            <tr>
+                                                <tbody>
+                                                @foreach($item->orderDetails as $orderDetail)
+                                                    <tr>
+                                                        <td>{{$item->id}}</td>
+                                                        <td><img style="width: 80px" src="{{$orderDetail->product->firstImage}}" alt=""></td>
+                                                        <td>{{$orderDetail->product->name}}</td>
+                                                        <td>{{$orderDetail->FormatPrice}}</td>
+                                                        <td>{{$orderDetail->quantity}}</td>
+                                                        <td>0</td>
+                                                        <td>0</td>
+                                                        <td>{{number_format($orderDetail->quantity * $orderDetail->unit_price)}}</td>
+                                                    </tr>
+                                                @endforeach
+                                                <tr>
+                                                    <td class="text-center font-weight-bold" colspan="5">Tổng tiền hóa đơn</td>
+                                                    <td class="text-center font-weight-bold" colspan="3">{{$item->formatPrice}} <small>(VND)</small> </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
 
-                                                <td>{{$item->id}}</td>
-                                                <td><img style="width: 80px" src="{{$orderDetail->product->firstImage}}" alt=""></td>
-                                                <td>{{$orderDetail->product->name}}</td>
-                                                <td>{{$orderDetail->FormatPrice}}</td>
-                                                <td>{{$orderDetail->quantity}}</td>
-                                                <td>0</td>
-                                                <td>0</td>
-                                                <td>{{number_format($orderDetail->quantity * $orderDetail->unit_price)}}</td>
-                                            </tr>
-                                        @endforeach
-                                        <tr>
-                                            <td class="text-center font-weight-bold" colspan="5">Tổng tiền hóa đơn</td>
-                                            <td class="text-center font-weight-bold" colspan="3">{{$item->FormatPrice}} <small>(VND)</small> </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
                                 </div>
                                 <!-- /.col -->
                             </div>
@@ -207,11 +235,5 @@
 @endsection
 @section('page-script')
     <script src="/js/jquery.toast.min.js"></script>
-    <script>
-        $('#status').change(function () {
-            this.form.submit();
-        })
-
-    </script>
 @endsection
 

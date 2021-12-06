@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Enums\UserStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
+use App\Models\Order;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -53,8 +54,15 @@ class UserController extends Controller
     }
 
     public function getDetail($id){
-
-        return view('admin.template.user.detail', ['item' => User::find($id)]);
+        $user = User::find($id);
+        $order = Order::where('user_id','=', $id);
+        $paginate = 9;
+        return view('admin.template.user.detail', [
+            'user' => $user,
+            'paginate' => $paginate,
+            'items'=> $order->paginate($paginate),
+            'sum'=> $order->count(),
+        ]);
     }
 
     public function getInformation($id){
