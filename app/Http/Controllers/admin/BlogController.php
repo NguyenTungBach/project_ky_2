@@ -32,7 +32,7 @@ class BlogController extends Controller
         $blog = new Blog($request->all());
         $blog->save();
         Session::flash('message', 'Tạo mới danh mục thành công');
-        return redirect('admin/blog');
+        return redirect('admin/blogs');
     }
     function getDetail($id){
         return view('admin.template.blog.detail',[
@@ -58,7 +58,7 @@ class BlogController extends Controller
         } catch (\Exception $e){
             Session::flash('message', "Cập nhật sản phẩm có id= $id, thất bại");
         }
-        return redirect('admin/blog');
+        return redirect('admin/blogs');
     }
     function getConfirmDelete($id){
         return view('admin.template.blog.delete',[
@@ -77,7 +77,7 @@ class BlogController extends Controller
         } catch (\Exception $e) {
             Session::flash('message', "Xóa sản phẩm có id= $id, thất bại");
         }
-        return redirect('admin/blog');
+        return redirect('admin/blogs');
 
     }
 }

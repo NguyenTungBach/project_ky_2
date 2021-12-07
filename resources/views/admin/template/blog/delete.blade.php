@@ -38,7 +38,7 @@
                         </div>
 
                         <div class="item form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Name *</label>
+                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Ảnh *</label>
                             <div class="col-md-6 col-sm-6 ">
                                 <img src="{{$items->thumbnail}}" class="img-thumbnail" alt="">
                             </div>
@@ -54,8 +54,8 @@
                         <div class="ln_solid"></div>
                         <div class="item form-group">
                             <div class="col-md-6 col-sm-6 offset-md-3">
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                                <a href="/admin/blog"><button class="btn btn-primary" type="button">Back to list</button></a>
+                                <button type="submit" class="btn btn-danger">Đồng ý xóa</button>
+                                <a href="/admin/blogs"><button class="btn btn-primary" type="button">Quay về danh sách bài viết</button></a>
                             </div>
                         </div>
                     </div>

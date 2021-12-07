@@ -87,6 +87,13 @@ Route::post('admin/category/delete', [CategoryController::class, 'delete']);
 
 Route::get('admin/category/search', [CategoryController::class, 'search']);
 
+//***************************** Farms ************************************
+Route::get('/admin/farms', [\App\Http\Controllers\admin\FarmController::class, 'getAll']);
+//lấy ra form
+Route::get('/admin/farm/form', [\App\Http\Controllers\admin\FarmController::class, 'getForm']);
+// lấy thông tin trên form rồi tạo mới
+Route::post('/admin/farm/form', [\App\Http\Controllers\admin\FarmController::class, 'create']);
+
 //***************************** Order ************************************
 Route::get('admin/orders', [OrderController::class, 'getAll']);
 
@@ -111,7 +118,7 @@ Route::get('admin/order/search-date/{date}', [OrderController::class, 'searchByD
 
 //***************************** Blog ************************************
 
-Route::get('admin/blog',[\App\Http\Controllers\admin\BlogController::class,'getAll']);
+Route::get('admin/blogs',[\App\Http\Controllers\admin\BlogController::class,'getAll']);
 Route::get('admin/blog/form',[\App\Http\Controllers\admin\BlogController::class,'getForm']);
 Route::post('admin/blog/form',[\App\Http\Controllers\admin\BlogController::class,'createBlog']);
 Route::get('admin/blog/{id}',[\App\Http\Controllers\admin\BlogController::class,'getDetail']);

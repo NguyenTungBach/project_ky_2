@@ -2,7 +2,7 @@
 @section('breadcrumb')
     <div class="page-title">
         <div class="title_left">
-            <h3>Danh sách bài viết</h3>
+            <h3>Danh sách trang trại</h3>
         </div>
     </div>
 @endsection
@@ -11,7 +11,7 @@
         <div class="col-md-12 col-sm-12 ">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Danh mục bài viết</h2>
+                    <h2>Danh mục trang trại</h2>
                     <div class="clearfix"></div>
                     @if(\Illuminate\Support\Facades\Session::has('message'))
                         <div style="margin-top: 15px">
@@ -31,10 +31,10 @@
                                     <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Ảnh bài viết</th>
-                                        <th>Tên bài viết</th>
-                                        <th>Mô tả</th>
-
+                                        <th>Ảnh trang trại</th>
+                                        <th>Tên trang trại</th>
+                                        <th>Email</th>
+                                        <th>Số điện thoại</th>
                                         <th>Trạng thái</th>
                                         <th style="width: 7%">Hành động</th>
                                     </tr>
@@ -44,9 +44,9 @@
                                         <tr>
                                             <td>{{$item->id}}</td>
                                             <td><img style="width: 100px" src="{{$item->FirstImage}}" class="img-thumbnail" alt=""></td>
-                                            <td>{{$item->title}}</td>
-                                            <td>{{$item->description}}</td>
-
+                                            <td>{{$item->name}}</td>
+                                            <td>{{$item->email}}</td>
+                                            <td>{{$item->phone}}</td>
                                             @switch($item->status)
                                                 @case(1)
                                                     <td>Chưa xóa</td>
@@ -55,19 +55,19 @@
                                                 <td>Đã xóa</td>
                                                 @break
                                             @endswitch
-                                            <td><a href="/admin/blog/{{$item->id}}" class="hover-pointer dataItem"
+                                            <td><a href="/admin/farm/detail/{{$item->id}}" class="hover-pointer dataItem"
                                                 >
                                                     <i class="fa fa-info mr-1 text-primary"
                                                        data-toggle="tooltip" data-placement="bottom"
                                                        title="Information"
                                                        data-original-title="Tooltip bottom"></i></a>
 
-                                                <a href="/admin/blog/update/{{$item->id}}"
+                                                <a href="/admin/farm/update/{{$item->id}}"
                                                    class="hover-pointer">
                                                     <i data-toggle="tooltip" data-placement="bottom" title=""
                                                        data-original-title="Edit"
                                                        class="fa fa-edit mr-1 text-primary"></i></a>
-                                                <a href="/admin/blog/delete/{{$item->id}}" id="delete"
+                                                <a href="/admin/farm/delete/{{$item->id}}" id="delete"
                                                    class="hover-pointer dataItem">
                                                     <i data-toggle="tooltip" data-placement="bottom" title=""
                                                        data-original-title="Delete"
