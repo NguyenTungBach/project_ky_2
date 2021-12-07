@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Blog extends Model
 {
-    protected $fillable = ['title','description','content','thumbnail'];
+    protected $fillable = ['title','description','content','thumbnail','status','created_at','updated_at','deleted_at'];
     use HasFactory;
 
     public function getFirstImageAttribute()

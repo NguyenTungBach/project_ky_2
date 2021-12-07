@@ -54,9 +54,9 @@ class BlogController extends Controller
         try {
             $blog = Blog::find($id);
             $blog->update($request->all());
-            Session::flash('message', "Cập nhật sản phẩm có id= $id, thành công");
+            Session::flash('message', "Cập nhật bài viết có id= $id, thành công");
         } catch (\Exception $e){
-            Session::flash('message', "Cập nhật sản phẩm có id= $id, thất bại");
+            Session::flash('message', "Cập nhật bài viết có id= $id, thất bại");
         }
         return redirect('admin/blogs');
     }
@@ -73,9 +73,9 @@ class BlogController extends Controller
             $blog->deleted_at = Carbon::now('Asia/Ho_Chi_Minh');
             $blog->status = 0;
             $blog->save();
-            Session::flash('message', "Xóa sản phẩm có id= $id, thành công");
+            Session::flash('message', "Xóa bài viết có id= $id, thành công");
         } catch (\Exception $e) {
-            Session::flash('message', "Xóa sản phẩm có id= $id, thất bại");
+            Session::flash('message', "Xóa bài viết có id= $id, thất bại");
         }
         return redirect('admin/blogs');
 

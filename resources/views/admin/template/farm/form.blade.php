@@ -135,7 +135,7 @@
                     uploadPreset: 'nqbsybdh'}, (error, result) => {
                     if (!error && result && result.event === "success") {
                         console.log('Done! Here is the image info: ', result.info);
-                        form.value =  result.info.secure_url;
+                        form.value =  result.info.secure_url+ ',';
                         listImg.innerHTML = `
                     <div class="col-md-3 col-sm-3 position-relative" style="padding-left: 0 !important;">
                                         <a id="close_img" class="close-preview" onclick="deleteImage('${result.info.delete_token}','${result.info.secure_url}')">&#10006;</a>

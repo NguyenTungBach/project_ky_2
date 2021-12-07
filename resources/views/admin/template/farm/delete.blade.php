@@ -2,7 +2,7 @@
 @section('breadcrumb')
     <div class="page-title">
         <div class="title_left">
-            <h3>Xóa bài viết</h3>
+            <h3>Xóa trang trại</h3>
         </div>
     </div>
 @endsection
@@ -11,43 +11,30 @@
         <div class="col-md-12 col-sm-12 ">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Bạn có chắc muốn xóa bài viết này</h2>
+                    <h2>Bạn có chắc muốn xóa trang trại có id ={{$item->id}}  này</h2>
                     <div class="clearfix"></div>
                 </div>
-                <form action="/admin/blog/delete?id={{$items->id}}" method="post">
+                <form action="/admin/farm/delete?id={{$item->id}}" method="post">
                 @csrf
                     <div class="x_content">
                         <br/>
                         <div class="item form-group row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align"> Id *</label>
                             <div class="col-md-6 col-sm-6 ">
-                                <label class="col-form-label">{{$items->id}}</label>
+                                <label class="col-form-label">{{$item->id}}</label>
                             </div>
                         </div>
                         <div class="item form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Tiêu đề *</label>
+                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Tên trang trại *</label>
                             <div class="col-md-6 col-sm-6 ">
-                                <label class="col-form-label">{{$items->title}}</label>
-                            </div>
-                        </div>
-                        <div class="item form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Mô tả *</label>
-                            <div class="col-md-6 col-sm-6 ">
-                                <label class="col-form-label">{{$items->description}}</label>
+                                <label class="col-form-label">{{$item->name}}</label>
                             </div>
                         </div>
 
                         <div class="item form-group row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align"> Ảnh *</label>
                             <div class="col-md-6 col-sm-6 ">
-                                <img src="{{$items->thumbnail}}" style="width: 30%" class="img-thumbnail" alt="">
-                            </div>
-                        </div>
-
-                        <div class="item form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Chi tiết *</label>
-                            <div class="col-md-6 col-sm-6 ">
-                                <label class="col-form-label">{!! $items->content !!}</label>
+                                <img src="{{$item->FirstImage}}" style="width: 30%" class="img-thumbnail" alt="">
                             </div>
                         </div>
 
@@ -55,7 +42,7 @@
                         <div class="item form-group">
                             <div class="col-md-6 col-sm-6 offset-md-3">
                                 <button type="submit" class="btn btn-danger">Đồng ý xóa</button>
-                                <a href="/admin/blogs"><button class="btn btn-primary" type="button">Quay về danh sách bài viết</button></a>
+                                <a href="/admin/farms"><button class="btn btn-primary" type="button">Quay về danh sách trang trại</button></a>
                             </div>
                         </div>
                     </div>

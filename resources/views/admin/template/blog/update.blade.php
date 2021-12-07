@@ -2,7 +2,7 @@
 @section('breadcrumb')
     <div class="page-title">
         <div class="title_left">
-            <h3>Cập nhật sản phẩm</h3>
+            <h3>Cập nhật trang trại</h3>
         </div>
     </div>
 @endsection
@@ -67,7 +67,7 @@
                         <div class="item form-group">
                             <label class="col-form-label col-md-3 col-sm-3 label-align"> Ảnh *</label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input type="hidden" class="form-control" name="thumbnail">
+                                <input type="hidden" class="form-control" name="thumbnail" value="{{$items->FirstImage}}">
                                 <button type="button" id="upload_widget" class="cloudinary-button mb-3">Upload files
                                 </button>
                                 <div id="preview-image">
@@ -123,7 +123,7 @@
                     uploadPreset: 'nqbsybdh'}, (error, result) => {
                     if (!error && result && result.event === "success") {
                         console.log('Done! Here is the image info: ', result.info);
-                        form.value =  result.info.secure_url;
+                        form.value =  result.info.secure_url + ',';
                         listImg.innerHTML = `
                     <div class="col-md-3 col-sm-3 position-relative" style="padding-left: 0 !important;">
                                         <a id="close_img" class="close-preview" onclick="deleteImage('${result.info.delete_token}','${result.info.secure_url}')">&#10006;</a>

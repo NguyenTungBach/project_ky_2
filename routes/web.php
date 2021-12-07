@@ -94,6 +94,12 @@ Route::get('/admin/farm/form', [\App\Http\Controllers\admin\FarmController::clas
 // lấy thông tin trên form rồi tạo mới
 Route::post('/admin/farm/form', [\App\Http\Controllers\admin\FarmController::class, 'create']);
 
+Route::get('/admin/farm/detail/{id}', [\App\Http\Controllers\admin\FarmController::class, 'getDetail']);
+Route::get('/admin/farm/update/{id}', [\App\Http\Controllers\admin\FarmController::class, 'getInformation']);
+Route::post('/admin/farm/update', [\App\Http\Controllers\admin\FarmController::class, 'update']);
+Route::get('/admin/farm/delete/{id}', [\App\Http\Controllers\admin\FarmController::class, 'getConfirmDelete']);
+Route::post('/admin/farm/delete', [\App\Http\Controllers\admin\FarmController::class, 'delete']);
+
 //***************************** Order ************************************
 Route::get('admin/orders', [OrderController::class, 'getAll']);
 

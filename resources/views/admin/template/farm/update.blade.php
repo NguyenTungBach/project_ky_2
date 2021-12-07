@@ -2,10 +2,11 @@
 @section('breadcrumb')
     <div class="page-title">
         <div class="title_left">
-            <h3>Tạo bài viết</h3>
+            <h3>Cập nhật trang trại</h3>
         </div>
     </div>
 @endsection
+
 @section('page-css')
     <style>
         .close-preview {
@@ -18,12 +19,13 @@
         }
     </style>
 @endsection
+
 @section('page-content')
     <div class="row">
         <div class="col-md-12 col-sm-12 ">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Tạo bài viết</h2>
+                    <h2>Cập nhật trang trại</h2>
                     <div class="clearfix"></div>
                     @if ($errors->any())
                         <div class="alert " style="margin-top: 10px">
@@ -38,38 +40,60 @@
                 </div>
                 <div class="x_content">
                     <br/>
-                    <form method="post" name="form" action="/admin/blog/form">
+                    <form method="post" name="form" action="/admin/farm/update?id={{$item['id']}}">
                         @csrf
                         <div class="item form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Tiêu đề *</label>
+                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Tên trang trại *</label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input type="text" name="title" class="form-control ">
+                                <input type="text" name="name" class="form-control"  value="{{ $item->name }}">
                             </div>
-                            @error('title')
+                            @error('name')
+                            <div class="text-danger col-md-12 col-sm-12 " style="margin: 5px 0 0 400px">* {{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="item form-group row">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Địa chỉ *</label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="text" name="address" class="form-control " value="{{ $item->address }}">
+                            </div>
+                            @error('address')
+                            <div class="text-danger col-md-12 col-sm-12 " style="margin: 5px 0 0 400px">* {{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="item form-group row">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Email *</label>
+                            <div class="col-md-5 col-sm-5 ">
+                                <input type="text" name="email" class="form-control" value="{{ $item->email }}">
+                            </div>
+                            @error('email')
+                            <div class="text-danger col-md-12 col-sm-12 " style="margin: 5px 0 0 400px">* {{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="item form-group row">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Số điện thoại *</label>
+                            <div class="col-md-4 col-sm-4 ">
+                                <input type="text" name="phone" class="form-control" value="{{ $item->phone }}">
+                            </div>
+                            @error('phone')
                             <div class="text-danger col-md-12 col-sm-12 " style="margin: 5px 0 0 400px">* {{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Mô tả *</label>
-                            <div class="col-md-6 col-sm-6 ">
-                                <label>
-                                    <textarea style="width: 100%" name="description" rows="4" cols="50"></textarea>
-                                </label>
-                                @error('description')
-                                <div class="text-danger col-12">* {{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="item form-group">
                             <label class="col-form-label col-md-3 col-sm-3 label-align"> Ảnh *</label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input type="hidden" class="form-control" name="thumbnail">
+                                <input type="hidden" class="form-control" name="thumbnail" value="{{$item->FirstImage}}">
                                 <button type="button" id="upload_widget" class="cloudinary-button mb-3">Upload files
                                 </button>
                                 <div id="preview-image">
-
+                                    <div class="col-md-3 col-sm-3 position-relative" style="padding-left: 0 !important;">
+                                        <a id="close_img" class="close-preview">&#10006;</a>
+                                        <img src="{{$item->FirstImage}}"
+                                             class="col-md-12 col-sm-12 img-thumbnail mr-2 mb-2 imagesChoice">
+                                    </div>
                                 </div>
                                 @error('thumbnail')
                                 <div class="text-danger col-12" >* {{ $message }}</div>
@@ -80,8 +104,8 @@
                         <div class="item form-group">
                             <label class="col-form-label col-md-3 col-sm-3 label-align">Nội dung *</label>
                             <div class="col-md-6 col-sm-6">
-                                <textarea name="content"></textarea>
-                                @error('content')
+                                <textarea name="description">{{ $item->description }}</textarea>
+                                @error('description')
                                 <div class="text-danger col-12">* {{ $message }}</div>
                                 @enderror
                             </div>
@@ -90,11 +114,12 @@
                         <div class="ln_solid"></div>
                         <div class="item form-group">
                             <div class="col-md-6 col-sm-6 offset-md-3">
-                                <a href="/admin/blogs"><button class="btn btn-primary" type="button">Quay về danh sách bài viết</button></a>
+                                <a href="/admin/farms"><button class="btn btn-primary" type="button">Quay về danh sách trang trại</button></a>
                                 <button class="btn btn-info" type="reset">Reset</button>
-                                <button type="submit" class="btn btn-success">Tạo</button>
+                                <button type="submit" class="btn btn-success">Cập nhật</button>
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>
@@ -117,7 +142,7 @@
                     uploadPreset: 'nqbsybdh'}, (error, result) => {
                     if (!error && result && result.event === "success") {
                         console.log('Done! Here is the image info: ', result.info);
-                        form.value =  result.info.secure_url + ',';
+                        form.value =  result.info.secure_url +",";
                         listImg.innerHTML = `
                     <div class="col-md-3 col-sm-3 position-relative" style="padding-left: 0 !important;">
                                         <a id="close_img" class="close-preview" onclick="deleteImage('${result.info.delete_token}','${result.info.secure_url}')">&#10006;</a>
@@ -204,6 +229,6 @@
                 {name: 'about', items: ['About']}
             ];
         };
-        CKEDITOR.replace('content');
+        CKEDITOR.replace('description');
     </script>
 @endsection

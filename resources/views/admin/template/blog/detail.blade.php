@@ -2,7 +2,7 @@
 @section('breadcrumb')
     <div class="page-title">
         <div class="title_left">
-            <h3>Chi tiết sản phẩm</h3>
+            <h3>Chi tiết bài viết</h3>
         </div>
     </div>
 @endsection
@@ -41,7 +41,7 @@
                     <div class="form-group item row">
                         <label class="col-form-label col-md-3 col-sm-3 label-align">Ảnh bài viết *</label>
                         <div class="col-md-6 col-sm-6 ">
-                            <img src="{{$items->thumbnail}}" class="img-thumbnail" alt="">
+                            <img src="{{$items->FirstImage}}" style="width: 30%" class="img-thumbnail" alt="">
                         </div>
                     </div>
 
