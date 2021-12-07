@@ -22,7 +22,7 @@
             {{--Category Menu--}}
 
             {{--Category Menu--}}
-            <li><a><i class="fa fa-tags"></i> Danh mục trang trại <span class="fa fa-chevron-down"></span></a>
+            <li><a><i class="fa fa-users"></i> Danh mục trang trại <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="/admin/farms">Quản lý</a></li>
                     <li><a href="/admin/farm/form">Tạo mới</a></li>
