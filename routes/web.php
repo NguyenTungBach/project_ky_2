@@ -127,7 +127,7 @@ Route::get('admin/order/search-product/{id}', [OrderController::class, 'searchBy
 Route::get('admin/order/search-date/{date}', [OrderController::class, 'searchByDate']);
 
 //***************************** Blog ************************************
-
+Route::get('/admin/blog/search', [\App\Http\Controllers\admin\BlogController::class, 'search']);
 Route::get('admin/blogs',[\App\Http\Controllers\admin\BlogController::class,'getAll']);
 Route::get('admin/blog/form',[\App\Http\Controllers\admin\BlogController::class,'getForm']);
 Route::post('admin/blog/form',[\App\Http\Controllers\admin\BlogController::class,'createBlog']);
@@ -137,6 +137,8 @@ Route::post('admin/blog/update',[\App\Http\Controllers\admin\BlogController::cla
 Route::get('admin/blog/delete/{id}', [\App\Http\Controllers\admin\BlogController::class, 'getConfirmDelete']);
 Route::post('admin/blog/delete', [\App\Http\Controllers\admin\BlogController::class, 'delete']);
 
+Route::post('admin/blog/remove-multi/status', [\App\Http\Controllers\admin\BlogController::class, 'removeAllStatus']);
+Route::post('admin/blog/update-multi/status', [\App\Http\Controllers\admin\BlogController::class, 'updateAllStatus']);
 //***************************** Contact ************************************
 Route::get('admin/contacts',[\App\Http\Controllers\admin\ContactController::class,'getAll']);
 Route::get('admin/contact/detail/{id}',[\App\Http\Controllers\admin\ContactController::class,'getDetail']);

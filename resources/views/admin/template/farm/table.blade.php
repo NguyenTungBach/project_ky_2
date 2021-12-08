@@ -80,8 +80,7 @@
                                 <div class="col-md-3 col-sm-3 form-group pull-right top_search pr-2">
                                     <select name="status" class="form-control sortOrder" id="status">
                                         <option value="">---Trạng thái---</option>
-                                        <option value="1"{{isset($status) && $status == 1 ? 'selected' : ''}}>Chưa đọc</option>
-                                        <option value="2"{{isset($status) && $status == 2 ? 'selected' : ''}}>Đã đọc</option>
+                                        <option value="1"{{isset($status) && $status == 1 ? 'selected' : ''}}>Chưa xoá</option>
                                         <option value="0"{{isset($status) && $status == 0 ? 'selected' : ''}}>Đã xóa</option>
                                     </select>
                                 </div>
@@ -157,6 +156,18 @@
                                     </tbody>
 
                                 </table>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <div class="dataTables_info" id="datatable_info" role="status"
+                                             aria-live="polite">Hiển thị 1 tới {{$paginate ?? ''}} trong số {{$sum?? ''}} sản phẩm
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <div class="dataTables_paginate">
+                                            {{$items->appends(request()->all())->links('admin.include.pagination')}}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

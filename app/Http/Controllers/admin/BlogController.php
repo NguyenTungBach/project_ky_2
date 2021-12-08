@@ -17,8 +17,12 @@ class BlogController extends Controller
     }
 
     function getAll(){
+        $paginate = 9;
+        $contacts = Blog::query();
         return view('admin.template.blog.table',[
-            'items' =>Blog::all()
+            'items' => $contacts->orderBy('created_at', 'desc')->paginate($paginate),
+            'paginate' => $paginate,
+            'sum' => $contacts->count(),
         ]);
     }
     function getForm(){
@@ -79,5 +83,57 @@ class BlogController extends Controller
         }
         return redirect('admin/blogs');
 
+    }
+
+    public function updateAllStatus()
+    {
+        try {
+            $data = json_decode(file_get_contents("php://input"), true);
+            $ids = $data['ids'];
+            $status = $data['status'];
+            Blog::whereIn('id', $ids)->update([
+                'status' => $status,
+                'updated_at' => Carbon::now('Asia/Ho_Chi_Minh')
+            ]);
+            return json_encode($ids);
+        } catch (\Exception $e) {
+            return $e;
+        }
+    }
+
+    public function removeAllStatus()
+    {
+        try {
+            $data = json_decode(file_get_contents("php://input"), true);
+            $ids = $data['ids'];
+            $status = $data['status'];
+            Blog::whereIn('id', $ids)->update([
+                'status' => $status,
+                'deleted_at' => Carbon::now('Asia/Ho_Chi_Minh')
+            ]);
+            return json_encode($ids);
+        } catch (\Exception $e) {
+            return $e;
+        }
+    }
+
+    public function search(Request $request)
+    {
+        try {
+            $paginate = 9;
+            $contacts = Blog::query()
+                ->title($request)
+                ->status($request);
+
+            return view('admin.template.blog.table', [
+                'items' => $contacts->paginate($paginate),
+                'oldTitle' => $request->get('title'),
+                'paginate' => $paginate,
+                'sum' => $contacts->count(),
+                'status' => $request->get('status'),
+            ]);
+        } catch (\Exception $exception) {
+            return $exception;
+        }
     }
 }

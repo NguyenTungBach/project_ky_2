@@ -18,4 +18,24 @@ class Blog extends Model
         }
         return "";
     }
+
+    public function scopeTitle($query, $request)
+    {
+        if ($request->has('title')) {
+            if ($request->title != null) {
+                $query->where('title', 'LIKE', '%' . $request->title . '%');
+            }
+        }
+        return $query;
+    }
+
+    public function scopeStatus($query, $request)
+    {
+        if ($request->has('status')){
+            if ($request->status != null){
+                $query->where('status',$request->status);
+            }
+        }
+        return $query;
+    }
 }

@@ -17,8 +17,12 @@ class FarmController extends Controller
     }
 
     function getAll(){
+        $paginate = 9;
+        $contacts = Farm::query();
         return view('admin.template.farm.table',[
-            'items' =>Farm::all()
+            'items' => $contacts->orderBy('created_at', 'desc')->paginate($paginate),
+            'paginate' => $paginate,
+            'sum' => $contacts->count(),
         ]);
     }
 
@@ -121,7 +125,7 @@ class FarmController extends Controller
     public function search(Request $request)
     {
         try {
-//            $paginate = 9;
+            $paginate = 9;
             $contacts = Farm::query()
                 ->name($request)
                 ->email($request)
@@ -129,12 +133,12 @@ class FarmController extends Controller
                 ->status($request);
 
             return view('admin.template.farm.table', [
-                'items' => $contacts->get(),
+                'items' => $contacts->paginate($paginate),
                 'oldName' => $request->get('name'),
                 'oldPhone' => $request->get('phone'),
                 'oldEmail' => $request->get('email'),
-//                'paginate' => $paginate,
-//                'sum' => $contacts->count(),
+                'paginate' => $paginate,
+                'sum' => $contacts->count(),
                 'status' => $request->get('status'),
             ]);
         } catch (\Exception $exception) {
