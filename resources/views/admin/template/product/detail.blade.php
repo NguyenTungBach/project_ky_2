@@ -38,6 +38,13 @@
                     </div>
 
                     <div class="form-group item row">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align">Trang trại *</label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <label class="col-form-label">{{$item->farm->name}}</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group item row">
                         <label class="col-form-label col-md-3 col-sm-3 label-align">Ngày tạo *</label>
                         <div class="col-md-6 col-sm-6 ">
                             <label class="col-form-label">{{$item->created_at}}</label>

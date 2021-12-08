@@ -130,7 +130,8 @@ class FarmController extends Controller
                 ->name($request)
                 ->email($request)
                 ->phone($request)
-                ->status($request);
+                ->status($request)
+                ->orderBy('created_at','DESC');
 
             return view('admin.template.farm.table', [
                 'items' => $contacts->paginate($paginate),

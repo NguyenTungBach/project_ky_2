@@ -65,11 +65,21 @@
                                 </div>
                                 {{--              Find By Category               --}}
                                 <div class="col-md-3 col-sm-3 form-group pull-right top_search pr-2">
+                                    <select name="farms" id="farm" class="form-control sortOrder">
+                                        <option value="">---Lọc theo trang trại---</option>
+                                        @foreach($farms as $farm)
+                                            <option value="{{$farm->id}}"
+                                            {{isset($oldFarm) && $oldFarm == $farm->id ? 'selected' : ''}}>{{$farm->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                {{--              Find By Category               --}}
+                                <div class="col-md-3 col-sm-3 form-group pull-right top_search pr-2">
                                     <select name="categories" id="category" class="form-control sortOrder">
                                         <option value="">---Lọc theo danh mục sản phẩm---</option>
                                         @foreach($categories as $category)
                                             <option value="{{$category->id}}"
-                                            {{isset($oldCategory) && $oldCategory == $category->id ? 'selected' : ''}}>{{$category->name}}</option>
+                                                {{isset($oldCategory) && $oldCategory == $category->id ? 'selected' : ''}}>{{$category->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -172,6 +182,7 @@
                                         <th>Chi tiết sản phẩm</th>
                                         <th>Giá</th>
                                         <th>Danh mục sản phẩm</th>
+                                        <th>Danh mục trang trại</th>
                                         <th>Trạng thái</th>
                                         <th style="width: 7%">Hành động</th>
                                     </tr>
@@ -185,6 +196,7 @@
                                             <td>{{$item->description}}</td>
                                             <td>{{\App\Helpers\Helper::formatVND($item->price)}}</td>
                                             <td>{{$item->category->name}}</td>
+                                            <td>{{$item->farm->name}}</td>
                                             <td>{{$item->handlerStatus}}</td>
                                             <td>
                                                 <a href="/admin/product/{{$item->id}}" class="hover-pointer dataItem">
@@ -377,7 +389,9 @@
 
         $('#category').change(function () {
             this.form.submit();
-
+        })
+        $('#farm').change(function () {
+            this.form.submit();
         })
         $('#status').change(function () {
             this.form.submit();

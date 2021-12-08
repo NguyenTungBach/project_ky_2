@@ -73,6 +73,17 @@
                             </div>
                         </div>
 
+                        <div class="form-group item row">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align">Trang trại *</label>
+                            <div class="col-md-6 col-sm-6 col-form-label">
+                                <select class="form-control" name="farm_id">
+                                    @foreach($farms as $farm)
+                                        <option value="{{$farm->id}}" {{$farm->id==$item->farm_id ?'selected':""}}>{{$farm->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
 
                         <div class="item form-group">
                             <label class="col-form-label col-md-3 col-sm-3 label-align"> Mô tả *</label>
@@ -89,7 +100,7 @@
                         <div class="item form-group">
                             <label class="col-form-label col-md-3 col-sm-3 label-align"> Ảnh *</label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input type="hidden" class="form-control" name="thumbnail">
+                                <input type="hidden" class="form-control" name="thumbnail" value="{{$item->FirstImage}}">
                                 <button type="button" id="upload_widget" class="cloudinary-button mb-3">Upload files
                                 </button>
                                 <div id="preview-image">

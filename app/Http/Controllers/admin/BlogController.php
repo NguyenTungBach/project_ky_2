@@ -123,7 +123,8 @@ class BlogController extends Controller
             $paginate = 9;
             $contacts = Blog::query()
                 ->title($request)
-                ->status($request);
+                ->status($request)
+                ->orderBy('created_at','DESC');
 
             return view('admin.template.blog.table', [
                 'items' => $contacts->paginate($paginate),

@@ -22,6 +22,11 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function farm(): BelongsTo
+    {
+        return $this->belongsTo(Farm::class);
+    }
+
     public function orders() : BelongsToMany
     {
         return $this->belongsToMany(Order::class);
@@ -96,6 +101,16 @@ class Product extends Model
                         $query->whereBetween('price', [500000, 5000000])->where('status','!=',0);
                         break;
                 }
+            }
+        }
+        return $query;
+    }
+
+    public function scopeFarm($query, $request)
+    {
+        if ($request->has('farms')) {
+            if ($request->farms != null) {
+                $query->where('farm_id', $request->farms)->where('status','!=',0);
             }
         }
         return $query;
