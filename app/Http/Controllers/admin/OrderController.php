@@ -148,8 +148,6 @@ class OrderController extends Controller
                 'oldTotalPrice' => $request->get('totalPrice'),
                 'sortPrice' => $request->get('sortPrice'),
                 'sortName' => $request->get('sortName'),
-
-
             ]);
         } catch (\Exception $e) {
 
@@ -188,8 +186,6 @@ class OrderController extends Controller
         }
     }
 
-
-
     public function getInformation($id)
     {
         try {
@@ -200,7 +196,6 @@ class OrderController extends Controller
             return "Id không tồn tại hoặc lỗi lấy trang.";
         }
     }
-
 
     function sendMail($id,$title)
     {
