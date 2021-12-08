@@ -14,7 +14,7 @@ class Product extends Model
     use HasFactory;
     public $timestamps = false;
     protected $fillable = [
-        'name', 'category_id', 'thumbnail', 'price', 'detail', 'description', 'created_at', 'updated_at', 'deleted_at'
+        'name', 'category_id', 'farm_id','thumbnail', 'price', 'detail', 'description', 'created_at', 'updated_at', 'deleted_at'
     ];
 
     public function category(): BelongsTo
