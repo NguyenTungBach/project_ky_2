@@ -1,4 +1,12 @@
 @extends('admin.master-admin')
+@section('page-css')
+    <link rel="stylesheet" href="/css/jquery.toast.min.css">
+    <style>
+        .dataTables_paginate .pagination .active .text-pagination {
+            color: #0e7aff !important;
+        }
+    </style>
+@endsection
 @section('breadcrumb')
     <div class="page-title">
         <div class="title_left">
@@ -11,17 +19,87 @@
         <div class="col-md-12 col-sm-12 ">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Danh mục trang trại</h2>
-                    <div class="clearfix"></div>
-                    @if(\Illuminate\Support\Facades\Session::has('message'))
-                        <div style="margin-top: 15px">
-                            <div class="alert alert-success">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                <strong>{{\Illuminate\Support\Facades\Session::get('message')}}</strong>
+                    <div id="menu-table" style="width: 300px" class="position-fixed">
+                        <ul style="display: flex">
+                            <li>
+                                <div>
+                                    <i class="fa fa-check-circle"></i>
+                                    <span class="data-quantity-choice">Đã chọn : 1</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <i class="fa fa-edit"></i>
+                                    <div class="dropdown">
+                                        <span>Đổi trạng thái</span>
+                                        <div class="dropdown-content">
+                                            <ul style="padding: 0;" class="ids-update-choice" data-id="0">
+                                                <li class="update-status-choice" data-status="1">
+                                                    <span>Chưa xóa</span>
+                                                </li>
+                                                <li data-toggle="modal" data-target="#exampleModal">
+                                                    <span>Đã xoá</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <h5>Lọc trang trại</h5>
+                    <div class="x_title">
+                        <form action="/admin/farm/search" method="get" id="form-search">
+                            @csrf
+                            <div class="col-sm-12 col-md-12">
+                                {{--              Find By Name                  --}}
+                                <div class="col-md-3 col-sm-3 form-group pull-right pr-2  top_search">
+                                    <input type="text" class=" form-control query"
+                                           value="{{$oldName ?? ""}}" name="name"
+                                           placeholder="Tên người gửi...">
+                                    <span class="delete-search">&times;</span>
+                                    <span class="icon-search"><i class="fa fa-search"></i></span>
+                                </div>
+                                {{--              Find By Phone                  --}}
+                                <div class="col-md-3 col-sm-3 form-group pull-right pr-2 top_search">
+                                    <input type="text" class=" form-control query"
+                                           value="{{$oldPhone ?? ""}}" name="phone"
+                                           placeholder="Số điện thoại">
+                                    <span class="delete-search">&times;</span>
+                                    <span class="icon-search"><i class="fa fa-search"></i></span>
+                                </div>
+                                {{--              Find By Email                  --}}
+                                <div class="col-md-3 col-sm-3 form-group pull-right pr-2 top_search">
+                                    <input type="text" class=" form-control query"
+                                           value="{{$oldEmail ?? ""}}" name="email"
+                                           placeholder="Email">
+                                    <span class="delete-search">&times;</span>
+                                    <span class="icon-search"><i class="fa fa-search"></i></span>
+                                </div>
+                                {{--                                --}}{{--        Search status             --}}
+                                <div class="col-md-3 col-sm-3 form-group pull-right top_search pr-2">
+                                    <select name="status" class="form-control sortOrder" id="status">
+                                        <option value="">---Trạng thái---</option>
+                                        <option value="1"{{isset($status) && $status == 1 ? 'selected' : ''}}>Chưa đọc</option>
+                                        <option value="2"{{isset($status) && $status == 2 ? 'selected' : ''}}>Đã đọc</option>
+                                        <option value="0"{{isset($status) && $status == 0 ? 'selected' : ''}}>Đã xóa</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                    @endif
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+
+                    <div class="clearfix"></div>
                 </div>
+                @if(\Illuminate\Support\Facades\Session::has('message'))
+                    <div style="margin-top: 15px">
+                        <div class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <strong>{{\Illuminate\Support\Facades\Session::get('message')}}</strong>
+                        </div>
+                    </div>
+                @endif
 
                 <div class="x_content">
                     <div class="row">
@@ -30,6 +108,7 @@
                                 <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                                     <thead>
                                     <tr>
+                                        <th><input type="checkbox" value="" class="check-all-order" name="selected-all">
                                         <th>Id</th>
                                         <th>Ảnh trang trại</th>
                                         <th>Tên trang trại</th>
@@ -42,6 +121,7 @@
                                     <tbody>
                                     @foreach($items as $item)
                                         <tr>
+                                            <td><input type="checkbox" value="{{$item->id}}" class="selected-item">
                                             <td>{{$item->id}}</td>
                                             <td><img style="width: 100px" src="{{$item->FirstImage}}" class="img-thumbnail" alt=""></td>
                                             <td>{{$item->name}}</td>
@@ -83,7 +163,167 @@
                 </div>
             </div>
         </div>
+        <!-- Modal xác nhận xoá tất cả order đã chọn-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Bạn có muốn xoá các trang trại đã chọn?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                        <button data-id="0" data-status="0" id="confirm-delete-all" type="button" class="btn btn-primary">Đồng ý
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 @section('page-script')
+    <script src="/js/jquery.toast.min.js"></script>
+    <script>
+        let body = $('body');
+        const selectItem = $('.selected-item');
+        var dem = 0;
+
+        // xử lý check all
+        $('input[name="selected-all"]').on('click', function () {
+            let ids = new Set();
+            selectItem.prop('checked', this.checked); // cho tất cả đều được check như selected-all
+            if (this.checked) {
+                $('#menu-table').css('display', 'flex');
+                for (const ele of selectItem) {
+                    ids.add(ele.value);
+                }
+                console.log(ids);
+                $('.data-quantity-choice').text("Đã chọn: "+ids.size);
+                $('.ids-update-choice').data('id', ids)
+                $('#confirm-delete-all').data('id', ids)
+            } else {
+                $('#menu-table').css('display', 'none');
+                $('#confirm-delete-all').data('id', '')
+                $('.ids-update-choice').data('id', '')
+            }
+        });
+
+        selectItem.on('click', function () {
+            let ids = new Set();
+            let value = this.value;
+            for (let i = 0; i < selectItem.length; i++) { // Kiểm tra từng selectItem
+                if (selectItem[i].checked) { // Nếu có selectItem được check
+                    ids.add(selectItem[i].value); // thì đưa vào Set
+                }
+            }
+            if ($(this).prop('checked')) {
+                $('#menu-table').css('display', 'flex');
+                ids.add(value);
+            } else {
+                if (ids.has(value)) {
+                    ids.delete(value);
+                }
+                if (ids.size === 0) {
+                    $('#menu-table').css('display', 'none');
+                }
+            }
+            console.log(ids);
+            if (ids.size > 0) {
+                $('#confirm-delete-all').data('id', ids)
+                $('.ids-update-choice').data('id', ids)
+                console.log("Data-id la:", $('.ids-update-choice').data('id'));
+                console.log("Data-id xóa la:", $('#confirm-delete-all').data('id'));
+                //hiển thị số lượng đã chon trên menu xử lý nhiều order 1 lúc
+                $('.data-quantity-choice').text(`Đã chọn: ${ids.size}`)
+            } else {
+                $('#confirm-delete-all').data('id', '')
+                $('.ids-update-choice').data('id', '')
+            }
+        })
+
+        // ======================================== Update status tat ca order da chon ==============================
+        $(document).on('click', '.update-status-choice', function () {
+            let ids = Array.from( $(this).parent().data('id') ); // Lấy giá trị thuộc tính data-id
+            console.log(ids);
+            let status = $(this).data('status');
+            console.log("trạng thái cập nhật: ", status);
+            let data = {
+                ids: ids,
+                status: status
+            }
+
+            $.ajax({
+                url: 'http://127.0.0.1:8000/admin/farm/update-multi/status',
+                type: 'POST',
+                data: JSON.stringify(data),
+                success: function (data) {
+                    console.log("console log thư thành công: ",JSON.parse(data))
+                    $.toast({
+                        heading: 'Success',
+                        text: 'Cập nhật trạng thái trang trại thành công',
+                        showHideTransition: 'slide',
+                        icon: 'success',
+                        position: 'top-right'
+                    })
+                    setTimeout(function () {
+                        window.location.reload(false);
+                    }, 3000);
+                },
+                error: function (request, error) {
+                    console.log("Request: " + JSON.parse(request));
+                    function messageError() {
+                        $.toast({
+                            heading: 'Error',
+                            text: 'Cập nhật trạng thái trang trại thất bại',
+                            icon: 'error',
+                        });
+                    }
+                }
+            });
+        });
+
+        // ======================================== Xoa tat ca order da chon ==============================
+        $(document).on('click', '#confirm-delete-all', function () {
+            $('#exampleModal').css('display', 'none');
+            let listId = Array.from($(this).data('id'));
+            let status = $(this).data('status');
+            let data = {
+                ids: listId,
+                status: status
+            };
+            console.log("Danh sách id xóa là: ", listId),
+            console.log("trạng thái xóa là: ", status),
+
+            $.ajax({
+                url: 'http://127.0.0.1:8000/admin/farm/remove-multi/status',
+                type: 'POST',
+                data: JSON.stringify(data),
+
+                success: function (data) {
+                    $.toast({
+                        heading: 'Success',
+                        text: 'Xoá thành công trang trại',
+                        showHideTransition: 'slide',
+                        icon: 'success',
+                        position: 'top-right'
+                    })
+                    setTimeout(function () {
+                        window.location.reload(false);
+                    }, 3000);
+                },
+                error: function (request, error) {
+                    console.log("Request: " + JSON.parse(request));
+                    function messageError() {
+                        $.toast({
+                            heading: 'Error',
+                            text: 'Xóa trạng thái trang trại thất bại',
+                            icon: 'error',
+                        });
+                    }
+                }
+            });
+        })
+    </script>
 @endsection

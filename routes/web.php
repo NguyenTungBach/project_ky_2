@@ -96,10 +96,14 @@ Route::post('/admin/farm/form', [\App\Http\Controllers\admin\FarmController::cla
 
 Route::get('/admin/farm/detail/{id}', [\App\Http\Controllers\admin\FarmController::class, 'getDetail']);
 Route::get('/admin/farm/update/{id}', [\App\Http\Controllers\admin\FarmController::class, 'getInformation']);
+Route::get('/admin/farm/search', [\App\Http\Controllers\admin\FarmController::class, 'search']);
+
 Route::post('/admin/farm/update', [\App\Http\Controllers\admin\FarmController::class, 'update']);
 Route::get('/admin/farm/delete/{id}', [\App\Http\Controllers\admin\FarmController::class, 'getConfirmDelete']);
 Route::post('/admin/farm/delete', [\App\Http\Controllers\admin\FarmController::class, 'delete']);
 
+Route::post('admin/farm/remove-multi/status', [\App\Http\Controllers\admin\FarmController::class, 'removeAllStatus']);
+Route::post('admin/farm/update-multi/status', [\App\Http\Controllers\admin\FarmController::class, 'updateAllStatus']);
 //***************************** Order ************************************
 Route::get('admin/orders', [OrderController::class, 'getAll']);
 

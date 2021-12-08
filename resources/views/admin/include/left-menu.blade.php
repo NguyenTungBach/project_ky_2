@@ -26,7 +26,6 @@
                 <ul class="nav child_menu">
                     <li><a href="/admin/farms">Quản lý</a></li>
                     <li><a href="/admin/farm/form">Tạo mới</a></li>
-
                 </ul>
             </li>
             {{--Category Menu--}}
