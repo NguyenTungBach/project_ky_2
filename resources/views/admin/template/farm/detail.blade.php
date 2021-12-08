@@ -47,7 +47,7 @@
                     <div class="form-group item row">
                         <label class="col-form-label col-md-3 col-sm-3 label-align">Ngày cập nhật *</label>
                         <div class="col-md-6 col-sm-6 ">
-                            <label class="col-form-label">{{$item->updated_at ==null ? "Chưa cập nhật" : $items->updated_at }}</label>
+                            <label class="col-form-label">{{$item->updated_at ==null ? "Chưa cập nhật" : $item->updated_at }}</label>
                         </div>
                     </div>
 
