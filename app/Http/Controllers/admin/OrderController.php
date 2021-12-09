@@ -5,14 +5,11 @@ namespace App\Http\Controllers\admin;
 use App\Enums\OrderStatus;
 use App\Exports\OrderExport;
 use App\Http\Controllers\Controller;
-use App\Imports\DistrictsImport;
-use App\Imports\WardsImport;
 use App\Models\Order;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Maatwebsite\Excel\Facades\Excel;
 
 class OrderController extends Controller
 {
@@ -36,7 +33,7 @@ class OrderController extends Controller
     public function exportOrder()
     {
         $ids = explode(",", request('ids')); // tạo mảng ids
-        return (new OrderExport($ids))->download('orders.xlsx');
+        return (new OrderExport($ids))->download('DanhSachHoaDon.xlsx');
     }
 
     public function updateStatus()
@@ -88,9 +85,22 @@ class OrderController extends Controller
         try {
             $data = json_decode(file_get_contents("php://input"), true);
             $ids = $data['ids'];
-            $status = $data['status'];
+            $statusUpdate = $data['status'];
+//            $orders = Order::whereIn('id', $ids)->get();
+//            foreach ($orders as $o){
+//                $status = $o->status;
+//                if ($status == OrderStatus::Waiting || $status == OrderStatus::Processing){
+//                    $o->status = $statusUpdate;
+//                }
+//                if ($status == OrderStatus::Done && $statusUpdate == OrderStatus::Deleted){
+//                    $o->status = $statusUpdate;
+//                }
+//                if ()
+//                $o->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
+//            }
+
             Order::whereIn('id', $ids)->update([
-                'ship_status' => $status,
+                'ship_status' => $statusUpdate,
                 'updated_at' => Carbon::now('Asia/Ho_Chi_Minh')
             ]);
             return json_encode($ids);

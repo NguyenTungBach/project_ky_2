@@ -1,364 +1,220 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    @include('client.page.farm.css')
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+@extends('client.master-template')
+@section('title')
+    <title>Product</title>
+@endsection
+@section('css-page')
+    @include('client.page.product.css')
+    <link rel="stylesheet" href="/css/jquery.toast.min.css">
     <style>
-        body, h1, h2, h3, h4, h5 {
-            font-family: "Poppins", sans-serif
+        .custom-menu {
+            padding: 0;
+            background-color: #FFF;
+            max-height: 85px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+        .custom-menu ul div{
+            padding: 10px;
+            text-align: center;
+        }
+        .custom-menu ul div:hover{
+            cursor: pointer;
+            background-color: #5cc374;
+            color: #FFF;
+        }
+        .header-products{
+            border-right: 1px #d9d9d9 solid;
+            background-color: #5cc374;
+            color: #FFF;
+        }
+        .list-article{
+            display: block;
+            padding: 0;
         }
 
-        body {
-            font-size: 16px;
-            background-color: #f3f5f6
+        .custom-article {
+            padding: 15px;
+            background-color: #FFF;
+            margin-bottom: 20px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         }
 
-        .w3-half img {
-            margin-bottom: -6px;
-            margin-top: 16px;
-            opacity: 0.8;
-            cursor: pointer
-        }
 
-        .w3-half img:hover {
-            opacity: 1
+        .custom-article div {
+            padding: 0;
         }
-
-        .bg-custom {
-            background-color: #ffffff;
-        }
-
-        .custom div .w3-white .w3-button {
-            border: 1px rgba(205, 205, 205, 0.44) solid;
-        }
-
-        .custom {
-            position: -webkit-sticky; /* Safari */
-            position: sticky;
-            top: 107px;
-        }
-
-        .padding-home-farm {
-            padding: 0 50px;
-        }
-
-        .middle-farms {
+        .list-farm{
             display: none;
+            padding: 0;
         }
+        .custom-farm{
+            display: flex;
+            padding: 15px;
+            background-color: #FFF;
+            margin-bottom: 20px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+        .custom-farm div {
+            padding: 0;
+        }
+
     </style>
-    <link rel="stylesheet" type="text/css" href="/client/css/custom-client.css">
-</head>
-<body class="animsition">
-
-<!-- Header -->
-@include('client.include.header')
+@endsection
+@section('content-page')
+    <!-- Title page -->
+    @include('client.include.title-page',['title'=>'Sản Phẩm'])
 
 
-<!-- Page Container -->
-<div class="padding-home-farm" style="background-color: #f3f5f6;">
-    <!-- The Grid -->
-    <div class="w3-row">
-        <!-- Left Column -->
-        <div class="w3-col m3 custom">
-            <!-- Accordion -->
-            <div class="w3-card w3-round mb-3">
-                <div class="w3-white">
-                    <button class="w3-button w3-block bg-custom  w3-left-align"><i
-                            class="fa fa-home  fa-fw w3-margin-right"></i> Giới thiệu sản phẩm
-                    </button>
-                    <button class="w3-button w3-block bg-custom  w3-left-align"><i
-                            class="fa fa-list  fa-fw w3-margin-right"></i> Danh sách trang trại
-                    </button>
+    <section class=" p-t-20 p-b-45" style="background-color: #f5f7f8">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-10 col-md-7  m-rl-auto col-lg-8 custom-menu mb-3">
+                    <ul class="dis-flex">
+                        <div class="col-sm-6 col-md-6 col-lg-6 header-products">
+                            <li>Giới thiệu sản phẩm mới</li>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6 header-farm">
+                            <li>Danh sách trang trại</li>
+                        </div>
+
+                    </ul>
+                </div>
+
+                <div class="col-sm-10 col-md-7 col-lg-8 m-rl-auto p-b-50 list-article">
+                    <div class="col-md-12 col-sm-12 mb-3 custom-article">
+                        <div class="col-md-12 col-sm-12 dis-flex mb-3">
+                            <div class="col-sm-4 col-md-4">
+                                Farm: Rau ông Nguyên
+                            </div>
+                            <div class="col-sm-4 col-md-4"></div>
+                            <div class="col-sm-4 col-md-4 justify-content-lg-end" style="display: inline-flex">
+                                Date: 12/09/2021 15h30p
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 mb-3 p-1">
+                            <h4 class="pb-1">Rau bắp cải</h4>
+                            <div class=" pb-1">
+                                <ul>
+                                    <a href=""><li>link sản phẩm</li></a>
+                                </ul>
+                            </div>
+
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pellentesque bibendum risus
+                                sit amet finibus. Nullam nec vestibulum augue, placerat mollis justo. Integer vestibulum
+                                odio ut dui placerat, eget blandit lorem consequat. Proin suscipit felis vel dolor eleifend
+                                eleifend. Aliquam commodo malesuada ante id pretium. Aliquam finibus mattis nisi ac mollis.
+                                Integer in lectus ut leo dapibus venenatis.
+                            </p>
+                        </div>
+                        <div class="col-md-12 col-sm-12 dis-flex image-farm">
+                            <div class="col-sm-4 col-md-4 p-2">
+                                <img class="img-thumbnail" src="/client/images/gallery-01.jpg" alt="">
+                            </div>
+                            <div class="col-sm-4 col-md-4 p-2">
+                                <img class="img-thumbnail" src="/client/images/gallery-01.jpg" alt="">
+                            </div>
+                            <div class="col-sm-4 col-md-4 p-2">
+                                <img class="img-thumbnail" src="/client/images/gallery-01.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 mb-3 custom-article">
+                        <div class="col-md-12 col-sm-12 dis-flex mb-3">
+                            <div class="col-sm-4 col-md-4">
+                                Farm: Rau ông Nguyên
+                            </div>
+                            <div class="col-sm-4 col-md-4"></div>
+                            <div class="col-sm-4 col-md-4 justify-content-lg-end" style="display: inline-flex">
+                                Date: 12/09/2021 15h30p
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 mb-3 p-1">
+                            <h4 class="pb-1">Rau bắp cải</h4>
+                            <div class="pl-1 pb-1">
+                                <ul>
+                                    <a href=""><li>link sản phẩm</li></a>
+                                </ul>
+                            </div>
+
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pellentesque bibendum risus
+                                sit amet finibus. Nullam nec vestibulum augue, placerat mollis justo. Integer vestibulum
+                                odio ut dui placerat, eget blandit lorem consequat. Proin suscipit felis vel dolor eleifend
+                                eleifend. Aliquam commodo malesuada ante id pretium. Aliquam finibus mattis nisi ac mollis.
+                                Integer in lectus ut leo dapibus venenatis.
+                            </p>
+                        </div>
+                        <div class="col-md-12 col-sm-12 dis-flex image-farm">
+                            <div class="col-sm-4 col-md-4 p-2">
+                                <img class="img-thumbnail" src="/client/images/gallery-01.jpg" alt="">
+                            </div>
+                            <div class="col-sm-4 col-md-4 p-2">
+                                <img class="img-thumbnail" src="/client/images/gallery-01.jpg" alt="">
+                            </div>
+                            <div class="col-sm-4 col-md-4 p-2">
+                                <img class="img-thumbnail" src="/client/images/gallery-01.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-10 col-md-7 col-lg-8 m-rl-auto p-b-50 list-farm">
+                    <div class="col-md-12 col-sm-12 mb-3 custom-farm">
+                        <div class="col-md-4 col-sm-4 dis-flex image-farm">
+                            <div class="col-sm-12 col-md-12 p-2">
+                                <img class="img-thumbnail" src="/client/images/gallery-01.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-sm-8 mb-3 p-1">
+                            <h4 class="pb-1 font-weight-bold"><a href="">Rau ông Nguyên</a></h4>
+                            <div class="pb-1">
+                               <p>Created at: 12/09/2021</p>
+                            </div>
+
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pellentesque bibendum risus
+                                sit amet finibus. Nullam nec vestibulum augue, placerat mollis justo. Integer vestibulum
+                                odio ut dui placerat, eget blandit lorem consequat. Proin suscipit felis vel dolor eleifend
+                                eleifend. Aliquam commodo malesuada ante id pretium. Aliquam finibus mattis nisi ac mollis.
+                                Integer in lectus ut leo dapibus venenatis.
+                            </p>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-            <!-- Profile -->
-{{--            <div class="w3-card w3-round w3-white">--}}
-{{--                <div class="w3-container">--}}
-{{--                    <h4 class="w3-center">My Profile</h4>--}}
-{{--                    <p class="w3-center"><img src="/image/admin.gif" class="w3-circle"--}}
-{{--                                              style="height:106px;width:106px" alt="Avatar"></p>--}}
-{{--                    <hr>--}}
-{{--                    <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Developer</p>--}}
-{{--                    <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>Hung Yen, Viet Nam</p>--}}
-{{--                    <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> 13/03/1996</p>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-
-            <!-- End Left Column -->
         </div>
-
-        <!-- Middle Column -->
-        <div class="w3-col m7 middle-timeline" style=" margin-top: 18px">
-
-{{--            <div class="w3-row-padding">--}}
-{{--                <div class="w3-col m12">--}}
-{{--                    <div class="w3-card w3-round w3-white">--}}
-{{--                        <div class="w3-container w3-padding">--}}
-{{--                            <h6 class="w3-opacity">Social Media template by w3.css</h6>--}}
-{{--                            <p contenteditable="true" class="w3-border w3-padding">Status: Feeling Blue</p>--}}
-{{--                            <button type="button" class="btn btn-success mt-2"><i class="fa fa-pencil"></i>  Post--}}
-{{--                            </button>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-
-            <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                <img src="/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
-                     style="width:60px">
-                <span class="w3-right w3-opacity">1 min</span>
-                <h4>John Doe</h4><br>
-                <hr class="w3-clear">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.</p>
-                <div class="w3-row-padding" style="margin:0 -16px">
-                    <div class="w3-half">
-                        <img src="/w3images/lights.jpg" style="width:100%" alt="Northern Lights"
-                             class="w3-margin-bottom">
-                    </div>
-                    <div class="w3-half">
-                        <img src="/w3images/nature.jpg" style="width:100%" alt="Nature" class="w3-margin-bottom">
-                    </div>
-                </div>
-                <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>
-                     Like
-                </button>
-                <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>
-                     Comment
-                </button>
-            </div>
-
-            <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                <img src="/w3images/avatar5.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
-                     style="width:60px">
-                <span class="w3-right w3-opacity">16 min</span>
-                <h4>Jane Doe</h4><br>
-                <hr class="w3-clear">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.</p>
-                <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>
-                     Like
-                </button>
-                <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>
-                     Comment
-                </button>
-            </div>
-
-            <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                <img src="/w3images/avatar6.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
-                     style="width:60px">
-                <span class="w3-right w3-opacity">32 min</span>
-                <h4>Angie Jane</h4><br>
-                <hr class="w3-clear">
-                <p>Have you seen this?</p>
-                <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.</p>
-                <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>
-                     Like
-                </button>
-                <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>
-                     Comment
-                </button>
-            </div>
-
-            <!-- End Middle Column -->
-        </div>
-        <div class="w3-col m7 middle-farms" style=" margin-top: 18px">
-
-            <div class="w3-row-padding">
-                <div class="w3-col m12">
-                    <div class="w3-card w3-round w3-white">
-                        <div class="w3-container w3-padding">
-                            <h6 class="w3-opacity">Social Media template by w3.css</h6>
-                            <p contenteditable="true" class="w3-border w3-padding">Status: Feeling Blue</p>
-                            <button type="button" class="btn btn-success mt-2"><i class="fa fa-pencil"></i>  Post
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                <img src="/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
-                     style="width:60px">
-                <span class="w3-right w3-opacity">1 min</span>
-                <h4>John Doe</h4><br>
-                <hr class="w3-clear">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.</p>
-                <div class="w3-row-padding" style="margin:0 -16px">
-                    <div class="w3-half">
-                        <img src="/w3images/lights.jpg" style="width:100%" alt="Northern Lights"
-                             class="w3-margin-bottom">
-                    </div>
-                    <div class="w3-half">
-                        <img src="/w3images/nature.jpg" style="width:100%" alt="Nature" class="w3-margin-bottom">
-                    </div>
-                </div>
-                <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>
-                     Like
-                </button>
-                <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>
-                     Comment
-                </button>
-            </div>
-
-            <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                <img src="/w3images/avatar5.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
-                     style="width:60px">
-                <span class="w3-right w3-opacity">16 min</span>
-                <h4>Jane Doe</h4><br>
-                <hr class="w3-clear">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.</p>
-                <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>
-                     Like
-                </button>
-                <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>
-                     Comment
-                </button>
-            </div>
-
-            <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                <img src="/w3images/avatar6.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
-                     style="width:60px">
-                <span class="w3-right w3-opacity">32 min</span>
-                <h4>Angie Jane</h4><br>
-                <hr class="w3-clear">
-                <p>Have you seen this?</p>
-                <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.</p>
-                <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>
-                     Like
-                </button>
-                <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>
-                     Comment
-                </button>
-            </div>
-
-            <!-- End Middle Column -->
-        </div>
-
-        <!-- Right Column -->
-        <div class="w3-col m2 custom" style=" background-color: #f3f5f6">
-            <div class="w3-card w3-round w3-white">
-                <div class="w3-container pl-2 pr-2 pb-2 mb-3">
-                    <h5>Top 5 Farms</h5>
-                    <div class="dis-flex mb-3">
-                        <img src="/image/admin.gif" alt="Forest" style="width:20%;">
-                        <div style="width: 70%" class="pl-2">
-                            <p><strong>Holidaysdadkadka</strong></p>
-                            <p>description</p>
-                        </div>
-                    </div>
-                    <div class="dis-flex mb-3">
-                        <img src="/image/admin.gif" alt="Forest" style="width:20%;">
-                        <div style="width: 70%" class="pl-2">
-                            <p><strong>Holidaysdadkadka</strong></p>
-                            <p>description</p>
-                        </div>
-                    </div>
-                    <div class="dis-flex mb-3">
-                        <img src="/image/admin.gif" alt="Forest" style="width:20%;">
-                        <div style="width: 70%" class="pl-2">
-                            <p><strong>Holidaysdadkadka</strong></p>
-                            <p>description</p>
-                        </div>
-                    </div>
-                    <div class="dis-flex mb-3">
-                        <img src="/image/admin.gif" alt="Forest" style="width:20%;">
-                        <div style="width: 70%" class="pl-2">
-                            <p><strong>Holidaysdadkadka</strong></p>
-                            <p>description</p>
-                        </div>
-                    </div>
-                    <div class="dis-flex mb-3">
-                        <img src="/image/admin.gif" alt="Forest" style="width:20%;">
-                        <div style="width: 70%" class="pl-2">
-                            <p><strong>Holidaysdadkadka</strong></p>
-                            <p>description</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- End Grid -->
-        </div>
-
-        <!-- End Page Container -->
-    </div>
-</div>
-
-
-<!-- Back to top -->
-<div class="btn-back-to-top bg0-hov" id="myBtn">
-		<span class="symbol-btn-back-to-top">
-			<i class="fa fa-arrow-up"></i>
-		</span>
-</div>
-
-
-<!--===============================================================================================-->
-<script src="https://kit.fontawesome.com/c704dbde0e.js" crossorigin="anonymous"></script>
-@include('client.page.farm.js')
-<script src="/client/js/main.js"></script>
-<script>
-    let menuUser = $('#menu-user');
-    let menu = document.getElementById('menu-user');
-    $('#user').on('click', function () {
-        if (menuUser.css('display') === 'none') {
-            menuUser.css('display', 'block')
-        } else {
-            menuUser.css('display', 'none')
-        }
-    })
-    $('#cart-header-custom').on('click', function () {
-        if (menuUser.css('display') === 'block') {
-            menuUser.css('display', 'none')
-        }
-    });
-
-    $(document).on('click', function (event) {
-        if (!$(event.target).closest('#user').length) {
-            menuUser.css('display', 'none')
-        }
-    });
-</script>
-<script>
-    // Accordion
-    function myFunction(id) {
-        var x = document.getElementById(id);
-        if (x.className.indexOf("w3-show") == -1) {
-            x.className += " w3-show";
-            x.previousElementSibling.className += " w3-theme-d1";
-        } else {
-            x.className = x.className.replace("w3-show", "");
-            x.previousElementSibling.className =
-                x.previousElementSibling.className.replace(" w3-theme-d1", "");
-        }
-    }
-
-    // Used to toggle the menu on smaller screens when clicking on the menu button
-    function openNav() {
-        var x = document.getElementById("navDemo");
-        if (x.className.indexOf("w3-show") == -1) {
-            x.className += " w3-show";
-        } else {
-            x.className = x.className.replace(" w3-show", "");
-        }
-    }
-</script>
-</body>
-</html>
+    </section>
+@endsection
+@section('js-page')
+    @include('client.page.product.js')
+    <script src="/js/jquery.toast.min.js"></script>
+    <script src="/js/client-custom.js"></script>
+    <script>
+        let listArticle = $('.list-article')
+        let headerArticle = $('.header-products')
+        let headerFarm = $('.header-farm')
+        let listFarm = $('.list-farm')
+        headerArticle.on('click',function () {
+            if(listArticle.css('display') === 'none'){
+                listArticle.css('display','block')
+                headerArticle.css('background-color','#33A34FFF')
+                headerArticle.css('color','#FFF')
+                listFarm.css('display','none')
+                headerFarm.css('background-color','#FFF')
+                headerFarm.css('color','#000')
+            }
+        })
+        $('.header-farm').on('click',function () {
+            if(listFarm.css('display') === 'none'){
+                listFarm.css('display','block')
+                listArticle.css('display','none')
+                headerFarm.css('background-color','#33A34FFF')
+                headerFarm.css('color','#FFF')
+                headerArticle.css('background-color','#FFF')
+                headerArticle.css('color','#000')
+            }
+        })
+    </script>
+@endsection

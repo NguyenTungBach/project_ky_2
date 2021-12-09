@@ -19,12 +19,7 @@
     </div>
 @endsection
 @section('page-content')
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
-    </button>
 
-    <!-- Modal -->
 
 
     <div class="row">
@@ -72,7 +67,7 @@
                                     <input type="hidden" name="ids">
                                     <div>
                                         <i class="fa fa-download"></i>
-                                        <span>Tải xuống</span>
+                                        <span>Xuất file excel</span>
                                     </div>
                                 </li>
                             </form>
