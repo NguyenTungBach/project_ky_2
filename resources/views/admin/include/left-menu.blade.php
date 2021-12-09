@@ -19,15 +19,26 @@
 
                 </ul>
             </li>
-{{--            --Blog Menu----}}
+            {{--Category Menu--}}
+
+            {{--Category Menu--}}
+            <li><a><i class="fa fa-users"></i> Danh mục trang trại <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="/admin/farms">Quản lý</a></li>
+                    <li><a href="/admin/farm/form">Tạo mới</a></li>
+                </ul>
+            </li>
+            {{--Category Menu--}}
+
+            {{--Blog Menu--}}
             <li><a><i class="fa fa-newspaper-o"></i> Danh mục bài viết <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                    <li><a href="/admin/blog">Quản lý</a></li>
+                    <li><a href="/admin/blogs">Quản lý</a></li>
                     <li><a href="/admin/blog/form">Tạo mới</a></li>
 
                 </ul>
             </li>
-            {{--Category Menu--}}
+            {{--Blog Menu--}}
 
             {{--Product Menu--}}
             <li><a><i class="fa fa-bars" aria-hidden="true"></i> Sản phẩm <span class="fa fa-chevron-down"></span></a>

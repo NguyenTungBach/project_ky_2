@@ -14,12 +14,17 @@ class Product extends Model
     use HasFactory;
     public $timestamps = false;
     protected $fillable = [
-        'name', 'category_id', 'thumbnail', 'price', 'detail', 'description', 'created_at', 'updated_at', 'deleted_at'
+        'name', 'category_id', 'farm_id','thumbnail', 'price', 'detail', 'description', 'created_at', 'updated_at', 'deleted_at'
     ];
 
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function farm(): BelongsTo
+    {
+        return $this->belongsTo(Farm::class);
     }
 
     public function orders() : BelongsToMany
@@ -96,6 +101,16 @@ class Product extends Model
                         $query->whereBetween('price', [500000, 5000000])->where('status','!=',0);
                         break;
                 }
+            }
+        }
+        return $query;
+    }
+
+    public function scopeFarm($query, $request)
+    {
+        if ($request->has('farms')) {
+            if ($request->farms != null) {
+                $query->where('farm_id', $request->farms)->where('status','!=',0);
             }
         }
         return $query;

@@ -1,11 +1,4 @@
 @extends('admin.master-admin')
-@section('breadcrumb')
-    <div class="page-title">
-        <div class="title_left">
-            <h3>Danh sách bài viết</h3>
-        </div>
-    </div>
-@endsection
 @section('page-css')
     <link rel="stylesheet" href="/css/jquery.toast.min.css">
     <style>
@@ -13,6 +6,13 @@
             color: #0e7aff !important;
         }
     </style>
+@endsection
+@section('breadcrumb')
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Danh sách trang trại</h3>
+        </div>
+    </div>
 @endsection
 @section('page-content')
     <div class="row">
@@ -47,16 +47,32 @@
                             </li>
                         </ul>
                     </div>
-                    <h2>Danh mục bài viết</h2>
+                    <h5>Lọc trang trại</h5>
                     <div class="x_title">
-                        <form action="/admin/blog/search" method="get" id="form-search">
+                        <form action="/admin/farm/search" method="get" id="form-search">
                             @csrf
                             <div class="col-sm-12 col-md-12">
-                                {{--              Find By Title                  --}}
+                                {{--              Find By Name                  --}}
                                 <div class="col-md-3 col-sm-3 form-group pull-right pr-2  top_search">
                                     <input type="text" class=" form-control query"
-                                           value="{{$oldTitle ?? ""}}" name="title"
-                                           placeholder="Tên bài viết...">
+                                           value="{{$oldName ?? ""}}" name="name"
+                                           placeholder="Tên người gửi...">
+                                    <span class="delete-search">&times;</span>
+                                    <span class="icon-search"><i class="fa fa-search"></i></span>
+                                </div>
+                                {{--              Find By Phone                  --}}
+                                <div class="col-md-3 col-sm-3 form-group pull-right pr-2 top_search">
+                                    <input type="text" class=" form-control query"
+                                           value="{{$oldPhone ?? ""}}" name="phone"
+                                           placeholder="Số điện thoại">
+                                    <span class="delete-search">&times;</span>
+                                    <span class="icon-search"><i class="fa fa-search"></i></span>
+                                </div>
+                                {{--              Find By Email                  --}}
+                                <div class="col-md-3 col-sm-3 form-group pull-right pr-2 top_search">
+                                    <input type="text" class=" form-control query"
+                                           value="{{$oldEmail ?? ""}}" name="email"
+                                           placeholder="Email">
                                     <span class="delete-search">&times;</span>
                                     <span class="icon-search"><i class="fa fa-search"></i></span>
                                 </div>
@@ -72,16 +88,17 @@
                             <div class="clearfix"></div>
                         </form>
                     </div>
+
                     <div class="clearfix"></div>
-                    @if(\Illuminate\Support\Facades\Session::has('message'))
-                        <div style="margin-top: 15px">
-                            <div class="alert alert-success">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                <strong>{{\Illuminate\Support\Facades\Session::get('message')}}</strong>
-                            </div>
-                        </div>
-                    @endif
                 </div>
+                @if(\Illuminate\Support\Facades\Session::has('message'))
+                    <div style="margin-top: 15px">
+                        <div class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <strong>{{\Illuminate\Support\Facades\Session::get('message')}}</strong>
+                        </div>
+                    </div>
+                @endif
 
                 <div class="x_content">
                     <div class="row">
@@ -92,10 +109,10 @@
                                     <tr>
                                         <th><input type="checkbox" value="" class="check-all-order" name="selected-all">
                                         <th>Id</th>
-                                        <th>Ảnh bài viết</th>
-                                        <th>Tên bài viết</th>
-                                        <th>Mô tả</th>
-
+                                        <th>Ảnh trang trại</th>
+                                        <th>Tên trang trại</th>
+                                        <th>Email</th>
+                                        <th>Số điện thoại</th>
                                         <th>Trạng thái</th>
                                         <th style="width: 7%">Hành động</th>
                                     </tr>
@@ -106,9 +123,9 @@
                                             <td><input type="checkbox" value="{{$item->id}}" class="selected-item">
                                             <td>{{$item->id}}</td>
                                             <td><img style="width: 100px" src="{{$item->FirstImage}}" class="img-thumbnail" alt=""></td>
-                                            <td>{{$item->title}}</td>
-                                            <td>{{$item->description}}</td>
-
+                                            <td>{{$item->name}}</td>
+                                            <td>{{$item->email}}</td>
+                                            <td>{{$item->phone}}</td>
                                             @switch($item->status)
                                                 @case(1)
                                                     <td>Chưa xóa</td>
@@ -117,19 +134,19 @@
                                                 <td>Đã xóa</td>
                                                 @break
                                             @endswitch
-                                            <td><a href="/admin/blog/{{$item->id}}" class="hover-pointer dataItem"
+                                            <td><a href="/admin/farm/detail/{{$item->id}}" class="hover-pointer dataItem"
                                                 >
                                                     <i class="fa fa-info mr-1 text-primary"
                                                        data-toggle="tooltip" data-placement="bottom"
                                                        title="Information"
                                                        data-original-title="Tooltip bottom"></i></a>
 
-                                                <a href="/admin/blog/update/{{$item->id}}"
+                                                <a href="/admin/farm/update/{{$item->id}}"
                                                    class="hover-pointer">
                                                     <i data-toggle="tooltip" data-placement="bottom" title=""
                                                        data-original-title="Edit"
                                                        class="fa fa-edit mr-1 text-primary"></i></a>
-                                                <a href="/admin/blog/delete/{{$item->id}}" id="delete"
+                                                <a href="/admin/farm/delete/{{$item->id}}" id="delete"
                                                    class="hover-pointer dataItem">
                                                     <i data-toggle="tooltip" data-placement="bottom" title=""
                                                        data-original-title="Delete"
@@ -249,14 +266,14 @@
             }
 
             $.ajax({
-                url: 'http://127.0.0.1:8000/admin/blog/update-multi/status',
+                url: 'http://127.0.0.1:8000/admin/farm/update-multi/status',
                 type: 'POST',
                 data: JSON.stringify(data),
                 success: function (data) {
                     console.log("console log thư thành công: ",JSON.parse(data))
                     $.toast({
                         heading: 'Success',
-                        text: 'Cập nhật trạng thái bài viết thành công',
+                        text: 'Cập nhật trạng thái trang trại thành công',
                         showHideTransition: 'slide',
                         icon: 'success',
                         position: 'top-right'
@@ -270,7 +287,7 @@
                     function messageError() {
                         $.toast({
                             heading: 'Error',
-                            text: 'Cập nhật trạng thái bài viết thất bại',
+                            text: 'Cập nhật trạng thái trang trại thất bại',
                             icon: 'error',
                         });
                     }
@@ -288,36 +305,36 @@
                 status: status
             };
             console.log("Danh sách id xóa là: ", listId),
-                console.log("trạng thái xóa là: ", status),
+            console.log("trạng thái xóa là: ", status),
 
-                $.ajax({
-                    url: 'http://127.0.0.1:8000/admin/blog/remove-multi/status',
-                    type: 'POST',
-                    data: JSON.stringify(data),
+            $.ajax({
+                url: 'http://127.0.0.1:8000/admin/farm/remove-multi/status',
+                type: 'POST',
+                data: JSON.stringify(data),
 
-                    success: function (data) {
+                success: function (data) {
+                    $.toast({
+                        heading: 'Success',
+                        text: 'Xoá thành công trang trại',
+                        showHideTransition: 'slide',
+                        icon: 'success',
+                        position: 'top-right'
+                    })
+                    setTimeout(function () {
+                        window.location.reload(false);
+                    }, 3000);
+                },
+                error: function (request, error) {
+                    console.log("Request: " + JSON.parse(request));
+                    function messageError() {
                         $.toast({
-                            heading: 'Success',
-                            text: 'Xoá thành công bài viết',
-                            showHideTransition: 'slide',
-                            icon: 'success',
-                            position: 'top-right'
-                        })
-                        setTimeout(function () {
-                            window.location.reload(false);
-                        }, 3000);
-                    },
-                    error: function (request, error) {
-                        console.log("Request: " + JSON.parse(request));
-                        function messageError() {
-                            $.toast({
-                                heading: 'Error',
-                                text: 'Xóa trạng thái bài viết thất bại',
-                                icon: 'error',
-                            });
-                        }
+                            heading: 'Error',
+                            text: 'Xóa trạng thái trang trại thất bại',
+                            icon: 'error',
+                        });
                     }
-                });
+                }
+            });
         })
     </script>
 @endsection

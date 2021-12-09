@@ -52,7 +52,8 @@ class ContactController extends Controller
                 ->name($request)
                 ->email($request)
                 ->phone($request)
-                ->status($request);
+                ->status($request)
+                ->orderBy('created_at','DESC');
 
             return view('admin.template.contact.contacts', [
                 'items' => $contacts->paginate($paginate),

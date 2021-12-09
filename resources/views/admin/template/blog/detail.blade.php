@@ -2,7 +2,7 @@
 @section('breadcrumb')
     <div class="page-title">
         <div class="title_left">
-            <h3>Chi tiết sản phẩm</h3>
+            <h3>Chi tiết bài viết</h3>
         </div>
     </div>
 @endsection
@@ -26,7 +26,7 @@
                     <div class="item form-group row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align"> Mô tả *</label>
                         <div class="col-md-6 col-sm-6 ">
-                            <label class="col-form-label">{{$items->description}} VNĐ</label>
+                            <label class="col-form-label">{{$items->description}}</label>
                         </div>
                     </div>
 
@@ -41,19 +41,19 @@
                     <div class="form-group item row">
                         <label class="col-form-label col-md-3 col-sm-3 label-align">Ảnh bài viết *</label>
                         <div class="col-md-6 col-sm-6 ">
-                            <img src="{{$items->thumbnail}}" class="img-thumbnail" alt="">
+                            <img src="{{$items->FirstImage}}" style="width: 30%" class="img-thumbnail" alt="">
                         </div>
                     </div>
 
                     <div class="form-group item row">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align">Created at *</label>
+                        <label class="col-form-label col-md-3 col-sm-3 label-align">Ngày tạo *</label>
                         <div class="col-md-6 col-sm-6 ">
-                            <label class="col-form-label">{{$items->created_at ==null ? "Chưa cập nhật" : $items->created_at}}</label>
+                            <label class="col-form-label">{{$items->created_at}}</label>
                         </div>
                     </div>
 
                     <div class="form-group item row">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align">Updated at *</label>
+                        <label class="col-form-label col-md-3 col-sm-3 label-align">Ngày cập nhật *</label>
                         <div class="col-md-6 col-sm-6 ">
                             <label class="col-form-label">{{$items->updated_at ==null ? "Chưa cập nhật" : $items->updated_at }}</label>
                         </div>
@@ -62,9 +62,9 @@
                     <div class="ln_solid"></div>
                     <div class="item form-group">
                         <div class="col-md-6 col-sm-6 offset-md-3">
-                            <a href="/admin/blog"><button class="btn btn-primary" type="button">Back to list</button></a>
-                            <a href="/admin/blog/update/{{$items->id}}"><button class="btn btn-warning" type="button">Update</button></a>
-                            <a href="/admin/blog/delete/{{$items->id}}"><button type="button" class="btn btn-danger">Delete</button></a>
+                            <a href="/admin/blogs"><button class="btn btn-primary" type="button">Quay về danh sách bài viết</button></a>
+                            <a href="/admin/blog/update/{{$items->id}}"><button class="btn btn-warning" type="button">Cập nhật</button></a>
+                            <a href="/admin/blog/delete/{{$items->id}}"><button type="button" class="btn btn-danger">Xóa</button></a>
                         </div>
                     </div>
                 </div>

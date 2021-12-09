@@ -2,7 +2,7 @@
 @section('breadcrumb')
     <div class="page-title">
         <div class="title_left">
-            <h3>Form Elements</h3>
+            <h3>Tạo sản phẩm</h3>
         </div>
     </div>
 @endsection
@@ -23,7 +23,7 @@
         <div class="col-md-12 col-sm-12 ">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Form Product</h2>
+                    <h2>Tạo sản phẩm</h2>
                     <div class="clearfix"></div>
                     @if ($errors->any())
                         <div class="alert " style="margin-top: 10px">
@@ -41,7 +41,7 @@
                     <form method="post" name="form" action="/admin/product/form">
                         @csrf
                         <div class="item form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Name *</label>
+                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Tên sản phẩm *</label>
                             <div class="col-md-6 col-sm-6 ">
                                 <input type="text" name="name" class="form-control ">
                             </div>
@@ -51,7 +51,7 @@
                         </div>
 
                         <div class="item form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Price *</label>
+                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Giá *</label>
                             <div class="col-md-6 col-sm-6 ">
                                 <input type="text" name="price" class="form-control ">
                             </div>
@@ -60,9 +60,19 @@
                             @enderror
                         </div>
 
+                        <div class="form-group item row">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align">Trang trại *</label>
+                            <div class="col-md-6 col-sm-6 col-form-label">
+                                <select class="form-control" name="farm_id">
+                                    @foreach($farms as $farm)
+                                        <option value="{{$farm->id}}">{{$farm->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
 
                         <div class="form-group item row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align">Categories *</label>
+                            <label class="col-form-label col-md-3 col-sm-3 label-align">Danh mục *</label>
                             <div class="col-md-6 col-sm-6 col-form-label">
                                 <select class="form-control" name="category_id">
                                     @foreach($categories as $category)
@@ -74,7 +84,7 @@
 
 
                         <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Description *</label>
+                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Mô tả *</label>
                             <div class="col-md-6 col-sm-6 ">
                                 <label>
                                     <textarea style="width: 100%" name="description" rows="4" cols="50"></textarea>
@@ -86,7 +96,7 @@
                         </div>
 
                         <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Image *</label>
+                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Ảnh *</label>
                             <div class="col-md-6 col-sm-6 ">
                                 <input type="hidden" class="form-control" name="thumbnail">
                                 <button type="button" id="upload_widget" class="cloudinary-button mb-3">Upload files
@@ -101,7 +111,7 @@
                         </div>
 
                         <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align">Detail content *</label>
+                            <label class="col-form-label col-md-3 col-sm-3 label-align">Nội dung chi tiết *</label>
                             <div class="col-md-6 col-sm-6">
                                     <textarea name="detail"></textarea>
                                 @error('detail')
@@ -113,9 +123,9 @@
                         <div class="ln_solid"></div>
                         <div class="item form-group">
                             <div class="col-md-6 col-sm-6 offset-md-3">
-                                <a href="/admin/products"><button class="btn btn-primary" type="button">Back to list</button></a>
+                                <a href="/admin/products"><button class="btn btn-primary" type="button">Quay về danh sách sản phẩm</button></a>
                                 <button class="btn btn-info" type="reset">Reset</button>
-                                <button type="submit" class="btn btn-success">Submit</button>
+                                <button type="submit" class="btn btn-success">Tạo</button>
                             </div>
                         </div>
                     </form>

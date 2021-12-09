@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use App\Models\Category;
+use App\Models\Farm;
 use App\Models\Product;
 use App\Models\Products;
 use Carbon\Carbon;
@@ -28,14 +29,16 @@ class ProductController extends Controller
             'items'=>$items,
             'paginate'=>$paginate,
             'sum' => $products->count(),
-            'categories' => Category::withCount('products')->get()]);
+            'categories' => Category::withCount('products')->get(),
+            'farms' => Farm::withCount('products')->get(),]);
 
     }
 
     public function getForm()
     {
         return view('admin.template.product.create', [
-            'categories' => Category::withCount('products')->get()
+            'categories' => Category::withCount('products')->get(),
+            'farms' => Farm::withCount('products')->get()
         ]);
     }
 
@@ -57,7 +60,9 @@ class ProductController extends Controller
     }
 
     public function getInformation($id){
-        return view('admin.template.product.update',['item' =>Product::find($id),'categories' => Category::withCount('products')->get()]);
+        return view('admin.template.product.update',['item' =>Product::find($id),
+            'categories' => Category::withCount('products')->get(),
+            'farms' => Farm::withCount('products')->get()]);
     }
 
     public function update(StoreProductRequest $request){
@@ -105,9 +110,11 @@ class ProductController extends Controller
                 ->name($request)
                 ->price($request)
                 ->cate($request)
+                ->farm($request)
                 ->sortByName($request)
                 ->sortByPrice($request)
-                ->status($request);
+                ->status($request)
+                ->orderBy('created_at','DESC');
 //        return $products;
             return view('admin.template.product.products', [
                 'items' => $products->paginate($paginate),
@@ -119,7 +126,9 @@ class ProductController extends Controller
                 'status' => $request->get('status'),
                 'nameSort' => $request->get('nameSort'),
                 'oldCategory' => $request->get('categories'),
+                'oldFarm' => $request->get('farms'),
                 'categories' => Category::withCount('products')->get(),
+                'farms' => Farm::withCount('products')->get()
             ]);
         }
         catch (\Exception $exception){

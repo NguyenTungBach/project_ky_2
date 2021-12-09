@@ -2,7 +2,7 @@
 @section('breadcrumb')
     <div class="page-title">
         <div class="title_left">
-            <h3>Chi tiết sản phẩm</h3>
+            <h3>Chi tiết trang trại</h3>
         </div>
     </div>
 @endsection
@@ -11,36 +11,29 @@
         <div class="col-md-12 col-sm-12 ">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Chi tiết sản phẩm</h2>
+                    <h2>Chi tiết Trang trại có mã {{$item->id}}</h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
                     <br/>
                     <div class="item form-group row">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align"> Tên sản phẩm *</label>
+                        <label class="col-form-label col-md-3 col-sm-3 label-align"> Tên trang trại *</label>
                         <div class="col-md-6 col-sm-6 ">
                             <label class="col-form-label">{{$item->name}}</label>
                         </div>
                     </div>
 
                     <div class="item form-group row">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align"> Giá sản phẩm *</label>
+                        <label class="col-form-label col-md-3 col-sm-3 label-align"> Email *</label>
                         <div class="col-md-6 col-sm-6 ">
-                            <label class="col-form-label">{{$item->FormatPrice}} VNĐ</label>
+                            <label class="col-form-label">{{$item->email}}</label>
                         </div>
                     </div>
 
-                    <div class="form-group item row">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align">Danh mục *</label>
+                    <div class="item form-group row">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align"> Số điện thoại *</label>
                         <div class="col-md-6 col-sm-6 ">
-                            <label class="col-form-label">{{$item->category->name}}</label>
-                        </div>
-                    </div>
-
-                    <div class="form-group item row">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align">Trang trại *</label>
-                        <div class="col-md-6 col-sm-6 ">
-                            <label class="col-form-label">{{$item->farm->name}}</label>
+                            <label class="col-form-label">{{$item->phone}}</label>
                         </div>
                     </div>
 
@@ -61,39 +54,39 @@
                     <div class="form-group item row">
                         <label class="col-form-label col-md-3 col-sm-3 label-align">Trạng thái *</label>
                         <div class="col-md-6 col-sm-6 ">
-                            <label class="col-form-label">{{$item->HandlerStatus}}</label>
-                        </div>
-                    </div>
-
-                    <div class="item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align"> Mô tả *</label>
-                        <div class="col-md-7 col-sm-7 ">
-                            <label class="col-form-label">{{$item->description}}</label>
-                        </div>
-                    </div>
-
-                    <div class="item form-group row">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align"> Ảnh *</label>
-                        <div class="col-md-6 col-sm-6 ">
-                            <img class="thumbnail" src="{{$item->FirstImage}}" alt="">
-                        </div>
-                    </div>
-
-                    <div class="item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align">Nội dung chi tiết *</label>
-                        <div class="col-md-8 col-sm-8">
                             <label class="col-form-label">
-                                {!! $item->detail !!}
+                                @switch($item['status'])
+                                    @case(1)
+                                    Chưa xóa
+                                    @break
+                                    @case(0)
+                                    Đã xóa
+                                    @break
+                                @endswitch
                             </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group item row">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align">Ảnh bài viết *</label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <img src="{{$item->FirstImage}}" class="img-thumbnail" style="width: 30%" alt="">
+                        </div>
+                    </div>
+
+                    <div class="form-group item row">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align">Mô tả *</label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <label class="col-form-label">{!! $item->description !!}</label>
                         </div>
                     </div>
 
                     <div class="ln_solid"></div>
                     <div class="item form-group">
                         <div class="col-md-6 col-sm-6 offset-md-3">
-                            <a href="/admin/products"><button class="btn btn-primary" type="button">Quay về danh sách sản phẩm</button></a>
-                            <a href="/admin/product/update/{{$item->id}}"><button class="btn btn-warning" type="button">Cập nhật</button></a>
-                            <a href="/admin/product/delete/{{$item->id}}"><button type="button" class="btn btn-danger">Xóa</button></a>
+                            <a href="/admin/farms"><button class="btn btn-primary" type="button">Quay về danh sách bài viết</button></a>
+                            <a href="/admin/farm/update/{{$item->id}}"><button class="btn btn-warning" type="button">Cập nhật</button></a>
+                            <a href="/admin/farm/delete/{{$item->id}}"><button type="button" class="btn btn-danger">Xóa</button></a>
                         </div>
                     </div>
                 </div>

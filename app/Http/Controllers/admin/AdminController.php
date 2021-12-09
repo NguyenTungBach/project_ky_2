@@ -29,7 +29,6 @@ class AdminController extends Controller
 //        // kiểm tra mật khẩu
 //        $isLogin = $admin != null && Hash::check($password, $admin[0]->password); // lấy với get vì nó là mảng
         $isLogin = $admin != null && Hash::check($password, $admin->password); // lấy với first vì nó là 1 đối tượng
-
         if ($isLogin) {
             if ($remember_admin) {
                 setcookie('email', $email, time() + 3600 * 24 * 7);

@@ -151,7 +151,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary btn-close" type="button"> Thoát</button>
-                <a class="btn btn-success" id="search-order" href="/admin/order/search-product/">Tìm kiếm</a>
+                <a class="btn btn-success" id="search-order" href="#">Tìm kiếm</a>
             </div>
         </div>
     </div>

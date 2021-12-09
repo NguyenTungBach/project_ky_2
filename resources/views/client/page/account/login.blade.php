@@ -49,6 +49,12 @@
                                         @error('email')
                                         <div class="text-danger col-12">* {{ $message }}</div>
                                         @enderror
+                                        @if(Session::has('userDeleted'))
+                                            <div class="text-danger col-12">* {{ session()->get('userDeleted') }}</div>
+                                        @endif
+                                        @if(Session::has('loginFail'))
+                                            <div class="text-danger col-12">* {{ session()->get('loginFail') }}</div>
+                                        @endif
                                     </div>
                                 </div>
 
