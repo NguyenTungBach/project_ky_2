@@ -4,6 +4,7 @@ namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Farm;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use MongoDB\Driver\Session;
@@ -16,6 +17,7 @@ class ProductController extends Controller
         return view('client.page.product.template', [
             'items' => Product::paginate($paginate),
             'categories' => Category::withCount('products')->get(),
+            'farms' => Farm::withCount('products')->get(),
             'sumProduct' => Product::count(),
             'limit' => $paginate,
         ]);
@@ -48,6 +50,7 @@ class ProductController extends Controller
             ->name($request)
             ->price($request)
             ->cate($request)
+            ->farm($request)
             ->sortByName($request)
             ->sortByPrice($request);
 
@@ -62,7 +65,9 @@ class ProductController extends Controller
             'priceSort' => $request->get('priceSort'),
             'nameSort' => $request->get('nameSort'),
             'oldCategory' => $request->get('categories'),
+            'oldFarm' => $request->get('farms'),
             'categories' => Category::withCount('products')->get(),
+            'farms' => Farm::withCount('products')->get(),
         ]);
     }
 }

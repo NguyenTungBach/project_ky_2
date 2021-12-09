@@ -12,21 +12,25 @@
             max-height: 85px;
             box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         }
-        .custom-menu ul div{
+
+        .custom-menu ul div {
             padding: 10px;
             text-align: center;
         }
-        .custom-menu ul div:hover{
+
+        .custom-menu ul div:hover {
             cursor: pointer;
             background-color: #5cc374;
             color: #FFF;
         }
-        .header-products{
+
+        .header-products {
             border-right: 1px #d9d9d9 solid;
             background-color: #5cc374;
             color: #FFF;
         }
-        .list-article{
+
+        .list-article {
             display: block;
             padding: 0;
         }
@@ -42,17 +46,20 @@
         .custom-article div {
             padding: 0;
         }
-        .list-farm{
+
+        .list-farm {
             display: none;
             padding: 0;
         }
-        .custom-farm{
+
+        .custom-farm {
             display: flex;
             padding: 15px;
             background-color: #FFF;
             margin-bottom: 20px;
             box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         }
+
         .custom-farm div {
             padding: 0;
         }
@@ -95,15 +102,20 @@
                             <h4 class="pb-1">Rau bắp cải</h4>
                             <div class=" pb-1">
                                 <ul>
-                                    <a href=""><li>link sản phẩm</li></a>
+                                    <a href="">
+                                        <li>link sản phẩm</li>
+                                    </a>
                                 </ul>
                             </div>
 
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pellentesque bibendum risus
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pellentesque bibendum
+                                risus
                                 sit amet finibus. Nullam nec vestibulum augue, placerat mollis justo. Integer vestibulum
-                                odio ut dui placerat, eget blandit lorem consequat. Proin suscipit felis vel dolor eleifend
-                                eleifend. Aliquam commodo malesuada ante id pretium. Aliquam finibus mattis nisi ac mollis.
+                                odio ut dui placerat, eget blandit lorem consequat. Proin suscipit felis vel dolor
+                                eleifend
+                                eleifend. Aliquam commodo malesuada ante id pretium. Aliquam finibus mattis nisi ac
+                                mollis.
                                 Integer in lectus ut leo dapibus venenatis.
                             </p>
                         </div>
@@ -133,15 +145,20 @@
                             <h4 class="pb-1">Rau bắp cải</h4>
                             <div class="pl-1 pb-1">
                                 <ul>
-                                    <a href=""><li>link sản phẩm</li></a>
+                                    <a href="">
+                                        <li>link sản phẩm</li>
+                                    </a>
                                 </ul>
                             </div>
 
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pellentesque bibendum risus
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pellentesque bibendum
+                                risus
                                 sit amet finibus. Nullam nec vestibulum augue, placerat mollis justo. Integer vestibulum
-                                odio ut dui placerat, eget blandit lorem consequat. Proin suscipit felis vel dolor eleifend
-                                eleifend. Aliquam commodo malesuada ante id pretium. Aliquam finibus mattis nisi ac mollis.
+                                odio ut dui placerat, eget blandit lorem consequat. Proin suscipit felis vel dolor
+                                eleifend
+                                eleifend. Aliquam commodo malesuada ante id pretium. Aliquam finibus mattis nisi ac
+                                mollis.
                                 Integer in lectus ut leo dapibus venenatis.
                             </p>
                         </div>
@@ -160,28 +177,29 @@
                 </div>
 
                 <div class="col-sm-10 col-md-7 col-lg-8 m-rl-auto p-b-50 list-farm">
-                    <div class="col-md-12 col-sm-12 mb-3 custom-farm">
-                        <div class="col-md-4 col-sm-4 dis-flex image-farm">
-                            <div class="col-sm-12 col-md-12 p-2">
-                                <img class="img-thumbnail" src="/client/images/gallery-01.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="col-md-8 col-sm-8 mb-3 p-1">
-                            <h4 class="pb-1 font-weight-bold"><a href="">Rau ông Nguyên</a></h4>
-                            <div class="pb-1">
-                               <p>Created at: 12/09/2021</p>
-                            </div>
 
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pellentesque bibendum risus
-                                sit amet finibus. Nullam nec vestibulum augue, placerat mollis justo. Integer vestibulum
-                                odio ut dui placerat, eget blandit lorem consequat. Proin suscipit felis vel dolor eleifend
-                                eleifend. Aliquam commodo malesuada ante id pretium. Aliquam finibus mattis nisi ac mollis.
-                                Integer in lectus ut leo dapibus venenatis.
-                            </p>
-                        </div>
+                    @if(isset($farms))
+                        @foreach($farms as $f)
+                            <div class="col-md-12 col-sm-12 mb-3 custom-farm">
+                                <div class="col-md-4 col-sm-4 dis-flex image-farm">
+                                    <div class="col-sm-12 col-md-12 p-2">
+                                        <img class="img-thumbnail" src="{{$f->FirstImage}}" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-md-8 col-sm-8 mb-3 p-1">
+                                    <h4 class="pb-1 font-weight-bold"><a href="">{{$f->name}}</a></h4>
+                                    <div class="pb-1">
+                                        <p>Created at: {{$f->created_at}}</p>
+                                    </div>
+                                    <p class="pb-1">Số điện thoại: {{$f->phone}}</p>
+                                    <p>
+                                            {{$f->description}}
+                                    </p>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
 
-                    </div>
                 </div>
             </div>
         </div>
@@ -196,24 +214,24 @@
         let headerArticle = $('.header-products')
         let headerFarm = $('.header-farm')
         let listFarm = $('.list-farm')
-        headerArticle.on('click',function () {
-            if(listArticle.css('display') === 'none'){
-                listArticle.css('display','block')
-                headerArticle.css('background-color','#33A34FFF')
-                headerArticle.css('color','#FFF')
-                listFarm.css('display','none')
-                headerFarm.css('background-color','#FFF')
-                headerFarm.css('color','#000')
+        headerArticle.on('click', function () {
+            if (listArticle.css('display') === 'none') {
+                listArticle.css('display', 'block')
+                headerArticle.css('background-color', '#33A34FFF')
+                headerArticle.css('color', '#FFF')
+                listFarm.css('display', 'none')
+                headerFarm.css('background-color', '#FFF')
+                headerFarm.css('color', '#000')
             }
         })
-        $('.header-farm').on('click',function () {
-            if(listFarm.css('display') === 'none'){
-                listFarm.css('display','block')
-                listArticle.css('display','none')
-                headerFarm.css('background-color','#33A34FFF')
-                headerFarm.css('color','#FFF')
-                headerArticle.css('background-color','#FFF')
-                headerArticle.css('color','#000')
+        $('.header-farm').on('click', function () {
+            if (listFarm.css('display') === 'none') {
+                listFarm.css('display', 'block')
+                listArticle.css('display', 'none')
+                headerFarm.css('background-color', '#33A34FFF')
+                headerFarm.css('color', '#FFF')
+                headerArticle.css('background-color', '#FFF')
+                headerArticle.css('color', '#000')
             }
         })
     </script>
