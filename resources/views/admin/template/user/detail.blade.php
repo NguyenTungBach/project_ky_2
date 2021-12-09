@@ -214,8 +214,7 @@
                                 <!-- /.col -->
                             </div>
                             <!-- /.row -->
-                            <a class="btn btn-secondary" href="/admin/users"><i class="fa fa-arrow-left"></i> Quay về
-                                danh sách khách hàng</a>
+                            <a class="btn btn-secondary" href="{{url()->previous()}}"><i class="fa fa-arrow-left"></i> Quay lại</a>
                         </section>
                     @endif
                 </div>

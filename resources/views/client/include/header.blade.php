@@ -108,7 +108,7 @@
                                             <li><i class="fa fa-info-circle mr-2"></i>Thông tin cá nhân</li>
                                         </a>
                                         <a href="/user/orders">
-                                            <li><i class="fa fa-list mr-2"></i>Danh sách đơn hàng đã đặt hàng</li>
+                                            <li><i class="fa fa-list mr-2"></i>Lịch sử đơn hàng</li>
                                         </a>
                                         <a href="/user/logOut">
                                             <li><i class="fa fa-sign-in mr-2"></i>Đăng xuất</li>

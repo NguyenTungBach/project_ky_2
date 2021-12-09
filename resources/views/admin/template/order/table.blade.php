@@ -19,6 +19,14 @@
     </div>
 @endsection
 @section('page-content')
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+    </button>
+
+    <!-- Modal -->
+
+
     <div class="row">
         <div class="col-md-12 col-sm-12 ">
             <div class="x_panel">

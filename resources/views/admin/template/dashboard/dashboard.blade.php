@@ -244,6 +244,7 @@
 
             google.visualization.events.addListener(chart, 'select', selectHandler);
 
+
             function selectHandler() {
                 let id = '';
                 let name = '';

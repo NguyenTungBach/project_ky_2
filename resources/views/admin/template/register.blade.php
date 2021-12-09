@@ -62,9 +62,8 @@
                             <span class="float-left text-danger ml-2"><i class="fa fa-info-circle mr-1"></i>{{ $errors->first('fullname') }}</span>
                         @endif
                     </div>
-                    <div>
-                        <button  type="submit" style="font-size: 12px; margin-top: 20px;
-                         border: none;background-color: #f7f7f7; text-shadow: 0 1px 0 #fff;">Register
+                    <div class="col-sm-12 col-md-12 p-0">
+                        <button class="btn btn-secondary w-100" >Register
                         </button>
                     </div>
 
@@ -72,7 +71,7 @@
 
                     <div class="separator">
                         <p class="change_link">Already a member ?
-                            <a href="/admin/login" class="to_register"> Log in </a>
+                            <a href="/admin/login" class="to_register font-weight-bold" style="font-size: 15px; color: #4B5F71"> Log in </a>
                         </p>
 
                         <div class="clearfix"></div>

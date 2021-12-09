@@ -17,5 +17,7 @@ class VerifyCsrfToken extends Middleware
         'admin/order/update/status', "/admin/order/remove-multi/status", "/admin/order/update-multi/status",
 
         "/contact",
+
+        "/farm/register/wards",
     ];
 }

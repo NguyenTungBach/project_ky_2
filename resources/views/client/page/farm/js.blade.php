@@ -27,7 +27,5 @@
 <!--===============================================================================================-->
 <script src="/client/vendor/noui/nouislider.min.js"></script>
 <!--===============================================================================================-->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
-<script src="/client/js/map-custom.js"></script>
 <!--===============================================================================================-->
 <script src="/client/js/contact.js"></script>

@@ -27,21 +27,26 @@
         .w3-half img:hover {
             opacity: 1
         }
-        .bg-custom{
+
+        .bg-custom {
             background-color: #ffffff;
         }
+
         .custom div .w3-white .w3-button {
             border: 1px rgba(205, 205, 205, 0.44) solid;
         }
-        .custom{
+
+        .custom {
             position: -webkit-sticky; /* Safari */
             position: sticky;
             top: 107px;
         }
-        .padding-home-farm{
+
+        .padding-home-farm {
             padding: 0 50px;
         }
-        .middle-farms{
+
+        .middle-farms {
             display: none;
         }
     </style>
@@ -63,28 +68,25 @@
             <div class="w3-card w3-round mb-3">
                 <div class="w3-white">
                     <button class="w3-button w3-block bg-custom  w3-left-align"><i
-                            class="fa fa-home  fa-fw w3-margin-right"></i> Timeline
+                            class="fa fa-home  fa-fw w3-margin-right"></i> Giới thiệu sản phẩm
                     </button>
                     <button class="w3-button w3-block bg-custom  w3-left-align"><i
-                            class="fa fa-list  fa-fw w3-margin-right"></i> Farms
-                    </button>
-                    <button class="w3-button w3-block bg-custom  w3-left-align"><i
-                            class="fa fa-users  fa-fw w3-margin-right"></i> My Photos
+                            class="fa fa-list  fa-fw w3-margin-right"></i> Danh sách trang trại
                     </button>
                 </div>
             </div>
             <!-- Profile -->
-            <div class="w3-card w3-round w3-white">
-                <div class="w3-container">
-                    <h4 class="w3-center">My Profile</h4>
-                    <p class="w3-center"><img src="/image/admin.gif" class="w3-circle"
-                                              style="height:106px;width:106px" alt="Avatar"></p>
-                    <hr>
-                    <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Developer</p>
-                    <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>Hung Yen, Viet Nam</p>
-                    <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> 13/03/1996</p>
-                </div>
-            </div>
+{{--            <div class="w3-card w3-round w3-white">--}}
+{{--                <div class="w3-container">--}}
+{{--                    <h4 class="w3-center">My Profile</h4>--}}
+{{--                    <p class="w3-center"><img src="/image/admin.gif" class="w3-circle"--}}
+{{--                                              style="height:106px;width:106px" alt="Avatar"></p>--}}
+{{--                    <hr>--}}
+{{--                    <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Developer</p>--}}
+{{--                    <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>Hung Yen, Viet Nam</p>--}}
+{{--                    <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> 13/03/1996</p>--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
             <!-- End Left Column -->
         </div>
@@ -92,17 +94,18 @@
         <!-- Middle Column -->
         <div class="w3-col m7 middle-timeline" style=" margin-top: 18px">
 
-            <div class="w3-row-padding">
-                <div class="w3-col m12">
-                    <div class="w3-card w3-round w3-white">
-                        <div class="w3-container w3-padding">
-                            <h6 class="w3-opacity">Social Media template by w3.css</h6>
-                            <p contenteditable="true" class="w3-border w3-padding">Status: Feeling Blue</p>
-                            <button  type="button" class="btn btn-success mt-2"><i class="fa fa-pencil"></i>  Post</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+{{--            <div class="w3-row-padding">--}}
+{{--                <div class="w3-col m12">--}}
+{{--                    <div class="w3-card w3-round w3-white">--}}
+{{--                        <div class="w3-container w3-padding">--}}
+{{--                            <h6 class="w3-opacity">Social Media template by w3.css</h6>--}}
+{{--                            <p contenteditable="true" class="w3-border w3-padding">Status: Feeling Blue</p>--}}
+{{--                            <button type="button" class="btn btn-success mt-2"><i class="fa fa-pencil"></i>  Post--}}
+{{--                            </button>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
             <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
                 <img src="/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
@@ -176,7 +179,8 @@
                         <div class="w3-container w3-padding">
                             <h6 class="w3-opacity">Social Media template by w3.css</h6>
                             <p contenteditable="true" class="w3-border w3-padding">Status: Feeling Blue</p>
-                            <button  type="button" class="btn btn-success mt-2"><i class="fa fa-pencil"></i>  Post</button>
+                            <button type="button" class="btn btn-success mt-2"><i class="fa fa-pencil"></i>  Post
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -295,52 +299,66 @@
 
         <!-- End Page Container -->
     </div>
-
-
-{{--<!-- Logo -->--}}
-{{--@include('client.include.logo')--}}
-
-{{--<!-- Subscribe -->--}}
-{{--@include('client.include.subscribe')--}}
-
-{{--<!-- Footer -->--}}
-{{--@include('client.include.footer')--}}
+</div>
 
 
 <!-- Back to top -->
-    <div class="btn-back-to-top bg0-hov" id="myBtn">
+<div class="btn-back-to-top bg0-hov" id="myBtn">
 		<span class="symbol-btn-back-to-top">
 			<i class="fa fa-arrow-up"></i>
 		</span>
-    </div>
+</div>
 
-    <script src="https://kit.fontawesome.com/c704dbde0e.js" crossorigin="anonymous"></script>
-@include('client.page.farm.js')
+
 <!--===============================================================================================-->
-    <script src="/client/js/main.js"></script>
-    <script>
-        // Accordion
-        function myFunction(id) {
-            var x = document.getElementById(id);
-            if (x.className.indexOf("w3-show") == -1) {
-                x.className += " w3-show";
-                x.previousElementSibling.className += " w3-theme-d1";
-            } else {
-                x.className = x.className.replace("w3-show", "");
-                x.previousElementSibling.className =
-                    x.previousElementSibling.className.replace(" w3-theme-d1", "");
-            }
+<script src="https://kit.fontawesome.com/c704dbde0e.js" crossorigin="anonymous"></script>
+@include('client.page.farm.js')
+<script src="/client/js/main.js"></script>
+<script>
+    let menuUser = $('#menu-user');
+    let menu = document.getElementById('menu-user');
+    $('#user').on('click', function () {
+        if (menuUser.css('display') === 'none') {
+            menuUser.css('display', 'block')
+        } else {
+            menuUser.css('display', 'none')
         }
+    })
+    $('#cart-header-custom').on('click', function () {
+        if (menuUser.css('display') === 'block') {
+            menuUser.css('display', 'none')
+        }
+    });
 
-        // Used to toggle the menu on smaller screens when clicking on the menu button
-        function openNav() {
-            var x = document.getElementById("navDemo");
-            if (x.className.indexOf("w3-show") == -1) {
-                x.className += " w3-show";
-            } else {
-                x.className = x.className.replace(" w3-show", "");
-            }
+    $(document).on('click', function (event) {
+        if (!$(event.target).closest('#user').length) {
+            menuUser.css('display', 'none')
         }
-    </script>
+    });
+</script>
+<script>
+    // Accordion
+    function myFunction(id) {
+        var x = document.getElementById(id);
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+            x.previousElementSibling.className += " w3-theme-d1";
+        } else {
+            x.className = x.className.replace("w3-show", "");
+            x.previousElementSibling.className =
+                x.previousElementSibling.className.replace(" w3-theme-d1", "");
+        }
+    }
+
+    // Used to toggle the menu on smaller screens when clicking on the menu button
+    function openNav() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+</script>
 </body>
 </html>
