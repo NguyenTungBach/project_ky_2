@@ -13,7 +13,7 @@ Then we position it in relation to the viewport window
 with position:fixed. Width, height, top and left speak
 for themselves. Background we set to 80% white with
 our animation centered, and no-repeating */
-        .modal {
+        .modal-load {
             display:    none;
             position:   fixed;
             z-index:    1000;
@@ -29,13 +29,13 @@ our animation centered, and no-repeating */
 
         /* When the body has the loading class, we turn
            the scrollbar off with overflow:hidden */
-        body.loading .modal {
+        body.loading .modal-load {
             overflow: hidden;
         }
 
         /* Anytime the body has the loading class, our
            modal element will be visible */
-        body.loading .modal {
+        body.loading .modal-load {
             display: block;
         }
     </style>
@@ -449,7 +449,7 @@ our animation centered, and no-repeating */
             </div>
         </div>
     </div>
-    <div class="modal"><!-- Place at bottom of page --></div>
+    <div class="modal-load"><!-- Place at bottom of page --></div>
 @endsection
 @section('page-script')
     {{--    date picker--}}

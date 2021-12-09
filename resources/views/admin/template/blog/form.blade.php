@@ -79,7 +79,7 @@
 
                         <div class="item form-group">
                             <label class="col-form-label col-md-3 col-sm-3 label-align">Nội dung *</label>
-                            <div class="col-md-6 col-sm-6">
+                            <div class="col-md-7 col-sm-7">
                                 <textarea name="content"></textarea>
                                 @error('content')
                                 <div class="text-danger col-12">* {{ $message }}</div>

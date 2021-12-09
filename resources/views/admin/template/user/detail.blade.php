@@ -91,7 +91,7 @@
                                                         style="font-size: 14px; padding: 5px; border: 1px solid #bdbdbd">
                                                     <option
                                                         value="0" {{$user->status == \App\Enums\UserStatus::Deleted ? 'selected' : ''}}>
-                                                        Đã xóa
+                                                        Xóa
                                                     </option>
                                                     <option
                                                         value="1" {{$user->status == \App\Enums\UserStatus::Existed ? 'selected' : ''}}>

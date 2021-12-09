@@ -35,7 +35,7 @@
                         <div class="item form-group">
                             <div class="col-md-6 col-sm-6 offset-md-3">
                                 <button type="submit" class="btn btn-danger">Delete</button>
-                                <a href="/admin/products"><button class="btn btn-primary" type="button">Back to list</button></a>
+                                <a href="{{url()->previous()}}"><button class="btn btn-primary" type="button">Back to list</button></a>
                             </div>
                         </div>
                     </div>

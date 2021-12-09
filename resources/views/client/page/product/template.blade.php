@@ -166,11 +166,11 @@
                                             <option value="{{\App\Enums\Sort::None}}">Sắp xếp theo tên</option>
                                             <option value="{{\App\Enums\Sort::Asc}}"
                                                 {{isset($nameSort) && $nameSort == \App\Enums\Sort::Asc ? "selected": ""}}
-                                            >Name A-Z
+                                            >Tên từ A tới Z
                                             </option>
                                             <option value="{{\App\Enums\Sort::Desc}}"
                                                 {{isset($nameSort) && $nameSort == \App\Enums\Sort::Desc ? "selected": ""}}
-                                            >Name Z-A
+                                            >Tên từ Z tới A
                                             </option>
                                         </select>
                                         <div class="dropDownSelect2"></div>
@@ -181,11 +181,11 @@
                                             <option value="{{\App\Enums\Sort::None}}">Sắp xếp theo giá tiền</option>
                                             <option value="{{\App\Enums\Sort::Asc}}"
                                                 {{isset($priceSort) && $priceSort == \App\Enums\Sort::Asc ? "selected": ""}}
-                                            >Price low to high
+                                            >Giá tiền từ thấp tới cao
                                             </option>
                                             <option value="{{\App\Enums\Sort::Desc}}"
                                                 {{isset($priceSort) && $priceSort == \App\Enums\Sort::Desc ? "selected": ""}}
-                                            >Price high to low
+                                            >Giá tiền từ cao tới thấp
                                             </option>
 
                                         </select>

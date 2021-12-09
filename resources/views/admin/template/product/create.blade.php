@@ -27,7 +27,6 @@
                     <div class="clearfix"></div>
                     @if ($errors->any())
                         <div class="alert " style="margin-top: 10px">
-                            <h4 class="text-danger">Danh sách lỗi</h4>
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li class="text-danger">{{ $error }}</li>
@@ -44,20 +43,22 @@
                             <label class="col-form-label col-md-3 col-sm-3 label-align"> Tên sản phẩm *</label>
                             <div class="col-md-6 col-sm-6 ">
                                 <input type="text" name="name" class="form-control ">
+                                @error('name')
+                                <div class="text-danger ">* {{ $message }}</div>
+                                @enderror
                             </div>
-                            @error('name')
-                            <div class="text-danger col-md-12 col-sm-12 " style="margin: 5px 0 0 400px">* {{ $message }}</div>
-                            @enderror
+
                         </div>
 
                         <div class="item form-group row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align"> Giá *</label>
                             <div class="col-md-6 col-sm-6 ">
                                 <input type="text" name="price" class="form-control ">
+                                @error('price')
+                                <div class="text-danger" >* {{ $message }}</div>
+                                @enderror
                             </div>
-                            @error('price')
-                            <div class="text-danger col-md-12 col-sm-12 " style="margin: 5px 0 0 400px">* {{ $message }}</div>
-                            @enderror
+
                         </div>
 
                         <div class="form-group item row">
@@ -88,10 +89,11 @@
                             <div class="col-md-6 col-sm-6 ">
                                 <label>
                                     <textarea style="width: 100%" name="description" rows="4" cols="50"></textarea>
+                                    @error('description')
+                                    <div class="text-danger">* {{ $message }}</div>
+                                    @enderror
                                 </label>
-                                @error('description')
-                                <div class="text-danger col-12">* {{ $message }}</div>
-                                @enderror
+
                             </div>
                         </div>
 
@@ -101,11 +103,9 @@
                                 <input type="hidden" class="form-control" name="thumbnail">
                                 <button type="button" id="upload_widget" class="cloudinary-button mb-3">Upload files
                                 </button>
-                                <div id="preview-image">
-
-                                </div>
+                                <div id="preview-image"></div>
                                 @error('thumbnail')
-                                <div class="text-danger col-12" style="margin-left: 400px">* {{ $message }}</div>
+                                <div class="text-danger" >* {{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
@@ -115,7 +115,7 @@
                             <div class="col-md-6 col-sm-6">
                                     <textarea name="detail"></textarea>
                                 @error('detail')
-                                <div class="text-danger col-12">* {{ $message }}</div>
+                                <div class="text-danger">* {{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
