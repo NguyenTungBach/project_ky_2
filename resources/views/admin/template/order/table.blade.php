@@ -8,6 +8,7 @@
         .top_search:hover select{
             cursor: pointer!important;
         }
+
     </style>
 @endsection
 @section('breadcrumb')
@@ -218,6 +219,7 @@
                                         </option>
                                     </select>
                                 </div>
+                                {{--      Thời gian                          --}}
                                 <div class="col-md-3 col-sm-3 form-group pull-right top_search pr-2">
                                     <select name="created_at" class="form-control sortOrder" id="">
                                         <option value="">Lọc theo thời gian</option>
@@ -418,7 +420,7 @@
             </div>
         </div>
     </div>
-
+    <div class="modal"><!-- Place at bottom of page --></div>
 @endsection
 @section('page-script')
     {{--    date picker--}}
@@ -428,6 +430,12 @@
     <script>
         //============================= Handler Checked Order ================================================================
         let body = $('body');
+
+
+        $(document).on({
+            ajaxStart: function() { body.addClass("loading");    },
+            ajaxStop: function() { body.removeClass("loading"); }
+        });
         const selectItem = $('.selected-item');
         let hrefDeleteAll = $('#deleteAll').attr('href');
         let hrefUpdateAll = $('#updateAll').attr('href');
@@ -527,7 +535,8 @@
                 type: 'POST',
                 data: JSON.stringify(data),
 
-                success: function (data) {
+                success: function (response) {
+                    let data = JSON.parse(response)
                     console.log(data)
                     $.toast({
                         heading: 'Success',

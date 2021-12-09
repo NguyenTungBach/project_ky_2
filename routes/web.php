@@ -168,6 +168,7 @@ Route::get('/', [HomeController::class, 'getHome']);
 
 Route::get('/products', [ProductController::class, 'getShop']);
 Route::get('/product/search', [ProductController::class, 'index']);
+Route::get('/product/farm/{id}', [ProductController::class, 'searchFarm']);
 Route::get('/product/recent-view', [ProductController::class, 'getRecent']);
 Route::get('/product/{id}', [ProductController::class, 'getDetail']);
 
