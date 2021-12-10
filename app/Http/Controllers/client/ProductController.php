@@ -15,7 +15,7 @@ class ProductController extends Controller
     {
         $paginate = 9;
         return view('client.page.product.template', [
-            'items' => Product::paginate($paginate),
+            'items' => Product::where('status', '!=', 0)->paginate($paginate),
             'categories' => Category::withCount('products')->get(),
             'farms' => Farm::withCount('products')->get(),
             'sumProduct' => Product::count(),
@@ -46,7 +46,8 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $paginate = 9;
-        $products = Product::query()
+        $products = Product::where('status', '!=', 0)
+            ->query()
             ->name($request)
             ->price($request)
             ->cate($request)
