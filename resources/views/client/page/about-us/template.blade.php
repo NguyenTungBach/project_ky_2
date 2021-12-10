@@ -29,7 +29,8 @@
                 <p class="txt-center txt-m-115 cl6 p-b-25">
                     Nhưng nếu thế thì vẫn chưa đủ. Thế giới loạn lạc sau những ngày tháng Covid, ta loạn lạc trong những ngày dài chờ tiêm. Con người thay đổi
                     để thích ứng với hoàn cảnh, chúng ta dần chuyển mình qua hình thức đặt hàng trên mạng, một hình thức đầy tiềm năng cho cả người bán và người mua.
-                    Vì thế trang web CẦN RAU được sinh ra, một trang web nhỏ bé, ý tưởng nhỏ bé, mang theo niềm tin và hy vọng gánh và sứ mệnh đó là có thể mang đi bán rau.
+                    Vì thế trang web CẦN RAU được sinh ra, với cách bán hàng là thu nhập rau từ trang trại về để bán cho người tiêu dùng.
+                    Đây là một trang web nhỏ bé, ý tưởng nhỏ bé, mang theo niềm tin và hy vọng gánh và sứ mệnh đó là có thể mang đi bán rau.
                     Người mua vui, mà người bán cũng vui.
                 </p>
 
