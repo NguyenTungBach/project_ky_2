@@ -185,8 +185,8 @@ Route::get('/about', [AboutUsController::class, 'getAboutUs']);
 // Cart
 Route::get('/cart', [CartController::class, 'getCart']);
 Route::post('/cart/add', [CartController::class, 'add'])->name('client.cart.add');
-Route::post('/cart/update', [CartController::class, 'update']);
-Route::post('/cart/remove', [CartController::class, 'remove']);
+Route::post('/cart/update', [CartController::class, 'update'])->name('client.cart.update');
+Route::post('/cart/remove', [CartController::class, 'remove'])->name('client.cart.remove');
 
 // Checkout
 Route::post('/order', [\App\Http\Controllers\client\OrderController::class, 'process']);

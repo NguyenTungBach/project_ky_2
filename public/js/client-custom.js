@@ -13,7 +13,8 @@ $(document).ready(function () {
 
     function addToCart(data) {
         $.ajax({
-            url: `http://127.0.0.1:8000/cart/add`,
+            // url: `http://127.0.0.1:8000/cart/add`,
+            url:"{{route('client.cart.add')}}",
             method: 'POST',
             data: JSON.stringify(data),
             success: function (response) {
@@ -48,7 +49,8 @@ $(document).ready(function () {
             id: id,
         };
         $.ajax({
-            url: 'http://127.0.0.1:8000/cart/remove',
+            // url: 'http://127.0.0.1:8000/cart/remove',
+            url: "{{route('client.cart.remove')}}",
             type: 'POST',
             data: JSON.stringify(data),
 
@@ -185,7 +187,8 @@ $(document).ready(function () {
     //cập nhật tăng giảm số lưởng sản phẩm trong giỏ hàng bằng ajax
     function updateCart(data) {
         $.ajax({
-            url: 'http://127.0.0.1:8000/cart/update',
+            // url: 'http://127.0.0.1:8000/cart/update',
+            url: "{{route('client.cart.update')}}",
             type: 'POST',
             data: JSON.stringify(data),
 
