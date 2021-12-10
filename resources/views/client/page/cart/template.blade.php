@@ -247,7 +247,8 @@
         @section('js-page')
             @include('client.page.cart.js')
             <script src="/js/jquery.toast.min.js"></script>
-            <script src="/js/client-custom.js"></script>
+{{--            <script src="/js/client-custom.js"></script>--}}
+            @include('client.page.product.client-custom-js')
             <script>
                 $(document).ready(function () {
                     //================================= validate form ======================================

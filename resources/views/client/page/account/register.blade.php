@@ -171,9 +171,8 @@
         @section('js-page')
         @include('client.page.cart.js')
         <script src="/js/jquery.toast.min.js"></script>
-
-        <script src="/js/client-custom.js"></script>
-
+{{--        <script src="/js/client-custom.js"></script>--}}
+            @include('client.page.product.client-custom-js')
             <!--Start of Tawk.to Script-->
             <script type="text/javascript">
                 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
