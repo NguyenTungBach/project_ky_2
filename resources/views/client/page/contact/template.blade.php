@@ -278,6 +278,9 @@
                             icon: 'success',
                             position: 'top-right'
                         })
+                        setTimeout(function () {
+                            window.location.reload(false);
+                        }, 3000);
 
                     },
                     error: function (request, error) {

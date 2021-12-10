@@ -8,6 +8,36 @@
         .top_search:hover select{
             cursor: pointer!important;
         }
+        /* Start by setting display:none to make this hidden.
+Then we position it in relation to the viewport window
+with position:fixed. Width, height, top and left speak
+for themselves. Background we set to 80% white with
+our animation centered, and no-repeating */
+        .modal-load {
+            display:    none;
+            position:   fixed;
+            z-index:    1000;
+            top:        0;
+            left:       0;
+            height:     100%;
+            width:      100%;
+            background: rgba(255, 255, 255, 0.47)
+            url('http://i.stack.imgur.com/FhHRx.gif')
+            50% 50%
+            no-repeat;
+        }
+
+        /* When the body has the loading class, we turn
+           the scrollbar off with overflow:hidden */
+        body.loading .modal-load {
+            overflow: hidden;
+        }
+
+        /* Anytime the body has the loading class, our
+           modal element will be visible */
+        body.loading .modal-load {
+            display: block;
+        }
     </style>
 @endsection
 @section('breadcrumb')
@@ -218,6 +248,7 @@
                                         </option>
                                     </select>
                                 </div>
+                                {{--      Thời gian                          --}}
                                 <div class="col-md-3 col-sm-3 form-group pull-right top_search pr-2">
                                     <select name="created_at" class="form-control sortOrder" id="">
                                         <option value="">Lọc theo thời gian</option>
@@ -418,7 +449,7 @@
             </div>
         </div>
     </div>
-
+    <div class="modal-load"><!-- Place at bottom of page --></div>
 @endsection
 @section('page-script')
     {{--    date picker--}}
@@ -426,6 +457,10 @@
     <script src="/js/jquery.toast.min.js"></script>
     <script src="/admin/js/admin.js"></script>
     <script>
+        $(document).on({
+            ajaxStart: function() { $('body').addClass("loading");    },
+            ajaxStop: function() { $('body').removeClass("loading"); }
+        });
         //============================= Handler Checked Order ================================================================
         let body = $('body');
         const selectItem = $('.selected-item');
@@ -528,7 +563,8 @@
                 type: 'POST',
                 data: JSON.stringify(data),
 
-                success: function (data) {
+                success: function (response) {
+                    let data = JSON.parse(response)
                     console.log(data)
                     $.toast({
                         heading: 'Success',

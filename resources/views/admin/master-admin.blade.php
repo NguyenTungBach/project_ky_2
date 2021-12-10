@@ -8,6 +8,9 @@
     <link href="/admin/build/css/custom.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/admin/css/admin.css">
     @yield('page-css')
+    <style>
+
+    </style>
 
 </head>
 
@@ -68,6 +71,7 @@
     <!-- /footer content -->
     </div>
 </div>
+<div class="modal"><!-- Place at bottom of page --></div>
 @include('admin.include.script')
 @yield('page-script')
 <!-- Custom Theme Scripts -->
@@ -75,6 +79,7 @@
 <script src="/admin/js/admin.js"></script>
 <script>
     //======================================= Btn On Top ==================================================================
+
     //Get the button
     var mybutton = document.getElementById("btnToTop");
 

@@ -187,7 +187,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-sm-8 mb-3 p-1">
-                                    <h4 class="pb-1 font-weight-bold"><a href="">{{$f->name}}</a></h4>
+                                    <h4 class="pb-1 font-weight-bold"><a href="/product/farm/{{$f->id}}">{{$f->name}}</a></h4>
                                     <div class="pb-1">
                                         <p>Created at: {{$f->created_at}}</p>
                                     </div>

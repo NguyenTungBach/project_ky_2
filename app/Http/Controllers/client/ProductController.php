@@ -26,16 +26,16 @@ class ProductController extends Controller
     public function getDetail($id)
     {
         $product = Product::find($id);
-        $array =[];
-        if (\Illuminate\Support\Facades\Session::has('recent_view')){
+        $array = [];
+        if (\Illuminate\Support\Facades\Session::has('recent_view')) {
             $array = \Illuminate\Support\Facades\Session::get('recent_view');
         }
-        array_push($array,$id);
-        \Illuminate\Support\Facades\Session::put('recent_view',$array);
+        array_push($array, $id);
+        \Illuminate\Support\Facades\Session::put('recent_view', $array);
         $recentView = Product::findMany(\Illuminate\Support\Facades\Session::get('recent_view'));
         return view('client.page.product.detail', [
             'items' => $product,
-            'recent'=>$recentView]);
+            'recent' => $recentView]);
     }
 
     public function search()
@@ -66,6 +66,20 @@ class ProductController extends Controller
             'nameSort' => $request->get('nameSort'),
             'oldCategory' => $request->get('categories'),
             'oldFarm' => $request->get('farms'),
+            'categories' => Category::withCount('products')->get(),
+            'farms' => Farm::withCount('products')->get(),
+        ]);
+    }
+
+    public function searchFarm($id)
+    {
+        $paginate = 9;
+        $products = Product::where('farm_id', $id);
+        return view('client.page.product.template', [
+            'items' => $products->paginate($paginate),
+            'limit' => $paginate,
+            'oldFarm' => $id,
+            'sumProduct' => $products->count(),
             'categories' => Category::withCount('products')->get(),
             'farms' => Farm::withCount('products')->get(),
         ]);

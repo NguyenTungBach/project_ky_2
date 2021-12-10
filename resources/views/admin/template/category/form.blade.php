@@ -15,7 +15,6 @@
                     <div class="clearfix"></div>
                     @if ($errors->any())
                         <div class="alert " style="margin-top: 10px">
-                            <h4 class="text-danger">List Errors</h4>
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li class="text-danger">{{ $error }}</li>

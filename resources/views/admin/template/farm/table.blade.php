@@ -128,10 +128,10 @@
                                             <td>{{$item->phone}}</td>
                                             @switch($item->status)
                                                 @case(1)
-                                                    <td>Chưa xóa</td>
+                                                    <td>Đang hoạt động</td>
                                                 @break
                                                 @case(0)
-                                                <td>Đã xóa</td>
+                                                <td>Ngừng hoạt động</td>
                                                 @break
                                             @endswitch
                                             <td><a href="/admin/farm/detail/{{$item->id}}" class="hover-pointer dataItem"
