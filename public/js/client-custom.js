@@ -36,7 +36,6 @@ $(document).ready(function () {
                 console.log("Request: " + JSON.parse(request));
                 messageError();
             }
-
         });
     }
 
