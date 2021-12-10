@@ -523,7 +523,8 @@
                 status: status
             }
             $.ajax({
-                url: 'http://127.0.0.1:8000/admin/order/update-multi/status',
+                // url: 'http://127.0.0.1:8000/admin/order/update-multi/status',
+                url: "{{route('order.update-multi')}}",
                 type: 'POST',
                 data: JSON.stringify(data),
 
@@ -562,7 +563,8 @@
             };
             console.log(listId)
             $.ajax({
-                url: 'http://127.0.0.1:8000/admin/order/remove-multi/status',
+                // url: 'http://127.0.0.1:8000/admin/order/remove-multi/status',
+                url: "{{route('order.remove-multi')}}",
                 type: 'POST',
                 data: JSON.stringify(data),
 

@@ -266,7 +266,8 @@
             }
 
             $.ajax({
-                url: 'http://127.0.0.1:8000/admin/farm/update-multi/status',
+                // url: 'http://127.0.0.1:8000/admin/farm/update-multi/status',
+                url: "{{ route(('farm.update-multi')) }}",
                 type: 'POST',
                 data: JSON.stringify(data),
                 success: function (data) {
@@ -308,7 +309,8 @@
             console.log("trạng thái xóa là: ", status),
 
             $.ajax({
-                url: 'http://127.0.0.1:8000/admin/farm/remove-multi/status',
+                // url: 'http://127.0.0.1:8000/admin/farm/remove-multi/status',
+                url: "{{route (('farm.remove-multi')) }}",
                 type: 'POST',
                 data: JSON.stringify(data),
 

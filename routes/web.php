@@ -49,7 +49,7 @@ Route::post('admin/product/form', [\App\Http\Controllers\admin\ProductController
 // lọc sản phẩm
 Route::get('/admin/product/search', [\App\Http\Controllers\admin\ProductController::class,'search']);
 // cập nhật trạng thái theo check
-Route::post('/admin/product/update-multi/status', [\App\Http\Controllers\admin\ProductController::class,'updateAllStatus']);
+Route::post('/admin/product/update-multi/status', [\App\Http\Controllers\admin\ProductController::class,'updateAllStatus'])->name('product.update-multi');
 
 // lấy thông tin chi tiết
 Route::get('admin/product/{id}', [\App\Http\Controllers\admin\ProductController::class, 'getDetail']);
@@ -103,8 +103,8 @@ Route::post('/admin/farm/update', [\App\Http\Controllers\admin\FarmController::c
 Route::get('/admin/farm/delete/{id}', [\App\Http\Controllers\admin\FarmController::class, 'getConfirmDelete']);
 Route::post('/admin/farm/delete', [\App\Http\Controllers\admin\FarmController::class, 'delete']);
 
-Route::post('admin/farm/remove-multi/status', [\App\Http\Controllers\admin\FarmController::class, 'removeAllStatus']);
-Route::post('admin/farm/update-multi/status', [\App\Http\Controllers\admin\FarmController::class, 'updateAllStatus']);
+Route::post('admin/farm/remove-multi/status', [\App\Http\Controllers\admin\FarmController::class, 'removeAllStatus'])->name('farm.remove-multi');
+Route::post('admin/farm/update-multi/status', [\App\Http\Controllers\admin\FarmController::class, 'updateAllStatus'])->name('farm.update-multi');
 //***************************** Order ************************************
 Route::get('admin/orders', [OrderController::class, 'getAll']);
 
@@ -113,8 +113,8 @@ Route::get('admin/order/detail/{id}', [OrderController::class, 'getInformation']
 
 //update các trạng thái của order
 Route::post('admin/order/update/status', [OrderController::class, 'updateStatus']);
-Route::post('admin/order/remove-multi/status', [OrderController::class, 'removeAllStatus']);
-Route::post('admin/order/update-multi/status', [OrderController::class, 'updateAllStatus']);
+Route::post('admin/order/remove-multi/status', [OrderController::class, 'removeAllStatus'])->name('order.remove-multi');
+Route::post('admin/order/update-multi/status', [OrderController::class, 'updateAllStatus'])->name('order.update-multi');
 
 //download excel
 Route::post('admin/order/export', [OrderController::class, 'exportOrder']);
@@ -138,13 +138,13 @@ Route::post('admin/blog/update',[\App\Http\Controllers\admin\BlogController::cla
 Route::get('admin/blog/delete/{id}', [\App\Http\Controllers\admin\BlogController::class, 'getConfirmDelete']);
 Route::post('admin/blog/delete', [\App\Http\Controllers\admin\BlogController::class, 'delete']);
 
-Route::post('admin/blog/remove-multi/status', [\App\Http\Controllers\admin\BlogController::class, 'removeAllStatus']);
-Route::post('admin/blog/update-multi/status', [\App\Http\Controllers\admin\BlogController::class, 'updateAllStatus']);
+Route::post('admin/blog/remove-multi/status', [\App\Http\Controllers\admin\BlogController::class, 'removeAllStatus'])->name('blog.remove-multi');
+Route::post('admin/blog/update-multi/status', [\App\Http\Controllers\admin\BlogController::class, 'updateAllStatus'])->name('blog.update-multi');
 //***************************** Contact ************************************
 Route::get('admin/contacts',[\App\Http\Controllers\admin\ContactController::class,'getAll']);
 Route::get('admin/contact/detail/{id}',[\App\Http\Controllers\admin\ContactController::class,'getDetail']);
 Route::post('admin/contact/update/status',[\App\Http\Controllers\admin\ContactController::class,'updateStatus']);
-Route::post('admin/contact/update-multi/status',[\App\Http\Controllers\admin\ContactController::class,'updateAllStatus']);
+Route::post('admin/contact/update-multi/status',[\App\Http\Controllers\admin\ContactController::class,'updateAllStatus'])->name('contact.update-multi.status');
 
 // tìm kiếm
 Route::get('admin/contact/search',[\App\Http\Controllers\admin\ContactController::class,'search']);
@@ -158,7 +158,7 @@ Route::get('admin/user/detail/{id}', [\App\Http\Controllers\admin\UserController
 Route::get('admin/user/update/{id}', [\App\Http\Controllers\admin\UserController::class, 'getInformation']);
 //lấy thông tin sau khi chỉnh sửa rồi update
 Route::post('admin/user/update', [\App\Http\Controllers\admin\UserController::class, 'update']);
-Route::post('admin/user/remove-multi/status', [\App\Http\Controllers\admin\UserController::class, 'removeAllStatus']);
+Route::post('admin/user/remove-multi/status', [\App\Http\Controllers\admin\UserController::class, 'removeAllStatus'])->name('user.remove-multi');
 Route::post('admin/user/update/status', [\App\Http\Controllers\admin\UserController::class, 'updateStatus']);
 
 
@@ -174,7 +174,7 @@ Route::get('/product/{id}', [ProductController::class, 'getDetail']);
 Route::get('/farm', [FarmController::class, 'getFarms']);
 
 Route::get('/contact', [ContactController::class, 'getContact']);
-Route::post('/contact', [ContactController::class, 'contact']);
+Route::post('/contact', [ContactController::class, 'contact'])->name('client.contact');
 
 Route::get('/blog', [BlogController::class, 'getBlog']);
 Route::get('/blogs/{id}', [BlogController::class, 'getDetail']);
@@ -183,7 +183,7 @@ Route::get('/about', [AboutUsController::class, 'getAboutUs']);
 
 // Cart
 Route::get('/cart', [CartController::class, 'getCart']);
-Route::post('/cart/add', [CartController::class, 'add']);
+Route::post('/cart/add', [CartController::class, 'add'])->name('client.cart.add');
 Route::post('/cart/update', [CartController::class, 'update']);
 Route::post('/cart/remove', [CartController::class, 'remove']);
 

@@ -249,7 +249,8 @@
             }
 
             $.ajax({
-                url: 'http://127.0.0.1:8000/admin/blog/update-multi/status',
+                // url: 'http://127.0.0.1:8000/admin/blog/update-multi/status',
+                url: "{{route('blog.update-multi')}}",
                 type: 'POST',
                 data: JSON.stringify(data),
                 success: function (data) {
@@ -291,7 +292,8 @@
                 console.log("trạng thái xóa là: ", status),
 
                 $.ajax({
-                    url: 'http://127.0.0.1:8000/admin/blog/remove-multi/status',
+                    // url: 'http://127.0.0.1:8000/admin/blog/remove-multi/status',
+                    url: "{{route('blog.remove-multi')}}",
                     type: 'POST',
                     data: JSON.stringify(data),
 
