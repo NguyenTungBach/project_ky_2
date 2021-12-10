@@ -201,7 +201,8 @@
 @section('js-page')
     @include('client.page.product.js')
     <script src="/js/jquery.toast.min.js"></script>
-    <script src="/js/client-custom.js"></script>
+{{--    <script src="/js/client-custom.js"></script>--}}
+    @include('client.page.client-custom-js.blade.js')
     <script>
         function openDetailAndReview(reviewOrDetail) {
             var x = document.getElementsByClassName('reviewAndDetail')
