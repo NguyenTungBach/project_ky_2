@@ -4,17 +4,19 @@ namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
 
-use App\Models\Farm;
-use Illuminate\Http\Request;
+use App\Models\BlogFarm;
+use App\Models\District;
+use App\Models\Ward;
 
 class FarmController extends Controller
 {
     public function getFarms()
     {
         return view('client.page.farm.template',[
-            'farms'=>Farm::all(),
+            'items'=>BlogFarm::all()
         ]);
     }
 
+   
 
 }
