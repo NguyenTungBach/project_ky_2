@@ -58,7 +58,7 @@
     <div class="container">
         <div class="size-a-1 flex-col-c-m p-b-40">
             <div class="txt-center txt-m-201 cl10 how-pos1-parent m-b-14">
-                Food Is Always Fresh
+                Thực Phẩm Luôn Tươi Mới
 
                 <div class="how-pos1">
                     <img src="/client/images/icons/symbol-02.png" alt="IMG">
@@ -66,7 +66,7 @@
             </div>
 
             <h3 class="txt-center txt-l-101 cl3 respon1">
-                We bring clean food
+                Chúng Tôi Luôn Mang Đến Thực Phẩm Sạch
             </h3>
         </div>
 
@@ -84,7 +84,7 @@
                 <div class="size-w-24 flex-col p-t-50 p-b-30 respon5">
                     <div class="flex-w flex-str size-w-27 al-self-e w-full-lg">
                         <div class="size-w-26 flex-r-m txt-right txt-m-109 cl3 respon6-01">
-                            100% Organic
+                            100% Hữu cơ
                         </div>
 
                         <div class="size-w-25 flex-r-m respon6-02">
@@ -92,7 +92,7 @@
                         </div>
 
                         <p class="txt-right txt-s-101 cl6 p-t-7 respon6-03">
-                            It is a long established fact that a reader will be distracted by the readable.
+                            Những sản phẩm được nuôi trồng tự nhiên, không sử dụng chất hoá học
                         </p>
                     </div>
                 </div>
@@ -104,11 +104,11 @@
                         </div>
 
                         <div class="size-w-26 flex-m txt-m-109 cl3">
-                            Food Safety
+                            An Toàn Thực Phẩm
                         </div>
 
                         <p class="txt-s-101 cl6 p-t-7">
-                            It is a long established fact that a reader will be distracted by the readable.
+                            Sử dụng những phương pháp chuyên môn để thực phẩm luôn được an toàn và vệ sinh sạch sẽ.
                         </p>
                     </div>
                 </div>
@@ -116,7 +116,7 @@
                 <div class="size-w-24 flex-col p-t-50 p-b-30 respon5">
                     <div class="flex-w flex-str size-w-27 al-self-c p-r-6 w-full-lg">
                         <div class="size-w-26 flex-r-m txt-right txt-m-109 cl3 respon6-01">
-                            Family Healthy
+                            Gia Đình Khoẻ Mạnh
                         </div>
 
                         <div class="size-w-25 flex-r-m respon6-02">
@@ -124,7 +124,7 @@
                         </div>
 
                         <p class="txt-right txt-s-101 cl6 p-t-7 respon6-03">
-                            It is a long established fact that a reader will be distracted by the readable.
+                            Khi sử dụng sản phẩm không lo ảnh hưởng đến sức khoẻ gia đình bạn
                         </p>
                     </div>
                 </div>
@@ -136,11 +136,11 @@
                         </div>
 
                         <div class="size-w-26 flex-m txt-m-109 cl3">
-                            Best Quality
+                            Chất Lượng Tốt Nhất
                         </div>
 
                         <p class="txt-s-101 cl6 p-t-7">
-                            It is a long established fact that a reader will be distracted by the readable.
+                            Sản phẩm với chất lượng tốt nhất mới đem bán
                         </p>
                     </div>
                 </div>
@@ -148,7 +148,7 @@
                 <div class="size-w-24 flex-col p-t-50 p-b-30 respon5">
                     <div class="flex-w flex-str size-w-27 al-self-s w-full-lg">
                         <div class="size-w-26 flex-r-m txt-right txt-m-109 cl3 respon6-01">
-                            Always Fresh
+                           Luôn Tươi Mới
                         </div>
 
                         <div class="size-w-25 flex-r-m respon6-02">
@@ -156,7 +156,7 @@
                         </div>
 
                         <p class="txt-right txt-s-101 cl6 p-t-7 respon6-03">
-                            It is a long established fact that a reader will be distracted by the readable.
+                            Thu hoạch ngay tại trang trại và đem đi phân phối luôn nên thực phẩm luôn trong tình trạng tươi mới
                         </p>
                     </div>
                 </div>
@@ -168,11 +168,11 @@
                         </div>
 
                         <div class="size-w-26 flex-m txt-m-109 cl3">
-                            Premiun Quality
+                            Chất Lượng Premiun
                         </div>
 
                         <p class="txt-s-101 cl6 p-t-7">
-                            It is a long established fact that a reader will be distracted by the readable.
+                            Sản phẩm luôn ở chất lượng cao nhất khi đem bán
                         </p>
                     </div>
                 </div>

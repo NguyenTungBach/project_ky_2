@@ -126,7 +126,7 @@
         <div class="container">
             <div class="size-a-1 flex-col-c-m p-b-60">
                 <div class="txt-center txt-m-201 cl10 how-pos1-parent m-b-14">
-                    Organic food
+                    Thực phẩm sạch
 
                     <div class="how-pos1">
                         <img src="/client/images/icons/symbol-02.png" alt="IMG">
@@ -134,7 +134,7 @@
                 </div>
 
                 <h3 class="txt-center txt-l-101 cl3 respon1">
-                    Delivery Process
+                    Quá Trình Giao Hàng
                 </h3>
             </div>
 
@@ -188,7 +188,7 @@
 									</span>
 
                                         <span class="txt-s-119 cl6">
-										Râu cần sạch
+										Cần Rau sạch
 									</span>
                                     </div>
                                 </div>
