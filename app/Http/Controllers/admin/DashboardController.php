@@ -17,7 +17,7 @@ class DashboardController extends Controller
     {
         // tìm đến các ngày và tổng giá từ bảng orders, nhóm vào theo ngày
         $totalPriceQuery = "
-        SELECT DATE(created_at) as date, SUM(total_price) totalPriceDay
+        SELECT DATE(created_at) as date, SUM(total_price) as totalPriceDay
         FROM orders GROUP BY DATE(created_at)
         ";
         $resultTotalPrice = DB::select(DB::raw($totalPriceQuery));
@@ -28,7 +28,7 @@ class DashboardController extends Controller
 
 
         $quantityProductQuery = "
-        SELECT SUM(quantity) totalQuantity, products.name as nameProduct, product_id FROM order_details
+        SELECT SUM(quantity) as totalQuantity, products.name as nameProduct, product_id FROM order_details
         LEFT JOIN products ON order_details.product_id = products.id
         GROUP BY product_id ORDER BY totalQuantity DESC";
         $resultTotalPrice = DB::select(DB::raw($quantityProductQuery));
