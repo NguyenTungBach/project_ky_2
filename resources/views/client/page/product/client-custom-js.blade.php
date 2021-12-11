@@ -351,13 +351,6 @@
                     <span class="txt-s-109 cl12">x${data.quantity}</span>
                 </div>
             </div>
-
-            <div class="size-w-14 flex-b">
-                <a href="/cart/delete/${data.id}"
-                   style="position: absolute;top: 0;" class="lh-10">
-                    <img src="/client/images/icons/icon-close.png" alt="CLOSE">
-                </a>
-            </div>
         </div>
         `;
         }

@@ -47,7 +47,6 @@ class ProductController extends Controller
     {
         $paginate = 9;
         $products = Product::where('status', '!=', 0)
-            ->query()
             ->name($request)
             ->price($request)
             ->cate($request)
