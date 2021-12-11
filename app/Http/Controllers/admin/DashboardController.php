@@ -31,7 +31,7 @@ class DashboardController extends Controller
         SELECT SUM(quantity) as totalQuantity, products.name as nameProduct, product_id
         FROM order_details
         LEFT JOIN products ON order_details.product_id = products.id
-        GROUP BY order_details.product_id ORDER BY totalQuantity DESC";
+        GROUP BY order_details.product_id,products.name ORDER BY totalQuantity DESC";
         $resultTotalPrice = DB::select(DB::raw($quantityProductQuery));
 
         $dataQuantity ='';
