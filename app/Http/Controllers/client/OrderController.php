@@ -238,6 +238,7 @@ class OrderController extends Controller
     {
         $data = Order::find($id);
         $data->subject = $title;
+        // gửi mail (view, dữ liệu gửi vào view, hàm gửi tiêu đề)
         Mail::send('client.mailOrder.mailOrder', ['order' => $data ],
             function ($message) use ($data) {
                 $message->to( $data->ship_email, $data->ship_name)
