@@ -105,6 +105,23 @@ Route::post('/admin/farm/delete', [\App\Http\Controllers\admin\FarmController::c
 
 Route::post('admin/farm/remove-multi/status', [\App\Http\Controllers\admin\FarmController::class, 'removeAllStatus']);
 Route::post('admin/farm/update-multi/status', [\App\Http\Controllers\admin\FarmController::class, 'updateAllStatus']);
+
+//***************************** Blog-Farms ************************************
+Route::get('/admin/blog/farms', [\App\Http\Controllers\admin\BlogFarmController::class, 'getAll']);
+//lấy ra form
+Route::get('/admin/blog/farm/form', [\App\Http\Controllers\admin\BlogFarmController::class, 'getForm']);
+//// lấy thông tin trên form rồi tạo mới
+Route::post('/admin/farm/form', [\App\Http\Controllers\admin\BlogFarmController::class, 'create']);
+//
+Route::get('/admin/blog/farm/detail/{id}', [\App\Http\Controllers\admin\BlogFarmController::class, 'getDetail']);
+Route::get('/admin/blog/farm/update/{id}', [\App\Http\Controllers\admin\BlogFarmController::class, 'getInformation']);
+Route::get('/admin/blog/farm/search', [\App\Http\Controllers\admin\BlogFarmController::class, 'search']);
+//
+Route::post('/admin/blog/farm/update', [\App\Http\Controllers\admin\BlogFarmController::class, 'update']);
+Route::get('/admin/blog/farm/delete/{id}', [\App\Http\Controllers\admin\BlogFarmController::class, 'getConfirmDelete']);
+Route::post('/admin/blog/farm/delete', [\App\Http\Controllers\admin\BlogFarmController::class, 'delete']);
+
+
 //***************************** Order ************************************
 Route::get('admin/orders', [OrderController::class, 'getAll']);
 
