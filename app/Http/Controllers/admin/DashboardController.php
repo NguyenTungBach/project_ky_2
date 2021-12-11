@@ -28,18 +28,18 @@ class DashboardController extends Controller
 
 
         $quantityProductQuery = "
-        SELECT SUM(quantity) as totalQuantity, products.name as nameProduct, product_id FROM order_details
+        SELECT SUM(quantity) as total_Quantity, products.name as name_Product, product_id FROM order_details
         LEFT JOIN products ON order_details.product_id = products.id
-        GROUP BY product_id ORDER BY totalQuantity DESC";
+        GROUP BY product_id ORDER BY total_Quantity DESC";
         $resultTotalPrice = DB::select(DB::raw($quantityProductQuery));
 
         $dataQuantity ='';
         $quantityAnother = 0;
         for($i = 0; $i < sizeof($resultTotalPrice); $i++){
             if($i < 10){
-                $dataQuantity .= "['".$resultTotalPrice[$i]->nameProduct."', ".$resultTotalPrice[$i]->totalQuantity.",".$resultTotalPrice[$i]->product_id."],";
+                $dataQuantity .= "['".$resultTotalPrice[$i]->name_Product."', ".$resultTotalPrice[$i]->total_Quantity.",".$resultTotalPrice[$i]->product_id."],";
             }else{
-                $quantityAnother += $resultTotalPrice[$i]->totalQuantity;
+                $quantityAnother += $resultTotalPrice[$i]->total_Quantity;
             }
         }
         $dataQuantity .= "['Sản phẩm còn lại', ".$quantityAnother.",'none'],";
