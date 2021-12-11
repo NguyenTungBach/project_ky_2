@@ -170,7 +170,7 @@ Route::get('/products', [ProductController::class, 'getShop']);
 Route::get('/product/search', [ProductController::class, 'index']);
 Route::get('/product/farm/{id}', [ProductController::class, 'searchFarm']);
 Route::get('/product/recent-view', [ProductController::class, 'getRecent']);
-Route::get('/product/{id}', [ProductController::class, 'getDetail']);
+Route::get('/product/{id}', [ProductController::class, 'getDetail'])->name('product.getDetail');
 
 Route::get('/farm', [FarmController::class, 'getFarms']);
 
@@ -190,7 +190,7 @@ Route::post('/cart/remove', [CartController::class, 'remove'])->name('client.car
 
 // Checkout
 Route::post('/order', [\App\Http\Controllers\client\OrderController::class, 'process']);
-Route::get('/order/{id}', [\App\Http\Controllers\client\OrderController::class, 'getDetail']);
+Route::get('/order/{id}', [\App\Http\Controllers\client\OrderController::class, 'getDetail'])->name('order.getDetail');
 Route::post('/order/create-payment', [\App\Http\Controllers\client\OrderController::class, 'createPayment']);
 Route::post('/order/execute-payment', [\App\Http\Controllers\client\OrderController::class, 'executePayment']);
 Route::get('/check-mail', [\App\Http\Controllers\client\OrderController::class, 'getCheckMail']);
