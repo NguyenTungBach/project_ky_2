@@ -68,7 +68,7 @@
 @endsection
 @section('content-page')
     <!-- Title page -->
-    @include('client.include.title-page',['title'=>'Sản Phẩm'])
+    @include('client.include.title-page',['title'=>'Trang trại'])
 
 
     <section class=" p-t-20 p-b-45" style="background-color: #f5f7f8">
