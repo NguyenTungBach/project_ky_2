@@ -17,13 +17,13 @@ class DashboardController extends Controller
     {
         // tìm đến các ngày và tổng giá từ bảng orders, nhóm vào theo ngày
         $totalPriceQuery = "
-        SELECT DATE(created_at) as date, SUM(total_price) as totalPriceDay
+        SELECT DATE(created_at) as date, SUM(total_price) as total
         FROM orders GROUP BY DATE(created_at)
         ";
         $resultTotalPrice = DB::select(DB::raw($totalPriceQuery));
         $dataPrice = "";
         foreach ($resultTotalPrice as $val) {
-            $dataPrice .= "['" . $val->date . "', " . $val->totalPriceDay . "],";
+            $dataPrice .= "['" . $val->date . "', " . $val->total . "],";
         }
 
 
