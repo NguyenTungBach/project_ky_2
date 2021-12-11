@@ -30,8 +30,8 @@ class DashboardController extends Controller
         $quantityProductQuery = "
         SELECT SUM(quantity) as total_Quantity, products.name as name_Product, product_id
         FROM order_details
-        LEFT JOIN products USING product_id
-        GROUP BY  products.name ORDER BY total_Quantity DESC";
+        LEFT JOIN products ON order_details.product_id = products.id
+        GROUP BY  order_details.product_id ORDER BY total_Quantity DESC";
         $resultTotalPrice = DB::select(DB::raw($quantityProductQuery));
 
         $dataQuantity ='';
