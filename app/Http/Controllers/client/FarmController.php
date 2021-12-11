@@ -5,18 +5,18 @@ namespace App\Http\Controllers\client;
 use App\Http\Controllers\Controller;
 
 use App\Models\BlogFarm;
-use App\Models\District;
-use App\Models\Ward;
+use App\Models\Farm;
 
 class FarmController extends Controller
 {
     public function getFarms()
     {
         return view('client.page.farm.template',[
-            'items'=>BlogFarm::all()
+            'items'=>BlogFarm::all(),
+            'farms'=>Farm::all(),
         ]);
     }
 
-   
+
 
 }
