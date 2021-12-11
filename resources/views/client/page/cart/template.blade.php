@@ -215,7 +215,6 @@
 
                         </div>
 
-
                         <div class="d-flex bo-b-1 bocl15 w-100 p-tb-18">
                     <span class="w-50 txt-m-109 cl3">
                         Tổng giá tiền
