@@ -87,13 +87,13 @@
                                 <button type="button" id="upload_widget" class="cloudinary-button mb-3">Upload files
                                 </button>
                                 <div id="preview-image">
+                                    @foreach($item->arrayThumbnail as $thumbnail)
                                     <div class="col-md-3 col-sm-3 position-relative" style="padding-left: 0 !important;">
-                                        @foreach($item->arrayThumbnail as $thumbnail)
                                             <a id="close_img" class="close-preview">&#10006;</a>
                                             <img src="{{$thumbnail}}"
                                                  class="col-md-12 col-sm-12 img-thumbnail mr-2 mb-2 imagesChoice">
-                                        @endforeach
                                     </div>
+                                    @endforeach
                                 </div>
                                 @error('thumbnail')
                                 <div class="text-danger col-12" >* {{ $message }}</div>
