@@ -102,6 +102,7 @@
                                     <tr>
                                         <th><input type="checkbox" value="" class="check-all-order" name="selected-all">
                                         <th>Id</th>
+                                        <th>Mã sản phẩm</th>
                                         <th>Tiêu đề</th>
                                         <th>Tên trang trại</th>
                                         <th>Ảnh bài viết</th>
@@ -115,6 +116,7 @@
                                         <tr>
                                             <td><input type="checkbox" value="{{$item->id}}" class="selected-item">
                                             <td>{{$item->id}}</td>
+                                            <td>{{$item->product_id}}</td>
                                             <td>{{$item->title}}</td>
                                             <td>{{$item->farm->name}}</td>
                                             <td>

@@ -53,11 +53,11 @@
                         </div>
 
                         <div class="item form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Link sản phẩm *</label>
+                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Mã sản phẩm *</label>
                             <div class="col-md-7 col-sm-7 ">
-                                <input type="text" name="url" class="form-control " value="{{ $item->url }}">
+                                <input type="text" name="product_id" class="form-control " value="{{ $item->product_id }}">
                             </div>
-                            @error('url')
+                            @error('product_id')
                             <div class="text-danger col-md-12 col-sm-12 " style="margin: 5px 0 0 400px">* {{ $message }}</div>
                             @enderror
                         </div>
@@ -82,7 +82,7 @@
                             <label class="col-form-label col-md-3 col-sm-3 label-align"> Ảnh *</label>
                             <div class="col-md-6 col-sm-6 ">
 
-                             <input type="hidden" class="form-control" name="thumbnail" value="{{$item->thumbnail}}">
+                             <input type="text" class="form-control" name="thumbnail" value="{{$item->thumbnail}}">
 
                                 <button type="button" id="upload_widget" class="cloudinary-button mb-3">Upload files
                                 </button>

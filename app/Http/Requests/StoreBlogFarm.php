@@ -25,7 +25,7 @@ class StoreBlogFarm extends FormRequest
     {
         return [
             'title' => 'required',
-            'url' => 'required|url',
+            'product_id' => 'required',
             'farm_id' => 'required',
             'thumbnail' => 'required|url',
             'description' => 'required'
@@ -37,8 +37,7 @@ class StoreBlogFarm extends FormRequest
         return [
             'title.required' => 'Vui lòng nhập tiêu đề bài viết',
             'farm_id.required' => 'Vui lòng chọn nhà vườn',
-            'url.required' => 'Vui lòng nhập link sản phẩm',
-            'url.url' => 'Phải là một url',
+            'product_id.required' => 'Vui lòng nhập mã sản phẩm',
             'thumbnail.required' => 'Vui lòng nhập ảnh',
             'thumbnail.url' => 'Vui lòng nhập link ảnh',
             'description.required' => 'Vui lòng nhập nội dung',

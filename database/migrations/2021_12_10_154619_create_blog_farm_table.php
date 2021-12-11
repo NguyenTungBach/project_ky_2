@@ -17,7 +17,7 @@ class CreateBlogFarmTable extends Migration
             $table->id();
             $table->string('title');
             $table->unsignedBigInteger('farm_id');
-            $table->text('url');
+            $table->unsignedBigInteger('product_id');
             $table->text('thumbnail');
             $table->text('description');
             $table->integer('status')->default(1);

@@ -104,7 +104,7 @@
                                 <h4 class="pb-1">{{$item->title}}</h4>
                                 <div class=" pb-1">
                                     <ul>
-                                        <a href="{{$item->url}}" style="color: #5cc374">
+                                        <a href="{{route('product.getDetail',['id'=>$item->product_id])}}" style="color: #5cc374">
                                             <li>Xem sản phẩm</li>
                                         </a>
                                     </ul>

@@ -51,11 +51,11 @@
                         </div>
 
                         <div class="item form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Link sản phẩm *</label>
+                            <label class="col-form-label col-md-3 col-sm-3 label-align">Mã sản phẩm *</label>
                             <div class="col-md-7 col-sm-7 ">
-                                <input type="text" name="url" class="form-control " value="{{ old('address') }}">
+                                <input type="text" name="product_id" class="form-control " value="{{ old('product_id') }}">
                             </div>
-                            @error('url')
+                            @error('product_id')
                             <div class="text-danger col-md-12 col-sm-12 " style="margin: 5px 0 0 400px">* {{ $message }}</div>
                             @enderror
                         </div>
