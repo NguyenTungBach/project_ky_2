@@ -18,7 +18,7 @@ class DashboardController extends Controller
         // tìm đến các ngày và tổng giá từ bảng orders, nhóm vào theo ngày
         $totalPriceQuery = "
         SELECT DATE(created_at) as date, SUM(total_price) as total_price_day
-        FROM orders GROUP BY DATE(created_at)
+        FROM orders GROUP BY DATE(created_at) ORDER BY date DESC
         ";
         $resultTotalPrice = DB::select(DB::raw($totalPriceQuery));
         $dataPrice = "";
