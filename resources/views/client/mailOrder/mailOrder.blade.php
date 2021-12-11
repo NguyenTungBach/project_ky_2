@@ -76,7 +76,7 @@
                                                                         MÃ HOÁ ĐƠN
                                                                     </span>
                                                                     <br>
-                                                                    <a href="http://127.0.0.1:8000/order/{{$order->id}}" style="color:#0070c9">
+                                                                    <a href="{{route('order.getDetail',['id'=>$order->id])}}" style="color:#0070c9">
                                                                         {{$order->id}}
                                                                     </a>
                                                                 </td>
@@ -111,7 +111,7 @@
                                                                         <img src="{{$orderDetail->product->FirstImage}}" width="64" height="64" border="0" alt="" style="padding:0;margin:0;border-radius:14px;border:1px solid rgba(128,128,128,0.2)" class="CToWUd">
                                                                     </td>
                                                                     <td style="padding:0 0 0 20px;line-height:15px">
-                                                                        <a href="http://127.0.0.1:8000/product/{{$orderDetail->product_id}}" dir="auto" style="font-weight:600">
+                                                                        <a href="{{route('product.getDetail',['id'=>$orderDetail->product_id])}}" dir="auto" style="font-weight:600">
                                                                             {{$orderDetail->product->name}}
                                                                         </a>
                                                                         <br>

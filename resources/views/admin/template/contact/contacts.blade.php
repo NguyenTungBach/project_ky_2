@@ -243,7 +243,8 @@
             }
 
             $.ajax({
-                url: 'http://127.0.0.1:8000/admin/contact/update-multi/status',
+                // url: 'http://127.0.0.1:8000/admin/contact/update-multi/status',
+                url: "{{route(('contact.update-multi.status'))}}",
                 type: 'POST',
                 data: JSON.stringify(data),
                 success: function (data) {

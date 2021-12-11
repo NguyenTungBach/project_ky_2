@@ -335,7 +335,8 @@
             }
 
             $.ajax({
-                url: 'http://127.0.0.1:8000/admin/product/update-multi/status',
+                // url: 'http://127.0.0.1:8000/admin/product/update-multi/status',
+                url:"{{route('product.update-multi')}}",
                 type: 'POST',
                 data: JSON.stringify(data),
                 success: function (data) {
