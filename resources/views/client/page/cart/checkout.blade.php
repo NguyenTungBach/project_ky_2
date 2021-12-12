@@ -280,5 +280,6 @@
             }
         }, '#paypal-button');
     </script>
+    @include('client.plugin.plugin')
 @endsection
 
