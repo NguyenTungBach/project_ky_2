@@ -30,9 +30,7 @@ use Illuminate\Support\Facades\URL;
 //    Artisan::call('cache:clear');
 //    return "Cache is cleared";
 //});
-if (App::environment('production')) {
-    URL::forceScheme('https');
-}
+
 //============================================== ADMIN =================================================================
 //************************************Login and Register*************
 Route::get('admin/login', [AdminController::class, 'showLogin']);

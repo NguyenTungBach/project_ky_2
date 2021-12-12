@@ -12,7 +12,7 @@
     <div class="container">
         <div class="flex-w flex-sb-t">
             <div class="size-w-31 wrap-pic-w how-shadow2 bo-all-15 bocl0 w-full-md">
-                <img src="https://res.cloudinary.com/dark-faith/image/upload/v1639135841/78229800_104911967646739_827521424913596416_n.jpg_yw6q4c.jpg" alt="IMG">
+                <img src="https://res.cloudinary.com/dark-faith/image/upload/v1639306162/tu-trang-trai-den-ban-an_jbhk6a.jpg" alt="IMG">
             </div>
 
             <div class="size-w-32 p-t-43 w-full-md">
