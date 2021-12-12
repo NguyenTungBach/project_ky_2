@@ -12,7 +12,9 @@ use App\Http\Controllers\client\FarmController;
 use App\Http\Controllers\client\HomeController;
 use App\Http\Controllers\client\ProductController;
 use App\Http\Controllers\client\UserController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +30,9 @@ use Illuminate\Support\Facades\Route;
 //    Artisan::call('cache:clear');
 //    return "Cache is cleared";
 //});
+if (App::environment('production')) {
+    URL::forceScheme('https');
+}
 //============================================== ADMIN =================================================================
 //************************************Login and Register*************
 Route::get('admin/login', [AdminController::class, 'showLogin']);
