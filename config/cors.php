@@ -21,7 +21,7 @@ return [
 
     'allowed_origins' => ['*'],
 
-    'allowed_origins_patterns' => ['http://web-service-test-ky-2.herokuapp.com'],
+    'allowed_origins_patterns' => [],
 
     'allowed_headers' => ['*'],
 

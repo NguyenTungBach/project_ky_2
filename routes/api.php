@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\URL;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-if (App::environment('production')) {
-    URL::forceScheme('https');
-}
+//if (App::environment('production')) {
+//    URL::forceScheme('https');
+//}
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
