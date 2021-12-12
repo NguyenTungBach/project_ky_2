@@ -12,6 +12,10 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
+        'api/*',
+        'sub.domain.zone' => [
+            'prefix/*'
+        ],
         "order/create-payment", "order/execute-payment","/cart/add","/cart/update","/cart/remove",
         "/admin/product/update-multi/status",
         "/admin/contact/update-multi/status",
