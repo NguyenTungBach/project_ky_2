@@ -29,7 +29,7 @@ class UserController extends Controller
         $password = Hash::make($request->get('password'));
         $existAccount = User::where('email', $email)->exists();
         if ($existAccount) {
-            \session()->flash('fail', "Tài khoản đã tồn tại");
+            session()->flash('fail', "Tài khoản đã tồn tại");
             return redirect()->back()->withInput();
         } else {
             $user = new User();
@@ -41,14 +41,13 @@ class UserController extends Controller
             $user->created_at = Carbon::now('Asia/Ho_Chi_Minh');
 //            $user->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
             $user->save();
-            \session()->flash('success', 'Tạo tài khoản thành công.');
+            session()->flash('success', 'Tạo tài khoản thành công.');
             return redirect()->back();
         }
     }
 
     function getFormEdit($id)
     {
-
         return view('client.page.account.update-infor', [
             'items' => User::find($id),
         ]);
