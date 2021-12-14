@@ -128,10 +128,10 @@
                                             <td>{{$item->phone}}</td>
                                             @switch($item->status)
                                                 @case(1)
-                                                    <td>Chưa xóa</td>
+                                                    <td>Đang hoạt động</td>
                                                 @break
                                                 @case(0)
-                                                <td>Đã xóa</td>
+                                                <td>Ngừng hoạt động</td>
                                                 @break
                                             @endswitch
                                             <td><a href="/admin/farm/detail/{{$item->id}}" class="hover-pointer dataItem"
@@ -266,7 +266,8 @@
             }
 
             $.ajax({
-                url: 'http://127.0.0.1:8000/admin/farm/update-multi/status',
+                // url: 'http://127.0.0.1:8000/admin/farm/update-multi/status',
+                url: "{{ route(('farm.update-multi')) }}",
                 type: 'POST',
                 data: JSON.stringify(data),
                 success: function (data) {
@@ -308,7 +309,8 @@
             console.log("trạng thái xóa là: ", status),
 
             $.ajax({
-                url: 'http://127.0.0.1:8000/admin/farm/remove-multi/status',
+                // url: 'http://127.0.0.1:8000/admin/farm/remove-multi/status',
+                url: "{{route (('farm.remove-multi')) }}",
                 type: 'POST',
                 data: JSON.stringify(data),
 

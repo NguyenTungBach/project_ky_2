@@ -8,6 +8,7 @@
         .top_search:hover select{
             cursor: pointer!important;
         }
+
     </style>
 @endsection
 @section('breadcrumb')
@@ -218,6 +219,7 @@
                                         </option>
                                     </select>
                                 </div>
+                                {{--      Thời gian                          --}}
                                 <div class="col-md-3 col-sm-3 form-group pull-right top_search pr-2">
                                     <select name="created_at" class="form-control sortOrder" id="">
                                         <option value="">Lọc theo thời gian</option>
@@ -426,6 +428,7 @@
     <script src="/js/jquery.toast.min.js"></script>
     <script src="/admin/js/admin.js"></script>
     <script>
+
         //============================= Handler Checked Order ================================================================
         let body = $('body');
         const selectItem = $('.selected-item');
@@ -523,11 +526,13 @@
                 status: status
             }
             $.ajax({
-                url: 'http://127.0.0.1:8000/admin/order/update-multi/status',
+                // url: 'http://127.0.0.1:8000/admin/order/update-multi/status',
+                url: "{{route('order.update-multi')}}",
                 type: 'POST',
                 data: JSON.stringify(data),
 
-                success: function (data) {
+                success: function (response) {
+                    let data = JSON.parse(response)
                     console.log(data)
                     $.toast({
                         heading: 'Success',
@@ -562,7 +567,8 @@
             };
             console.log(listId)
             $.ajax({
-                url: 'http://127.0.0.1:8000/admin/order/remove-multi/status',
+                // url: 'http://127.0.0.1:8000/admin/order/remove-multi/status',
+                url: "{{route('order.remove-multi')}}",
                 type: 'POST',
                 data: JSON.stringify(data),
 

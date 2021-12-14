@@ -40,7 +40,7 @@
                             <div class="size-a-21 pos-relative">
                                 <input style="padding: 0 50px 0 10px;" class=" s-full bo-all-1 bocl15 " type="text"
                                        name="name"
-                                       placeholder="Tìm kiếm theo tên ..." value="{{$oldName ?? ""}}">
+                                       placeholder="Tìm kiếm theo tên" value="{{$oldName ?? ""}}">
                                 <span id="delete-search-name" style="top: 7px;right: 35px;"
                                       class="pointer flex-c-m fs-18 ab-t-r hov11">x</span>
                                 <button style="width: 35px" class="flex-c-m fs-18 size-a-22 ab-t-r hov11">
@@ -94,7 +94,7 @@
                                 @endphp
                                 <div class="rs1-select2 bg0  bo-all-1 bocl15 m-tb-7 ">
                                     <select class="js-select2" id="price" name="price">
-                                        <option value="">-- Giá tiền --</option>
+                                        <option value="">Giá tiền</option>
                                         @foreach($array as $item)
                                             <option value="{{$item->key}}"
                                                 {{isset($oldPrice) && $oldPrice == $item->key ? "selected": ""}}
@@ -107,30 +107,53 @@
                             </div>
 
                             <!--  -->
-                            <div class="p-t-40">
-                                <h4 class="txt-m-101 cl3 p-b-5">
-                                    Danh Mục Sản Phẩm
-                                </h4>
-                                <div>
-                                    <div class="rs1-select2 bg0 bo-all-1 bocl15 m-tb-7 ">
-                                        <select class="js-select2" id="categories" name="categories">
-                                            <option value="">-- Danh mục --</option>
-                                            @foreach($categories as $category)
-                                                <option value="{{$category->id}}"
-                                                    {{isset($oldCategory) && $oldCategory == $category->id ? "selected": ""}}
-                                                >{{$category->name}}</option>
-                                            @endforeach
-                                        </select>
-                                        <div class="dropDownSelect2"></div>
+                            @if(isset($categories))
+                                <div class="p-t-40">
+                                    <h4 class="txt-m-101 cl3 p-b-5">
+                                        Danh Mục Sản Phẩm
+                                    </h4>
+                                    <div>
+                                        <div class="rs1-select2 bg0 bo-all-1 bocl15 m-tb-7 ">
+                                            <select class="js-select2" id="categories" name="categories">
+                                                <option value="">Danh mục</option>
+                                                @foreach($categories as $category)
+                                                    <option value="{{$category->id}}"
+                                                        {{isset($oldCategory) && $oldCategory == $category->id ? "selected": ""}}
+                                                    >{{$category->name}}</option>
+                                                @endforeach
+                                            </select>
+                                            <div class="dropDownSelect2"></div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="p-t-20">
-                                    <a href="/products" style="color: #FFF;background-color: #81b03f"
-                                       class="btn float-right">
-                                        Bỏ lọc
-                                    </a>
+                            @endif
+
+                            @if(isset($farms))
+                                <div class="p-t-40">
+                                    <h4 class="txt-m-101 cl3 p-b-5">
+                                        TÌM KIẾM THEO TRANG TRẠI
+                                    </h4>
+                                    <div>
+                                        <div class="rs1-select2 bg0 bo-all-1 bocl15 m-tb-7 ">
+                                            <select class="js-select2" id="farms" name="farms">
+                                                <option value="">Trang trại</option>
+                                                @foreach($farms as $f)
+                                                    <option value="{{$f->id}}"
+                                                        {{isset($oldFarm) && $oldFarm == $f->id ? "selected": ""}}
+                                                    >{{$f->name}}</option>
+                                                @endforeach
+                                            </select>
+                                            <div class="dropDownSelect2"></div>
+                                        </div>
+                                    </div>
+                                    <div class="p-t-20">
+                                        <a href="/products" style="color: #FFF;background-color: #81b03f"
+                                           class="btn float-right">
+                                            Bỏ lọc
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
 
@@ -140,14 +163,14 @@
                                 <div class="flex-w flex-m p-tb-8">
                                     <div class="rs1-select2 bg0 size-w-52 bo-all-1 bocl15 m-tb-7 m-r-15">
                                         <select class="js-select2" id="nameSort" name="nameSort">
-                                            <option value="{{\App\Enums\Sort::None}}">---Sắp xếp theo tên---</option>
+                                            <option value="{{\App\Enums\Sort::None}}">Sắp xếp theo tên</option>
                                             <option value="{{\App\Enums\Sort::Asc}}"
                                                 {{isset($nameSort) && $nameSort == \App\Enums\Sort::Asc ? "selected": ""}}
-                                            >Name A-Z
+                                            >Tên từ A tới Z
                                             </option>
                                             <option value="{{\App\Enums\Sort::Desc}}"
                                                 {{isset($nameSort) && $nameSort == \App\Enums\Sort::Desc ? "selected": ""}}
-                                            >Name Z-A
+                                            >Tên từ Z tới A
                                             </option>
                                         </select>
                                         <div class="dropDownSelect2"></div>
@@ -155,15 +178,14 @@
 
                                     <div class="rs1-select2 bg0 size-w-52 bo-all-1 bocl15 m-tb-7 m-r-15">
                                         <select class="js-select2" id="priceSort" name="priceSort">
-                                            <option value="{{\App\Enums\Sort::None}}">---Sắp xếp theo giá tiền ---
-                                            </option>
+                                            <option value="{{\App\Enums\Sort::None}}">Sắp xếp theo giá tiền</option>
                                             <option value="{{\App\Enums\Sort::Asc}}"
                                                 {{isset($priceSort) && $priceSort == \App\Enums\Sort::Asc ? "selected": ""}}
-                                            >Price low to high
+                                            >Giá tiền từ thấp tới cao
                                             </option>
                                             <option value="{{\App\Enums\Sort::Desc}}"
                                                 {{isset($priceSort) && $priceSort == \App\Enums\Sort::Desc ? "selected": ""}}
-                                            >Price high to low
+                                            >Giá tiền từ cao tới thấp
                                             </option>
 
                                         </select>
@@ -239,7 +261,8 @@
 @section('js-page')
     @include('client.page.product.js')
     <script src="/js/jquery.toast.min.js"></script>
-    <script src="/js/client-custom.js"></script>
+{{--    <script src="/js/client-custom.js"></script>--}}
+    @include('client.page.product.client-custom-js')
     <script>
         let oldMaxPrice = parseInt($('#oldMaxPrice').text());
         let oldMinPrice = parseInt($('#oldMinPrice').text());
@@ -326,6 +349,9 @@
         $('#categories').change(function () {
             this.form.submit();
         })
+        $('#farms').change(function () {
+            this.form.submit();
+        })
         $('#price').change(function () {
             this.form.submit();
         })
@@ -334,4 +360,22 @@
             $('input[name=name]').val('')
         })
     </script>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/6170106f86aee40a573782e7/1fies0ctc';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6170425ce6ce4b7a"></script>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
 @endsection

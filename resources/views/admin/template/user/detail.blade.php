@@ -91,7 +91,7 @@
                                                         style="font-size: 14px; padding: 5px; border: 1px solid #bdbdbd">
                                                     <option
                                                         value="0" {{$user->status == \App\Enums\UserStatus::Deleted ? 'selected' : ''}}>
-                                                        Đã xóa
+                                                        Xóa
                                                     </option>
                                                     <option
                                                         value="1" {{$user->status == \App\Enums\UserStatus::Existed ? 'selected' : ''}}>
@@ -153,9 +153,9 @@
                                         <tr>
                                             <th>ID đơn hàng</th>
                                             <th>Tình trạng</th>
-                                            <th>Tổng giá<small>(VND)</small></th>
                                             <th>Người nhận</th>
                                             <th>Email</th>
+                                            <th>Tổng giá<small>(VND)</small></th>
                                             <th>Xem chi tiết</th>
                                         </tr>
                                         </thead>
@@ -164,9 +164,10 @@
                                             <tr>
                                                 <td>{{$order->id}}</td>
                                                 <td>{{$order->HandlerStatus}}</td>
-                                                <td>{{number_format($order->total_price)}}</td>
+
                                                 <td>{{$order->ship_name}}</td>
                                                 <td>{{$order->ship_email}}</td>
+                                                <td>{{number_format($order->total_price)}}</td>
                                                 <td>
                                                     <a href="/admin/order/detail/{{$order->id}}"
                                                        class="hover-pointer dataItem">
@@ -178,6 +179,16 @@
                                                 </td>
                                             </tr>
                                         @endforeach
+                                        <tr style="font-size: 16px;font-weight: 600;">
+                                            <td colspan="3">
+                                                Tổng giá tiền
+                                            </td>
+                                            @if(isset($items))
+                                                <td colspan="3" class="text-center">{{number_format($items->getCollection()->sum('total_price'))}}
+                                                    <span
+                                                        style="font-weight: 6000; font-size: 13px">VND</span></td>
+                                            @endif
+                                        </tr>
                                         </tbody>
                                     </table>
                                     <div class="row">

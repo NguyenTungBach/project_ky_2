@@ -39,41 +39,14 @@ class OrderController extends Controller
     public function updateStatus()
     {
         try {
-//            $data = json_decode(file_get_contents("php://input"), true);
-//            // lấy thông tin sản phẩm.
-//            $orderId = $data['id'];
-//            // lấy số lượng sản phẩm cần thêm vào giỏ hàng.
-//            $orderStatus = $data['status'];
             $orderId = request()->get('id');
             $orderStatus = request()->get('status-update');
-            $order = Order::find($orderId);
-//            return $order;
-            if (!$order->exists()) {
-                return 'Không tìm thấy đơn hàng';
-            }
-            $order->ship_status = $orderStatus;
-            $order->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
-            $order->save();
-
-            $title = "";
-            switch ($orderStatus) {
-                case OrderStatus::Cancel;
-                    $title = "Đơn hàng với mã #$order->id đã bị huỷ";
-                    break;
-                case OrderStatus::Done;
-                    $title = "Đơn hàng với mã #$order->id đã được giao hàng thành công";
-                    break;
-                case OrderStatus::Waiting;
-                    $title = "Đơn hàng với mã #$order->id đang chờ được xử lý";
-                    break;
-                case OrderStatus::Processing;
-                    $title = "Đơn hàng với mã #$order->id đang được xử lý";
-                    break;
-            }
-            $this->sendMail($order->id, $title);
-
+            $checkUpdate = $this->getUpdateOrder($orderId,$orderStatus);
+           if (!$checkUpdate){
+               session()->flash('message', "Cập nhật trạng thái đơn hàng mã $orderId, thất bại");
+               return redirect()->back();
+           }
             session()->flash('message', "Cập nhật trạng thái đơn hàng mã $orderId, thành công");
-
             return redirect()->back();
         } catch (Exception $e) {
             return $e;
@@ -86,24 +59,19 @@ class OrderController extends Controller
             $data = json_decode(file_get_contents("php://input"), true);
             $ids = $data['ids'];
             $statusUpdate = $data['status'];
-//            $orders = Order::whereIn('id', $ids)->get();
-//            foreach ($orders as $o){
-//                $status = $o->status;
-//                if ($status == OrderStatus::Waiting || $status == OrderStatus::Processing){
-//                    $o->status = $statusUpdate;
-//                }
-//                if ($status == OrderStatus::Done && $statusUpdate == OrderStatus::Deleted){
-//                    $o->status = $statusUpdate;
-//                }
-//                if ()
-//                $o->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
-//            }
-
-            Order::whereIn('id', $ids)->update([
-                'ship_status' => $statusUpdate,
-                'updated_at' => Carbon::now('Asia/Ho_Chi_Minh')
-            ]);
-            return json_encode($ids);
+            $orders = Order::whereIn('id', $ids)->get();
+            $array = [];
+            foreach ($ids as $id){
+                $checkUpdate = $this->getUpdateOrder($id, $statusUpdate);
+                if (!$checkUpdate){
+                    $array[] = $id;
+                }
+            }
+//            Order::whereIn('id', $ids)->update([
+//                'ship_status' => $statusUpdate,
+//                'updated_at' => Carbon::now('Asia/Ho_Chi_Minh')
+//            ]);
+            return json_encode($array);
         } catch (Exception $e) {
             return $e;
         }
@@ -221,5 +189,53 @@ class OrderController extends Controller
                     ->subject($data->subject);
                 $message->from('rausachtdhhn@gmail.com', 'Cửa hàng Cần Rau');
             });
+    }
+
+    function getUpdateOrder($orderId,$statusUpdate)
+    {
+        try {
+            $order = Order::find($orderId);
+            if (!$order->exists()) {
+                session()->flash('message', "Không tìm thấy sản phẩm");
+                return redirect()->back();
+            }
+            $status = $order->ship_status;
+            if ($status == OrderStatus::Waiting || $status == OrderStatus::Processing){
+                $order->ship_status = $statusUpdate;
+                $order->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
+                $order->save();
+                $this->sendMail($order->id, $this->getTitleMail($orderId,$statusUpdate));
+                return true;
+            }else if (($status == OrderStatus::Done || $status == OrderStatus::Cancel) && $statusUpdate == OrderStatus::Deleted ){
+                $order->ship_status = $statusUpdate;
+                $order->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
+                $order->save();
+                $this->sendMail($order->id, $this->getTitleMail($orderId,$statusUpdate));
+                return true;
+            }
+            return false;
+        }catch (Exception $e){
+            return $e;
+        }
+    }
+
+    function getTitleMail( $orderId,$statusUpdate): string
+    {
+        $title = '';
+        switch ($statusUpdate) {
+            case OrderStatus::Cancel;
+                $title = "Đơn hàng với mã #$orderId đã bị huỷ";
+                break;
+            case OrderStatus::Done;
+                $title = "Đơn hàng với mã #$orderId đã được giao hàng thành công";
+                break;
+            case OrderStatus::Waiting;
+                $title = "Đơn hàng với mã #$orderId đang chờ được xử lý";
+                break;
+            case OrderStatus::Processing;
+                $title = "Đơn hàng với mã #$orderId đang được xử lý";
+                break;
+        }
+        return $title;
     }
 }

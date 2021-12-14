@@ -126,7 +126,7 @@
         <div class="container">
             <div class="size-a-1 flex-col-c-m p-b-60">
                 <div class="txt-center txt-m-201 cl10 how-pos1-parent m-b-14">
-                    Organic food
+                    Thực phẩm sạch
 
                     <div class="how-pos1">
                         <img src="/client/images/icons/symbol-02.png" alt="IMG">
@@ -134,7 +134,7 @@
                 </div>
 
                 <h3 class="txt-center txt-l-101 cl3 respon1">
-                    Delivery Process
+                    Quá Trình Giao Hàng
                 </h3>
             </div>
 
@@ -188,7 +188,7 @@
 									</span>
 
                                         <span class="txt-s-119 cl6">
-										Râu cần sạch
+										Cần Rau sạch
 									</span>
                                     </div>
                                 </div>
@@ -214,7 +214,8 @@
                 quantity: 1
             }
             $.ajax({
-                url: `http://127.0.0.1:8000/cart/add`,
+                // url: 'http://127.0.0.1:8000/cart/add',
+                url: "{{route('client.cart.add')}}",
                 method: 'POST',
                 data: JSON.stringify(data),
                 success: function (response) {
@@ -274,4 +275,22 @@
         }
 
     </script>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/6170106f86aee40a573782e7/1fies0ctc';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6170425ce6ce4b7a"></script>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
 @endsection

@@ -6,50 +6,48 @@
 @endsection
 @section('content-page')
 {{--    title page --}}
-@include('client.include.title-page',['title'=>'About Us'])
+@include('client.include.title-page',['title'=>'Giới thiệu công ty'])
 <!-- Story -->
 <section class="sec-story bg0 p-t-150 p-b-100">
     <div class="container">
         <div class="flex-w flex-sb-t">
             <div class="size-w-31 wrap-pic-w how-shadow2 bo-all-15 bocl0 w-full-md">
-                <img src="/client/images/other-09.jpg" alt="IMG">
+                <img src="https://res.cloudinary.com/dark-faith/image/upload/v1639135841/78229800_104911967646739_827521424913596416_n.jpg_yw6q4c.jpg" alt="IMG">
             </div>
 
             <div class="size-w-32 p-t-43 w-full-md">
                 <h3 class="txt-center txt-l-401 cl15 p-b-44">
-                    Story from our farm
+                    Vì sao lại là Cần Rau
                 </h3>
 
                 <p class="txt-center txt-m-115 cl6 p-b-25">
-                    But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was
-                    born and I will give you a complete account of the system, and expound the actual teachings of the
-                    great explorer of the truth, the master.
+                    Trong một đêm gió lạnh khi đang ngồi lập trình cho trang Web bán rau, tôi bỗng bồi hồi nhớ lại cái quảng cáo điện máy xanh.
+                    Cái quảng cáo giúp thu hút cả đống lượt xem cho dù tôi chưa bao giờ đến điện máy xanh để mua Ti Vi, thế nhưng tôi
+                    nhắn nhủ mình rằng, nếu có ý định mua ti vi thì hãy đến điện máy xanh.
                 </p>
 
                 <p class="txt-center txt-m-115 cl6 p-b-25">
-                    Builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is
-                    pleasure, but because those who do not know how to.
+                    Nhưng nếu thế thì vẫn chưa đủ. Thế giới loạn lạc sau những ngày tháng Covid, ta loạn lạc trong những ngày dài chờ tiêm. Con người thay đổi
+                    để thích ứng với hoàn cảnh, chúng ta dần chuyển mình qua hình thức đặt hàng trên mạng, một hình thức đầy tiềm năng cho cả người bán và người mua.
+                    Vì thế trang web CẦN RAU được sinh ra, với cách bán hàng là thu nhập rau từ trang trại về để bán cho người tiêu dùng.
+                    Đây là một trang web nhỏ bé, ý tưởng nhỏ bé, mang theo niềm tin và hy vọng gánh và sứ mệnh đó là có thể mang đi bán rau.
+                    Người mua vui, mà người bán cũng vui.
                 </p>
 
                 <p class="txt-center txt-m-115 cl6 p-b-25">
-                    Pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there
-                    anyone who loves or pursues or desires to obtain pain of itself, be-cause it is pain, but because
-                    occasionally circumstances occur.
-                    <br>Which toil and pain can procure him some great pleasure.
+                    Hiện tại trang web này vẫn còn đang phát triển, hướng tới đầy đủ luồng tính năng cho một trang web bán hàng
+                    hãy chờ đợi...
+                    <br>
+                    <br>
+
+                    <span class="txt-m-401 cl10 p-b-2">
+								Nguyễn Tùng Bách
+							</span>
+                    <br><span class="txt-s-106 cl6">
+								Một người lên ý tưởng cho trang web cho hay
+							</span>
                 </p>
 
-                <div class="flex-w flex-c-b p-t-50 p-t-30">
-
-                    <div class="flex-col-l p-b-5">
-							<span class="txt-m-401 cl10 p-b-2">
-								Jennifer Watson
-							</span>
-
-                        <span class="txt-s-106 cl6">
-								Director of the farm
-							</span>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -60,7 +58,7 @@
     <div class="container">
         <div class="size-a-1 flex-col-c-m p-b-40">
             <div class="txt-center txt-m-201 cl10 how-pos1-parent m-b-14">
-                Food Is Always Fresh
+                Thực Phẩm Luôn Tươi Mới
 
                 <div class="how-pos1">
                     <img src="/client/images/icons/symbol-02.png" alt="IMG">
@@ -68,7 +66,7 @@
             </div>
 
             <h3 class="txt-center txt-l-101 cl3 respon1">
-                We bring clean food
+                Chúng Tôi Luôn Mang Đến Thực Phẩm Sạch
             </h3>
         </div>
 
@@ -86,7 +84,7 @@
                 <div class="size-w-24 flex-col p-t-50 p-b-30 respon5">
                     <div class="flex-w flex-str size-w-27 al-self-e w-full-lg">
                         <div class="size-w-26 flex-r-m txt-right txt-m-109 cl3 respon6-01">
-                            100% Organic
+                            100% Hữu cơ
                         </div>
 
                         <div class="size-w-25 flex-r-m respon6-02">
@@ -94,7 +92,7 @@
                         </div>
 
                         <p class="txt-right txt-s-101 cl6 p-t-7 respon6-03">
-                            It is a long established fact that a reader will be distracted by the readable.
+                            Những sản phẩm được nuôi trồng tự nhiên, không sử dụng chất hoá học
                         </p>
                     </div>
                 </div>
@@ -106,11 +104,11 @@
                         </div>
 
                         <div class="size-w-26 flex-m txt-m-109 cl3">
-                            Food Safety
+                            An Toàn Thực Phẩm
                         </div>
 
                         <p class="txt-s-101 cl6 p-t-7">
-                            It is a long established fact that a reader will be distracted by the readable.
+                            Sử dụng những phương pháp chuyên môn để thực phẩm luôn được an toàn và vệ sinh sạch sẽ.
                         </p>
                     </div>
                 </div>
@@ -118,7 +116,7 @@
                 <div class="size-w-24 flex-col p-t-50 p-b-30 respon5">
                     <div class="flex-w flex-str size-w-27 al-self-c p-r-6 w-full-lg">
                         <div class="size-w-26 flex-r-m txt-right txt-m-109 cl3 respon6-01">
-                            Family Healthy
+                            Gia Đình Khoẻ Mạnh
                         </div>
 
                         <div class="size-w-25 flex-r-m respon6-02">
@@ -126,7 +124,7 @@
                         </div>
 
                         <p class="txt-right txt-s-101 cl6 p-t-7 respon6-03">
-                            It is a long established fact that a reader will be distracted by the readable.
+                            Khi sử dụng sản phẩm không lo ảnh hưởng đến sức khoẻ gia đình bạn
                         </p>
                     </div>
                 </div>
@@ -138,11 +136,11 @@
                         </div>
 
                         <div class="size-w-26 flex-m txt-m-109 cl3">
-                            Best Quality
+                            Chất Lượng Tốt Nhất
                         </div>
 
                         <p class="txt-s-101 cl6 p-t-7">
-                            It is a long established fact that a reader will be distracted by the readable.
+                            Sản phẩm với chất lượng tốt nhất mới đem bán
                         </p>
                     </div>
                 </div>
@@ -150,7 +148,7 @@
                 <div class="size-w-24 flex-col p-t-50 p-b-30 respon5">
                     <div class="flex-w flex-str size-w-27 al-self-s w-full-lg">
                         <div class="size-w-26 flex-r-m txt-right txt-m-109 cl3 respon6-01">
-                            Always Fresh
+                           Luôn Tươi Mới
                         </div>
 
                         <div class="size-w-25 flex-r-m respon6-02">
@@ -158,7 +156,7 @@
                         </div>
 
                         <p class="txt-right txt-s-101 cl6 p-t-7 respon6-03">
-                            It is a long established fact that a reader will be distracted by the readable.
+                            Thu hoạch ngay tại trang trại và đem đi phân phối luôn nên thực phẩm luôn trong tình trạng tươi mới
                         </p>
                     </div>
                 </div>
@@ -170,11 +168,11 @@
                         </div>
 
                         <div class="size-w-26 flex-m txt-m-109 cl3">
-                            Premiun Quality
+                            Chất Lượng Premiun
                         </div>
 
                         <p class="txt-s-101 cl6 p-t-7">
-                            It is a long established fact that a reader will be distracted by the readable.
+                            Sản phẩm luôn ở chất lượng cao nhất khi đem bán
                         </p>
                     </div>
                 </div>
@@ -189,7 +187,7 @@
     <div class="container">
         <div class="size-a-1 flex-col-c-m p-b-70">
             <div class="txt-center txt-m-201 cl10 how-pos1-parent m-b-14">
-                The Best Farmers
+                Đội ngũ trang trại
 
                 <div class="how-pos1">
                     <img src="/client/images/icons/symbol-02.png" alt="IMG">
@@ -197,7 +195,7 @@
             </div>
 
             <h3 class="txt-center txt-l-101 cl3 respon1">
-                Our farmers
+                Những người nông dân của chúng tôi
             </h3>
         </div>
 
@@ -341,4 +339,22 @@
 @endsection
 @section('js-page')
     @include('client.page.about-us.js')
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/6170106f86aee40a573782e7/1fies0ctc';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6170425ce6ce4b7a"></script>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
 @endsection

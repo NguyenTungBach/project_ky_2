@@ -15,8 +15,7 @@ class FarmSeed extends Seeder
      */
     public function run()
     {
-        //
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+//        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         DB::table('farms')->truncate();
         DB::table('farms')->insert([
             [
@@ -69,5 +68,6 @@ Cửa hàng thực phẩm sạch Nông Sản Ngon là siêu thị thương mại
                 'updated_at' => Carbon::now('Asia/Ho_Chi_Minh')
             ]
         ]);
+//        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

@@ -84,7 +84,7 @@
                     <div class="ln_solid"></div>
                     <div class="item form-group">
                         <div class="col-md-6 col-sm-6 offset-md-3">
-                            <a href="/admin/farms"><button class="btn btn-primary" type="button">Quay về danh sách bài viết</button></a>
+                            <a href="{{url()->previous()}}"><button class="btn btn-primary" type="button">Quay về</button></a>
                             <a href="/admin/farm/update/{{$item->id}}"><button class="btn btn-warning" type="button">Cập nhật</button></a>
                             <a href="/admin/farm/delete/{{$item->id}}"><button type="button" class="btn btn-danger">Xóa</button></a>
                         </div>
