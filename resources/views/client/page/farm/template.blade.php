@@ -1,6 +1,6 @@
 @extends('client.master-template')
 @section('title')
-    <title>Product</title>
+    <title>Trang trại</title>
 @endsection
 @section('css-page')
     @include('client.page.product.css')

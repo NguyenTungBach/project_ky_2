@@ -1,6 +1,6 @@
 @extends('client.master-template')
 @section('title')
-    <title>Tài khoản</title>
+    <title>Danh sách đơn hàng</title>
 @endsection
 @section('css-page')
     @include('client.page.blog.css')

@@ -1,6 +1,6 @@
 @extends('client.master-template')
 @section('title')
-    <title>Home</title>
+    <title>Trang chủ</title>
 @endsection
 @section('css-page')
     @include('client.page.home.css')
@@ -166,7 +166,7 @@
                 @foreach($blog as $blogs)
                     <div class="col-sm-6 col-md-4 p-b-30">
                         <div>
-                            <a href="/blog/{{$blogs->id}}" class="wrap-pic-w hov4">
+                            <a href="/blogs/{{$blogs->id}}" class="wrap-pic-w hov4">
                                 <img src="{{$blogs->thumbnail}}" alt="BLOG">
                             </a>
 
@@ -176,7 +176,7 @@
 							</span>
 
                                 <h4 class="p-t-5 p-b-14">
-                                    <a href="blog-single.html" class="txt-m-109 cl3 hov-cl10 trans-04">
+                                    <a href="/blogs/{{$blogs->id}}" class="txt-m-109 cl3 hov-cl10 trans-04">
                                         {{$blogs->title}}
                                     </a>
                                 </h4>

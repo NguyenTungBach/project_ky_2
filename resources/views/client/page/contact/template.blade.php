@@ -1,6 +1,6 @@
 @extends('client.master-template')
 @section('title')
-    <title>Contact</title>
+    <title>Phản hồi</title>
 @endsection
 @section('css-page')
     @include('client.page.contact.css')

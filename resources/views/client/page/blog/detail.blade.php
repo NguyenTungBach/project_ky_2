@@ -1,13 +1,13 @@
 @extends('client.master-template')
 @section('title')
-    <title>Blog</title>
+    <title>Bài viết</title>
 @endsection
 @section('css-page')
     @include('client.page.blog.css')
 @endsection
 @section('content-page')
     {{--    title page --}}
-    @include('client.include.title-page',['title'=>'Blog'])
+    @include('client.include.title-page',['title'=>'Bài viết'])
 
 
 <!-- Title page -->

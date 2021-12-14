@@ -1,8 +1,9 @@
 @extends('client.master-template')
 @section('title')
+    <title>Giới thiệu công ty</title>
 @endsection
 @section('css-page')
-@include('client.page.about-us.css')
+    @include('client.page.about-us.css')
 @endsection
 @section('content-page')
 {{--    title page --}}

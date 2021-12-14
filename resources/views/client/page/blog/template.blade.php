@@ -1,13 +1,13 @@
 @extends('client.master-template')
 @section('title')
-    <title>Blog</title>
+    <title>Bài viết</title>
 @endsection
 @section('css-page')
     @include('client.page.blog.css')
 @endsection
 @section('content-page')
     {{--    title page --}}
-    @include('client.include.title-page',['title'=>'Blog'])
+    @include('client.include.title-page',['title'=>'Bài viết'])
 
     <section class="bg0 p-t-100 p-b-15">
         <div class="container">
@@ -67,7 +67,7 @@
                         <!--  -->
                         <div class="p-t-40">
                             <h4 class="txt-m-101 cl3 p-b-37">
-                                LATEST POSTS
+                                Bài viết mới nhất
                             </h4>
 
                             <ul>

@@ -91,23 +91,13 @@
                                 @break
                             @endswitch
                         </div>
-
-                        <div class="txt-s-107 p-b-6">
-							<span class="cl6">
-								Nhà vườn:
-							</span>
-
-                            <span class="cl9">
-								{{$items->farm->name}}
-							</span>
-                        </div>
                         <div class="txt-s-107 p-b-6">
 							<span class="cl6">
 								TRANG TRẠI:
 							</span>
-                            <span class="cl9">
+                            <a class="cl9" href="{{route('farm.getFarms')}}">
                                 {{$items->farm->name}}
-							</span>
+							</a>
 
                         </div>
 
