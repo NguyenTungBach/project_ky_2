@@ -46,6 +46,7 @@ class StoreUserRequest extends FormRequest
             'confirmPassword.required' => 'Vui lòng nhập lại mật khẩu',
         ];
     }
+
     public function withValidator($validator)
     {
         $validator->after(function ($validator) {

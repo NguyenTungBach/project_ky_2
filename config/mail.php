@@ -35,12 +35,12 @@ return [
 
     'mailers' => [
         'smtp' => [
-            'transport' => 'smtp',
+            'transport' => 'mail',
             'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('MAIL_USERNAME'),
-            'password' => env('MAIL_PASSWORD'),
+            'username' => env('rausachtdhhn@gmail.com'),
+            'password' => env('gezrqgvymsvkmmrq'),
             'timeout' => null,
             'auth_mode' => null,
         ],
@@ -94,8 +94,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'rausachtdhhn@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'Cửa hàng Cần Rau'),
     ],
 
     /*

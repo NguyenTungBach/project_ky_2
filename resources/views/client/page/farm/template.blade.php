@@ -103,7 +103,7 @@
                                 <h4 class="pb-1">{{$item->title}}</h4>
                                 <div class=" pb-1">
                                     <ul>
-                                        <a href="{{$item->url}}" style="color: #5cc374">
+                                        <a href="{{route('product.getDetail',['id'=>$item->product_id])}}" style="color: #5cc374">
                                             <li>Xem sản phẩm</li>
                                         </a>
                                     </ul>
@@ -129,8 +129,7 @@
                                     <div class="col-md-4 col-sm-4 dis-flex image-farm">
                                         <div class="col-sm-12 col-md-12 p-2">
                                             <img class="img-thumbnail" src="{{$f->FirstImage}}" alt="">
-                                        </div>
-                                    </div>
+                                        </div>iv>
                                     <div class="col-md-8 col-sm-8 mb-3 p-1">
                                         <h4 class="pb-1 font-weight-bold"><a
                                                 href="/product/farm/{{$f->id}}">{{$f->name}}</a></h4>
@@ -143,9 +142,9 @@
                                         </p>
                                     </div>
                                 </div>
-                            @endforeach
-                        @endif
-                    </div>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
     </section>
@@ -182,6 +181,7 @@
         })
     </script>
 
+<<<<<<< HEAD
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
         var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
@@ -199,4 +199,7 @@
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6170425ce6ce4b7a"></script>
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
+=======
+    @include('client.plugin.plugin')
+>>>>>>> d2374695f93760686c2275492afb6111e184a98d
 @endsection

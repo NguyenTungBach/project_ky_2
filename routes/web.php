@@ -12,8 +12,9 @@ use App\Http\Controllers\client\FarmController;
 use App\Http\Controllers\client\HomeController;
 use App\Http\Controllers\client\ProductController;
 use App\Http\Controllers\client\UserController;
-use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ use Illuminate\Support\Facades\Route;
 //    Artisan::call('cache:clear');
 //    return "Cache is cleared";
 //});
+
 //============================================== ADMIN =================================================================
 //************************************Login and Register*************
 Route::get('admin/login', [AdminController::class, 'showLogin']);
@@ -104,8 +106,6 @@ Route::get('/admin/farm/delete/{id}', [\App\Http\Controllers\admin\FarmControlle
 Route::post('/admin/farm/delete', [\App\Http\Controllers\admin\FarmController::class, 'delete']);
 
 
-
-
 //***************************** Blog-Farms ************************************
 Route::get('/admin/blog/farms', [\App\Http\Controllers\admin\BlogFarmController::class, 'getAll']);
 //lấy ra form
@@ -120,6 +120,10 @@ Route::get('/admin/blog/farm/search', [\App\Http\Controllers\admin\BlogFarmContr
 Route::post('/admin/blog/farm/update', [\App\Http\Controllers\admin\BlogFarmController::class, 'update']);
 Route::get('/admin/blog/farm/delete/{id}', [\App\Http\Controllers\admin\BlogFarmController::class, 'getConfirmDelete']);
 Route::post('/admin/blog/farm/delete', [\App\Http\Controllers\admin\BlogFarmController::class, 'delete']);
+Route::post('admin/farm/remove-multi/status', [\App\Http\Controllers\admin\FarmController::class, 'removeAllStatus'])->name('farm.remove-multi');
+Route::post('admin/farm/update-multi/status', [\App\Http\Controllers\admin\FarmController::class, 'updateAllStatus'])->name('farm.update-multi');
+
+
 Route::post('admin/farm/remove-multi/status', [\App\Http\Controllers\admin\FarmController::class, 'removeAllStatus'])->name('farm.remove-multi');
 Route::post('admin/farm/update-multi/status', [\App\Http\Controllers\admin\FarmController::class, 'updateAllStatus'])->name('farm.update-multi');
 

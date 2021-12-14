@@ -12,7 +12,7 @@
     <div class="container">
         <div class="flex-w flex-sb-t">
             <div class="size-w-31 wrap-pic-w how-shadow2 bo-all-15 bocl0 w-full-md">
-                <img src="https://res.cloudinary.com/dark-faith/image/upload/v1639135841/78229800_104911967646739_827521424913596416_n.jpg_yw6q4c.jpg" alt="IMG">
+                <img src="https://res.cloudinary.com/dark-faith/image/upload/v1639306162/tu-trang-trai-den-ban-an_jbhk6a.jpg" alt="IMG">
             </div>
 
             <div class="size-w-32 p-t-43 w-full-md">
@@ -340,21 +340,5 @@
 @section('js-page')
     @include('client.page.about-us.js')
 
-    <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
-        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-        (function(){
-            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-            s1.async=true;
-            s1.src='https://embed.tawk.to/6170106f86aee40a573782e7/1fies0ctc';
-            s1.charset='UTF-8';
-            s1.setAttribute('crossorigin','*');
-            s0.parentNode.insertBefore(s1,s0);
-        })();
-    </script>
-    <!--End of Tawk.to Script-->
-
-    <!-- Go to www.addthis.com/dashboard to customize your tools -->
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6170425ce6ce4b7a"></script>
-    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    @include('client.plugin.plugin')
 @endsection

@@ -24,9 +24,9 @@
                     </div>
 
                     <div class="item form-group row">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align"> Link sản phẩm *</label>
+                        <label class="col-form-label col-md-3 col-sm-3 label-align"> Mã sản phẩm *</label>
                         <div class="col-md-6 col-sm-6 ">
-                            <label class="col-form-label">{{$item->url}}</label>
+                            <label class="col-form-label">{{$item->product_id}}</label>
                         </div>
                     </div>
 
