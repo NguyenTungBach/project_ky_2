@@ -88,7 +88,6 @@
                 </div>
 
                 <div class="col-sm-10 col-md-7 col-lg-8 m-rl-auto p-b-50 list-article">
-
                     @foreach($items as $item)
                         <div class="col-md-12 col-sm-12 mb-3 custom-article">
                             <div class="col-md-12 col-sm-12 dis-flex mb-3">
@@ -123,38 +122,37 @@
                         </div>
                     @endforeach
                 </div>
-
                 <div class="col-sm-10 col-md-7 col-lg-8 m-rl-auto p-b-50 list-farm">
-                    @if(isset($farms))
-                        @foreach($farms as $f)
-                            <div class="col-md-12 col-sm-12 mb-3 custom-farm">
-                                <div class="col-md-4 col-sm-4 dis-flex image-farm">
-                                    <div class="col-sm-12 col-md-12 p-2">
-                                        <img class="img-thumbnail" src="{{$f->FirstImage}}" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-md-8 col-sm-8 mb-3 p-1">
-                                    <h4 class="pb-1 font-weight-bold"><a href="/product/farm/{{$f->id}}">{{$f->name}}</a></h4>
-                                    <div class="pb-1">
-                                        <p>Created at: {{$f->created_at}}</p>
-                                    </div>
-                                    <p class="pb-1">Số điện thoại: {{$f->phone}}</p>
-                                    <p>
+                        @if(isset($farms))
+                            @foreach($farms as $f)
+                                <div class="col-md-12 col-sm-12 mb-3 custom-farm">
+                                    <div class="col-md-4 col-sm-4 dis-flex image-farm">
+                                        <div class="col-sm-12 col-md-12 p-2">
+                                            <img class="img-thumbnail" src="{{$f->FirstImage}}" alt="">
+                                        </div>iv>
+                                    <div class="col-md-8 col-sm-8 mb-3 p-1">
+                                        <h4 class="pb-1 font-weight-bold"><a
+                                                href="/product/farm/{{$f->id}}">{{$f->name}}</a></h4>
+                                        <div class="pb-1">
+                                            <p>Created at: {{$f->created_at}}</p>
+                                        </div>
+                                        <p class="pb-1">Số điện thoại: {{$f->phone}}</p>
+                                        <p>
                                             {{$f->description}}
-                                    </p>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         @endforeach
                     @endif
                 </div>
             </div>
-        </div>
     </section>
 @endsection
 @section('js-page')
     @include('client.page.product.js')
     <script src="/js/jquery.toast.min.js"></script>
-{{--    <script src="/js/client-custom.js"></script>--}}
+    {{--    <script src="/js/client-custom.js"></script>--}}
     @include('client.page.product.client-custom-js')
     <script>
         let listArticle = $('.list-article')
@@ -183,5 +181,25 @@
         })
     </script>
 
+<<<<<<< HEAD
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/6170106f86aee40a573782e7/1fies0ctc';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6170425ce6ce4b7a"></script>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+=======
     @include('client.plugin.plugin')
+>>>>>>> d2374695f93760686c2275492afb6111e184a98d
 @endsection

@@ -86,6 +86,7 @@
 
                                 <button type="button" id="upload_widget" class="cloudinary-button mb-3">Upload files
                                 </button>
+                                @foreach($item->arrayThumbnail as $thumbnail)
                                 <div id="preview-image">
                                     @foreach($item->arrayThumbnail as $thumbnail)
                                     <div class="col-md-3 col-sm-3 position-relative" style="padding-left: 0 !important;">
@@ -95,6 +96,7 @@
                                     </div>
                                     @endforeach
                                 </div>
+                                @endforeach
                                 @error('thumbnail')
                                 <div class="text-danger col-12" >* {{ $message }}</div>
                                 @enderror
@@ -184,7 +186,7 @@
             // tìm đến những phần tử khác obj.secure_url
             const array_thubmail_after = array_thubmail_before.filter(thumbnail => {return thumbnail !== src});
             if (array_thubmail_after.length>0){
-                document.forms['form']['thumbnail'].value = array_thubmail_after.join(',') + ',';
+                document.forms['form']['thumbnail'].value += array_thubmail_after.join(',') + ',';
             } else{
                 document.forms['form']['thumbnail'].value = "";
             }

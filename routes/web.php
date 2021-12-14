@@ -120,6 +120,9 @@ Route::get('/admin/blog/farm/search', [\App\Http\Controllers\admin\BlogFarmContr
 Route::post('/admin/blog/farm/update', [\App\Http\Controllers\admin\BlogFarmController::class, 'update']);
 Route::get('/admin/blog/farm/delete/{id}', [\App\Http\Controllers\admin\BlogFarmController::class, 'getConfirmDelete']);
 Route::post('/admin/blog/farm/delete', [\App\Http\Controllers\admin\BlogFarmController::class, 'delete']);
+Route::post('admin/farm/remove-multi/status', [\App\Http\Controllers\admin\FarmController::class, 'removeAllStatus'])->name('farm.remove-multi');
+Route::post('admin/farm/update-multi/status', [\App\Http\Controllers\admin\FarmController::class, 'updateAllStatus'])->name('farm.update-multi');
+
 
 Route::post('admin/farm/remove-multi/status', [\App\Http\Controllers\admin\FarmController::class, 'removeAllStatus'])->name('farm.remove-multi');
 Route::post('admin/farm/update-multi/status', [\App\Http\Controllers\admin\FarmController::class, 'updateAllStatus'])->name('farm.update-multi');
