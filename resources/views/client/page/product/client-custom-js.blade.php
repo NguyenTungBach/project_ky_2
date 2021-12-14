@@ -195,12 +195,19 @@
                 success: function (data) {
                     console.log('Data: ' + data);
                     let result = JSON.parse(data);
+                    console.log('Data parse: ' + result);
                     let stringHtml = ``;
                     let totalCart = 0;
+                    // let totalThisPriceProduct = 0;
+                    let arrayProduct = [];
                     Object.entries(result).forEach(([key, value]) => {
                         stringHtml += cartHeader(value);
                         totalCart += value.unitPrice * value.quantity;
+                        arrayProduct.push(value);
+                        // $('.totalThisPriceProduct').html(value.unitPrice * value.quantity);
                     });
+                    //handler giỏ hàng
+                    tableCart(arrayProduct);
                     handlerSumCart(totalCart);
                     $('#cart-header').html(stringHtml);
 
