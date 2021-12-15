@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\BlogFarm;
 use App\Models\Farm;
+use Illuminate\Http\Request;
 
 class FarmController extends Controller
 {
@@ -17,6 +18,11 @@ class FarmController extends Controller
         ]);
     }
 
-
+    public function getDetail($id)
+    {
+        return view('client.page.farm.detail',[
+            'item'=>Farm::find($id),
+        ]);
+    }
 
 }

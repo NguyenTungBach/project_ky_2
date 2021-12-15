@@ -192,6 +192,7 @@ Route::get('/product/recent-view', [ProductController::class, 'getRecent']);
 Route::get('/product/{id}', [ProductController::class, 'getDetail'])->name('product.getDetail');
 
 Route::get('/farm', [FarmController::class, 'getFarms'])->name('farm.getFarms');
+Route::get('/farm/detail/{id}', [FarmController::class, 'getDetail'])->name('farm.getDetail');
 
 Route::get('/contact', [ContactController::class, 'getContact']);
 Route::post('/contact', [ContactController::class, 'contact'])->name('client.contact');

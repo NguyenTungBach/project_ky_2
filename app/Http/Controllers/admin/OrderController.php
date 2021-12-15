@@ -185,7 +185,7 @@ class OrderController extends Controller
         $data->subject = $title;
         Mail::send('client.mailOrder.mailOrder', ['order' => $data],
             function ($message) use ($data) {
-                $message->to($data->ship_email, 'Tutorials Point')
+                $message->to($data->ship_email, $data->ship_name)
                     ->subject($data->subject);
                 $message->from('rausachtdhhn@gmail.com', 'Cửa hàng Cần Rau');
             });
