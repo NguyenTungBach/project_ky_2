@@ -1,6 +1,6 @@
 @extends('client.master-template')
 @section('title')
-    <title>Home</title>
+    <title>Trang chủ</title>
 @endsection
 @section('css-page')
     @include('client.page.home.css')
@@ -166,7 +166,7 @@
                 @foreach($blog as $blogs)
                     <div class="col-sm-6 col-md-4 p-b-30">
                         <div>
-                            <a href="/blog/{{$blogs->id}}" class="wrap-pic-w hov4">
+                            <a href="/blogs/{{$blogs->id}}" class="wrap-pic-w hov4">
                                 <img src="{{$blogs->thumbnail}}" alt="BLOG">
                             </a>
 
@@ -176,7 +176,7 @@
 							</span>
 
                                 <h4 class="p-t-5 p-b-14">
-                                    <a href="blog-single.html" class="txt-m-109 cl3 hov-cl10 trans-04">
+                                    <a href="/blogs/{{$blogs->id}}" class="txt-m-109 cl3 hov-cl10 trans-04">
                                         {{$blogs->title}}
                                     </a>
                                 </h4>
@@ -276,21 +276,5 @@
 
     </script>
 
-    <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
-        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-        (function(){
-            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-            s1.async=true;
-            s1.src='https://embed.tawk.to/6170106f86aee40a573782e7/1fies0ctc';
-            s1.charset='UTF-8';
-            s1.setAttribute('crossorigin','*');
-            s0.parentNode.insertBefore(s1,s0);
-        })();
-    </script>
-    <!--End of Tawk.to Script-->
-
-    <!-- Go to www.addthis.com/dashboard to customize your tools -->
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6170425ce6ce4b7a"></script>
-    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    @include('client.plugin.plugin')
 @endsection

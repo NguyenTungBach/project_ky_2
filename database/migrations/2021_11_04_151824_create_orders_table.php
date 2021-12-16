@@ -15,7 +15,7 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id()->startingValue(45);
+            $table->id();
             $table->boolean('check_out');
             $table->double('total_price');
             $table->string('ship_name');

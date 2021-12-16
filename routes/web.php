@@ -12,7 +12,9 @@ use App\Http\Controllers\client\FarmController;
 use App\Http\Controllers\client\HomeController;
 use App\Http\Controllers\client\ProductController;
 use App\Http\Controllers\client\UserController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +30,7 @@ use Illuminate\Support\Facades\Route;
 //    Artisan::call('cache:clear');
 //    return "Cache is cleared";
 //});
+
 //============================================== ADMIN =================================================================
 //************************************Login and Register*************
 Route::get('admin/login', [AdminController::class, 'showLogin']);
@@ -188,7 +191,8 @@ Route::get('/product/farm/{id}', [ProductController::class, 'searchFarm']);
 Route::get('/product/recent-view', [ProductController::class, 'getRecent']);
 Route::get('/product/{id}', [ProductController::class, 'getDetail'])->name('product.getDetail');
 
-Route::get('/farm', [FarmController::class, 'getFarms']);
+Route::get('/farm', [FarmController::class, 'getFarms'])->name('farm.getFarms');
+Route::get('/farm/detail/{id}', [FarmController::class, 'getDetail'])->name('farm.getDetail');
 
 Route::get('/contact', [ContactController::class, 'getContact']);
 Route::post('/contact', [ContactController::class, 'contact'])->name('client.contact');

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="wrap-pic-max-w txt-center p-t-88 p-b-60">
             <a href="index.html">
-                <img src="/client/images/icons/logo-04.png" alt="LOGO">
+                <img src="/client/images/icons/favicon-no-background.png" alt="LOGO">
             </a>
         </div>
 
@@ -10,12 +10,13 @@
             <div class="footer-col1 p-b-50">
                 <div class="p-b-36">
                         <span class="txt-m-109 cl0">
-							Contact Us
+							Liên hệ với chúng tôi
 						</span>
                 </div>
 
                 <p class="txt-s-101 cl0 size-w-10 p-b-16">
-                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+                    Với kinh nghiệm 5 năm làm nghề nông, chúng tôi luôn đem đến những sản phẩm
+                    rau sạch với giá cả hợp lý với người tiêu dùng
                 </p>
 
                 <ul>
@@ -25,7 +26,7 @@
 							</span>
 
                         <span class="size-w-12 p-t-1">
-								<a href="/client/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e28f83908990979191878e8ea2879a838f928e87cc818d8f">[email&#160;protected]</a>
+								rausachtdhhn@gmail.com
 							</span>
                     </li>
 
@@ -45,7 +46,7 @@
 							</span>
 
                         <span class="size-w-12 p-t-1">
-								(084) 977 5767
+								(033) 729 7070
 							</span>
                     </li>
                 </ul>
@@ -54,38 +55,32 @@
             <div class="footer-col2 p-b-50">
                 <div class="p-b-36">
                         <span class="txt-m-109 cl0">
-							Information
+							Thông tin
 						</span>
                 </div>
 
                 <ul>
                     <li class="p-b-16">
                         <a href="#" class="txt-s-101 cl0 hov-cl10 trans-04 p-tb-5">
-                            About our shop
+                            Giới thiệu về công ty
                         </a>
                     </li>
 
                     <li class="p-b-16">
                         <a href="#" class="txt-s-101 cl0 hov-cl10 trans-04 p-tb-5">
-                            Top sellers
+                            Bài viết
                         </a>
                     </li>
 
                     <li class="p-b-16">
                         <a href="#" class="txt-s-101 cl0 hov-cl10 trans-04 p-tb-5">
-                            Our blog
+                            Danh sách sản phẩm
                         </a>
                     </li>
 
                     <li class="p-b-16">
                         <a href="#" class="txt-s-101 cl0 hov-cl10 trans-04 p-tb-5">
-                            New products
-                        </a>
-                    </li>
-
-                    <li class="p-b-16">
-                        <a href="#" class="txt-s-101 cl0 hov-cl10 trans-04 p-tb-5">
-                            Secure shopping
+                            Phản hồi
                         </a>
                     </li>
                 </ul>
@@ -94,38 +89,32 @@
             <div class="footer-col3 p-b-50">
                 <div class="p-b-36">
                         <span class="txt-m-109 cl0">
-							My Account
+							Tài khoản
 						</span>
                 </div>
 
                 <ul>
                     <li class="p-b-16">
                         <a href="#" class="txt-s-101 cl0 hov-cl10 trans-04 p-tb-5">
-                            My account
+                            Đăng nhập
                         </a>
                     </li>
 
                     <li class="p-b-16">
                         <a href="#" class="txt-s-101 cl0 hov-cl10 trans-04 p-tb-5">
-                            Discount
+                            Đăng ký
                         </a>
                     </li>
 
                     <li class="p-b-16">
                         <a href="#" class="txt-s-101 cl0 hov-cl10 trans-04 p-tb-5">
-                            Personal information
+                            Thông tin tài khoản
                         </a>
                     </li>
 
                     <li class="p-b-16">
                         <a href="#" class="txt-s-101 cl0 hov-cl10 trans-04 p-tb-5">
-                            My address
-                        </a>
-                    </li>
-
-                    <li class="p-b-16">
-                        <a href="#" class="txt-s-101 cl0 hov-cl10 trans-04 p-tb-5">
-                            Order history
+                            Lịch sử đơn hàng
                         </a>
                     </li>
                 </ul>
