@@ -40,6 +40,7 @@ Route::post('admin/register', [AdminController::class, 'register']);
 Route::get('admin/logOut', [AdminController::class, 'logOut'])->name('auth.logOut');
 //***************************** Dashboard ************************************
 Route::get('admin/dashboard', [DashboardController::class, 'displayDashboard']);
+Route::post('admin/dashboard/findChart', [DashboardController::class, 'findChart']);
 
 //***************************** Product ************************************
 Route::get('admin/products', [\App\Http\Controllers\admin\ProductController::class, 'getAll']);

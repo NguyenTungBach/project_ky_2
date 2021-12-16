@@ -117,7 +117,7 @@
                                                     @csrf
                                                     <input type="hidden" value="{{$item->id}}" name="id">
                                                     <select name="status-update" class="status-update" data-id="{{$item->id}}" style="font-size: 14px; padding: 5px; border: 1px solid #bdbdbd" >
-                                                        <option value="0" {{$item->status == \App\Enums\UserStatus::Deleted ? 'selected' : ''}}>Đã xóa</option>
+                                                        <option value="0" {{$item->status == \App\Enums\UserStatus::Deleted ? 'selected' : ''}}>Xóa</option>
                                                         <option value="1" {{$item->status == \App\Enums\UserStatus::Existed ? 'selected' : ''}}>Đã kích hoạt</option>
                                                     </select>
                                                 </form>

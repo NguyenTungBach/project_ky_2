@@ -1,5 +1,6 @@
 @extends('admin.master-admin')
 @section('page-css')
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
     <link rel="stylesheet" href="/css/jquery.toast.min.css">
     <style>
         /* The Modal (background) */
@@ -114,6 +115,32 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
+                                <form action="/admin/dashboard/findChart" method="post" id="form-search">
+                                    @csrf
+                                    <div class="col-md-3 col-sm-3 form-group pull-right pr-2 top_search">
+                                        @php
+                                            use Carbon\Carbon;
+                                            if (isset($oldStartDate) && isset($oldEndDate)){
+                                                $oldStartDate = Carbon::parse($oldStartDate)->isoFormat('MM/DD/YYYY');
+                                                $oldEndDate = Carbon::parse($oldEndDate)->isoFormat('MM/DD/YYYY');
+                                            }
+                                        @endphp
+                                        <input type="hidden" name="startDate" id="startDate"
+                                               value="{{$oldStartDate ?? ''}}">
+                                        <input type="hidden" name="endDate" id="endDate" value="{{$oldEndDate ?? ''}}">
+
+                                        <input id="picker" style="cursor: pointer ;background-color: #FFFFFF"
+                                               class=" form-control query"
+                                               value="{{isset($oldStartDate) && isset($oldEndDate) ? $oldStartDate ." - ". $oldEndDate : '' }}"
+                                               placeholder="Search by date...">
+                                        <span class="delete-search">&times;</span>
+                                        <span class="icon-search"><i
+                                                class="fa fa-search"></i></span>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 form-group pull-right pr-2 top_search">
+                                        <a class="btn btn-secondary ml-3" style="padding: 5px 10px; border-radius: 10px" href="/admin/dashboard">Bỏ lọc</a>
+                                    </div>
+                                </form>
                                 <div style="height: 300px" class="demo-placeholde" id="chart_div"></div>
                             </div>
                         </div>
@@ -157,9 +184,14 @@
     </div>
 @endsection
 @section('page-script')
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <script src="/js/jquery.toast.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
+    <script>
+        $('.icon-search').on('click',function () {
+            $('#form-search').submit();
+        })
+    </script>
     <script>
         google.charts.load('current', {packages: ['corechart', 'line']});
         google.charts.setOnLoadCallback(drawBasic);
