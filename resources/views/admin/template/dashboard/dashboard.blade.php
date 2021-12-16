@@ -221,8 +221,8 @@
         function drawBasic() {
 
             var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Date');
-            data.addColumn('number', 'Amount');
+            data.addColumn('string', 'Thời gian');
+            data.addColumn('number', 'Tiền');
 
             data.addRows([
                 <?php
