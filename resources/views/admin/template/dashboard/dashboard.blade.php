@@ -111,7 +111,7 @@
                 <div class="count">{{$totalProduct ?? '0'}}</div>
             </div>
             <div class="col-md-3 col-sm-4  tile_stats_count">
-                <span class="count_top"><i class="fa fa-book"></i> Số phản hồi</span>
+                <span class="count_top"><i class="fa fa-book"></i> Phản hồi</span>
                 <div class="count">{{$totalContact ?? '0'}}</div>
             </div>
             <div class="col-md-3 col-sm-4  tile_stats_count">
