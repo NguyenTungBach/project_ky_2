@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Contact;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 
@@ -18,9 +22,14 @@ class DashboardController extends Controller
     {
         $dataPrice = $this->lineChart();
         $dataQuantity = $this->pieChart();
+//        return User::all()->count();
         return view('admin.template.dashboard.dashboard', [
             'dataLineChart' => $dataPrice,
             'dataPieChart' => $dataQuantity,
+            'totalUser'=>User::all()->count(),
+            'totalOrder'=>Order::all()->count(),
+            'totalProduct'=>Product::all()->count(),
+            'totalContact'=>Contact::all()->count(),
         ]);
     }
 
@@ -30,9 +39,17 @@ class DashboardController extends Controller
 
         $dataPrice = $this->lineChart();
         $dataQuantity = $this->pieChart();
+        $startDate = request()->get('startDate');
+        $endDate = request()->get('endDate');
         return view('admin.template.dashboard.dashboard', [
             'dataLineChart' => $dataPrice,
             'dataPieChart' => $dataQuantity,
+            'oldStartDate'=>$startDate,
+            'oldEndDate'=>$endDate,
+            'totalUser'=>User::all()->count(),
+            'totalOrder'=>Order::all()->count(),
+            'totalProduct'=>Product::all()->count(),
+            'totalContact'=>Contact::all()->count(),
         ]);
     }
 

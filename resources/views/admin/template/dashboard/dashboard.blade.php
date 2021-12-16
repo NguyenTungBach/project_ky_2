@@ -98,6 +98,28 @@
 @section('page-content')
     <!-- /top tiles -->
     <div class="row">
+        <div class="tile_count col-md-6">
+            @if(isset($totalUser))
+                <div class="col-md-3 col-sm-4  tile_stats_count">
+                    <span class="count_top"><i class="fa fa-user"></i> Người dùng</span>
+                    <div class="count">{{$totalUser ?? '0'}}</div>
+                </div>
+            @endif
+
+            <div class="col-md-3 col-sm-4  tile_stats_count">
+                <span class="count_top"><i class="fa fa-list"></i> Số sản phẩm</span>
+                <div class="count">{{$totalProduct ?? '0'}}</div>
+            </div>
+            <div class="col-md-3 col-sm-4  tile_stats_count">
+                <span class="count_top"><i class="fa fa-book"></i> Số phản hồi</span>
+                <div class="count">{{$totalContact ?? '0'}}</div>
+            </div>
+            <div class="col-md-3 col-sm-4  tile_stats_count">
+                <span class="count_top"><i class="fa fa-shopping-cart"></i> Đơn Hàng</span>
+                <div class="count green">{{$totalOrder?? ''}}</div>
+{{--                <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>--}}
+            </div>
+        </div>
         <div class="col-md-12 col-sm-12 ">
             <div class="dashboard_graph">
 
