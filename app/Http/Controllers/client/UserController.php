@@ -142,8 +142,9 @@ class UserController extends Controller
     {
         if (\session()->has('loginUserId')) {
             session()->pull('loginUserId');
-            return view('client.page.account.login');
+            return redirect('/user/login');
         }
+        return redirect('/user/login');
     }
 
     function getOrder()
